@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://FirstScene.gd" type="Script" id=1]
+[ext_resource path="res://eye1.png" type="Texture" id=2]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://ChiKareGo2.ttf"
@@ -11,6 +14,7 @@ font_data = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.188235, 0.72549, 0.0352941, 1 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -18,6 +22,9 @@ __meta__ = {
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="CenterContainer"]
 margin_left = 85.0
@@ -27,3 +34,17 @@ margin_bottom = 105.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "First Scene"
+
+[node name="TestButton" type="Button" parent="."]
+margin_left = 149.604
+margin_top = 120.58
+margin_right = 161.604
+margin_bottom = 140.58
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EyeImage" type="Sprite" parent="."]
+position = Vector2( 160.624, 36.0065 )
+scale = Vector2( 0.250795, -0.19 )
+texture = ExtResource( 2 )
