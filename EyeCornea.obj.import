@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/EyeCornea.obj-e33725d82d7765e37d42854981ad9925.mesh"
+
+[deps]
+
+files=[ "res://.import/EyeCornea.obj-e33725d82d7765e37d42854981ad9925.mesh" ]
+
+source_file="res://EyeCornea.obj"
+dest_files=[ "res://.import/EyeCornea.obj-e33725d82d7765e37d42854981ad9925.mesh", "res://.import/EyeCornea.obj-e33725d82d7765e37d42854981ad9925.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
