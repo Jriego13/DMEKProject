@@ -2,14 +2,27 @@ extends MarginContainer
 
 const first_scene = preload("res://FirstScene.tscn")
 
-onready var selector_one = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/HBoxContainer/Selector
-onready var selector_two = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer2/HBoxContainer/Selector
-onready var selector_three = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer3/HBoxContainer/Selector
-onready var selector_four = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer4/HBoxContainer/Selector
+onready var Start = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/Start
+onready var Option = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/Option
+onready var Information = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/Information
+onready var Exit= $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/Exit
+
+
+
+onready var Start_selector = Start.get_node("HBoxContainer/Selector")
+onready var Option_selector = Option.get_node("HBoxContainer/Selector")
+onready var Information_selector = Information.get_node("HBoxContainer/Selector")
+onready var Exit_selector = Exit.get_node("HBoxContainer/Selector")
 
 var current_selection = 0
 
 func _ready():
+	
+	Start.get_node("HBoxContainer/OptionName").text = "Start"
+	Option.get_node("HBoxContainer/OptionName").text = "Option"
+	Information.get_node("HBoxContainer/OptionName").text = "Information"
+	Exit.get_node("HBoxContainer/OptionName").text = "Exit"
+	
 	# on load method, first thing that gets called 
 	set_current_selection(0)
 	
@@ -40,16 +53,16 @@ func handle_selection(current_selection):
 
 func set_current_selection(_current_selection):
 	# logic for making selection button appear
-	selector_one.text = ""
-	selector_two.text = ""
-	selector_three.text = ""
-	selector_four.text = ""
+	Start_selector.text = ""
+	Option_selector.text = ""
+	Information_selector.text = ""
+	Exit_selector.text = ""
 
 	if(_current_selection == 0):
-		selector_one.text = ">"
+		Start_selector.text = ">"
 	elif (_current_selection == 1):
-		selector_two.text = ">"
+		Option_selector.text = ">"
 	elif(_current_selection == 2):
-		selector_three.text = ">"
+		Information_selector.text = ">"
 	elif (_current_selection == 3):
-		selector_four.text = ">"
+		Exit_selector.text = ">"

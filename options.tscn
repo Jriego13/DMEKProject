@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="options" type="CenterContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 13.0
+margin_right = 92.0
+margin_bottom = 27.0
+
+[node name="Selector" type="Label" parent="HBoxContainer"]
+margin_right = 8.0
+margin_bottom = 14.0
+text = ">"
+
+[node name="OptionName" type="Label" parent="HBoxContainer"]
+margin_left = 12.0
+margin_right = 92.0
+margin_bottom = 14.0
+text = "<Inset Text>"
