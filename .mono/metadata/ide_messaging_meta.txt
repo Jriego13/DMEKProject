@@ -1,2 +1,2 @@
-﻿54472
-C:/Users/giova/Desktop/Godot_v3.3.2-stable_mono_win64/Godot_v3.3.2-stable_mono_win64.exe
+﻿46515
+/home/tussle/Downloads/Godot_v3.3-stable_mono_x11_64/Godot_v3.3-stable_mono_x11.64
