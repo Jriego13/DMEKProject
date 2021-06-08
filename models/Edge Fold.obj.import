@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Edge Fold.obj-249b546094be0c441a27f637ff007603.mesh"
+
+[deps]
+
+files=[ "res://.import/Edge Fold.obj-249b546094be0c441a27f637ff007603.mesh" ]
+
+source_file="res://models/Edge Fold.obj"
+dest_files=[ "res://.import/Edge Fold.obj-249b546094be0c441a27f637ff007603.mesh", "res://.import/Edge Fold.obj-249b546094be0c441a27f637ff007603.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

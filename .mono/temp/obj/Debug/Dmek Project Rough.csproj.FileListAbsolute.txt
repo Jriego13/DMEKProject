@@ -1,8 +1,0 @@
-/home/tussle/Documents/DMEKProject/.mono/temp/bin/Debug/Dmek Project Rough.dll
-/home/tussle/Documents/DMEKProject/.mono/temp/bin/Debug/Dmek Project Rough.pdb
-/home/tussle/Documents/DMEKProject/.mono/temp/obj/Debug/Dmek Project Rough.csprojAssemblyReference.cache
-/home/tussle/Documents/DMEKProject/.mono/temp/obj/Debug/Dmek Project Rough.AssemblyInfoInputs.cache
-/home/tussle/Documents/DMEKProject/.mono/temp/obj/Debug/Dmek Project Rough.AssemblyInfo.cs
-/home/tussle/Documents/DMEKProject/.mono/temp/obj/Debug/Dmek Project Rough.csproj.CoreCompileInputs.cache
-/home/tussle/Documents/DMEKProject/.mono/temp/obj/Debug/Dmek Project Rough.dll
-/home/tussle/Documents/DMEKProject/.mono/temp/obj/Debug/Dmek Project Rough.pdb

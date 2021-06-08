@@ -1,35 +1,21 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://EyeIris.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://EyeCornea.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://CameraController.cs" type="Script" id=3]
-[ext_resource path="res://OtherEye.obj" type="ArrayMesh" id=4]
-[ext_resource path="res://eye-texture.jpg" type="Texture" id=5]
+[ext_resource path="res://scripts/CameraController.cs" type="Script" id=1]
+[ext_resource path="res://models/Eye.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://models/eye-texture.jpg" type="Texture" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
-albedo_texture = ExtResource( 5 )
-metallic = 0.19
-metallic_specular = 0.0
+albedo_texture = ExtResource( 3 )
 
 [node name="Spatial" type="Spatial"]
 
-[node name="EyeCornea" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 82.6338, 0.385, 153.915 )
-mesh = ExtResource( 2 )
-material/0 = null
-
-[node name="EyeIris" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 82.6338, 0, 153.915 )
-mesh = ExtResource( 1 )
-material/0 = null
-
-[node name="OtherEye" type="MeshInstance" parent="."]
+[node name="MainEye" type="MeshInstance" parent="."]
 transform = Transform( -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0, 0, 0.1, -12.8, 0, 0 )
-mesh = ExtResource( 4 )
+mesh = ExtResource( 2 )
 material/0 = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0 )
 fov = 89.5
 far = 100.5
-script = ExtResource( 3 )
+script = ExtResource( 1 )
