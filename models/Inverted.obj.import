@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Inverted.obj-2c985d9203da9dd12b3ec9800fd7a4ad.mesh"
+
+[deps]
+
+files=[ "res://.import/Inverted.obj-2c985d9203da9dd12b3ec9800fd7a4ad.mesh" ]
+
+source_file="res://models/Inverted.obj"
+dest_files=[ "res://.import/Inverted.obj-2c985d9203da9dd12b3ec9800fd7a4ad.mesh", "res://.import/Inverted.obj-2c985d9203da9dd12b3ec9800fd7a4ad.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

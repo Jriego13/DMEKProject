@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Simple Fold.obj-519afe637d3e1782461a0ae5b6ad26ed.mesh"
+
+[deps]
+
+files=[ "res://.import/Simple Fold.obj-519afe637d3e1782461a0ae5b6ad26ed.mesh" ]
+
+source_file="res://models/Simple Fold.obj"
+dest_files=[ "res://.import/Simple Fold.obj-519afe637d3e1782461a0ae5b6ad26ed.mesh", "res://.import/Simple Fold.obj-519afe637d3e1782461a0ae5b6ad26ed.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

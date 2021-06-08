@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/OtherEye.obj-96f7da71da37498e46fa752a70fd0c12.mesh"
+
+[deps]
+
+files=[ "res://.import/OtherEye.obj-96f7da71da37498e46fa752a70fd0c12.mesh" ]
+
+source_file="res://OtherEye.obj"
+dest_files=[ "res://.import/OtherEye.obj-96f7da71da37498e46fa752a70fd0c12.mesh", "res://.import/OtherEye.obj-96f7da71da37498e46fa752a70fd0c12.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
