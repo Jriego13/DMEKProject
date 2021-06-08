@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Dmek Project Rough"
-run/main_scene="res://MainMenu.tscn"
+run/main_scene="res://SampleEye.tscn"
 config/icon="res://eye_icon.png"
 
 [display]
