@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://models/Edge Fold.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://scripts/EdgeFold.cs" type="Script" id=2]
+[ext_resource path="res://scripts/EdgeDirisamerT.cs" type="Script" id=3]
+[ext_resource path="res://scripts/EdgeDirisamerH.cs" type="Script" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.321569, 0.360784, 0.803922, 1 )
+
+[sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="SphereShape" id=3]
+
+[node name="Graft" type="Spatial"]
+transform = Transform( -7.43094e-07, -17, 0, 17, -7.43094e-07, 0, 0, 0, 17, -54.212, 130.468, 0 )
+
+[node name="Edge Fold" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Circle" type="MeshInstance" parent="Edge Fold"]
+transform = Transform( 0.506266, 0, 0, 0, 0, 0, 0, 0, 0.506266, -0.601802, 1.41734, 0.0421033 )
+mesh = SubResource( 2 )
+material/0 = null
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area" type="Area" parent="Edge Fold/Circle"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Edge Fold/Circle/Area"]
+shape = SubResource( 3 )
+
+[node name="Circle2" type="MeshInstance" parent="Edge Fold"]
+transform = Transform( 0.506266, 0, 0, 0, 0, 0, 0, 0, 0.506266, 0.778916, 1.41734, 0.0421033 )
+mesh = SubResource( 2 )
+material/0 = null
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area" type="Area" parent="Edge Fold/Circle2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Edge Fold/Circle2/Area"]
+shape = SubResource( 3 )
+
+[connection signal="input_event" from="Edge Fold/Circle/Area" to="Edge Fold/Circle" method="_on_Area_input_event"]
+[connection signal="input_event" from="Edge Fold/Circle2/Area" to="Edge Fold/Circle2" method="_on_Area_input_event"]

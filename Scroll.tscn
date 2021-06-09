@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/ScrollButton1.cs" type="Script" id=1]
+[ext_resource path="res://models/Scroll.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://scripts/Scroll.cs" type="Script" id=3]
+[ext_resource path="res://scripts/ScrollButton2.cs" type="Script" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.321569, 0.360784, 0.803922, 1 )
+
+[sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="SphereShape" id=3]
+
+[node name="Graft" type="Spatial"]
+transform = Transform( -7.43094e-07, -17, 0, 17, -7.43094e-07, 0, 0, 0, 17, -54.212, 130.468, 0 )
+
+[node name="Scroll" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Circle" type="MeshInstance" parent="Scroll"]
+transform = Transform( 0.630454, 0, 0, 0, 0, 0, 0, 0, 0.630454, 0.0331551, 2.21742, 0.377034 )
+mesh = SubResource( 2 )
+material/0 = null
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area" type="Area" parent="Scroll/Circle"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Scroll/Circle/Area"]
+shape = SubResource( 3 )
+
+[node name="Circle2" type="MeshInstance" parent="Scroll"]
+transform = Transform( 0.630454, 0, 0, 0, 0, 0, 0, 0, 0.630454, 0.0331551, 2.18538, -1.43124 )
+mesh = SubResource( 2 )
+material/0 = null
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area" type="Area" parent="Scroll/Circle2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Scroll/Circle2/Area"]
+shape = SubResource( 3 )
+
+[connection signal="input_event" from="Scroll/Circle/Area" to="Scroll/Circle" method="_on_Area_input_event"]
+[connection signal="input_event" from="Scroll/Circle2/Area" to="Scroll/Circle2" method="_on_Area_input_event"]
