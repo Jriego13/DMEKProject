@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_right = 213.0
+margin_bottom = 125.0
+custom_fonts/normal_font = ExtResource( 1 )
+text = "YUP YOU DID IT. GOOD JOB CLICKING :D"
+__meta__ = {
+"_edit_use_anchors_": false
+}
