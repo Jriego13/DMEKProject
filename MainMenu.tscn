@@ -2,7 +2,7 @@
 
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/MainMenu.gd" type="Script" id=2]
-[ext_resource path="res://options.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Options.tscn" type="PackedScene" id=3]
 
 [node name="MainMenu" type="MarginContainer"]
 anchor_right = 1.0

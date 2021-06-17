@@ -18,8 +18,6 @@ public class EdgeDirisamerT : Node
 		{
 			if ((ButtonList)mouseEvent.ButtonIndex == ButtonList.Left)
 			{
-				//GD.Print("Changing mesh.");
-				//node.SetMesh(mesh);
 				node.tapCircle = true;
 			}
 		}
