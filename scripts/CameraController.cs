@@ -12,5 +12,6 @@ public class CameraController : Camera
 		movement.z = Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up");
 		movement = movement.Normalized();
 		this.GlobalTranslate(movement * delta * cameraSpeed);
+
 	}
 }

@@ -1,6 +1,7 @@
 extends MarginContainer
 
 const first_scene = preload("res://FirstScene.tscn")
+const main_scene = preload("res://SampleEye.tscn")
 
 onready var Start = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/Start
 onready var Option = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/Option
@@ -40,7 +41,7 @@ func _process(delta):
 
 func handle_selection(current_selection):
 	if(current_selection == 0):
-		get_parent().add_child(first_scene.instance())
+		get_parent().add_child(main_scene.instance())
 		queue_free()
 		# look into queue_free more
 	elif(current_selection == 1):
