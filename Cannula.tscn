@@ -17,6 +17,7 @@ albedo_color = Color( 0.0509804, 1, 0.247059, 1 )
 [sub_resource type="SphereShape" id=6]
 
 [node name="Cannulas" type="Spatial"]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
 script = ExtResource( 1 )
 
 [node name="CannulaLMesh" type="MeshInstance" parent="."]
