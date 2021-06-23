@@ -15,6 +15,7 @@ public class CannulaMain : Spatial
 
 	public override void _Ready()
 	{
+		Input.SetMouseMode((Godot.Input.MouseMode)1);
 		mainCam = GetNode("../Camera") as Camera;
 		lCannula = GetNode("./CannulaLMesh") as MeshInstance;
 		rCannula = GetNode("./CannulaRMesh") as MeshInstance;
@@ -44,7 +45,7 @@ public class CannulaMain : Spatial
 					lLocked = false;
 				}
 
-				timer = 0;
+				timer = -1;
 			}
 
 			lHeld = true;
@@ -71,14 +72,14 @@ public class CannulaMain : Spatial
 					rLocked = false;
 				}
 
-				timer = 0;
+				timer = -1;
 			}
 
 			rHeld = true;
 		}
 		else
 		{
-			if(timer < 1 && (lHeld || rHeld))
+			if((timer < 1 && timer > 0) && (lHeld || rHeld))
 					GD.Print("this was a tap.");
 			lHeld = false;
 			rHeld = false;
@@ -86,8 +87,6 @@ public class CannulaMain : Spatial
 		}
 	}
 
-	// next steps: checking for mouse input and locking the respective children
-	// based on what input is made :D
 	public override void _PhysicsProcess(float delta)
 	{
 		Vector3 mousePos = mainCam.ProjectPosition(GetViewport().GetMousePosition(), 10);
@@ -98,5 +97,9 @@ public class CannulaMain : Spatial
 			lCannula.SetTranslation(leftPos);
 		if(!rLocked)
 			rCannula.SetTranslation(rightPos);
+		if(lLocked && rLocked)
+			Input.SetMouseMode((Godot.Input.MouseMode)0);
+		else
+			Input.SetMouseMode((Godot.Input.MouseMode)1);
 	}
 }

@@ -6,7 +6,7 @@ public class ScrollButton1 : Spatial
 {
 	Scroll node;
 	Mesh mesh;
-	
+
 	public override void _Ready()
 	{
 		node = GetNode("..") as Scroll;
