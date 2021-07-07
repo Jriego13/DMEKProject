@@ -1,11 +1,10 @@
 using Godot;
 using System;
 
-public class CannulaMain : Spatial
-{
+public class CannulaMain : Spatial {
 	Camera mainCam;
-	MeshInstance lCannula;
-	MeshInstance rCannula;
+	Cannula lCannula;
+	Cannula rCannula;
 
 	bool lHeld = false;
 	bool rHeld = false;
@@ -13,35 +12,30 @@ public class CannulaMain : Spatial
 	bool rLocked = false;
 	float timer = 0;
 
-	public override void _Ready()
-	{
+	public override void _Ready() {
 		Input.SetMouseMode((Godot.Input.MouseMode)1);
 		mainCam = GetNode("../Camera") as Camera;
-		lCannula = GetNode("./CannulaLMesh") as MeshInstance;
-		rCannula = GetNode("./CannulaRMesh") as MeshInstance;
+		lCannula = GetNode("./CannulaLMesh") as Cannula;
+		rCannula = GetNode("./CannulaRMesh") as Cannula;
 	}
 
-	public override void _Process(float delta)
-	{
-		if(Input.IsActionPressed("left_mouse"))
-		{
-			if(lHeld)
-			{
+	public override void _Process(float delta) {
+		if(Input.IsActionPressed("left_mouse"))	{
+			if(lHeld) {
 				timer += delta;
 			}
-			if(timer >= 1)
-			{
-				MeshInstance lCannula = GetChild(0) as MeshInstance;
-				SpatialMaterial currentMat = lCannula.GetActiveMaterial(0) as SpatialMaterial;
+			if(timer >= 1) {
+				MeshInstance lCannulaMesh = GetChild(0) as MeshInstance;
+				SpatialMaterial currentMat = lCannulaMesh.GetActiveMaterial(0) as SpatialMaterial;
 
-				if(!lLocked) // this means the user wants to hold the cannula in place
-				{
+				if(!lLocked) { // this means the user wants to hold the cannula in place
 					currentMat.SetAlbedo(new Color(1,0,0,1));
+					lCannula.locked = true;
 					lLocked = true;
 				}
-				else // this unlocks the cannula and resets the flag
-				{
+				else { // this unlocks the cannula and resets the flag
 					currentMat.SetAlbedo(new Color(0,1,0,1));
+					lCannula.locked = false;
 					lLocked = false;
 				}
 
@@ -50,25 +44,22 @@ public class CannulaMain : Spatial
 
 			lHeld = true;
 		}
-		else if(Input.IsActionPressed("right_mouse"))
-		{
-			if(rHeld)
-			{
+		else if(Input.IsActionPressed("right_mouse")) {
+			if(rHeld) {
 				timer += delta;
 			}
-			if(timer >= 1)
-			{
-				MeshInstance rCannula = GetChild(1) as MeshInstance;
-				SpatialMaterial currentMat = rCannula.GetActiveMaterial(0) as SpatialMaterial;
+			if(timer >= 1) {
+				MeshInstance rCannulaMesh = GetChild(1) as MeshInstance;
+				SpatialMaterial currentMat = rCannulaMesh.GetActiveMaterial(0) as SpatialMaterial;
 
-				if(!rLocked)
-				{
+				if(!rLocked) {
 					currentMat.SetAlbedo(new Color(1,0,0,1));
+					rCannula.locked = true;
 					rLocked = true;
 				}
-				else
-				{
+				else {
 					currentMat.SetAlbedo(new Color(0,1,0,1));
+					rCannula.locked = false;
 					rLocked = false;
 				}
 
@@ -77,18 +68,26 @@ public class CannulaMain : Spatial
 
 			rHeld = true;
 		}
-		else
-		{
-			if((timer < 1 && timer > 0) && (lHeld || rHeld))
-					GD.Print("this was a tap.");
+		else {
+			if((timer < 1 && timer > 0) && (lHeld || rHeld)) {
+				//GD.Print("this was a tap.");
+				if(lHeld)
+					lCannula.tapped = true;
+				else
+					rCannula.tapped = true;
+			}
+			else {
+				lCannula.tapped = false;
+				rCannula.tapped = false;
+			}
+
 			lHeld = false;
 			rHeld = false;
 			timer = 0;
 		}
 	}
 
-	public override void _PhysicsProcess(float delta)
-	{
+	public override void _PhysicsProcess(float delta) {
 		Vector3 mousePos = mainCam.ProjectPosition(GetViewport().GetMousePosition(), 10);
 		Vector3 leftPos = new Vector3(mousePos.x-1.7f, 0, mousePos.z);
 		Vector3 rightPos = new Vector3(mousePos.x+1.7f, 0, mousePos.z);

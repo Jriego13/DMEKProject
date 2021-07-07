@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/CannulaMain.cs" type="Script" id=1]
+[ext_resource path="res://scripts/Cannula.cs" type="Script" id=2]
 
 [sub_resource type="SphereMesh" id=1]
 
@@ -24,6 +25,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0, 0, 0, 0, 1, -1.7, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
+script = ExtResource( 2 )
 
 [node name="CannulaL" type="Area" parent="CannulaLMesh"]
 
@@ -34,8 +36,9 @@ shape = SubResource( 3 )
 transform = Transform( 1, 0, 0, 0, 0, 0, 0, 0, 1, 1.7, 0, 0 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
+script = ExtResource( 2 )
 
 [node name="CannulaR" type="Area" parent="CannulaRMesh"]
 
-[node name="CannulaRHitBox" type="CollisionShape" parent="CannulaRMesh/CannulaR"]
+[node name="CannulaRHitbox" type="CollisionShape" parent="CannulaRMesh/CannulaR"]
 shape = SubResource( 6 )
