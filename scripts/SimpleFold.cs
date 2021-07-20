@@ -13,8 +13,10 @@ public class SimpleFold : Graft
 	Cannula cannulaL;
 	Cannula cannulaR;
 	PackedScene scene1;
+	Mesh newMesh;
 
 	public override void _Ready() {
+		//newMesh = new Mesh("res://models/Grafts2.0/SimpleFold2.obj");
 		numTapsComplete = rng.Next(3,6);
 		GD.Print("you have to tap " + numTapsComplete + " times!");
 		scene1 = GD.Load<PackedScene>("res://EdgeFold.tscn");
@@ -31,6 +33,7 @@ public class SimpleFold : Graft
 	}
 
 	private void _on_HoldArea_area_entered(object area) {
+		GD.Print("hold area entered");
 		holdAreaEntered = true;
 	}
 
@@ -39,6 +42,11 @@ public class SimpleFold : Graft
 	}
 
 	public override void _Process(float delta) {
+		// if(numTaps == (numTapsComplete / 2)) {
+		// 	MeshInstance graftMesh = GetNode("./SimpleFoldMesh") as MeshInstance;
+		// 	graftMesh.SetMesh(newMesh);
+		// }
+
 		if(numTaps >= numTapsComplete) {
 			numTaps = 0;
 			Node sceneNode = scene1.Instance();

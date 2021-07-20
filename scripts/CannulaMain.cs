@@ -6,6 +6,7 @@ public class CannulaMain : Spatial {
 	Cannula lCannula;
 	Cannula rCannula;
 
+	bool rotating = false; // false defualts to rotating left cannula, true to right cannula
 	bool lHeld = false;
 	bool rHeld = false;
 	bool lLocked = false;
@@ -85,6 +86,28 @@ public class CannulaMain : Spatial {
 			rHeld = false;
 			timer = 0;
 		}
+
+		if(Input.IsActionPressed("cann_counterclock")) {
+			if(!rotating)
+				lCannula.GlobalRotate(new Vector3(0,1,0), 0.1f);
+			else
+				rCannula.GlobalRotate(new Vector3(0,1,0), 0.1f);
+		}
+		else if(Input.IsActionPressed("cann_clock")) {
+			if(!rotating)
+				lCannula.GlobalRotate(new Vector3(0,1,0), -0.1f);
+			else
+				rCannula.GlobalRotate(new Vector3(0,1,0), -0.1f);
+		}
+		else if(Input.IsActionPressed("cann_reset")) {
+			if(!rotating)
+				lCannula.SetRotation(new Vector3(0,0,0));
+			else
+				rCannula.SetRotation(new Vector3(0,0,0));
+		}
+
+		if(Input.IsActionPressed("cann_swap"))
+			rotating = !rotating;
 	}
 
 	public override void _PhysicsProcess(float delta) {

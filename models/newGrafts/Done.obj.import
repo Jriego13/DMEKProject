@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Done.obj-1dc499827d91fc4b0066baa7b7fd3eee.mesh"
+
+[deps]
+
+files=[ "res://.import/Done.obj-1dc499827d91fc4b0066baa7b7fd3eee.mesh" ]
+
+source_file="res://models/newGrafts/Done.obj"
+dest_files=[ "res://.import/Done.obj-1dc499827d91fc4b0066baa7b7fd3eee.mesh", "res://.import/Done.obj-1dc499827d91fc4b0066baa7b7fd3eee.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
