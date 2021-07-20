@@ -2,6 +2,7 @@ extends MarginContainer
 
 const first_scene = preload("res://FirstScene.tscn")
 const main_scene = preload("res://SampleEye.tscn")
+const information_scene = preload("res://TestingInfo.tscn");
 
 onready var Start = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/Start
 onready var Option = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/Option
@@ -47,7 +48,8 @@ func handle_selection(current_selection):
 	elif(current_selection == 1):
 		print("Add options later!")
 	elif (current_selection == 2):
-		print("Add information page later!")
+		get_parent().add_child(information_scene.instance())
+		queue_free()
 	elif (current_selection == 3):
 		get_tree().quit()
 		

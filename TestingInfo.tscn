@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/CameraController.cs" type="Script" id=1]
 [ext_resource path="res://models/Eye.obj" type="ArrayMesh" id=2]
@@ -9,9 +9,12 @@
 [ext_resource path="res://Menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://images/camera-icon.png" type="Texture" id=8]
 [ext_resource path="res://CameraButton.cs" type="Script" id=9]
+[ext_resource path="res://InformationBox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://images/output-onlinepngtools (1).png" type="Texture" id=11]
+[ext_resource path="res://NextButton.cs" type="Script" id=12]
+[ext_resource path="res://models/Scroll.obj" type="ArrayMesh" id=13]
 
 [sub_resource type="SpatialMaterial" id=1]
-flags_transparent = true
 albedo_color = Color( 1, 1, 1, 0.196078 )
 albedo_texture = ExtResource( 3 )
 
@@ -20,18 +23,22 @@ albedo_texture = ExtResource( 3 )
 [sub_resource type="SphereShape" id=3]
 radius = 5.0
 
+[sub_resource type="SphereShape" id=4]
+radius = 6.0
+
 [node name="Spatial" type="Spatial"]
 
 [node name="MainEye" type="MeshInstance" parent="."]
-transform = Transform( -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0, 0, 0.1, -27.4881, 0, 0 )
+transform = Transform( -0.0173648, 0.0984808, 0, -0.0984808, -0.0173648, 0, 0, 0, 0.1, -31.488, 0, 0 )
 mesh = ExtResource( 2 )
 material/0 = SubResource( 1 )
 
 [node name="Graft" parent="MainEye" instance=ExtResource( 4 )]
 transform = Transform( -7.43093e-07, -17, 0, 17, -7.43093e-07, 0, 0, 0, 17, -54.2124, 130.468, 0 )
+visible = false
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 29.3406, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.07849, 33.4453, 0 )
 fov = 89.5
 far = 100.5
 script = ExtResource( 1 )
@@ -65,6 +72,30 @@ shape = SubResource( 3 )
 
 [node name="Camera2" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171192, 7.24039, 18.2325 )
+visible = false
+
+[node name="InformationBox" parent="." instance=ExtResource( 10 )]
+
+[node name="NextButton" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8116, 3.05176e-05, 21.0345 )
+pixel_size = 0.02
+billboard = 1
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+
+[node name="Area" type="Area" parent="NextButton"]
+
+[node name="CollisionShape" type="CollisionShape" parent="NextButton/Area"]
+shape = SubResource( 4 )
+
+[node name="Grafts" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.8824, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Grafts"]
+transform = Transform( 4.75967, 0.390609, 1.48087, -1.52701, 0.839865, 4.68645, 0.117368, -4.91346, 0.918789, -64.1471, 0, 4.25174 )
+mesh = ExtResource( 13 )
+material/0 = null
 
 [connection signal="input_event" from="MenuButton/Area" to="MenuButton" method="_on_Area_input_event"]
 [connection signal="input_event" from="CameraButton/Area" to="CameraButton" method="_on_Area_input_event"]
+[connection signal="input_event" from="NextButton/Area" to="NextButton" method="_on_Area_input_event"]

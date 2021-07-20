@@ -1,0 +1,41 @@
+[gd_scene format=2]
+
+[node name="MarginContainer" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 193.151
+margin_top = 16.5118
+margin_right = -22.8492
+margin_bottom = -10.4882
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 103.0
+margin_bottom = 153.0
+
+[node name="Title" type="RichTextLabel" parent="ColorRect"]
+margin_left = 5.0
+margin_top = 7.0
+margin_right = 191.0
+margin_bottom = 24.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_clip_content = false
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Config Name goes here"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Body" type="RichTextLabel" parent="ColorRect"]
+margin_left = 5.62543
+margin_top = 29.0
+margin_right = 189.625
+margin_bottom = 255.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
