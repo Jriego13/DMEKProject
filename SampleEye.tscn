@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/CameraController.cs" type="Script" id=1]
 [ext_resource path="res://models/Eye.obj" type="ArrayMesh" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scripts/MenuButton.cs" type="Script" id=6]
 [ext_resource path="res://Menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Cannula.tscn" type="PackedScene" id=8]
+[ext_resource path="res://CurrentConfirmation.tscn" type="PackedScene" id=9]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
@@ -24,7 +25,6 @@ mesh = ExtResource( 2 )
 material/0 = SubResource( 1 )
 
 [node name="Scroll" parent="MainEye" instance=ExtResource( 4 )]
-transform = Transform( -7.43094e-07, -17, 0, 17, -7.43094e-07, 0, 0, 0, 17, -48.7101, 130.468, 0 )
 
 [node name="Cannulas" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0884237, 8.71495, 0.0365815 )
@@ -48,5 +48,7 @@ transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="Menu" parent="MenuButton" instance=ExtResource( 7 )]
+
+[node name="Node2D" parent="." instance=ExtResource( 9 )]
 
 [connection signal="input_event" from="MenuButton/Area" to="MenuButton" method="_on_Area_input_event"]

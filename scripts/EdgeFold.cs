@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+
 /*
  *  EdgeFold also has only one way to be unfolded being the dirisamer tech.
  *	It can unfold into:
@@ -13,6 +15,8 @@ public class EdgeFold : Graft
 	Cannula cannulaL;
 	Cannula cannulaR;
 	PackedScene scene1;
+	MeshInstance objectMesh;
+	List<Mesh> inbetweens = new List<Mesh>();
 
 	public override void _Ready() {
 		numTapsComplete = rng.Next(3,6);
@@ -20,6 +24,16 @@ public class EdgeFold : Graft
 		scene1 = GD.Load<PackedScene>("res://Finished.tscn");
 		cannulaL = GetNode("../../Cannulas/CannulaLMesh") as Cannula;
 		cannulaR = GetNode("../../Cannulas/CannulaRMesh") as Cannula;
+		objectMesh = GetNode("./EdgeFoldMesh") as MeshInstance;
+		LoadInbetweens();
+	}
+
+	private void LoadInbetweens() {
+		Mesh tempMesh;
+		for(int i = 1; i <= 3; i++) {
+			tempMesh = GD.Load<Mesh>("res://models/newnewModels/EdgeFold" + i + ".obj");
+			inbetweens.Add(tempMesh);
+		}
 	}
 
 	private void _on_TapArea_area_entered(object area) {
@@ -54,6 +68,8 @@ public class EdgeFold : Graft
 					numTaps += 1;
 					cannulaL.tapped = false;
 					cannulaR.tapped = false;
+					if(numTaps <= 3)
+						objectMesh.SetMesh(inbetweens[numTaps-1]);
 				}
 			}
 		}

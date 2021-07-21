@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+
 /*
  *  SimpleFold has only one way to be unfolded being the dirisamer tech.
  *	It can unfold into:
@@ -13,15 +15,25 @@ public class SimpleFold : Graft
 	Cannula cannulaL;
 	Cannula cannulaR;
 	PackedScene scene1;
-	Mesh newMesh;
+	MeshInstance objectMesh;
+	List<Mesh> inbetweens = new List<Mesh>();
 
 	public override void _Ready() {
-		//newMesh = new Mesh("res://models/Grafts2.0/SimpleFold2.obj");
 		numTapsComplete = rng.Next(3,6);
 		GD.Print("you have to tap " + numTapsComplete + " times!");
 		scene1 = GD.Load<PackedScene>("res://EdgeFold.tscn");
 		cannulaL = GetNode("../../Cannulas/CannulaLMesh") as Cannula;
 		cannulaR = GetNode("../../Cannulas/CannulaRMesh") as Cannula;
+		objectMesh = GetNode("./SimpleFoldMesh") as MeshInstance;
+		LoadInbetweens();
+	}
+
+	private void LoadInbetweens() {
+		Mesh tempMesh;
+		for(int i = 1; i <= 3; i++) {
+			tempMesh = GD.Load<Mesh>("res://models/newnewModels/SimpleFold" + i + ".obj");
+			inbetweens.Add(tempMesh);
+		}
 	}
 
 	private void _on_TapArea_area_entered(object area) {
@@ -62,6 +74,8 @@ public class SimpleFold : Graft
 					numTaps += 1;
 					cannulaL.tapped = false;
 					cannulaR.tapped = false;
+					if(numTaps <= 3)
+						objectMesh.SetMesh(inbetweens[numTaps-1]);
 				}
 			}
 		}

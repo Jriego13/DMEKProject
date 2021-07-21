@@ -1,6 +1,6 @@
 # Blender v2.93.0 OBJ File: 'EdgeFold3.blend'
 # www.blender.org
-mtllib Circle.mtl
+mtllib EdgeFold3.mtl
 o BezierCurve_BezierCurve.001
 v -5.631809 0.000000 -0.928581
 v -5.569723 0.000000 -0.836841

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class Scroll : Graft {
 	bool topAreaEntered = false;
@@ -8,17 +9,29 @@ public class Scroll : Graft {
 	Cannula cannulaR;
 	PackedScene scene1;
 	PackedScene scene2;
+	MeshInstance objectMesh;
+	List<Mesh> inbetweens = new List<Mesh>();
 	int topTaps = 0;
 	int topTapsComplete = 0;
 
 	public override void _Ready() {
-		numTapsComplete = rng.Next(3,6);
-		topTapsComplete = rng.Next(2,5);
+		numTapsComplete = rng.Next(4,6);
+		topTapsComplete = rng.Next(3,5);
     GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
     scene1 = GD.Load<PackedScene>("res://SimpleFold.tscn");
     scene2 = GD.Load<PackedScene>("res://DoubleScroll.tscn");
     cannulaL = GetNode("../../Cannulas/CannulaLMesh") as Cannula;
     cannulaR = GetNode("../../Cannulas/CannulaRMesh") as Cannula;
+		objectMesh = GetNode("./ScrollMesh") as MeshInstance;
+		LoadInbetweens();
+	}
+
+	private void LoadInbetweens() {
+		Mesh tempMesh;
+		for(int i = 1; i <= 4; i++) {
+			tempMesh = GD.Load<Mesh>("res://models/newnewModels/Scroll" + i + ".obj");
+			inbetweens.Add(tempMesh);
+		}
 	}
 
 	private void _on_BottomArea_area_entered(object area) {
@@ -53,6 +66,8 @@ public class Scroll : Graft {
 					numTaps += 1;
 					cannulaL.tapped = false;
 					cannulaR.tapped = false;
+					if(numTaps <= 4)
+						objectMesh.SetMesh(inbetweens[numTaps-1]);
 				}
 			}
 			if(Math.Abs(cannulaR.GetRotation().y) <= 0.34f && Math.Abs(cannulaR.GetRotation().y) >= 0f) {
@@ -61,6 +76,8 @@ public class Scroll : Graft {
 					numTaps += 1;
 					cannulaL.tapped = false;
 					cannulaR.tapped = false;
+					if(numTaps <= 4)
+						objectMesh.SetMesh(inbetweens[numTaps-1]);
 				}
 			}
 		}
