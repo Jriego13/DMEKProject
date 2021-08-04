@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Abandon Planet.mp3" type="AudioStream" id=1]
+[ext_resource path="res://4.mp3" type="AudioStream" id=1]
 [ext_resource path="res://models/MovingCube-loop.dae" type="PackedScene" id=2]
 
 [node name="MovingCube-loop" instance=ExtResource( 2 )]
