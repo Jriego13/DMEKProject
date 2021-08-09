@@ -31,7 +31,7 @@ public class EdgeFold : Graft
 	private void LoadInbetweens() {
 		Mesh tempMesh;
 		for(int i = 1; i <= 3; i++) {
-			tempMesh = GD.Load<Mesh>("res://models/newnewModels/EdgeFold" + i + ".obj");
+			tempMesh = GD.Load<Mesh>("res://models/new_models/EdgeFold" + i + ".obj");
 			inbetweens.Add(tempMesh);
 		}
 	}

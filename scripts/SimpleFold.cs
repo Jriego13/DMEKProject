@@ -31,7 +31,7 @@ public class SimpleFold : Graft
 	private void LoadInbetweens() {
 		Mesh tempMesh;
 		for(int i = 1; i <= 3; i++) {
-			tempMesh = GD.Load<Mesh>("res://models/newnewModels/SimpleFold" + i + ".obj");
+			tempMesh = GD.Load<Mesh>("res://models/new_models/SimpleFold" + i + ".obj");
 			inbetweens.Add(tempMesh);
 		}
 	}

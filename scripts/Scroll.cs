@@ -29,7 +29,7 @@ public class Scroll : Graft {
 	private void LoadInbetweens() {
 		Mesh tempMesh;
 		for(int i = 1; i <= 4; i++) {
-			tempMesh = GD.Load<Mesh>("res://models/newnewModels/Scroll" + i + ".obj");
+			tempMesh = GD.Load<Mesh>("res://models/new_models/Scroll" + i + ".obj");
 			inbetweens.Add(tempMesh);
 		}
 	}
