@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/CameraController.cs" type="Script" id=1]
 [ext_resource path="res://models/Eye.obj" type="ArrayMesh" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Cannula.tscn" type="PackedScene" id=8]
 [ext_resource path="res://CurrentConfirmation.tscn" type="PackedScene" id=9]
-[ext_resource path="res://MovingCube-loop.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
@@ -29,9 +28,6 @@ material/0 = SubResource( 1 )
 
 [node name="Cannulas" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0884237, 8.71495, 0.0365815 )
-
-[node name="MovingCube-loop" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.39255, 0 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20.02, 0 )

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/uploads_files_2705681_T_Rex.obj-c804cb29a0aed21a52616cdff867d9bf.mesh"
+
+[deps]
+
+files=[ "res://.import/uploads_files_2705681_T_Rex.obj-c804cb29a0aed21a52616cdff867d9bf.mesh" ]
+
+source_file="res://models/uploads_files_2705681_T_Rex.obj"
+dest_files=[ "res://.import/uploads_files_2705681_T_Rex.obj-c804cb29a0aed21a52616cdff867d9bf.mesh", "res://.import/uploads_files_2705681_T_Rex.obj-c804cb29a0aed21a52616cdff867d9bf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
