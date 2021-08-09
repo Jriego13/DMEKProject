@@ -1,0 +1,36 @@
+DMEK 3D Assets
+(necessary assets):
+3D eye model - Basic eye, many details aren't necessary but we are dealing with
+a corneal surgery so seeing the different parts of the eye in that sense would be
+nice.
+
+3D model of all the confirmations for the grafts - DMEK surgery involves
+different grafts with different shapes which we call confirmations. In short you
+can imagine something simple like a tortilla being rolled into something that
+resembles a burrito.
+reference: https://patientready.org/wp-content/uploads/2019/07/PR-handout.pdf
+
+Animations for all the confirmations - The confirmations unfold as they're being
+moved around by the surgeon and each one of course opens up in their own way.
+Once again imagine a burrito being unfolded as one flap comes off and the other is
+still tucked in or when you roll a piece of paper by tucking both edges in.
+(see reference above)
+
+3D model for cannulas - Cannulas are like long syringes with bent tips. They're
+used for prodding and tapping on the eye as the surgery is performed.
+reference: https://sc01.alicdn.com/kf/H7236ab265b5e4a9c940be0bcb85960d1D.jpeg
+
+(additional assets):
+UI elements - As with any game or simulation you need elements on the user interface
+providing the user with some sort of information that has been deemed important or
+necessary to the experience. This is a bit vague and is broken down below.
+
+Design and buttons for the main menu - Main menus get the idea across, even if just
+for the brief moment someone looks at the options. Nothing fancy is necessary here
+just something that lets the user know where they need to press and what they are using.
+
+Icons (menu and switch camera icons) - An important UI element is places the user
+can interact with and how them interacting will impact what they're doing. We'll have a
+generally empty screen but some things like having a different perspective be used
+and more will be bound to on screen buttons which can be pressed and something that shows
+that and not just some text on the screen would be nice. (although both get the job done)

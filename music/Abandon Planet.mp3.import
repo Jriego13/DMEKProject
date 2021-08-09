@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Abandon Planet.mp3-92d76ae420bc8baac642ab369b633118.mp3str"
+
+[deps]
+
+source_file="res://Abandon Planet.mp3"
+dest_files=[ "res://.import/Abandon Planet.mp3-92d76ae420bc8baac642ab369b633118.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

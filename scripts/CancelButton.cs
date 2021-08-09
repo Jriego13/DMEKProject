@@ -8,7 +8,7 @@ public class CancelButton : Button
 	public override void _Ready()
 	{
 		sprite = GetNode("/root/Spatial/MenuButton") as MenuButton;
-		GD.Print(GetParent().GetName());
+		//GD.Print(GetParent().GetName());
 	}
 
 	private void _on_CancelButton_pressed()

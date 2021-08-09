@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://4.mp3" type="AudioStream" id=1]
+[ext_resource path="res://models/MovingCube-loop.dae" type="PackedScene" id=2]
+
+[node name="MovingCube-loop" instance=ExtResource( 2 )]
+
+[node name="AnimationPlayer" parent="." index="3"]
+autoplay = "default"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource( 1 )
+autoplay = true

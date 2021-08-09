@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/Confirmation.cs" type="Script" id=1]
+[ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 3.0
+margin_top = 160.0
+margin_right = 324.0
+margin_bottom = 227.0
+custom_fonts/normal_font = ExtResource( 2 )
+text = "Current Confirmation: "
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

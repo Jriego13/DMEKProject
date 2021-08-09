@@ -5,7 +5,7 @@ public class SimpleDirisamerH : Spatial
 {
 	SimpleFold node;
 	Mesh mesh;
-	
+
 	public override void _Ready()
 	{
 		node = GetNode("..") as SimpleFold;
@@ -20,7 +20,7 @@ public class SimpleDirisamerH : Spatial
 			{
 				//GD.Print("Changing mesh.");
 				//node.SetMesh(mesh);
-				node.holdCircle = true;
+				//node.holdCircle = true;
 			}
 		}
 	}
