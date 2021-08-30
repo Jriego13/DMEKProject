@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+// !no longer being used but kept for reference!
 public class SimpleDirisamerH : Spatial
 {
 	SimpleFold node;

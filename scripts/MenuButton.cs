@@ -1,13 +1,14 @@
 using Godot;
 using System;
 
+// three bar menu button that is in the top left of the screen
 public class MenuButton : Sprite3D
 {
 	private PackedScene nextScene;
 	private Node sceneNode;
 	private MarginContainer menuView;
 	private Button cancelButton;
-	
+
 	public override void _Ready()
 	{
 		nextScene = GD.Load<PackedScene>("res://Menu.tscn");
