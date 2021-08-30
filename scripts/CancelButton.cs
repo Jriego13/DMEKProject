@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+// toggles visibility of the X button that appears when the menu button is tapped
 public class CancelButton : Button
 {
 	private MenuButton sprite ;

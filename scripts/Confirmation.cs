@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+// text at the front which tells you which confirmation you are on
 public class Confirmation : RichTextLabel {
   String currentConfirmation;
 

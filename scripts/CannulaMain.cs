@@ -1,17 +1,18 @@
 using Godot;
 using System;
 
+// parent cannula class that handles both the left and right cannulas.
 public class CannulaMain : Spatial {
 	Camera mainCam;
-	Cannula lCannula;
-	Cannula rCannula;
+	Cannula lCannula; // left cannula
+	Cannula rCannula; // right cannula
 
-	bool rotating = false; // false defualts to rotating left cannula, true to right cannula
-	bool lHeld = false;
-	bool rHeld = false;
-	bool lLocked = false;
-	bool rLocked = false;
-	float timer = 0;
+	bool rotating = false; // false defualts to rotating left cannula, true to rotate right cannula
+	bool lHeld = false; // if the LMB (left mouse button) is being held down
+	bool rHeld = false; // same for RMB
+	bool lLocked = false; // left cannula locked (duplicate variables for no reason here but it works)
+	bool rLocked = false; // right cannula locked
+	float timer = 0; // tracks how long a mouse button is being held
 
 	public override void _Ready() {
 		Input.SetMouseMode((Godot.Input.MouseMode)1);
@@ -20,6 +21,9 @@ public class CannulaMain : Spatial {
 		rCannula = GetNode("./CannulaRMesh") as Cannula;
 	}
 
+	// _Process checks for either mouse button to be held for a substantial amount of time (1 second)
+	// and lock the respective cannula that is being held. this also checks for regular input (<1 second)
+	// and registers it as a tap.
 	public override void _Process(float delta) {
 		if(Input.IsActionPressed("left_mouse"))	{
 			if(lHeld) {
@@ -71,7 +75,6 @@ public class CannulaMain : Spatial {
 		}
 		else {
 			if((timer < 1 && timer > 0) && (lHeld || rHeld)) {
-				//GD.Print("this was a tap.");
 				if(lHeld)
 					lCannula.tapped = true;
 				else
@@ -87,6 +90,7 @@ public class CannulaMain : Spatial {
 			timer = 0;
 		}
 
+		// handles rotation of the cannula
 		if(Input.IsActionPressed("cann_counterclock")) {
 			if(!rotating)
 				lCannula.GlobalRotate(new Vector3(0,1,0), 0.1f);
@@ -110,11 +114,13 @@ public class CannulaMain : Spatial {
 			rotating = !rotating;
 	}
 
+	// cannula translation occurs here
 	public override void _PhysicsProcess(float delta) {
 		Vector3 mousePos = mainCam.ProjectPosition(GetViewport().GetMousePosition(), 10);
 		Vector3 leftPos = new Vector3(mousePos.x-1.7f, 0, mousePos.z);
 		Vector3 rightPos = new Vector3(mousePos.x+1.7f, 0, mousePos.z);
 
+		// if the cannula are not locked then translate them as the mouse is being moved
 		if(!lLocked)
 			lCannula.SetTranslation(leftPos);
 		if(!rLocked)
