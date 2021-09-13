@@ -14,7 +14,7 @@ public class ToggleHelp : RichTextLabel {
   public override async void _Process(float delta) {
     if(Input.IsActionPressed("toggle_help")) {
       showHelp = !showHelp;
-      await ToSignal(GetTree().CreateTimer(1), "timeout");
+      await ToSignal(GetTree().CreateTimer(.2f), "timeout");
     }
     if (!showHelp) {
         SetText("Press h to show controls");
@@ -28,10 +28,5 @@ public class ToggleHelp : RichTextLabel {
               + "tap right cannula: right-mouse" + "\n"
               + "hold mouse to keep cannula down");
     }
-	/* SetText("Current Conformation: " + currentConfirmation);
-	currentConfirmation = GetNode("/root/Spatial/MainEye").GetChild(0).GetName();
-	if(currentConfirmation == "Finished") {
-	  currentConfirmation = "YUP YOU DID IT. GOOD JOB CLICKING :D"; */
-	
   }
 }
