@@ -17,11 +17,11 @@ public class Scroll : Graft {
 	public override void _Ready() {
 		numTapsComplete = rng.Next(4,6);
 		topTapsComplete = rng.Next(3,5);
-    GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
-    scene1 = GD.Load<PackedScene>("res://SimpleFold.tscn");
-    scene2 = GD.Load<PackedScene>("res://DoubleScroll.tscn");
-    cannulaL = GetNode("../../Cannulas/CannulaLMesh") as Cannula;
-    cannulaR = GetNode("../../Cannulas/CannulaRMesh") as Cannula;
+	GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
+	scene1 = GD.Load<PackedScene>("res://SimpleFold.tscn");
+	scene2 = GD.Load<PackedScene>("res://DoubleScroll.tscn");
+	cannulaL = GetNode("../../Cannulas/CannulaLMesh") as Cannula;
+	cannulaR = GetNode("../../Cannulas/CannulaRMesh") as Cannula;
 		objectMesh = GetNode("./ScrollMesh") as MeshInstance;
 		LoadInbetweens();
 	}
@@ -60,7 +60,7 @@ public class Scroll : Graft {
 			topTaps = 0;
 			Node sceneNode = scene1.Instance(); // instancing the next scene is necessary to use it in the way that follows
 			GetNode("/root/Spatial/MainEye").AddChild(sceneNode); // add new graft
-      GetParent().RemoveChild(this); // remove itself
+	  GetParent().RemoveChild(this); // remove itself
 		}
 
 		// bottom hitbox
