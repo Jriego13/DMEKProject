@@ -2,12 +2,12 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Abandon Planet.mp3-92d76ae420bc8baac642ab369b633118.mp3str"
+path="res://.import/Abandon Planet.mp3-22a8c1a86d5d6e673da1d028b9c0296a.mp3str"
 
 [deps]
 
-source_file="res://Abandon Planet.mp3"
-dest_files=[ "res://.import/Abandon Planet.mp3-92d76ae420bc8baac642ab369b633118.mp3str" ]
+source_file="res://music/Abandon Planet.mp3"
+dest_files=[ "res://.import/Abandon Planet.mp3-22a8c1a86d5d6e673da1d028b9c0296a.mp3str" ]
 
 [params]
 

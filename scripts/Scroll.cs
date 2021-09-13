@@ -3,27 +3,27 @@ using System;
 using System.Collections.Generic;
 
 public class Scroll : Graft {
-	bool topAreaEntered = false;
-	bool bottomAreaEntered = false;
-	Cannula cannulaL;
-	Cannula cannulaR;
+	Cannula lCannula;
+	Cannula rCannula;
 	PackedScene scene1;
 	PackedScene scene2;
 	MeshInstance objectMesh;
 	List<Mesh> inbetweens = new List<Mesh>();
+	bool topAreaEntered = false;
+	bool bottomAreaEntered = false;
 	int topTaps = 0;
 	int topTapsComplete = 0;
 
 	public override void _Ready() {
 		numTapsComplete = rng.Next(4,6);
 		topTapsComplete = rng.Next(3,5);
-    GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
     scene1 = GD.Load<PackedScene>("res://SimpleFold.tscn");
     scene2 = GD.Load<PackedScene>("res://DoubleScroll.tscn");
-    cannulaL = GetNode("../../Cannulas/CannulaLMesh") as Cannula;
-    cannulaR = GetNode("../../Cannulas/CannulaRMesh") as Cannula;
+    lCannula = GetNode("../../Cannulas/CannulaLMesh") as Cannula;
+    rCannula = GetNode("../../Cannulas/CannulaRMesh") as Cannula;
 		objectMesh = GetNode("./ScrollMesh") as MeshInstance;
 		LoadInbetweens();
+		GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
 	}
 
 	private void LoadInbetweens() {
@@ -31,6 +31,41 @@ public class Scroll : Graft {
 		for(int i = 1; i <= 4; i++) {
 			tempMesh = GD.Load<Mesh>("res://models/new_models/Scroll" + i + ".obj");
 			inbetweens.Add(tempMesh);
+		}
+	}
+
+	public override void _Process(float delta) {
+		// i want to make a function that encapsulates this behavior
+		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
+			numTaps = 0;
+			topTaps = 0;
+			Node sceneNode = scene1.Instance();
+			GetNode("/root/Spatial/MainEye").AddChild(sceneNode);
+      GetParent().RemoveChild(this);
+		}
+
+		if(bottomAreaEntered) {
+			if(lCannula.CheckCannulaRotation(0f, 0.34f) || rCannula.CheckCannulaRotation(0f, 0.34f)) {
+				if(lCannula.tapped || rCannula.tapped) {
+					numTaps += 1;
+					lCannula.tapped = false;
+					rCannula.tapped = false;
+					if(numTaps <= 4)
+						objectMesh.SetMesh(inbetweens[numTaps-1]);
+					GD.Print("bot tap registered");
+				}
+			}
+		}
+
+		if(topAreaEntered) {
+			if(lCannula.CheckCannulaRotation(1.39f, 1.74f) || rCannula.CheckCannulaRotation(1.39f, 1.74f)) {
+				if(lCannula.tapped || rCannula.tapped) {
+					topTaps += 1;
+					lCannula.tapped = false;
+					rCannula.tapped = false;
+					GD.Print("top tap registered");
+				}
+			}
 		}
 	}
 
@@ -48,57 +83,5 @@ public class Scroll : Graft {
 
 	private void _on_TopArea_area_exited(object area) {
 		topAreaEntered = false;
-	}
-
-	public override void _Process(float delta) {
-		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
-			numTaps = 0;
-			topTaps = 0;
-			Node sceneNode = scene1.Instance();
-			GetNode("/root/Spatial/MainEye").AddChild(sceneNode);
-      GetParent().RemoveChild(this);
-		}
-
-		if(bottomAreaEntered) {
-			if(Math.Abs(cannulaL.GetRotation().y) <= 0.34f && Math.Abs(cannulaL.GetRotation().y) >= 0f) {
-				if(cannulaL.tapped) {
-					GD.Print("bot tap registered");
-					numTaps += 1;
-					cannulaL.tapped = false;
-					cannulaR.tapped = false;
-					if(numTaps <= 4)
-						objectMesh.SetMesh(inbetweens[numTaps-1]);
-				}
-			}
-			if(Math.Abs(cannulaR.GetRotation().y) <= 0.34f && Math.Abs(cannulaR.GetRotation().y) >= 0f) {
-				if(cannulaR.tapped) {
-					GD.Print("bot tap registered");
-					numTaps += 1;
-					cannulaL.tapped = false;
-					cannulaR.tapped = false;
-					if(numTaps <= 4)
-						objectMesh.SetMesh(inbetweens[numTaps-1]);
-				}
-			}
-		}
-
-		if(topAreaEntered) {
-			if(Math.Abs(cannulaL.GetRotation().y) >= 1.39f && Math.Abs(cannulaL.GetRotation().y) <= 1.74f) {
-				if(cannulaL.tapped) {
-					GD.Print("top tap registered");
-					topTaps += 1;
-					cannulaL.tapped = false;
-					cannulaR.tapped = false;
-				}
-			}
-			if(Math.Abs(cannulaR.GetRotation().y) >= 1.39f && Math.Abs(cannulaR.GetRotation().y) <= 1.74f) {
-				if(cannulaR.tapped) {
-					GD.Print("top tap registered");
-					topTaps += 1;
-					cannulaL.tapped = false;
-					cannulaR.tapped = false;
-				}
-			}
-		}
 	}
 }

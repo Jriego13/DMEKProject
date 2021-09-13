@@ -5,16 +5,13 @@ public class CannulaMain : Spatial {
 	Camera mainCam;
 	Cannula lCannula;
 	Cannula rCannula;
-
-	bool rotating = false; // false defualts to rotating left cannula, true to right cannula
 	bool lHeld = false;
 	bool rHeld = false;
-	bool lLocked = false;
-	bool rLocked = false;
+	bool lrRotating = false; // false defualts to rotating left cannula, true to right cannula
 	float timer = 0;
 
 	public override void _Ready() {
-		Input.SetMouseMode((Godot.Input.MouseMode)1);
+		Input.SetMouseMode((Godot.Input.MouseMode)1); // hide mouse
 		mainCam = GetNode("../Camera") as Camera;
 		lCannula = GetNode("./CannulaLMesh") as Cannula;
 		rCannula = GetNode("./CannulaRMesh") as Cannula;
@@ -23,23 +20,10 @@ public class CannulaMain : Spatial {
 	public override void _Process(float delta) {
 		if(Input.IsActionPressed("left_mouse"))	{
 			if(lHeld) {
-				timer += delta;
+				timer += delta; // if cannula continues being held then keep adding to timer
 			}
-			if(timer >= 1) {
-				MeshInstance lCannulaMesh = GetChild(0) as MeshInstance;
-				SpatialMaterial currentMat = lCannulaMesh.GetActiveMaterial(0) as SpatialMaterial;
-
-				if(!lLocked) { // this means the user wants to hold the cannula in place
-					currentMat.SetAlbedo(new Color(1,0,0,1));
-					lCannula.locked = true;
-					lLocked = true;
-				}
-				else { // this unlocks the cannula and resets the flag
-					currentMat.SetAlbedo(new Color(0,1,0,1));
-					lCannula.locked = false;
-					lLocked = false;
-				}
-
+			if(timer >= 1) { // once held for longer than a second
+				lCannula.LockCannula();
 				timer = -1;
 			}
 
@@ -50,28 +34,14 @@ public class CannulaMain : Spatial {
 				timer += delta;
 			}
 			if(timer >= 1) {
-				MeshInstance rCannulaMesh = GetChild(1) as MeshInstance;
-				SpatialMaterial currentMat = rCannulaMesh.GetActiveMaterial(0) as SpatialMaterial;
-
-				if(!rLocked) {
-					currentMat.SetAlbedo(new Color(1,0,0,1));
-					rCannula.locked = true;
-					rLocked = true;
-				}
-				else {
-					currentMat.SetAlbedo(new Color(0,1,0,1));
-					rCannula.locked = false;
-					rLocked = false;
-				}
-
+				rCannula.LockCannula();
 				timer = -1;
 			}
 
 			rHeld = true;
 		}
 		else {
-			if((timer < 1 && timer > 0) && (lHeld || rHeld)) {
-				//GD.Print("this was a tap.");
+			if((timer < 1 && timer > 0) && (lHeld || rHeld)) { // left or right cannula was held and released in under a second
 				if(lHeld)
 					lCannula.tapped = true;
 				else
@@ -82,46 +52,51 @@ public class CannulaMain : Spatial {
 				rCannula.tapped = false;
 			}
 
+			// reset their states
 			lHeld = false;
 			rHeld = false;
 			timer = 0;
 		}
 
-		if(Input.IsActionPressed("cann_counterclock")) {
-			if(!rotating)
-				lCannula.GlobalRotate(new Vector3(0,1,0), 0.1f);
-			else
-				rCannula.GlobalRotate(new Vector3(0,1,0), 0.1f);
+		if(Input.IsActionJustPressed("cann_swap")) {
+			lrRotating = !lrRotating;
+			GD.Print("cannula control swap.");
 		}
-		else if(Input.IsActionPressed("cann_clock")) {
-			if(!rotating)
+
+		// !lrRotating = lCannula | lrRotating = rCannula
+		if(Input.IsActionPressed("cann_clock")) {
+			if(!lrRotating)
 				lCannula.GlobalRotate(new Vector3(0,1,0), -0.1f);
 			else
 				rCannula.GlobalRotate(new Vector3(0,1,0), -0.1f);
 		}
-		else if(Input.IsActionPressed("cann_reset")) {
-			if(!rotating)
+		if(Input.IsActionPressed("cann_counterclock")) {
+			if(!lrRotating)
+				lCannula.GlobalRotate(new Vector3(0,1,0), 0.1f);
+			else
+				rCannula.GlobalRotate(new Vector3(0,1,0), 0.1f);
+		}
+		if(Input.IsActionJustPressed("cann_reset")) {
+			if(!lrRotating)
 				lCannula.SetRotation(new Vector3(0,0,0));
 			else
 				rCannula.SetRotation(new Vector3(0,0,0));
 		}
-
-		if(Input.IsActionPressed("cann_swap"))
-			rotating = !rotating;
 	}
 
 	public override void _PhysicsProcess(float delta) {
-		Vector3 mousePos = mainCam.ProjectPosition(GetViewport().GetMousePosition(), 10);
+		Vector3 mousePos = mainCam.ProjectPosition(GetViewport().GetMousePosition(), 10); // used to get the position of the mouse
 		Vector3 leftPos = new Vector3(mousePos.x-1.7f, 0, mousePos.z);
 		Vector3 rightPos = new Vector3(mousePos.x+1.7f, 0, mousePos.z);
 
-		if(!lLocked)
+		// enabling and disabling cannula movement
+		if(!lCannula.locked)
 			lCannula.SetTranslation(leftPos);
-		if(!rLocked)
+		if(!rCannula.locked)
 			rCannula.SetTranslation(rightPos);
-		if(lLocked && rLocked)
-			Input.SetMouseMode((Godot.Input.MouseMode)0);
+		if(lCannula.locked && rCannula.locked)
+			Input.SetMouseMode((Godot.Input.MouseMode)0); // displays the mouse
 		else
-			Input.SetMouseMode((Godot.Input.MouseMode)1);
+			Input.SetMouseMode((Godot.Input.MouseMode)1); // hides the mouse
 	}
 }
