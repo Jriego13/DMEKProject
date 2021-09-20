@@ -7,7 +7,8 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Confirmation" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 3.0
 margin_top = 160.0
 margin_right = 324.0
