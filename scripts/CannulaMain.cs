@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+// parent cannula class that handles both the left and right cannulas.
 public class CannulaMain : Spatial {
 	Camera mainCam;
 	Cannula lCannula;
@@ -17,6 +18,9 @@ public class CannulaMain : Spatial {
 		rCannula = GetNode("./CannulaRMesh") as Cannula;
 	}
 
+	// _Process checks for either mouse button to be held for a substantial amount of time (1 second)
+	// and lock the respective cannula that is being held. this also checks for regular input (<1 second)
+	// and registers it as a tap.
 	public override void _Process(float delta) {
 		if(Input.IsActionPressed("left_mouse"))	{
 			if(lHeld) {
@@ -84,6 +88,7 @@ public class CannulaMain : Spatial {
 		}
 	}
 
+	// cannula translation occurs here
 	public override void _PhysicsProcess(float delta) {
 		Vector3 mousePos = mainCam.ProjectPosition(GetViewport().GetMousePosition(), 10); // used to get the position of the mouse
 		Vector3 leftPos = new Vector3(mousePos.x-1.7f, 0, mousePos.z);

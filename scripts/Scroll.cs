@@ -26,10 +26,11 @@ public class Scroll : Graft {
 		GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
 	}
 
+	// given how the "animations" are made the inbetween models have to be loaded and this is where that is done
 	private void LoadInbetweens() {
 		Mesh tempMesh;
 		for(int i = 1; i <= 4; i++) {
-			tempMesh = GD.Load<Mesh>("res://models/new_models/Scroll" + i + ".obj");
+			tempMesh = GD.Load<Mesh>("res://models/new_models/Scroll" + i + ".obj"); // load a mesh given its particular naming convention and stoire it in our list
 			inbetweens.Add(tempMesh);
 		}
 	}
@@ -39,11 +40,12 @@ public class Scroll : Graft {
 		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
 			numTaps = 0;
 			topTaps = 0;
-			Node sceneNode = scene1.Instance();
-			GetNode("/root/Spatial/MainEye").AddChild(sceneNode);
-      GetParent().RemoveChild(this);
+			Node sceneNode = scene1.Instance(); // instancing the next scene is necessary to use it in the way that follows
+			GetNode("res:///root/Spatial/MainEye").AddChild(sceneNode); // add new graft
+      GetParent().RemoveChild(this); // remove itself
 		}
 
+		// bottom hitbox
 		if(bottomAreaEntered) {
 			if(lCannula.CheckCannulaRotation(0f, 0.34f) || rCannula.CheckCannulaRotation(0f, 0.34f)) {
 				if(lCannula.tapped || rCannula.tapped) {
@@ -57,6 +59,7 @@ public class Scroll : Graft {
 			}
 		}
 
+		// top hitbox
 		if(topAreaEntered) {
 			if(lCannula.CheckCannulaRotation(1.39f, 1.74f) || rCannula.CheckCannulaRotation(1.39f, 1.74f)) {
 				if(lCannula.tapped || rCannula.tapped) {
