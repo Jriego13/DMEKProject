@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sprites/CannulaR.png" type="Texture" id=1]
+[ext_resource path="res://sprites/CannulaL.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Cannula2D.cs" type="Script" id=3]
+[ext_resource path="res://scripts/CannulaMain2D.cs" type="Script" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 179.356
+
+[sub_resource type="CapsuleShape2D" id=2]
+height = 171.631
+
+[node name="Cannulas" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="CannulaLSprite" type="Sprite" parent="."]
+position = Vector2( 120.509, 90.6254 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="CannulaL" type="Area2D" parent="CannulaLSprite"]
+
+[node name="CannulaLHitbox" type="CollisionShape2D" parent="CannulaLSprite/CannulaL"]
+position = Vector2( -0.495514, -20.3156 )
+shape = SubResource( 1 )
+
+[node name="CannulaRSprite" type="Sprite" parent="."]
+position = Vector2( 177.855, 87.2369 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="CannulaR" type="Area2D" parent="CannulaRSprite"]
+
+[node name="CannulaRHitbox" type="CollisionShape2D" parent="CannulaRSprite/CannulaR"]
+position = Vector2( 0, -12.3875 )
+shape = SubResource( 2 )

@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://scripts/CameraController.cs" type="Script" id=1]
 [ext_resource path="res://models/Eye.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://models/eye-texture.jpg" type="Texture" id=3]
 [ext_resource path="res://Scroll.tscn" type="PackedScene" id=4]
 [ext_resource path="res://images/menus.png" type="Texture" id=5]
-[ext_resource path="res://scripts/MenuButton.cs" type="Script" id=6]
 [ext_resource path="res://Menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Cannula.tscn" type="PackedScene" id=8]
 [ext_resource path="res://CurrentConfirmation.tscn" type="PackedScene" id=9]
@@ -33,13 +31,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0884237, 8.71495, 0.0365815
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20.02, 0 )
 fov = 90.0
 far = 100.5
-script = ExtResource( 1 )
 
 [node name="MenuButton" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3434, 0.294455, -14.2897 )
 billboard = 1
 texture = ExtResource( 5 )
-script = ExtResource( 6 )
 
 [node name="Area" type="Area" parent="MenuButton"]
 
