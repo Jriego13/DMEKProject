@@ -4,17 +4,17 @@ using System.Threading;
 
 // text at the front which tells you which confirmation you are on
 public class ToggleHelp : RichTextLabel {
-  Boolean showHelp;
+  private Boolean showHelp;
   
 
   public override void _Ready() {
 	showHelp = false;
   }
 
-  public override async void _Process(float delta) {
-    if(Input.IsActionPressed("toggle_help")) {
+  public override void _Process(float delta) {
+    if(Input.IsActionJustPressed("toggle_help")) {
       showHelp = !showHelp;
-      await ToSignal(GetTree().CreateTimer(.2f), "timeout");
+      //await ToSignal(GetTree().CreateTimer(.15f), "timeout");
     }
     if (!showHelp) {
         SetText("Press h to show controls");
@@ -22,10 +22,10 @@ public class ToggleHelp : RichTextLabel {
     else {
       SetText("Rotate cannula clockwise: s" + "\n" 
               + "counterclockwise: w" + "\n" + "\n"
-              + "swap cannula: s" + "\n"
+              + "swap cannula: r" + "\n"
               + "reset cannula: e" + "\n" + "\n"
               + "tap left cannula: left-mouse" + "\n"
-              + "tap right cannula: right-mouse" + "\n"
+              + "tap right cannula: right-mouse" + "\n" + "\n"
               + "hold mouse to keep cannula down");
     }
   }
