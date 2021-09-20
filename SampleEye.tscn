@@ -29,7 +29,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0884237, 8.71495, 0.0365815
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20.02, 0 )
-fov = 89.5
+fov = 90.0
 far = 100.5
 
 [node name="MenuButton" type="Sprite3D" parent="."]
