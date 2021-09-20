@@ -3,7 +3,6 @@
 [ext_resource path="res://scripts/CannulaMain.cs" type="Script" id=1]
 [ext_resource path="res://scripts/Cannula.cs" type="Script" id=2]
 
-
 [sub_resource type="PlaneMesh" id=1]
 
 [sub_resource type="SpatialMaterial" id=2]

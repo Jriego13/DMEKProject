@@ -7,12 +7,14 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Confirmation" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 3.0
 margin_top = 160.0
 margin_right = 324.0
 margin_bottom = 227.0
 custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Current Confirmation: "
 script = ExtResource( 1 )
 __meta__ = {
@@ -25,6 +27,7 @@ margin_top = 1.0
 margin_right = 321.0
 margin_bottom = 139.0
 custom_fonts/normal_font = ExtResource( 4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
