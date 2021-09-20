@@ -30,6 +30,10 @@ public class CannulaHUD : RichTextLabel
 			rCannulaRotation = Math.Abs(rCannula.RotationDegrees.y);
             lCannulaRotation = Math.Abs(lCannula.RotationDegrees.y);
 		}
+        else if(Input.IsActionPressed("cann_reset")) {
+            rCannulaRotation = Math.Abs(rCannula.RotationDegrees.y);
+            lCannulaRotation = Math.Abs(lCannula.RotationDegrees.y);
+        }
 
         SetText("Right Cannula Angle: " + rCannulaRotation.ToString("0") + "\n" 
                 + "Left Cannula Angle: " + lCannulaRotation.ToString("0"));
