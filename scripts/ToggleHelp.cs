@@ -21,10 +21,10 @@ public class ToggleHelp : RichTextLabel {
     else {
       SetText("Rotate cannula clockwise: s" + "\n"
               + "counterclockwise: w" + "\n" + "\n"
-              + "swap cannula: s" + "\n"
+              + "swap cannula: r" + "\n"
               + "reset cannula: e" + "\n" + "\n"
               + "tap left cannula: left-mouse" + "\n"
-              + "tap right cannula: right-mouse" + "\n"
+              + "tap right cannula: right-mouse" + "\n" + "\n"
               + "hold mouse to keep cannula down");
     }
   }
