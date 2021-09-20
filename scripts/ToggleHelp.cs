@@ -5,10 +5,9 @@ using System.Threading;
 // text at the front which tells you which confirmation you are on
 public class ToggleHelp : RichTextLabel {
   Boolean showHelp;
-  
 
   public override void _Ready() {
-	showHelp = false;
+	   showHelp = false;
   }
 
   public override async void _Process(float delta) {
@@ -20,7 +19,7 @@ public class ToggleHelp : RichTextLabel {
         SetText("Press h to show controls");
     }
     else {
-      SetText("Rotate cannula clockwise: s" + "\n" 
+      SetText("Rotate cannula clockwise: s" + "\n"
               + "counterclockwise: w" + "\n" + "\n"
               + "swap cannula: s" + "\n"
               + "reset cannula: e" + "\n" + "\n"
