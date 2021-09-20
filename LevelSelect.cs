@@ -40,6 +40,6 @@ public class LevelSelect : MarginContainer
     private void loadLevel(String sceneName)
     {
         GD.Print("Loading scene " + sceneName);
-        GetTree().ChangeScene(scenePrefix + sceneName + sceneSuffix);
+        GetTree().ChangeScene(scenePrefix + "SampleEye" + sceneSuffix);
     }
 }

@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/music_volume.png-43a0c0d57fb6c550321ac56d93d8e248.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://images/music_volume.png"
+dest_files=[ "res://.import/music_volume.png-43a0c0d57fb6c550321ac56d93d8e248.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
