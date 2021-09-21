@@ -42,6 +42,6 @@ public class LevelSelect : MarginContainer
     {
         GD.Print("Loading scene " + sceneName);
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
-        levelSwitcher.ChangeScene(scenePrefix + "SampleEye" + sceneSuffix, scenePrefix + sceneName + sceneSuffix);
+        levelSwitcher.ChangeScene(scenePrefix + "MainEye2D" + sceneSuffix, scenePrefix + sceneName + sceneSuffix);
     }
 }

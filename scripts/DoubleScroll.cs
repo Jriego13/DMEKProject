@@ -6,28 +6,20 @@ using System;
  *  b. Bouquet (if tapping is eccentric, meaning its off to one end, top or bottom)
  */
 public class DoubleScroll : Graft {
-  bool areaEntered = false;
-  Cannula cannulaL;
-  Cannula cannulaR;
+  Cannula lCannula;
+  Cannula rCannula;
   PackedScene scene1;
   PackedScene scene2;
+  bool areaEntered = false;
 
   public override void _Ready() {
     // graft specific initialization.
     numTapsComplete = rng.Next(3,6);
-    GD.Print("you have to tap " + numTapsComplete + " times!");
     scene1 = GD.Load<PackedScene>("res://SimpleFold.tscn");
     scene2 = GD.Load<PackedScene>("res://Bouquet.tscn");
-    cannulaL = GetNode("../../Cannulas/CannulaLMesh") as Cannula;
-    cannulaR = GetNode("../../Cannulas/CannulaRMesh") as Cannula;
-  }
-
-  private void _on_Area_area_entered(object area) {
-    areaEntered = true;
-  }
-
-  private void _on_Area_area_exited(object area) {
-    areaEntered = false;
+    lCannula = GetNode("../../Cannulas/CannulaLMesh") as Cannula;
+    rCannula = GetNode("../../Cannulas/CannulaRMesh") as Cannula;
+    GD.Print("you have to tap " + numTapsComplete + " times!");
   }
 
   public override void _Process(float delta) {
@@ -38,14 +30,22 @@ public class DoubleScroll : Graft {
       GetParent().RemoveChild(this);
     }
 
+    // tap function can be made?
     if(areaEntered) {
-      if(cannulaL.tapped || cannulaR.tapped) {
-        // when tapped we need to act -> tapFunction() -> then we reset the tap.
-        GD.Print("tap registered");
+      if(lCannula.tapped || rCannula.tapped) {
         numTaps += 1;
-        cannulaL.tapped = false;
-        cannulaR.tapped = false;
+        lCannula.tapped = false;
+        rCannula.tapped = false;
+        GD.Print("tap registered");
       }
     }
+  }
+
+  private void _on_Area_area_entered(object area) {
+    areaEntered = true;
+  }
+
+  private void _on_Area_area_exited(object area) {
+    areaEntered = false;
   }
 }
