@@ -7,6 +7,7 @@ public class LevelSelect : MarginContainer
     String sceneSuffix = ".tscn";
     public override void _Ready()
     {
+        
         var goBackButton = GetNode("MarginContainer/VBoxContainer2/HBoxContainer2/GoBackButton");
         goBackButton.Connect("pressed", this, "onGoBackButtonPressed");
         // Create level select button variables:
@@ -37,9 +38,10 @@ public class LevelSelect : MarginContainer
     }
     
     // Loads the selected level:
-    private void loadLevel(String sceneName)
+    public void loadLevel(String sceneName)
     {
         GD.Print("Loading scene " + sceneName);
-        GetTree().ChangeScene(scenePrefix + "SampleEye" + sceneSuffix);
+        var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+        levelSwitcher.ChangeScene(scenePrefix + "SampleEye" + sceneSuffix, scenePrefix + sceneName + sceneSuffix);
     }
 }

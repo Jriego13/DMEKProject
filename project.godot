@@ -14,6 +14,10 @@ config/name="Dmek Project Rough"
 run/main_scene="res://MainMenu2.tscn"
 config/icon="res://images/eyeIcon.png"
 
+[autoload]
+
+LevelSwitcher="*res://scripts/LevelSwitcher.cs"
+
 [display]
 
 window/size/width=1366

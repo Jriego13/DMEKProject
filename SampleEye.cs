@@ -3,19 +3,14 @@ using System;
 
 public class SampleEye : Spatial
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+        var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+        var foldName = levelSwitcher.getFoldName();
+        GD.Print(foldName);
+        var confirmation = GD.Load<PackedScene>(foldName);
+        var node = confirmation.Instance();
+        GetNode("/root/Spatial/MainEye").AddChild(node);
     }
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }
