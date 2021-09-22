@@ -6,6 +6,7 @@
 [ext_resource path="res://ChiKareGoSize12.tres" type="DynamicFont" id=4]
 
 [node name="Node2D" type="Node2D"]
+scale = Vector2( 4.28, 4.28 )
 
 [node name="Confirmation" type="RichTextLabel" parent="."]
 visible = false
@@ -13,6 +14,7 @@ margin_left = 3.0
 margin_top = 160.0
 margin_right = 324.0
 margin_bottom = 227.0
+rect_scale = Vector2( 1.00188, 0.996584 )
 custom_fonts/normal_font = ExtResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Current Confirmation: "
@@ -22,12 +24,18 @@ __meta__ = {
 }
 
 [node name="HelpPrompt" type="RichTextLabel" parent="."]
-margin_left = 254.0
-margin_top = 1.0
-margin_right = 321.0
-margin_bottom = 139.0
+margin_left = 159.828
+margin_top = 0.398255
+margin_right = 363.323
+margin_bottom = 231.416
+rect_scale = Vector2( 0.7757, 0.7757 )
 custom_fonts/normal_font = ExtResource( 4 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[right]Press 'h' to show controls[/right]
+"
+text = "Press 'h' to show controls
+"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

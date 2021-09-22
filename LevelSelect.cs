@@ -7,7 +7,6 @@ public class LevelSelect : MarginContainer
     String sceneSuffix = ".tscn";
     public override void _Ready()
     {
-        
         var goBackButton = GetNode("MarginContainer/VBoxContainer2/HBoxContainer2/GoBackButton");
         goBackButton.Connect("pressed", this, "onGoBackButtonPressed");
         // Create level select button variables:
@@ -21,22 +20,22 @@ public class LevelSelect : MarginContainer
 
         // Create array of the buttons so we can loop over all of them:
         var buttons = new[] {simpleFoldButton, invertedButton, scrollButton, tacoButton, doubleScrollButton, edgeFoldButton};
-        
+
         // Connect each level select button to its corresponding scene:
         foreach (var button in buttons)
         {
             button.Connect("pressed", this, "loadLevel", new Godot.Collections.Array {button.GetName()});
         }
-        
+
     }
 
     // Navigates back to the main menu:
     private void onGoBackButtonPressed()
     {
         GD.Print("Go back pressed");
-		GetTree().ChangeScene("res://MainMenu2.tscn");
+		    GetTree().ChangeScene("res://MainMenu2.tscn");
     }
-    
+
     // Loads the selected level:
     public void loadLevel(String sceneName)
     {

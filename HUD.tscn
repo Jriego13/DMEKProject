@@ -14,9 +14,8 @@ __meta__ = {
 }
 
 [node name="TextureButton" type="TextureButton" parent="MarginContainer"]
-margin_right = 500.0
-margin_bottom = 404.0
+margin_right = 1546.0
+margin_bottom = 992.0
 rect_min_size = Vector2( 25, 25 )
-rect_scale = Vector2( 0.1, 0.1 )
 texture_normal = ExtResource( 1 )
 stretch_mode = 4

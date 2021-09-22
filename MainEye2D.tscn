@@ -30,14 +30,15 @@ public class MainEye2D : Node2D
 "
 
 [node name="Main" type="Node2D"]
+scale = Vector2( 0.749, 0.842 )
 script = SubResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]
-scale = Vector2( 0.36, 0.36 )
+scale = Vector2( 1.52, 1.52 )
 texture = ExtResource( 1 )
 offset = Vector2( 599.931, 299.89 )
 
 [node name="Cannulas" parent="." instance=ExtResource( 4 )]
-position = Vector2( 5.22384, -0.0606499 )
 
 [node name="Overlay" parent="." instance=ExtResource( 5 )]
+position = Vector2( 421.522, 17.6158 )

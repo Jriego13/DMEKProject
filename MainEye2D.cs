@@ -13,6 +13,6 @@ public class MainEye2D : Node2D
         var confirmationNode = (Node2D)confirmation.Instance();
         GetNode("/root/Main").AddChild(confirmationNode);
         // Scale the confirmation up:
-        confirmationNode.Scale = new Vector2(0.04f, 0.04f);
+        //confirmationNode.Scale = new Vector2(0.04f, 0.04f);
     }
 }
