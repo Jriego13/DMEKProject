@@ -1,41 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/WhiteBackground.jpg" type="Texture" id=1]
+[ext_resource path="res://scripts/MainEye.cs" type="Script" id=2]
+[ext_resource path="res://Scroll2D.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Cannula2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://CurrentConfirmation.tscn" type="PackedScene" id=5]
 
-[sub_resource type="CSharpScript" id=1]
-resource_name = "MainEye2D"
-script/source = "using Godot;
-using System;
-
-public class MainEye2D : Node2D
-{
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = \"text\";
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        
-    }
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
-}
-"
-
 [node name="Main" type="Node2D"]
-script = SubResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Background" type="Sprite" parent="."]
 scale = Vector2( 0.36, 0.36 )
 texture = ExtResource( 1 )
 offset = Vector2( 599.931, 299.89 )
+
+[node name="Scroll" parent="." instance=ExtResource( 3 )]
+position = Vector2( 152.966, 86.215 )
+scale = Vector2( 0.04, 0.04 )
 
 [node name="Cannulas" parent="." instance=ExtResource( 4 )]
 position = Vector2( 5.22384, -0.0606499 )

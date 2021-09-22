@@ -39,7 +39,7 @@ public class SimpleFold : Graft {
 			numTaps = 0;
 			Node sceneNode = scene1.Instance();
 			GetNode("/root/Spatial/MainEye").AddChild(sceneNode);
-	  GetParent().RemoveChild(this);
+      GetParent().RemoveChild(this);
 		}
 
 		if(tapAreaEntered) {

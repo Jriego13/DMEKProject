@@ -42,7 +42,7 @@ public class Scroll : Graft {
 			topTaps = 0;
 			Node sceneNode = scene1.Instance(); // instancing the next scene is necessary to use it in the way that follows
 			GetNode("/root/Spatial/MainEye").AddChild(sceneNode); // add new graft
-	  GetParent().RemoveChild(this); // remove itself
+      GetParent().RemoveChild(this); // remove itself
 		}
 
 		// bottom hitbox
