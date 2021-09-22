@@ -11,6 +11,8 @@ public class Scroll2D : Graft {
 	bool bottomAreaEntered = false;
 	int topTaps = 0;
 	int topTapsComplete = 0;
+	int numTapsWrong = 0;
+	Texture circleTexture;
 
 	public override void _Ready() {
 		numTapsComplete = rng.Next(4,6);
@@ -19,10 +21,11 @@ public class Scroll2D : Graft {
     // scene2 = GD.Load<PackedScene>("res://DoubleScroll.tscn");
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
-		GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
+	circleTexture = GD.Load("res://images/circle.png") as Texture;
+	GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
 	}
 
-	public override void _Process(float delta) {
+	public async override void _Process(float delta) {
 		// i want to make a function that encapsulates this behavior
 		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
 			numTaps = 0;
@@ -53,6 +56,29 @@ public class Scroll2D : Graft {
 					lCannula.tapped = false;
 					rCannula.tapped = false;
 					GD.Print("top tap registered");
+				}
+			}
+		}
+
+		if(!topAreaEntered && !bottomAreaEntered){
+			if(rCannula.tapped || lCannula.tapped){
+				if(numTapsWrong < 3){
+					GD.Print("You clicked outside of the correct areas");
+					Vector2 mousePos = GetViewport().GetMousePosition();
+					GD.Print(mousePos);
+					Sprite misclickCircle = new Sprite();
+					misclickCircle.Texture = circleTexture;
+					misclickCircle.Scale = new Vector2(0.025f , 0.025f);
+					misclickCircle.Position = mousePos;
+					misclickCircle.Modulate = new Color(1, 0 , 0);
+					
+					GetTree().GetRoot().AddChild(misclickCircle);
+					await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
+					misclickCircle.QueueFree();
+					numTapsWrong++;
+				}
+				else{
+					GD.Print("Misclicked too many times. You fail!");
 				}
 			}
 		}
