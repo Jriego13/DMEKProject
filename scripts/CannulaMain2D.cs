@@ -1,8 +1,7 @@
 using Godot;
 using System;
 
-public class CannulaMain2D : Node {
-	Node2D mainNode;
+public class CannulaMain2D : Node2D {
 	Cannula2D lCannula;
 	Cannula2D rCannula;
 	bool lHeld = false;
@@ -12,7 +11,6 @@ public class CannulaMain2D : Node {
 
 	public override void _Ready() {
 		Input.SetMouseMode((Godot.Input.MouseMode)1); // hide mouse
-		mainNode = GetNode("../.") as Node2D;
 		lCannula = GetNode("./CannulaLSprite") as Cannula2D;
 		rCannula = GetNode("./CannulaRSprite") as Cannula2D;
 	}
@@ -85,9 +83,9 @@ public class CannulaMain2D : Node {
 	}
 
 	public override void _PhysicsProcess(float delta) {
-		Vector2 mousePos = mainNode.GetGlobalMousePosition(); // used to get the position of the mouse
-		Vector2 leftPos = new Vector2((mousePos.x - 28.5f), mousePos.y);
-		Vector2 rightPos = new Vector2((mousePos.x + 28.5f), mousePos.y);
+		Vector2 localMousePos = this.GetLocalMousePosition(); // local pos of the mouse
+		Vector2 leftPos = new Vector2((localMousePos.x - 28.5f), localMousePos.y);
+		Vector2 rightPos = new Vector2((localMousePos.x + 28.5f), localMousePos.y);
 
 		// enabling and disabling cannula movement
 		if(!lCannula.locked)
