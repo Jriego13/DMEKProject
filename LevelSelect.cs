@@ -40,7 +40,9 @@ public class LevelSelect : MarginContainer
     public void loadLevel(String sceneName)
     {
         GD.Print("Loading scene " + sceneName);
+        // Load the singleton levelSwitcher:
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
-        levelSwitcher.ChangeScene(scenePrefix + "MainEye2D" + sceneSuffix, scenePrefix + sceneName + sceneSuffix);
+        // Store the next level and change to the MainEye scene:
+        levelSwitcher.ChangeLevel(scenePrefix + "MainEye2D" + sceneSuffix, scenePrefix + sceneName + sceneSuffix);
     }
 }
