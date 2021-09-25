@@ -9,7 +9,7 @@ margin_right = 321.0
 margin_bottom = 44.0
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_text = "This is supposed be the bouquet scene :D"
-text = "This is supposed to be the bouquet scene :D"
+text = "This is supposed be the bouquet scene :D"
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
