@@ -3,8 +3,6 @@ using System;
 
 public class LevelSelect : MarginContainer
 {
-    String scenePrefix = "res://";
-    String sceneSuffix = ".tscn";
     public override void _Ready()
     {
         var goBackButton = GetNode("MarginContainer/VBoxContainer2/HBoxContainer2/GoBackButton");
@@ -24,7 +22,7 @@ public class LevelSelect : MarginContainer
         // Connect each level select button to its corresponding scene:
         foreach (var button in buttons)
         {
-            button.Connect("pressed", this, "loadLevel", new Godot.Collections.Array {button.GetName()});
+            button.Connect("pressed", this, "loadLevel", new Godot.Collections.Array {button.Name});
         }
 
     }
@@ -33,14 +31,16 @@ public class LevelSelect : MarginContainer
     private void onGoBackButtonPressed()
     {
         GD.Print("Go back pressed");
-		    GetTree().ChangeScene("res://MainMenu2.tscn");
+		    GetTree().ChangeScene(Helper.toFileName("MainMenu2"));
     }
 
     // Loads the selected level:
-    public void loadLevel(String sceneName)
+    private void loadLevel(String sceneName)
     {
         GD.Print("Loading scene " + sceneName);
+        // Load the singleton levelSwitcher:
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
-        levelSwitcher.ChangeScene(scenePrefix + "MainEye2D" + sceneSuffix, scenePrefix + sceneName + sceneSuffix);
+        // Store the next level and change to the MainEye scene:
+        levelSwitcher.ChangeLevel(Helper.toFileName(Helper.mainSceneName), Helper.toFileName(sceneName));
     }
 }

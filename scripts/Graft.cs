@@ -8,4 +8,9 @@ public class Graft : Node2D {
   protected Random rng = new Random();
   protected int numTaps;
   protected int numTapsComplete;
+  protected bool isFinished;
+  public bool getIsFinished()
+	{
+		return isFinished;
+	}
 }
