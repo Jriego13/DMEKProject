@@ -31,6 +31,7 @@ public class Scroll2D : Graft {
 			// GetNode("/root/Spatial/MainEye").AddChild(sceneNode);
       // GetParent().RemoveChild(this);
       GD.Print("tapping complete.");
+	  isFinished = true;
 		}
 
 		if(bottomAreaEntered) {
@@ -75,4 +76,5 @@ public class Scroll2D : Graft {
 	private void _OnMidAreaExited(object area) {
 		bottomAreaEntered = false;
 	}
+
 }
