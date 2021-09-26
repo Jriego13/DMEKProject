@@ -3,8 +3,6 @@ using System;
 
 public class LevelSelect : MarginContainer
 {
-    String scenePrefix = "res://";
-    String sceneSuffix = ".tscn";
     public override void _Ready()
     {
         var goBackButton = GetNode("MarginContainer/VBoxContainer2/HBoxContainer2/GoBackButton");
@@ -37,12 +35,12 @@ public class LevelSelect : MarginContainer
     }
 
     // Loads the selected level:
-    public void loadLevel(String sceneName)
+    private void loadLevel(String sceneName)
     {
         GD.Print("Loading scene " + sceneName);
         // Load the singleton levelSwitcher:
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
         // Store the next level and change to the MainEye scene:
-        levelSwitcher.ChangeLevel(scenePrefix + "MainEye2D" + sceneSuffix, scenePrefix + sceneName + sceneSuffix);
+        levelSwitcher.ChangeLevel(Helper.toFileName("MainEye2D"), Helper.toFileName(sceneName));
     }
 }
