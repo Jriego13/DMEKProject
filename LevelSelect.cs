@@ -22,7 +22,7 @@ public class LevelSelect : MarginContainer
         // Connect each level select button to its corresponding scene:
         foreach (var button in buttons)
         {
-            button.Connect("pressed", this, "loadLevel", new Godot.Collections.Array {button.GetName()});
+            button.Connect("pressed", this, "loadLevel", new Godot.Collections.Array {button.Name});
         }
 
     }
@@ -31,7 +31,7 @@ public class LevelSelect : MarginContainer
     private void onGoBackButtonPressed()
     {
         GD.Print("Go back pressed");
-		    GetTree().ChangeScene("res://MainMenu2.tscn");
+		    GetTree().ChangeScene(Helper.toFileName("MainMenu2"));
     }
 
     // Loads the selected level:
@@ -41,6 +41,6 @@ public class LevelSelect : MarginContainer
         // Load the singleton levelSwitcher:
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
         // Store the next level and change to the MainEye scene:
-        levelSwitcher.ChangeLevel(Helper.toFileName("MainEye2D"), Helper.toFileName(sceneName));
+        levelSwitcher.ChangeLevel(Helper.toFileName(Helper.mainSceneName), Helper.toFileName(sceneName));
     }
 }

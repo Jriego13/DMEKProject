@@ -17,20 +17,20 @@ public class MainMenu2 : MarginContainer
 	private void onContinuePressed()
 	{
 		GD.Print("Continue pressed");
-		GetTree().ChangeScene("res://SimpleFold.tscn");
+		GetTree().ChangeScene(Helper.toFileName("SimpleFold"));
 		
 	}
 	// Navigates to the level select screen:
 	private void onLevelSelectPressed()
 	{
 		GD.Print("Level select pressed");
-		GetTree().ChangeScene("res://LevelSelect.tscn");
+		GetTree().ChangeScene(Helper.toFileName("LevelSelect"));
 	}
 	// Navigates to the options screen:
 	private void onOptionsPressed()
 	{
 		GD.Print("Options pressed");
-		GetTree().ChangeScene("res://Options.tscn");
+		GetTree().ChangeScene(Helper.toFileName("Options"));
 		
 	}
 }
