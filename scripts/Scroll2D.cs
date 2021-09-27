@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public class Scroll2D : Graft {
 	Cannula2D lCannula;
 	Cannula2D rCannula;
-	PackedScene scene1;
-	PackedScene scene2;
 	bool topAreaEntered = false;
 	bool bottomAreaEntered = false;
 	int topTaps = 0;
@@ -15,23 +13,17 @@ public class Scroll2D : Graft {
 	public override void _Ready() {
 		numTapsComplete = rng.Next(4,6);
 		topTapsComplete = rng.Next(3,5);
-    // scene1 = GD.Load<PackedScene>("res://SimpleFold.tscn");
-    // scene2 = GD.Load<PackedScene>("res://DoubleScroll.tscn");
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
 		GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
 	}
 
 	public override void _Process(float delta) {
-		// i want to make a function that encapsulates this behavior
 		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
 			numTaps = 0;
 			topTaps = 0;
-			//Node sceneNode = scene1.Instance();
-			// GetNode("/root/Spatial/MainEye").AddChild(sceneNode);
-      // GetParent().RemoveChild(this);
-      GD.Print("tapping complete.");
-	  isFinished = true;
+	  	isFinished = true;
+			GD.Print("tapping complete.");
 		}
 
 		if(bottomAreaEntered) {
@@ -40,8 +32,6 @@ public class Scroll2D : Graft {
 					numTaps += 1;
 					lCannula.tapped = false;
 					rCannula.tapped = false;
-					// if(numTaps <= 4)
-					// 	objectMesh.SetMesh(inbetweens[numTaps-1]);
 					GD.Print("bot tap registered");
 				}
 			}
@@ -76,5 +66,4 @@ public class Scroll2D : Graft {
 	private void _OnMidAreaExited(object area) {
 		bottomAreaEntered = false;
 	}
-
 }

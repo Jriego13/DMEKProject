@@ -1,40 +1,33 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://models/new_models/SimpleFold0.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://scripts/SimpleFold.cs" type="Script" id=3]
+[ext_resource path="res://sprites/SimpleFold.png" type="Texture" id=1]
+[ext_resource path="res://scripts/SimpleFold2D.cs" type="Script" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0.321569, 0.360784, 0.803922, 1 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 107.911, 324.523 )
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 89.8973, 326.215 )
 
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 0.677721, 1, 1 )
+[node name="SimpleFoldSprite" type="Sprite"]
+position = Vector2( 893.701, 452.166 )
+scale = Vector2( 0.712227, 0.712227 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
 
-[node name="SimpleFold" type="Spatial"]
-transform = Transform( 3.24817e-14, 7.43094e-07, 17, 17, -7.43094e-07, 0, 7.43094e-07, 17, -7.43094e-07, -53, 167.854, 0 )
-script = ExtResource( 3 )
+[node name="TapArea" type="Area2D" parent="."]
 
-[node name="SimpleFoldMesh" type="MeshInstance" parent="."]
-transform = Transform( 1, -1.77636e-14, 0, 1.77636e-14, 1, 0, 0, 0, 1, 0, 0, 0 )
-mesh = ExtResource( 1 )
-material/0 = SubResource( 1 )
+[node name="TapHitbox" type="CollisionShape2D" parent="TapArea"]
+position = Vector2( 123.185, -7.07593 )
+shape = SubResource( 1 )
 
-[node name="TapArea" type="Area" parent="SimpleFoldMesh"]
-transform = Transform( 0.476044, 3.55271e-14, 2.84217e-14, 5.32907e-15, 2.45711e-08, -2.30985, -1.77636e-15, 2.56212, -4.16412e-07, -1.72252, -0.0428751, -0.400657 )
+[node name="HoldArea" type="Area2D" parent="."]
 
-[node name="CollisionShape" type="CollisionShape" parent="SimpleFoldMesh/TapArea"]
-transform = Transform( 1.33126, 1.45154e-14, 7.02589e-08, 4.26739e-15, 1, -8.52651e-14, 2.98421e-09, -3.55271e-15, 1, -0.511663, 0, 0 )
+[node name="HoldHitbox" type="CollisionShape2D" parent="HoldArea"]
+position = Vector2( 327.222, -7.07599 )
 shape = SubResource( 2 )
 
-[node name="HoldArea" type="Area" parent="SimpleFoldMesh"]
-transform = Transform( 0.600788, 4.26326e-14, 2.84217e-14, 3.55271e-15, 2.45711e-08, -2.30985, 0, 2.56212, -4.16412e-07, -0.580945, -0.0428751, -0.361878 )
-
-[node name="CollisionShape" type="CollisionShape" parent="SimpleFoldMesh/HoldArea"]
-transform = Transform( 1.4969, 2.90544e-14, 8.35082e-08, 4.47089e-15, 1, -4.26326e-14, 5.64942e-09, -5.32907e-15, 1, -0.174651, 0, 0 )
-shape = SubResource( 3 )
-
-[connection signal="area_entered" from="SimpleFoldMesh/TapArea" to="." method="_on_TapArea_area_entered"]
-[connection signal="area_exited" from="SimpleFoldMesh/TapArea" to="." method="_on_TapArea_area_exited"]
-[connection signal="area_entered" from="SimpleFoldMesh/HoldArea" to="." method="_on_HoldArea_area_entered"]
-[connection signal="area_exited" from="SimpleFoldMesh/HoldArea" to="." method="_on_HoldArea_area_exited"]
+[connection signal="area_entered" from="TapArea" to="." method="_OnTapAreaEntered"]
+[connection signal="area_exited" from="TapArea" to="." method="_OnTapAreaExited"]
+[connection signal="area_entered" from="HoldArea" to="." method="_OnHoldAreaEntered"]
+[connection signal="area_exited" from="HoldArea" to="." method="_OnHoldAreaExited"]
