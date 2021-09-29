@@ -71,10 +71,10 @@ public class Scroll2D : Graft {
 					GD.Print(mousePos);
 					Sprite misclickCircle = new Sprite();
 					misclickCircle.Texture = circleTexture;
-					misclickCircle.Scale = new Vector2(0.025f , 0.025f);
+					misclickCircle.Scale = new Vector2(0.1f , 0.1f);
 					misclickCircle.Position = mousePos;
 					misclickCircle.Modulate = new Color(1, 0 , 0);
-					
+
 					GetTree().GetRoot().AddChild(misclickCircle);
 					await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
 					misclickCircle.QueueFree();
@@ -82,6 +82,8 @@ public class Scroll2D : Graft {
 				}
 				else{
 					GD.Print("Misclicked too many times. You fail!");
+					Node sceneNode = failScene.Instance();
+					GetNode("/root").AddChild(sceneNode);
 				}
 			}
 		}
