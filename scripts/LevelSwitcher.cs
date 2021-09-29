@@ -7,7 +7,7 @@ using System;
 // Singletons: https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html
 public class LevelSwitcher : Node
 {
-    String levelName = "";
+    String levelName = Helper.getRandomConfirmation();
 
     // Loads the lext level by storing the level name and switching to the
     // Main eye scene:

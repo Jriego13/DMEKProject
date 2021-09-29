@@ -1,21 +1,28 @@
 using System;
 
-// Static class for things like constants and helper functions:
+// Static class for things like constants and helper functions that don't
+// need to be in any particular class:
 public static class Helper
 {
     public const String scenePrefix = "res://";
     public const String sceneSuffix = ".tscn";
     public const String mainSceneName = "MainEye2D";
-    
+    public static String[] confirmations = {"Scroll", "DoubleScroll", "SimpleFold", 
+    "Inverted", "Taco", "EdgeFold", "Bouquet", "Origami"};
+    public static Random rand = new Random();
     // Adds the scene prefix and suffix to a name:
     public static String toFileName(String name)
     {
         return scenePrefix + name + sceneSuffix;
     }
+    // Useful for starting the game without level select:
+    public static String getRandomConfirmation()
+    {
+        return toFileName(confirmations[rand.Next() % confirmations.Length]);
+    }
     // Based on the input current confirmation, returns a new confirmation:
     public static String getNextConfirmation(String current)
     {
-        var rand = new Random();
         var randomNumber = rand.Next() % 100;
         String nextLevel = "";
         // Chosen next confirmations are based on the powerpoint

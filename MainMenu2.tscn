@@ -60,7 +60,7 @@ size_flags_vertical = 3
 custom_constants/separation = 30
 alignment = 1
 
-[node name="Continue" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+[node name="Play" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
 margin_top = 109.0
 margin_right = 725.0
 margin_bottom = 163.0
