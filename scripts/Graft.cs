@@ -3,9 +3,14 @@ using System;
 using System.Collections.Generic;
 
 // base graft class that I would like to use for all derivative grafts
-public class Graft : Node {
+public class Graft : Node2D {
   protected List<PackedScene> nextConfirmations = new List<PackedScene>();
   protected Random rng = new Random();
   protected int numTaps;
   protected int numTapsComplete;
+  protected bool isFinished;
+  public bool getIsFinished()
+	{
+		return isFinished;
+	}
 }

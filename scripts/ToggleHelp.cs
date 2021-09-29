@@ -16,16 +16,16 @@ public class ToggleHelp : RichTextLabel {
     }
 
     if (!showHelp) {
-        SetText("Press h to show controls");
+        SetBbcode("[right]Press 'h' to show controls[/right]");
     }
     else {
-      SetText("Rotate cannula clockwise: s" + "\n"
+      SetBbcode("[right]Rotate cannula clockwise: s" + "\n"
               + "counterclockwise: w" + "\n" + "\n"
               + "swap cannula: r" + "\n"
               + "reset cannula: e" + "\n" + "\n"
               + "tap left cannula: left-mouse" + "\n"
               + "tap right cannula: right-mouse" + "\n" + "\n"
-              + "hold mouse to keep cannula down");
+              + "hold mouse to keep cannula down[/right]");
     }
   }
 }

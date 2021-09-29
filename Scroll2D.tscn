@@ -10,8 +10,8 @@ extents = Vector2( 35.606, 20.0625 )
 extents = Vector2( 27.0184, 653.443 )
 
 [node name="ScrollSprite" type="Sprite"]
-position = Vector2( 149.969, 92.9574 )
-scale = Vector2( 0.015, 0.015 )
+position = Vector2( 895.803, 470.243 )
+scale = Vector2( 0.16, 0.16 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 

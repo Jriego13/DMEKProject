@@ -12,10 +12,10 @@ height = 179.356
 height = 171.631
 
 [node name="Cannulas" type="Node2D"]
+scale = Vector2( 4.52, 4.52 )
 script = ExtResource( 4 )
 
 [node name="CannulaLSprite" type="Sprite" parent="."]
-position = Vector2( 120.509, 90.6254 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
 script = ExtResource( 3 )
@@ -27,7 +27,6 @@ position = Vector2( -0.495514, -20.3156 )
 shape = SubResource( 1 )
 
 [node name="CannulaRSprite" type="Sprite" parent="."]
-position = Vector2( 177.855, 87.2369 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )
 script = ExtResource( 3 )

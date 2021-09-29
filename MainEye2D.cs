@@ -33,11 +33,8 @@ public class MainEye2D : Node2D
     {
         levelName = next;
         GD.Print("instancing "+ levelName);
-        GD.Print("HERE");
         var confirmationScene = GD.Load<PackedScene>(levelName);
-        GD.Print("HERE");
         confirmation = (Graft)confirmationScene.Instance();
-        GD.Print("Here");
         GetNode("/root/Main").AddChild(confirmation);
     }
 }
