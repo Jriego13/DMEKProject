@@ -1,0 +1,43 @@
+using Godot;
+using System;
+
+public class MainEye2D : Node2D
+{
+    private String levelName = "";
+    private Graft confirmation;
+
+    public override void _Ready()
+    {
+        // Load the singleton:
+        var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+        // Get the levelName from the levelSwitcher:
+        levelName = levelSwitcher.getLevelName();
+        loadConfirmation(levelName);
+    }
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+        // If confirmation is complete, load the next confirmation:
+        if (confirmation.getIsFinished())
+        {
+            // Delete the current node:
+            confirmation.QueueFree();
+            // Add new node to the tree:
+            String nextLevel = Helper.getNextConfirmation(levelName);
+            loadConfirmation(nextLevel);
+        }
+    }
+    
+    // Load the specified level/fold, instance it as a Node2D, then place it in the tree:
+    private void loadConfirmation(String next)
+    {
+        levelName = next;
+        GD.Print("instancing "+ levelName);
+        GD.Print("HERE");
+        var confirmationScene = GD.Load<PackedScene>(levelName);
+        GD.Print("HERE");
+        confirmation = (Graft)confirmationScene.Instance();
+        GD.Print("Here");
+        GetNode("/root/Main").AddChild(confirmation);
+    }
+}
