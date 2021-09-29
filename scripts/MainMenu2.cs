@@ -18,7 +18,6 @@ public class MainMenu2 : MarginContainer
 	{
 		GD.Print("Continue pressed");
 		GetTree().ChangeScene(Helper.toFileName("SimpleFold"));
-		
 	}
 	// Navigates to the level select screen:
 	private void onLevelSelectPressed()
@@ -31,9 +30,6 @@ public class MainMenu2 : MarginContainer
 	{
 		GD.Print("Options pressed");
 		GetTree().ChangeScene(Helper.toFileName("Options"));
-		
+
 	}
 }
-
-
-
