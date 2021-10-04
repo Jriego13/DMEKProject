@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://models/new_models/Scroll0.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://scripts/Scroll.cs" type="Script" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.321569, 0.360784, 0.803922, 1 )
+
+[sub_resource type="BoxShape" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[node name="Scroll" type="Spatial"]
+transform = Transform( -7.43094e-07, -17, 0, 17, -7.43094e-07, 0, 0, 0, 17, -54.6027, 176.997, 3.54996 )
+script = ExtResource( 3 )
+
+[node name="ScrollMesh" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+
+[node name="BottomArea" type="Area" parent="ScrollMesh"]
+transform = Transform( 1, -1.77636e-14, -6.64116e-23, -1.11066e-21, -4.37114e-08, 1.26273, -1.77636e-14, -1, -5.51955e-08, -3.07649, -0.308595, 9.53674e-07 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ScrollMesh/BottomArea"]
+transform = Transform( 1.17902, -7.82507e-09, 0, -7.825e-09, 1, 0, 0, 0, 1.12196, 0.212585, 1.99959, 0.929033 )
+shape = SubResource( 2 )
+
+[node name="TopArea" type="Area" parent="ScrollMesh"]
+transform = Transform( 1, -1.77636e-14, 0, -8.46963e-22, -4.37114e-08, 1, -1.77636e-14, -1, -4.37114e-08, -2.75171, -0.463295, 9.53674e-07 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ScrollMesh/TopArea"]
+transform = Transform( 1.8, 2.34801e-08, 0, -4.22641e-08, 1, 0, 0, 0, 0.78, 0, 2, -0.951159 )
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="ScrollMesh/BottomArea" to="." method="_on_BottomArea_area_entered"]
+[connection signal="area_exited" from="ScrollMesh/BottomArea" to="." method="_on_BottomArea_area_exited"]
+[connection signal="area_entered" from="ScrollMesh/TopArea" to="." method="_on_TopArea_area_entered"]
+[connection signal="area_exited" from="ScrollMesh/TopArea" to="." method="_on_TopArea_area_exited"]

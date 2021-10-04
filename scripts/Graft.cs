@@ -9,8 +9,8 @@ public class Graft : Node2D {
   protected int numTaps;
   protected int numTapsComplete;
   protected bool isFinished;
-  public bool getIsFinished()
-	{
+
+  public bool getIsFinished() {
 		return isFinished;
 	}
 }

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://sprites/SimpleFold.png" type="Texture" id=1]
-[ext_resource path="res://scripts/SimpleFold.cs" type="Script" id=2]
+[ext_resource path="res://sprites/Taco.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Taco.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 107.911, 324.523 )
@@ -9,9 +9,9 @@ extents = Vector2( 107.911, 324.523 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 89.8973, 326.215 )
 
-[node name="SimpleFoldSprite" type="Sprite"]
-position = Vector2( 893.701, 452.166 )
-scale = Vector2( 0.712227, 0.712227 )
+[node name="TacoSprite" type="Sprite"]
+position = Vector2( 891.295, 454.358 )
+scale = Vector2( 0.706333, 0.706333 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
@@ -26,8 +26,3 @@ shape = SubResource( 1 )
 [node name="HoldHitbox" type="CollisionShape2D" parent="HoldArea"]
 position = Vector2( 327.222, -7.07599 )
 shape = SubResource( 2 )
-
-[connection signal="area_entered" from="TapArea" to="." method="_OnTapAreaEntered"]
-[connection signal="area_exited" from="TapArea" to="." method="_OnTapAreaExited"]
-[connection signal="area_entered" from="HoldArea" to="." method="_OnHoldAreaEntered"]
-[connection signal="area_exited" from="HoldArea" to="." method="_OnHoldAreaExited"]

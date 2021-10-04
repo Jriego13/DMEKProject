@@ -1,40 +1,33 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://models/new_models/EdgeFold0.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://scripts/EdgeFold.cs" type="Script" id=2]
+[ext_resource path="res://sprites/EdgeFold.png" type="Texture" id=1]
+[ext_resource path="res://scripts/EdgeFold2D.cs" type="Script" id=2]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 146.082, 346.613 )
 
-[sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0.321569, 0.360784, 0.803922, 1 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 122.024, 399.96 )
 
-[sub_resource type="BoxShape" id=2]
-
-[sub_resource type="BoxShape" id=3]
-
-[node name="EdgeFold" type="Spatial"]
-transform = Transform( -7.43094e-07, -17, 0, 17, -7.43094e-07, 0, 0, 0, 17, -53.496, 128.533, 0 )
+[node name="EdgeFoldSprite" type="Sprite"]
+position = Vector2( 892.7, 442.795 )
+scale = Vector2( 0.716199, 0.716199 )
+texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="EdgeFoldMesh" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 7.10543e-15, 7.10543e-15, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.7807, -2.38419e-07, 0 )
-mesh = ExtResource( 1 )
-material/0 = SubResource( 1 )
+[node name="HoldArea" type="Area2D" parent="."]
 
-[node name="TapArea" type="Area" parent="EdgeFoldMesh"]
-transform = Transform( 1.50023, 2.27811e-08, 3.74134e-15, -5.77388e-15, 2.09516e-08, 1.25036, -2.27811e-08, -2.0214, 1.22062e-07, -2.11017, 0.117714, -4.76837e-07 )
+[node name="HoldHitbox" type="CollisionShape2D" parent="HoldArea"]
+position = Vector2( 273.009, -6.27612 )
+shape = SubResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="EdgeFoldMesh/TapArea"]
-transform = Transform( 0.571504, 1.87301e-08, 0, 1.87302e-08, 1, 0, 0, 0, 1.78636, -0.416306, 1.05233, -0.0809483 )
+[node name="TapArea" type="Area2D" parent="."]
+
+[node name="TapHitbox" type="CollisionShape2D" parent="TapArea"]
+position = Vector2( 1.04602, 0 )
 shape = SubResource( 2 )
 
-[node name="HoldArea" type="Area" parent="EdgeFoldMesh"]
-transform = Transform( 1.17213, 3.69377e-08, 1.24996e-15, -6.39212e-15, 2.11242e-08, 1.25022, -3.69374e-08, -2.01717, 1.21698e-07, -1.93105, 0.132361, -7.15256e-07 )
-
-[node name="CollisionShape" type="CollisionShape" parent="EdgeFoldMesh/HoldArea"]
-transform = Transform( 0.606812, 1.71868e-08, 0, 1.71868e-08, 1, 0, 0, 0, 1.78635, 0.797924, 1.05233, -0.0809483 )
-shape = SubResource( 3 )
-
-[connection signal="area_entered" from="EdgeFoldMesh/TapArea" to="." method="_on_TapArea_area_entered"]
-[connection signal="area_exited" from="EdgeFoldMesh/TapArea" to="." method="_on_TapArea_area_exited"]
-[connection signal="area_entered" from="EdgeFoldMesh/HoldArea" to="." method="_on_HoldArea_area_entered"]
-[connection signal="area_exited" from="EdgeFoldMesh/HoldArea" to="." method="_on_HoldArea_area_exited"]
+[connection signal="area_entered" from="HoldArea" to="." method="_OnHoldAreaEntered"]
+[connection signal="area_exited" from="HoldArea" to="." method="_OnHoldAreaExited"]
+[connection signal="area_entered" from="TapArea" to="." method="_OnTapAreaEntered"]
+[connection signal="area_exited" from="TapArea" to="." method="_OnTapAreaExited"]

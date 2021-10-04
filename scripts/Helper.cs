@@ -6,7 +6,7 @@ public static class Helper
     public const String scenePrefix = "res://";
     public const String sceneSuffix = ".tscn";
     public const String mainSceneName = "MainEye2D";
-    
+
     // Adds the scene prefix and suffix to a name:
     public static String toFileName(String name)
     {
