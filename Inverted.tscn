@@ -18,11 +18,11 @@ script = ExtResource( 2 )
 [node name="TapArea" type="Area2D" parent="."]
 
 [node name="TapHitbox" type="CollisionShape2D" parent="TapArea"]
-position = Vector2( 123.185, -7.07593 )
+position = Vector2( 806.715, -321.073 )
 shape = SubResource( 1 )
 
 [node name="HoldArea" type="Area2D" parent="."]
 
 [node name="HoldHitbox" type="CollisionShape2D" parent="HoldArea"]
-position = Vector2( 327.222, -7.07599 )
+position = Vector2( 1010.75, -321.073 )
 shape = SubResource( 2 )
