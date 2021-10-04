@@ -5,12 +5,15 @@ public class MainMenu2 : MarginContainer
 {
 	public override void _Ready()
 	{
-		var optionsButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Options");
+		String menuOptions = "MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/";
+		var optionsButton = GetNode(menuOptions + "Options");
 		optionsButton.Connect("pressed", this, "onOptionsPressed");
-		var levelSelectButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Level Select");
+		var levelSelectButton = GetNode(menuOptions + "Level Select");
 		levelSelectButton.Connect("pressed", this, "onLevelSelectPressed");
-		var continueButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Continue");
+		var continueButton = GetNode(menuOptions + "Continue");
 		continueButton.Connect("pressed", this, "onContinuePressed");
+		var tutorialButton = GetNode(menuOptions + "Tutorial");
+		tutorialButton.Connect("pressed", this, "onTutorialPressed");
 	}
 
 	// Loads wherever the player was last:
@@ -32,6 +35,11 @@ public class MainMenu2 : MarginContainer
 		GD.Print("Options pressed");
 		GetTree().ChangeScene(Helper.toFileName("Options"));
 		
+	}
+	private void onTutorialPressed()
+	{
+		GD.Print("Tutorial pressed");
+		GetTree().ChangeScene(Helper.toFileName("TutorialSelect"));
 	}
 }
 
