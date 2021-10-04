@@ -81,4 +81,26 @@ public static class Helper
         nextLevel = toFileName(nextLevel);
         return nextLevel;
     }
+
+     public static String getNextTutorialConfirmation(String current) {
+        String nextLevel = "";
+        if (current.Contains("Scroll"))
+        {
+                nextLevel = "DoubleScroll";
+        }
+        else if (current.Contains("DoubleScroll"))
+        {
+                nextLevel = "SimpleFold";
+        }
+        else if (current.Contains("SimpleFold"))
+        {
+            nextLevel = "EdgeFold";
+        }
+        else if (current.Contains("EdgeFold"))
+        {
+            nextLevel = "Inverted";
+        }
+        nextLevel = toFileName(nextLevel);
+        return nextLevel;
+    }
 }
