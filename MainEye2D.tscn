@@ -56,12 +56,14 @@ offset = Vector2( 599.931, 299.89 )
 position = Vector2( 421.522, 17.6158 )
 
 [node name="HorizontalMarker" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 906.01, 440 )
 scale = Vector2( 2.08307, 4.03082 )
 texture = SubResource( 3 )
 
 [node name="VerticalMarker" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 905.339, 447.06 )
 rotation = 1.5708

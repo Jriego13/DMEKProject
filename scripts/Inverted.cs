@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class SimpleFold2D : Graft {
+public class Inverted : Graft {
   Cannula2D lCannula;
   Cannula2D rCannula;
   bool tapAreaEntered = false;
@@ -9,35 +9,8 @@ public class SimpleFold2D : Graft {
   bool heldDown = false;
 
   public override void _Ready() {
-    numTapsComplete = rng.Next(3,6);
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
-    GD.Print("you have to tap " + numTapsComplete + " times!");
-  }
-
-  public override void _Process(float delta) {
-    if(numTaps >= numTapsComplete) {
-      numTaps = 0;
-      isFinished = true;
-      GD.Print("tapping complete.");
-    }
-
-    if(tapAreaEntered) {
-      if(heldDown) {
-        if(lCannula.tapped || rCannula.tapped) {
-          numTaps += 1;
-          lCannula.tapped = false;
-          rCannula.tapped = false;
-          GD.Print("tap registered");
-        }
-      }
-    }
-
-    if(holdAreaEntered) {
-      if(lCannula.locked || rCannula.locked) {
-        heldDown = true;
-      }
-    }
   }
 
   public void _OnTapAreaEntered(object area) {
