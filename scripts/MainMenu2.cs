@@ -11,6 +11,16 @@ public class MainMenu2 : MarginContainer
 		levelSelectButton.Connect("pressed", this, "onLevelSelectPressed");
 		var continueButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Continue");
 		continueButton.Connect("pressed", this, "onContinuePressed");
+		var tutorialButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Tutorial");
+		tutorialButton.Connect("pressed", this, "onTutorialPressed");
+	}
+
+	// Loads tutorial
+	private void onTutorialPressed() {
+		GD.Print("Tutorial pressed");
+		var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+		levelSwitcher.ChangeLevel(Helper.toFileName(Helper.tutorialSceneName), Helper.toFileName("Scroll2D"));
+
 	}
 
 	// Loads wherever the player was last:

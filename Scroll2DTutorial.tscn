@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/Scroll.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Scroll2D.cs" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 35.606, 20.0625 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 27.0184, 653.443 )
+
+[node name="ScrollSprite" type="Sprite"]
+position = Vector2( 895.803, 470.243 )
+scale = Vector2( 0.16, 0.16 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="TopArea" type="Area2D" parent="."]
+position = Vector2( 165.511, -98.9473 )
+scale = Vector2( 22.7737, 22.7737 )
+
+[node name="TopHitbox" type="CollisionShape2D" parent="TopArea"]
+position = Vector2( -5.05463, -60.0568 )
+shape = SubResource( 1 )
+
+[node name="MidArea" type="Area2D" parent="."]
+
+[node name="MidHitbox" type="CollisionShape2D" parent="MidArea"]
+position = Vector2( 35.8789, -198.517 )
+scale = Vector2( 30.3333, 1 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="TopArea" to="." method="_OnTopAreaEntered"]
+[connection signal="area_exited" from="TopArea" to="." method="_OnTopAreaExited"]
+[connection signal="area_entered" from="MidArea" to="." method="_OnMidAreaEntered"]
+[connection signal="area_exited" from="MidArea" to="." method="_OnMidAreaExited"]
