@@ -1,5 +1,5 @@
 
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 [ext_resource path="res://sprites/WhiteBackground.jpg" type="Texture" id=1]
 [ext_resource path="res://Cannula2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://CurrentConfirmation.tscn" type="PackedScene" id=5]
@@ -19,16 +19,28 @@ public class MainEye2D : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {
-//      
+//
 //  }
 }
 "
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.238636, 0.836364 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.749, 0.842 )
@@ -42,10 +54,19 @@ offset = Vector2( 599.931, 299.89 )
 [node name="Cannulas" parent="." instance=ExtResource( 4 )]
 
 [node name="Overlay" parent="." instance=ExtResource( 5 )]
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.976471, 0.0431373, 0.0862745, 1 )
-position = Vector2( 249.164, 91.2082 )
-scale = Vector2( 0.0334727, 0.0240339 )
-texture = ExtResource( 6 )
+position = Vector2( 421.522, 17.6158 )
 
+[node name="HorizontalMarker" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 906.01, 440 )
+scale = Vector2( 2.08307, 4.03082 )
+texture = SubResource( 3 )
+
+[node name="VerticalMarker" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 905.339, 447.06 )
+rotation = 1.5708
+scale = Vector2( 3.2527, 7.88836 )
+texture = SubResource( 5 )

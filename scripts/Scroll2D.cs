@@ -32,11 +32,8 @@ public class Scroll2D : Graft {
 		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
 			numTaps = 0;
 			topTaps = 0;
-			//Node sceneNode = scene1.Instance();
-			// GetNode("/root/Spatial/MainEye").AddChild(sceneNode);
-      // GetParent().RemoveChild(this);
-      GD.Print("tapping complete.");
-	  isFinished = true;
+	  	isFinished = true;
+			GD.Print("tapping complete.");
 		}
 
 		if(bottomAreaEntered) {
@@ -45,8 +42,6 @@ public class Scroll2D : Graft {
 					numTaps += 1;
 					lCannula.tapped = false;
 					rCannula.tapped = false;
-					// if(numTaps <= 4)
-					// 	objectMesh.SetMesh(inbetweens[numTaps-1]);
 					GD.Print("bot tap registered");
 				}
 			}
@@ -106,5 +101,4 @@ public class Scroll2D : Graft {
 	private void _OnMidAreaExited(object area) {
 		bottomAreaEntered = false;
 	}
-
 }

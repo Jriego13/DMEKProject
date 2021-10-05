@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class SimpleFold : Graft {
+public class EdgeFold2D : Graft {
   Cannula2D lCannula;
   Cannula2D rCannula;
   bool tapAreaEntered = false;

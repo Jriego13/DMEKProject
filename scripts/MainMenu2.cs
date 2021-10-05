@@ -30,9 +30,6 @@ public class MainMenu2 : MarginContainer
 	{
 		GD.Print("Options pressed");
 		GetTree().ChangeScene(Helper.toFileName("Options"));
-		
+
 	}
 }
-
-
-

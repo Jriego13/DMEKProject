@@ -28,10 +28,16 @@ public class MainEye2D : Node2D
             loadConfirmation(nextLevel);
         }
     }
-    
+
     // Load the specified level/fold, instance it as a Node2D, then place it in the tree:
     private void loadConfirmation(String next)
     {
+        GD.Print(next);
+        if(next == "res://Done.tscn") {
+          GetTree().ChangeScene("res://Done.tscn");
+          return;
+        }
+
         levelName = next;
         GD.Print("instancing "+ levelName);
         var confirmationScene = GD.Load<PackedScene>(levelName);
