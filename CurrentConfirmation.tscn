@@ -50,6 +50,7 @@ margin_right = 150.755
 margin_bottom = 178.7
 custom_fonts/normal_font = ExtResource( 6 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
