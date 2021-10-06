@@ -3,7 +3,8 @@ using System;
 
 public class MainEye2D : Node2D
 {
-    private String levelName = "";
+    // levelName is random by default so it can be loaded without levelSelect
+    private String levelName = Helper.getRandomConfirmation();
     private Graft confirmation;
 
     public override void _Ready()
@@ -12,6 +13,7 @@ public class MainEye2D : Node2D
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
         // Get the levelName from the levelSwitcher:
         levelName = levelSwitcher.getLevelName();
+        Helper.startLevel = levelName;
         loadConfirmation(levelName);
     }
     public override void _Process(float delta)
