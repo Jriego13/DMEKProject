@@ -24,8 +24,10 @@ public class TutorialPrompt : RichTextLabel
         WelcomeMessage();
         }
        else {
-           SetText("This is a scroll \n\n" +
-                    "You need to tap the bottom and top about 5 times each");
+           SetText("This confirmation is called a scroll \n\n" +
+                    "Tap one cannula horizontally on the top end of " +  
+                    "it to send fluid waves into the fold to open it \n" +
+                    "Tap another cannula vertically on the center of the fold");
        } 
 
         if (Input.IsActionJustPressed("continue")) {shownWelcomeMessage = true;}
