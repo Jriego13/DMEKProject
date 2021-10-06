@@ -7,20 +7,17 @@ public class Scroll2D : Graft {
 	Cannula2D rCannula;
 	PackedScene scene1;
 	PackedScene scene2;
-	PackedScene failScene;
 	bool topAreaEntered = false;
 	bool bottomAreaEntered = false;
 	int topTaps = 0;
 	int topTapsComplete = 0;
-	int numTapsWrong = 0;
-	Texture circleTexture;
 
 	public override void _Ready() {
 		numTapsComplete = rng.Next(4,6);
 		topTapsComplete = rng.Next(3,5);
     // scene1 = GD.Load<PackedScene>("res://SimpleFold.tscn");
     // scene2 = GD.Load<PackedScene>("res://DoubleScroll.tscn");
-	failScene = GD.Load<PackedScene>("res://FailScreen.tscn");
+	
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
 	circleTexture = GD.Load("res://images/circle.png") as Texture;
@@ -77,8 +74,10 @@ public class Scroll2D : Graft {
 				}
 				else{
 					GD.Print("Misclicked too many times. You fail!");
-					Node sceneNode = failScene.Instance();
-					GetNode("/root").AddChild(sceneNode);
+					lCannula.locked = true;
+					rCannula.locked = true;
+					previousConfirmation = "Scroll";
+					GetTree().ChangeScene("res://FailScreen.tscn");
 				}
 			}
 		}

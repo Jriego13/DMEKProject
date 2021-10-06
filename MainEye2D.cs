@@ -15,6 +15,7 @@ public class MainEye2D : Node2D
         levelName = levelSwitcher.getLevelName();
         Helper.startLevel = levelName;
         loadConfirmation(levelName);
+        // PrintTreePretty();
     }
     public override void _Process(float delta)
     {

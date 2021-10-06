@@ -9,6 +9,10 @@ public class Graft : Node2D {
   protected int numTaps;
   protected int numTapsComplete;
   protected bool isFinished;
+  protected int numTapsWrong;
+  protected Texture circleTexture;
+  protected String previousConfirmation;
+
 
   public bool getIsFinished() {
 		return isFinished;
