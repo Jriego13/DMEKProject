@@ -8,11 +8,13 @@ public class CannulaMain2D : Node2D {
 	bool rHeld = false;
 	bool lrRotating = false; // false defualts to rotating left cannula, true to right cannula
 	float timer = 0;
+	AudioStreamPlayer audio;
 
 	public override void _Ready() {
 		Input.SetMouseMode((Godot.Input.MouseMode)1); // hide mouse
 		lCannula = GetNode("./CannulaLSprite") as Cannula2D;
 		rCannula = GetNode("./CannulaRSprite") as Cannula2D;
+		audio = GetNode("./CannulaLSprite/AudioStreamPlayer") as AudioStreamPlayer;
 	}
 
 	public override void _Process(float delta) {
@@ -40,10 +42,14 @@ public class CannulaMain2D : Node2D {
 		}
 		else {
 			if((timer < 1 && timer > 0) && (lHeld || rHeld)) { // left or right cannula was held and released in under a second
-				if(lHeld)
+				if(lHeld){
 					lCannula.tapped = true;
-				else
+					audio.Play();
+				}
+				else{
 					rCannula.tapped = true;
+					audio.Play();
+				}
 			}
 			else {
 				lCannula.tapped = false;
