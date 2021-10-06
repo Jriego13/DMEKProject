@@ -13,6 +13,7 @@ public class MainEye2D : Node2D
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
         // Get the levelName from the levelSwitcher:
         levelName = levelSwitcher.getLevelName();
+        Helper.startLevel = levelName;
         loadConfirmation(levelName);
     }
     public override void _Process(float delta)

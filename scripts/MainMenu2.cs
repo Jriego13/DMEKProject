@@ -29,7 +29,9 @@ public class MainMenu2 : MarginContainer
 	private void onOptionsPressed()
 	{
 		GD.Print("Options pressed");
-		GetTree().ChangeScene(Helper.toFileName("Options"));
+		var optionsScene = GD.Load<PackedScene>("res://Options.tscn");
+		var optionsMenu = (Node)optionsScene.Instance();
+		GetNode("/root/MarginContainer").AddChild(optionsMenu);
 
 	}
 }
