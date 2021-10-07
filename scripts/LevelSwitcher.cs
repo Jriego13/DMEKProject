@@ -8,11 +8,18 @@ using System;
 public class LevelSwitcher : Node
 {
     String levelName = "";
+    Boolean isTutorialMode = false;
 
     // Loads the lext level by storing the level name and switching to the
     // Main eye scene:
     public void ChangeLevel(String next_scene, String levelName)
     {
+        if (next_scene == "res://MainEye2DTutorial.tscn") {
+            isTutorialMode = true;
+        }
+        else { 
+            isTutorialMode = false;
+        }
         this.levelName = levelName;
         GetTree().ChangeScene(next_scene);
     }
@@ -20,5 +27,9 @@ public class LevelSwitcher : Node
     public String getLevelName()
     {
         return levelName;
+    }
+
+    public Boolean tutorialMode() {
+        return isTutorialMode;
     }
 }

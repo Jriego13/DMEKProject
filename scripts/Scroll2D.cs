@@ -14,6 +14,10 @@ public class Scroll2D : Graft {
 	int topTapsComplete = 0;
 	int numTapsWrong = 0;
 	Texture circleTexture;
+	Texture hitBoxTexture;
+	Boolean isTutorialMode;
+	ColorRect topHitBox;
+	ColorRect midHitBox;
 
 	public override void _Ready() {
 		numTapsComplete = rng.Next(4,6);
@@ -23,11 +27,28 @@ public class Scroll2D : Graft {
 	failScene = GD.Load<PackedScene>("res://FailScreen.tscn");
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
-	circleTexture = GD.Load("res://images/circle.png") as Texture;
+	topHitBox = GetNode("TopArea/TopHitbox/TopHitboxColorRect") as ColorRect;
+	midHitBox = GetNode("MidArea/MidHitbox/MidHitboxColorRect") as ColorRect;
+	circleTexture = GD.Load("res://images/circle.png") as Texture; 
+	Color hitBoxColor = new Color( 0.98f, 0.5f, 0.45f, .5f );
+	topHitBox.Color = hitBoxColor;
+	midHitBox.Color = hitBoxColor;
+	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+	isTutorialMode = levelSwitcher.tutorialMode();
+	GD.Print("tut mode = " + isTutorialMode);
+	if (isTutorialMode) {
+		topHitBox.SetVisible(true);
+		midHitBox.SetVisible(true);
+	}
+	else {
+		topHitBox.SetVisible(false);
+		midHitBox.SetVisible(false);
+	}
 	GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
 	}
 
 	public async override void _Process(float delta) {
+
 		// i want to make a function that encapsulates this behavior
 		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
 			numTaps = 0;
