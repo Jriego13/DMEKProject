@@ -18,7 +18,7 @@ public class TutorialPrompt : RichTextLabel
   public override void _Process(float delta)
   {
       
-    if (levelName == "res://Scroll2D.tscn") {
+    if (levelName == "res://Scroll.tscn") {
         if (!shownWelcomeMessage) {
         WelcomeMessage();
         }

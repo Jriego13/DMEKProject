@@ -5,9 +5,11 @@ public class MainEye2DTutorial : Node
 {
     private String levelName = "";
     private Graft confirmation;
+    RichTextLabel tutorialPrompt;
 
     public override void _Ready()
     {
+        tutorialPrompt = GetNode("Overlay/TutorialPrompt") as RichTextLabel;
         // Load the singleton:
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
         // Get the levelName from the levelSwitcher:
@@ -20,6 +22,7 @@ public class MainEye2DTutorial : Node
         // If confirmation is complete, load the next confirmation:
         if (confirmation.getIsFinished())
         {
+
             // Delete the current node:
             confirmation.QueueFree();
             // Add new node to the tree:
