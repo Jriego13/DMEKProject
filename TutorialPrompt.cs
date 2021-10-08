@@ -29,11 +29,13 @@ public class TutorialPrompt : RichTextLabel
                     "Tap another cannula vertically on the center of the fold");
        } 
 
-        if (Input.IsActionJustPressed("continue")) {shownWelcomeMessage = true;}
+        if (Input.IsActionJustPressed("continue") && !shownWelcomeMessage) {
+          shownWelcomeMessage = true;
+          }
     }
   }
 
-  public async void WelcomeMessage() {
+  public void WelcomeMessage() {
       SetText("Welcome to the tutorial! \n\n" +
                 "Press h to view the controls. \n\n" +
                 "The tutorial will walk you through " + 
