@@ -13,4 +13,13 @@ public class Graft : Node2D {
   public bool getIsFinished() {
 		return isFinished;
 	}
+  public override void _Process(float delta)
+  {
+    this.Rotate(0.1f);
+    CheckObjectives();
+  }
+  protected async virtual void CheckObjectives()
+  {
+
+  }
 }

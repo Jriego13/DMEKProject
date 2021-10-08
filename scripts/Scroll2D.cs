@@ -27,9 +27,13 @@ public class Scroll2D : Graft {
 	GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
 	}
 
-	public async override void _Process(float delta) {
-		// i want to make a function that encapsulates this behavior
-		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
+	// public async override void _Process(float delta) {
+	// 	// i want to make a function that encapsulates this behavior
+
+	// }
+	protected async override void CheckObjectives()
+	{
+				if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
 			numTaps = 0;
 			topTaps = 0;
 	  	isFinished = true;
