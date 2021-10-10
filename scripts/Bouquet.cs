@@ -2,22 +2,19 @@ using Godot;
 using System;
 
 public class Bouquet : Graft {
-  Cannula2D lCannula;
-  Cannula2D rCannula;
   bool topAreaEntered = false;
   bool midAreaEntered = false;
   int topTaps = 0;
   int topTapsComplete = 0;
 
-  public override void _Ready() {
+  protected override void SetObjectives()
+  {
     numTapsComplete = rng.Next(4,6);
 		topTapsComplete = numTapsComplete;
-    lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
-    rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
-		GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
+    GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
   }
-
-  public override void _Process(float delta) {
+  protected override void CheckObjectives()
+  {
     if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
       numTaps = 0;
       topTaps = 0;
@@ -46,7 +43,7 @@ public class Bouquet : Graft {
         }
       }
     }
-  }
+  } 
 
   private void _OnTopAreaEntered(object area) {
     topAreaEntered = true;

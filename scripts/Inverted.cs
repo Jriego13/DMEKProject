@@ -2,16 +2,9 @@ using Godot;
 using System;
 
 public class Inverted : Graft {
-  Cannula2D lCannula;
-  Cannula2D rCannula;
   bool tapAreaEntered = false;
   bool holdAreaEntered = false;
   bool heldDown = false;
-
-  public override void _Ready() {
-    lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
-    rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
-  }
 
   public void _OnTapAreaEntered(object area) {
     tapAreaEntered = true;

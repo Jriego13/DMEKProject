@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 
 public class Scroll2D : Graft {
-	Cannula2D lCannula;
-	Cannula2D rCannula;
 	PackedScene scene1;
 	PackedScene scene2;
 	bool topAreaEntered = false;
@@ -12,24 +10,19 @@ public class Scroll2D : Graft {
 	int topTaps = 0;
 	int topTapsComplete = 0;
 
-	public override void _Ready() {
+	protected override void SetObjectives()
+	{
 		numTapsComplete = rng.Next(4,6);
 		topTapsComplete = rng.Next(3,5);
-    // scene1 = GD.Load<PackedScene>("res://SimpleFold.tscn");
-    // scene2 = GD.Load<PackedScene>("res://DoubleScroll.tscn");
-	
-    lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
-    rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
-	circleTexture = GD.Load("res://images/circle.png") as Texture;
-	GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
+		GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
 	}
 
-	public async override void _Process(float delta) {
-		// i want to make a function that encapsulates this behavior
+	protected override void CheckObjectives()
+	{
 		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
 			numTaps = 0;
 			topTaps = 0;
-	  	isFinished = true;
+	  		isFinished = true;
 			GD.Print("tapping complete.");
 		}
 
@@ -57,28 +50,7 @@ public class Scroll2D : Graft {
 
 		if(!topAreaEntered && !bottomAreaEntered){
 			if(rCannula.tapped || lCannula.tapped){
-				if(numTapsWrong < 3){
-					GD.Print("You clicked outside of the correct areas");
-					Vector2 mousePos = GetViewport().GetMousePosition();
-					GD.Print(mousePos);
-					Sprite misclickCircle = new Sprite();
-					misclickCircle.Texture = circleTexture;
-					misclickCircle.Scale = new Vector2(0.1f , 0.1f);
-					misclickCircle.Position = mousePos;
-					misclickCircle.Modulate = new Color(1, 0 , 0);
-
-					GetTree().GetRoot().AddChild(misclickCircle);
-					await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
-					misclickCircle.QueueFree();
-					numTapsWrong++;
-				}
-				else{
-					GD.Print("Misclicked too many times. You fail!");
-					lCannula.locked = true;
-					rCannula.locked = true;
-					previousConfirmation = "Scroll";
-					GetTree().ChangeScene("res://FailScreen.tscn");
-				}
+				registerMisclick();
 			}
 		}
 	}
