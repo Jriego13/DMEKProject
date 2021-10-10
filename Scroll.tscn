@@ -10,7 +10,7 @@ extents = Vector2( 35.606, 20.0625 )
 extents = Vector2( 27.0184, 653.443 )
 
 [node name="ScrollSprite" type="Sprite"]
-position = Vector2( 895.803, 470.243 )
+position = Vector2( 895.675, 470.243 )
 scale = Vector2( 0.16, 0.16 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
@@ -29,6 +29,15 @@ shape = SubResource( 1 )
 position = Vector2( 35.8789, -198.517 )
 scale = Vector2( 30.3333, 1 )
 shape = SubResource( 2 )
+
+[node name="Outline" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 841.711, 1454.81, 863.983, 1020.49, 875.119, 485.954, 875.119, -15.1768, 886.256, -471.762, 886.256, -894.939, 875.119, -1273.57, 886.256, -1674.48, 574.44, -1852.66, 329.443, -1952.88, -4.64355, -1952.88, -260.777, -1930.61, -483.502, -1819.25, -717.362, -1618.79, -750.771, -1340.39, -750.771, -961.756, -761.908, -605.397, -773.044, -159.948, -778.689, 252.168, -784.18, 652.997, -806.453, 1098.45, -750.771, 1432.53, -505.774, 1632.99, 39.9014, 1677.53, 541.032, 1699.8 )
+
+[node name="Center" type="Line2D" parent="."]
+points = PoolVector2Array( 44.2896, -166.646, 41.6616, -221.831 )
+
+[node name="Axis" type="Line2D" parent="."]
+points = PoolVector2Array( 20, -1934.72, 20, -1798.08, 20, -1671.94, 20, -1545.81, 20, -1440.7, 20, -1272.52, 20, -1135.87, 20, -978.204, 20, -820.536, 20, -641.845, 20, -515.711, 20, -273.953, 20, -95.263, 20, 72.917, 20, 230.585, 20, 367.23, 20, 556.432, 20, 777.167, 20, 955.858, 20, 1155.57, 19.0674, 1267.62, 21.2773, 1391.36, 20.7813, 1527.89, 20.7813, 1668.52 )
 
 [connection signal="area_entered" from="TopArea" to="." method="_OnTopAreaEntered"]
 [connection signal="area_exited" from="TopArea" to="." method="_OnTopAreaExited"]

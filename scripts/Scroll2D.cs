@@ -81,8 +81,8 @@ public class Scroll2D : Graft {
 				}
 				else{
 					GD.Print("Misclicked too many times. You fail!");
-					Node sceneNode = failScene.Instance();
-					GetNode("/root").AddChild(sceneNode);
+					//Node sceneNode = failScene.Instance();
+					//GetNode("/root").AddChild(sceneNode);
 				}
 			}
 		}
