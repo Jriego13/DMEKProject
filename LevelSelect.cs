@@ -7,7 +7,7 @@ public class LevelSelect : MarginContainer
     {
         var goBackButton = GetNode("MarginContainer/VBoxContainer2/HBoxContainer2/GoBackButton");
         goBackButton.Connect("pressed", this, "onGoBackButtonPressed");
-        
+
         // Create level select button variables:
         String levelHBoxPath = "MarginContainer/VBoxContainer2/levelHBox";
         var simpleFoldButton = GetNode(levelHBoxPath + "/Levels1and4/Level1/SimpleFold");
@@ -32,7 +32,7 @@ public class LevelSelect : MarginContainer
     private void onGoBackButtonPressed()
     {
         GD.Print("Go back pressed");
-		    GetTree().ChangeScene(Helper.toFileName("MainMenu2"));
+		    GetTree().ChangeScene(Helper.toFileName("MainMenu"));
     }
 
     // Loads the selected level:

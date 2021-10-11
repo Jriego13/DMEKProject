@@ -21,13 +21,13 @@ public class FailScreen : Control
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {
-//      
+//
 //  }
 
   private void onMainMenuPressed()
     {
         GD.Print("Quit pressed, returning to main menu");
-        GetTree().ChangeScene("res://MainMenu2.tscn");
+        GetTree().ChangeScene("res://MainMenu.tscn");
     }
 
 //   private void onRestartLevelPressed()

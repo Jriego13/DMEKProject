@@ -5,13 +5,15 @@ using System.Collections.Generic;
 // base graft class that I would like to use for all derivative grafts
 public class Graft : Sprite {
   protected List<PackedScene> nextConfirmations = new List<PackedScene>();
+  protected List<Texture> graftTextures = new List<Texture>();
   protected Random rng = new Random();
   protected int numTaps;
   protected int numTapsComplete;
-  protected bool isFinished;
   protected int numTapsWrong;
+  protected bool isFinished;
   protected Texture circleTexture;
   protected String previousConfirmation;
+  protected String currentConfirmation;
   protected Cannula2D lCannula;
 	protected Cannula2D rCannula;
 
@@ -19,25 +21,34 @@ public class Graft : Sprite {
   {
     CheckObjectives();
   }
+
   public override void _Ready()
   {
     SetObjectives();
+    LoadTextures();
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
 	  circleTexture = GD.Load("res://images/circle.png") as Texture;
   }
+
   // This is where each graft will check for their specific objectives.
   // This separation allows for a universal _Process function.
-  protected virtual void CheckObjectives()
-  {
+  protected virtual void CheckObjectives() {}
 
-  }
   // This is where each graft sets up their specific objectives.
   // This separation allows for a universal _Ready function.
-  protected virtual void SetObjectives()
-  {
+  protected virtual void SetObjectives() {}
 
+  protected void LoadTextures() {
+    if(currentConfirmation == "SimpleFold") {
+      GD.Print("Loading Textures...");
+      for(int i = 0; i < 3; i++) {
+        Texture currImg = GD.Load("res://sprites/SimpleEdge" + (i+1) + ".png") as Texture;
+        graftTextures.Add(currImg);
+      }
+    }
   }
+
   // What will happen when the player clicks outside of the correct areas:
   protected async void registerMisclick()
   {
@@ -64,6 +75,7 @@ public class Graft : Sprite {
 					GetTree().ChangeScene("res://FailScreen.tscn");
 				}
   }
+
   public bool getIsFinished() {
 		return isFinished;
 	}

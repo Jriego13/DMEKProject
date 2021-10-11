@@ -6,12 +6,12 @@ public static class Helper
 {
     public const String scenePrefix = "res://";
     public const String sceneSuffix = ".tscn";
-    public const String mainSceneName = "MainEye2D";
-    public static String[] confirmations = {"Scroll", "DoubleScroll", "SimpleFold", 
+    public const String mainSceneName = "MainEye";
+    public static String[] confirmations = {"Scroll", "DoubleScroll", "SimpleFold",
     "Inverted", "Taco", "EdgeFold", "Bouquet", "Origami"};
     public static Random rand = new Random();
     // The level the game started on.
-    public static String startLevel = ""; 
+    public static String startLevel = "";
     // Adds the scene prefix and suffix to a name:
     public static String toFileName(String name)
     {
