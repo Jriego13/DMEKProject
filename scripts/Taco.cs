@@ -2,15 +2,16 @@ using Godot;
 using System;
 
 public class Taco : Graft {
-  Cannula2D lCannula;
-  Cannula2D rCannula;
   bool tapAreaEntered = false;
   bool holdAreaEntered = false;
   bool heldDown = false;
+  protected override void SetObjectives()
+  {
 
-  public override void _Ready() {
-    lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
-    rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
+  }
+  protected override void CheckObjectives()
+  {
+
   }
 
   public void _OnTapAreaEntered(object area) {
