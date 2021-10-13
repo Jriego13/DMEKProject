@@ -3,7 +3,7 @@ using System;
 
 public class TutorialSelect : LevelMenu
 {
-    protected override void loadLevel(String sceneName)
+    public override void loadLevel(String sceneName)
     {
         GD.Print("Loading scene " + sceneName);
         // Load the singleton levelSwitcher:
