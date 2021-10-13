@@ -60,13 +60,6 @@ stream = ExtResource( 3 )
 [node name="Overlay" parent="." instance=ExtResource( 5 )]
 position = Vector2( 421.522, 17.6158 )
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.976471, 0.0431373, 0.0862745, 1 )
-position = Vector2( 249.164, 91.2082 )
-scale = Vector2( 0.0334727, 0.0240339 )
-texture = ExtResource( 6 )
-
 [node name="HorizontalMarker" type="Sprite" parent="."]
 visible = false
 modulate = Color( 0, 0, 0, 1 )

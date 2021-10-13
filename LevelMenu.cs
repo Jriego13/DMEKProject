@@ -26,7 +26,6 @@ public class LevelMenu : MarginContainer
         {
             button.Connect("pressed", this, "loadLevel", new Godot.Collections.Array {button.Name});
         }
-
     }
 
     // Navigates back to the main menu:
@@ -37,7 +36,7 @@ public class LevelMenu : MarginContainer
     }
 
     // Loads the selected level:
-    protected virtual void loadLevel(String sceneName)
+    public virtual void loadLevel(String sceneName)
     {
         GD.Print("Loading scene " + sceneName);
         // Load the singleton levelSwitcher:
