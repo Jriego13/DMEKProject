@@ -1,18 +1,18 @@
 using Godot;
 using System;
 
-public class SimpleFold : Graft {
+public class EdgeFold2D : Graft {
   bool tapAreaEntered = false;
   bool holdAreaEntered = false;
   bool heldDown = false;
-  protected override void SetObjectives()
-  {
-    numTapsComplete = rng.Next(3,6);
-    GD.Print("you have to tap " + numTapsComplete + " times!");
-  }
-  protected override void CheckObjectives()
-  {
-    if(numTaps >= numTapsComplete) {
+protected override void SetObjectives()
+{
+  numTapsComplete = rng.Next(3,6);
+  GD.Print("you have to tap " + numTapsComplete + " times!");
+}
+protected override void CheckObjectives()
+{
+  if(numTaps >= numTapsComplete) {
       numTaps = 0;
       isFinished = true;
       GD.Print("tapping complete.");
@@ -40,7 +40,8 @@ public class SimpleFold : Graft {
 				registerMisclick();
 			}
 		}
-  }
+}
+
   public void _OnTapAreaEntered(object area) {
     tapAreaEntered = true;
   }

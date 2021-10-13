@@ -60,26 +60,26 @@ size_flags_vertical = 3
 custom_constants/separation = 30
 alignment = 1
 
-[node name="Continue" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 109.0
+[node name="Play" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+margin_top = 110.0
 margin_right = 725.0
-margin_bottom = 163.0
+margin_bottom = 164.0
 texture_normal = ExtResource( 2 )
 
 [node name="Tutorial" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 193.0
+margin_top = 194.0
 margin_right = 725.0
-margin_bottom = 244.0
+margin_bottom = 245.0
 texture_normal = ExtResource( 4 )
 
 [node name="Level Select" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 274.0
+margin_top = 275.0
 margin_right = 725.0
-margin_bottom = 329.0
+margin_bottom = 330.0
 texture_normal = ExtResource( 3 )
 
 [node name="Options" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 359.0
+margin_top = 360.0
 margin_right = 725.0
 margin_bottom = 422.0
 texture_normal = ExtResource( 6 )

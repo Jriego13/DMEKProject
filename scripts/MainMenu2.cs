@@ -14,14 +14,15 @@ public class MainMenu2 : MarginContainer
 		continueButton.Connect("pressed", this, "onContinuePressed");
 		var tutorialButton = GetNode(menuOptions + "Tutorial");
 		tutorialButton.Connect("pressed", this, "onTutorialPressed");
+		var playButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Play");
+		playButton.Connect("pressed", this, "onPlayPressed");
 	}
 
-	// Loads wherever the player was last:
-	private void onContinuePressed()
+	// Starts the game at a random confirmation:
+	private void onPlayPressed()
 	{
-		GD.Print("Continue pressed");
-		GetTree().ChangeScene(Helper.toFileName("SimpleFold"));
-		
+		GD.Print("Play pressed");
+		GetTree().ChangeScene(Helper.toFileName("MainEye2D"));
 	}
 	// Navigates to the level select screen:
 	private void onLevelSelectPressed()
@@ -33,8 +34,10 @@ public class MainMenu2 : MarginContainer
 	private void onOptionsPressed()
 	{
 		GD.Print("Options pressed");
-		GetTree().ChangeScene(Helper.toFileName("Options"));
-		
+		var optionsScene = GD.Load<PackedScene>("res://Options.tscn");
+		var optionsMenu = (Node)optionsScene.Instance();
+		GetNode("/root/MarginContainer").AddChild(optionsMenu);
+
 	}
 	private void onTutorialPressed()
 	{
@@ -42,6 +45,3 @@ public class MainMenu2 : MarginContainer
 		GetTree().ChangeScene(Helper.toFileName("TutorialSelect"));
 	}
 }
-
-
-
