@@ -10,8 +10,6 @@ public class MainMenu2 : MarginContainer
 		optionsButton.Connect("pressed", this, "onOptionsPressed");
 		var levelSelectButton = GetNode(menuOptions + "Level Select");
 		levelSelectButton.Connect("pressed", this, "onLevelSelectPressed");
-		var continueButton = GetNode(menuOptions + "Continue");
-		continueButton.Connect("pressed", this, "onContinuePressed");
 		var tutorialButton = GetNode(menuOptions + "Tutorial");
 		tutorialButton.Connect("pressed", this, "onTutorialPressed");
 		var playButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Play");

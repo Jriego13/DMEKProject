@@ -26,8 +26,8 @@ public class MainEye2DTutorial : Node
             // Delete the current node:
             confirmation.QueueFree();
             // Add new node to the tree:
-            String nextLevel = Helper.getNextTutorialConfirmation(levelName);
-            loadConfirmation(nextLevel);
+            Input.SetMouseMode((Godot.Input.MouseMode)0);
+            GetTree().ChangeScene(Helper.toFileName("TutorialSuccessScreen"));
         }
     }
     

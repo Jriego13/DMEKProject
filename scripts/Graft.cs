@@ -14,6 +14,7 @@ public class Graft : Sprite {
   protected String previousConfirmation;
   protected Cannula2D lCannula;
 	protected Cannula2D rCannula;
+	protected bool isTutorialMode;
 
   public override void _Process(float delta)
   {
@@ -25,6 +26,8 @@ public class Graft : Sprite {
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
 	  circleTexture = GD.Load("res://images/circle.png") as Texture;
+  	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+  	isTutorialMode = levelSwitcher.tutorialMode();
   }
   // This is where each graft will check for their specific objectives.
   // This separation allows for a universal _Process function.
@@ -36,7 +39,10 @@ public class Graft : Sprite {
   // This separation allows for a universal _Ready function.
   protected virtual void SetObjectives()
   {
-
+      
+  	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+  	isTutorialMode = levelSwitcher.tutorialMode();
+    GD.Print("in graft tut mode = " + isTutorialMode);
   }
   // What will happen when the player clicks outside of the correct areas:
   protected async void registerMisclick()
