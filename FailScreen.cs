@@ -14,8 +14,8 @@ public class FailScreen : Control
         Input.SetMouseMode((Godot.Input.MouseMode)0); // displays the mouse
         var mainMenuButton = GetNode("ColorRect/CenterContainer/VBoxContainer/Buttons/MainMenu");
         mainMenuButton.Connect("pressed" , this , "onMainMenuPressed");
-        // var restartLevelButton = GetNode(menuOptions + "RestartLevel");
-		// restartLevelButton.Connect("pressed", this, "onRestartLevelPressed");
+        var restartLevelButton = GetNode("ColorRect/CenterContainer/VBoxContainer/Buttons/TryAgain");
+		restartLevelButton.Connect("pressed", this, "onRestartLevelPressed");
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,12 +31,17 @@ public class FailScreen : Control
         GetTree().ChangeScene("res://MainMenu2.tscn");
     }
 
-//   private void onRestartLevelPressed()
-//     {
+   private void onRestartLevelPressed()
+     {
 //         GD.Print("Loading scene " + Helper.startLevel);
 //         // Load the singleton levelSwitcher:
-//         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+        var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
 //         // Store the next level and change to the MainEye scene:
-//         levelSwitcher.ChangeLevel(Helper.toFileName(Helper.mainSceneName), Helper.startLevel);
-//     }
+  	    if (levelSwitcher.tutorialMode()) {
+            levelSwitcher.ChangeLevel(Helper.toFileName(Helper.tutorialSceneName), levelSwitcher.getLevelName());
+          }
+        else {
+        levelSwitcher.ChangeLevel(Helper.toFileName(Helper.mainSceneName), levelSwitcher.getLevelName());
+        }
+     }
 }

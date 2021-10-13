@@ -64,7 +64,7 @@ public class SimpleFold : Graft {
     holdAreaEntered = false;
   }
 
-  public void setUpHitboxes(bool setup ) {
+  public void setUpHitboxes(bool setup) {
 	    tapHitBox = GetNode("TapArea/TapHitbox/TapHitboxColorRect") as ColorRect;
   	  holdHitBox = GetNode("HoldArea/HoldHitbox/HoldHitboxColorRect") as ColorRect;
       Color tapHitBoxColor = new Color( 0.98f, 0.5f, 0.45f, .5f );

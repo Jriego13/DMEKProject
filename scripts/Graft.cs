@@ -67,6 +67,7 @@ public class Graft : Sprite {
 					lCannula.locked = true;
 					rCannula.locked = true;
 					previousConfirmation = "Scroll";
+          Input.SetMouseMode((Godot.Input.MouseMode)0);
 					GetTree().ChangeScene("res://FailScreen.tscn");
 				}
   }

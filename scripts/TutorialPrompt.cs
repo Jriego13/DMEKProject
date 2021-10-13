@@ -50,6 +50,17 @@ public class TutorialPrompt : RichTextLabel
                     "Tap one cannula in the middle 3-6 times");
        } 
     }
+
+    if (levelName == "res://EdgeFold.tscn") {
+      if (!shownWelcomeMessage) {
+        WelcomeMessage();
+        }
+       else {
+           SetText("This confirmation is called an edge fold \n\n" +
+                    "Tap one cannula in the middle 3-6 times \n" +
+                    "Hold the another cannula on the right portion of the graft");
+       }
+    } 
   }
 
   public void WelcomeMessage() {
