@@ -6,7 +6,10 @@ public static class Helper
 {
     public const String scenePrefix = "res://";
     public const String sceneSuffix = ".tscn";
-    public const String mainSceneName = "MainEye";
+    public const String mainSceneName = "MainEye2D";
+    public const String tutorialSceneName = "MainEye2DTutorial";
+
+
     public static String[] confirmations = {"Scroll", "DoubleScroll", "SimpleFold",
     "Inverted", "Taco", "EdgeFold", "Bouquet", "Origami"};
     public static Random rand = new Random();
@@ -85,6 +88,28 @@ public static class Helper
         else if (current.Contains("Origami"))
         {
             nextLevel = "Scroll";
+        }
+        nextLevel = toFileName(nextLevel);
+        return nextLevel;
+    }
+
+     public static String getNextTutorialConfirmation(String current) {
+        String nextLevel = "";
+        if (current.Contains("Scroll"))
+        {
+                nextLevel = "DoubleScroll";
+        }
+        else if (current.Contains("DoubleScroll"))
+        {
+                nextLevel = "SimpleFold";
+        }
+        else if (current.Contains("SimpleFold"))
+        {
+            nextLevel = "EdgeFold";
+        }
+        else if (current.Contains("EdgeFold"))
+        {
+            nextLevel = "Inverted";
         }
         nextLevel = toFileName(nextLevel);
         return nextLevel;
