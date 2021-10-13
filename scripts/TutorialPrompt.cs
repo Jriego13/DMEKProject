@@ -17,21 +17,38 @@ public class TutorialPrompt : RichTextLabel
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
   public override void _Process(float delta)
   {
-      
+
     if (levelName == "res://Scroll.tscn") {
         if (!shownWelcomeMessage) {
         WelcomeMessage();
         }
        else {
            SetText("This confirmation is called a scroll \n\n" +
-                    "Tap one cannula horizontally on the top end of " +  
+                    "Tap one cannula 3-5 times horizontally on the top end of " +  
                     "it to send fluid waves into the fold to open it \n" +
-                    "Tap another cannula vertically on the center of the fold");
+                    "Tap another cannula 4-6 times vertically on the center of the fold");
        } 
+    }
 
-        if (Input.IsActionJustPressed("continue") && !shownWelcomeMessage) {
-          shownWelcomeMessage = true;
-          }
+    if (levelName == "res://SimpleFold.tscn") {
+      if (!shownWelcomeMessage) {
+        WelcomeMessage();
+        }
+       else {
+           SetText("This confirmation is called a simple fold \n\n" +
+                    "Tap one cannula in the middle 3-6 times \n" +
+                    "Hold the another cannula on the right portion of the graft");
+       } 
+    }
+
+     if (levelName == "res://DoubleScroll.tscn") {
+      if (!shownWelcomeMessage) {
+        WelcomeMessage();
+        }
+       else {
+           SetText("This confirmation is called a double scroll \n\n" +
+                    "Tap one cannula in the middle 3-6 times");
+       } 
     }
   }
 
@@ -40,7 +57,10 @@ public class TutorialPrompt : RichTextLabel
                 "Press h to view the controls. \n\n" +
                 "The tutorial will walk you through " + 
                 "how to tap each cornea transplant confirmation correctly.\n" + 
-                "The target areas are highlighted pink \n\n" +
+                "TAP on PINK areas and HOLD the cannula on GREEN ones \n\n" +
                 "Press enter to continue!");
+      if (Input.IsActionJustPressed("continue") && !shownWelcomeMessage) {
+          shownWelcomeMessage = true;
+          }
   }
 }
