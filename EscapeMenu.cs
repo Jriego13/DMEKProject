@@ -69,6 +69,6 @@ public class EscapeMenu : Popup
     private void onQuitPressed()
     {
         GD.Print("Quit pressed, returning to main menu");
-        GetTree().ChangeScene("res://MainMenu.tscn");
+        GetTree().ChangeScene("res://MainMenu2.tscn");
     }
 }
