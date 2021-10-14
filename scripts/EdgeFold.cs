@@ -7,6 +7,7 @@ public class EdgeFold : Graft {
   bool heldDown = false;
   ColorRect tapHitBox;
   ColorRect holdHitBox;
+
   protected override void SetObjectives()
   {
     currentConfirmation = "EdgeFold";
@@ -16,6 +17,7 @@ public class EdgeFold : Graft {
     setUpHitboxes(isTutorialMode);
     GD.Print("you have to tap " + numTapsComplete + " times!");
   }
+  
   protected override void CheckObjectives()
   {
     if(numTaps >= numTapsComplete) {
@@ -88,6 +90,5 @@ public class EdgeFold : Graft {
       tapHitBox.SetVisible(false);
       holdHitBox.SetVisible(false);
     }
-    >>>>>>> master
   }
 }
