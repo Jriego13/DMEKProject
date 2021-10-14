@@ -9,11 +9,11 @@ public class Cannula2D : Sprite {
     //Sprite currentMat = this.GetActiveMaterial(0) as Sprite;
 
     if(!locked) { // this means the user wants to hold the cannula in place
-      //currentMat.SetAlbedo(new Color(1,0,0,1));
+      this.Modulate = new Color(1,0,0,1);
       locked = true;
     }
     else { // this unlocks the cannula and resets the flag
-      //currentMat.SetAlbedo(new Color(0,1,0,1));
+      this.Modulate = new Color(1,1,1,1);
       locked = false;
     }
     GD.Print("you locked the " + this.GetName() + ".");

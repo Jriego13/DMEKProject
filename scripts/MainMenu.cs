@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class MainMenu2 : MarginContainer
+public class MainMenu : MarginContainer
 {
 	public override void _Ready()
 	{
@@ -20,7 +20,7 @@ public class MainMenu2 : MarginContainer
 	private void onPlayPressed()
 	{
 		GD.Print("Play pressed");
-		GetTree().ChangeScene(Helper.toFileName("MainEye2D"));
+		GetTree().ChangeScene(Helper.toFileName("MainEye"));
 	}
 	// Navigates to the level select screen:
 	private void onLevelSelectPressed()

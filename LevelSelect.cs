@@ -7,4 +7,3 @@ using System;
 public class LevelSelect : LevelMenu {
 
 }
-}
