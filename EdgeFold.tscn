@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://sprites/EdgeFold.png" type="Texture" id=1]
-[ext_resource path="res://scripts/EdgeFold2D.cs" type="Script" id=2]
+[ext_resource path="res://scripts/EdgeFold.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 146.082, 346.613 )
@@ -21,11 +21,33 @@ script = ExtResource( 2 )
 position = Vector2( 273.009, -6.27612 )
 shape = SubResource( 1 )
 
+[node name="HoldHitboxColorRect" type="ColorRect" parent="HoldArea/HoldHitbox"]
+visible = false
+show_behind_parent = true
+margin_left = -142.0
+margin_top = -349.0
+margin_right = 140.0
+margin_bottom = 341.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TapArea" type="Area2D" parent="."]
 
 [node name="TapHitbox" type="CollisionShape2D" parent="TapArea"]
 position = Vector2( 1.04602, 0 )
 shape = SubResource( 2 )
+
+[node name="TapHitboxColorRect" type="ColorRect" parent="TapArea/TapHitbox"]
+visible = false
+show_behind_parent = true
+margin_left = -119.0
+margin_top = -402.0
+margin_right = 124.0
+margin_bottom = 385.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="area_entered" from="HoldArea" to="." method="_OnHoldAreaEntered"]
 [connection signal="area_exited" from="HoldArea" to="." method="_OnHoldAreaExited"]
