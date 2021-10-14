@@ -16,6 +16,7 @@ public class Graft : Sprite {
   protected String currentConfirmation;
   protected Cannula2D lCannula;
 	protected Cannula2D rCannula;
+	protected bool isTutorialMode;
 
   public override void _Process(float delta)
   {
@@ -29,6 +30,8 @@ public class Graft : Sprite {
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
 	  circleTexture = GD.Load("res://images/circle.png") as Texture;
+  	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+  	isTutorialMode = levelSwitcher.tutorialMode();
   }
 
   // This is where each graft will check for their specific objectives.
@@ -82,6 +85,7 @@ public class Graft : Sprite {
 					lCannula.locked = true;
 					rCannula.locked = true;
 					previousConfirmation = "Scroll";
+          Input.SetMouseMode((Godot.Input.MouseMode)0);
 					GetTree().ChangeScene("res://FailScreen.tscn");
 				}
   }

@@ -4,12 +4,18 @@ using System;
 public class DoubleScroll : Graft {
   PackedScene scene1;
   PackedScene scene2;
+  ColorRect midHitBox;
   bool areaEntered = false;
+
   protected override void SetObjectives()
   {
     numTapsComplete = rng.Next(3,6);
+    var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+    isTutorialMode = levelSwitcher.tutorialMode();
+    setUpHitboxes(isTutorialMode);
     GD.Print("you have to tap the bottom " + numTapsComplete + " times!");
   }
+
   protected override void CheckObjectives()
   {
     if(numTaps >= numTapsComplete) {
@@ -28,16 +34,29 @@ public class DoubleScroll : Graft {
     }
 
     if(!areaEntered){
-			if(rCannula.tapped || lCannula.tapped){
-				registerMisclick();
+      if(rCannula.tapped || lCannula.tapped){
+        registerMisclick();
       }
     }
   }
+
   private void _OnAreaEntered(object area) {
     areaEntered = true;
   }
 
   private void _OnAreaExited(object area) {
     areaEntered = false;
+  }
+
+  private void setUpHitboxes(bool setup) {
+    midHitBox = GetNode("MidArea/MidHitbox/MidHitboxColorRect") as ColorRect;
+    Color midHitBoxColor = new Color( 0.98f, 0.5f, 0.45f, .5f );
+    midHitBox.Color = midHitBoxColor;
+    if (setup) {
+      midHitBox.SetVisible(true);
+    }
+    else {
+      midHitBox.SetVisible(false);
+    }
   }
 }

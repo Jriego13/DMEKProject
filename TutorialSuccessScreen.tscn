@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/TutorialSuccessScreen.cs" type="Script" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+uniform float height = 6.0;
+uniform float frequency  = 10.0;
+uniform float speed = 6.0;
+
+void vertex(){
+	VERTEX.y +=  height * sin((frequency * UV.x) + (speed * TIME));
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/height = 6.0
+shader_param/frequency = 10.0
+shader_param/speed = 6.0
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0352941, 0.639216, 0.87451, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+margin_left = 17.0
+margin_top = 231.0
+margin_right = 1349.0
+margin_bottom = 537.0
+custom_constants/separation = 60
+
+[node name="Succeded" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+material = SubResource( 2 )
+margin_right = 1332.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 1 )
+text = "Success!!!"
+align = 1
+uppercase = true
+
+[node name="Buttons" type="HBoxContainer" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 180.0
+margin_right = 1332.0
+margin_bottom = 306.0
+custom_constants/separation = 44
+
+[node name="MainMenu" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/Buttons"]
+margin_right = 764.0
+margin_bottom = 126.0
+custom_fonts/font = ExtResource( 1 )
+text = "Tutorial Menu"
+
+[node name="TryAgain" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/Buttons"]
+margin_left = 808.0
+margin_right = 1332.0
+margin_bottom = 126.0
+custom_fonts/font = ExtResource( 1 )
+custom_constants/hseparation = 50
+text = "Try Again"
