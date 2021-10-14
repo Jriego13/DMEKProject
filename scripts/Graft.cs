@@ -40,10 +40,20 @@ public class Graft : Sprite {
   protected virtual void SetObjectives() {}
 
   protected void LoadTextures() {
+    Texture currImg;
+    GD.Print("Loading Textures...");
+
     if(currentConfirmation == "SimpleFold") {
-      GD.Print("Loading Textures...");
+      graftTextures.Add(GetTexture());
       for(int i = 0; i < 3; i++) {
-        Texture currImg = GD.Load("res://sprites/SimpleEdge" + (i+1) + ".png") as Texture;
+        currImg = GD.Load("res://sprites/SimpleEdge" + (i+1) + ".png") as Texture;
+        graftTextures.Add(currImg);
+      }
+    }
+    else if(currentConfirmation == "EdgeFold") {
+      graftTextures.Add(GetTexture());
+      for(int i = 0; i < 3; i++) {
+        currImg = GD.Load("res://sprites/EdgeDone" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }

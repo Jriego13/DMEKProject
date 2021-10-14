@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/EdgeAndDone3.png-07dbfd659a9a4ff38ba901f397521072.stex"
+path="res://.import/EdgeDone1.png-424c36b4c85cde0c8b2763b1ec2630f5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/EdgeAndDone3.png"
-dest_files=[ "res://.import/EdgeAndDone3.png-07dbfd659a9a4ff38ba901f397521072.stex" ]
+source_file="res://sprites/EdgeDone1.png"
+dest_files=[ "res://.import/EdgeDone1.png-424c36b4c85cde0c8b2763b1ec2630f5.stex" ]
 
 [params]
 

@@ -4,11 +4,11 @@ using System;
 public class CannulaMain2D : Node2D {
 	Cannula2D lCannula;
 	Cannula2D rCannula;
+	AudioStreamPlayer audio;
 	bool lHeld = false;
 	bool rHeld = false;
 	bool lrRotating = false; // false defualts to rotating left cannula, true to right cannula
 	float timer = 0;
-	AudioStreamPlayer audio;
 
 	public override void _Ready() {
 		Input.SetMouseMode((Godot.Input.MouseMode)1); // hide mouse

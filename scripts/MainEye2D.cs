@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class MainEye : Node2D
+public class MainEye2D : Node2D
 {
     // levelName is random by default so it can be loaded without levelSelect
     private String levelName = Helper.getRandomConfirmation();
