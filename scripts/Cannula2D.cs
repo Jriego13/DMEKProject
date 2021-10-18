@@ -10,10 +10,12 @@ public class Cannula2D : Sprite {
 
     if(!locked) { // this means the user wants to hold the cannula in place
       this.Modulate = new Color(1,0,0,1);
+      this.SetScale(new Vector2(0.285f, 0.285f));
       locked = true;
     }
     else { // this unlocks the cannula and resets the flag
       this.Modulate = new Color(1,1,1,1);
+      this.SetScale(new Vector2(0.3f, 0.3f));
       locked = false;
     }
     GD.Print("you locked the " + this.GetName() + ".");

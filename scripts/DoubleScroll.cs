@@ -9,6 +9,7 @@ public class DoubleScroll : Graft {
 
   protected override void SetObjectives()
   {
+    currentConfirmation = "DoubleScroll";
     numTapsComplete = rng.Next(3,6);
     var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
     isTutorialMode = levelSwitcher.tutorialMode();
@@ -29,12 +30,19 @@ public class DoubleScroll : Graft {
         numTaps += 1;
         lCannula.tapped = false;
         rCannula.tapped = false;
+        // if(numTaps < graftTextures.Count)
+        //   SetTexture(graftTextures[numTaps]);
+
         GD.Print("tap registered");
       }
     }
 
     if(!areaEntered){
       if(rCannula.tapped || lCannula.tapped){
+        // numTaps -= 1;
+        // if(numTaps >= 0)
+        //   SetTexture(graftTextures[numTaps]);
+
         registerMisclick();
       }
     }

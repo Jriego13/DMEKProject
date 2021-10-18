@@ -32,7 +32,7 @@ public class SimpleFold : Graft {
           numTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
-          if(numTaps < graftTextures.Count)
+          if(numTaps < graftTextures.Count && numTaps >= 0)
             SetTexture(graftTextures[numTaps]);
 
           GD.Print("tap registered");
@@ -48,9 +48,11 @@ public class SimpleFold : Graft {
 
     if(!tapAreaEntered){
 			if(lCannula.tapped || rCannula.tapped){
-        numTaps -= 1;
+        if(numTaps > 0)
+          numTaps -= 1;
         if(numTaps >= 0)
-        SetTexture(graftTextures[numTaps]);
+          SetTexture(graftTextures[numTaps]);
+          
 				registerMisclick();
 			}
 		}

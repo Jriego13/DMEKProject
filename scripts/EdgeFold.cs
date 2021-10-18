@@ -17,7 +17,7 @@ public class EdgeFold : Graft {
     setUpHitboxes(isTutorialMode);
     GD.Print("you have to tap " + numTapsComplete + " times!");
   }
-  
+
   protected override void CheckObjectives()
   {
     if(numTaps >= numTapsComplete) {
@@ -32,7 +32,7 @@ public class EdgeFold : Graft {
           numTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
-          if(numTaps < graftTextures.Count)
+          if(numTaps < graftTextures.Count && numTaps >= 0)
             SetTexture(graftTextures[numTaps]);
 
           GD.Print("tap registered");
@@ -48,7 +48,8 @@ public class EdgeFold : Graft {
 
     if(!tapAreaEntered){
       if(rCannula.tapped || lCannula.tapped){
-        numTaps -= 1;
+        if(numTaps > 0)
+          numTaps -= 1;
         if(numTaps >= 0)
           SetTexture(graftTextures[numTaps]);
 

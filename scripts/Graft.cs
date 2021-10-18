@@ -10,6 +10,8 @@ public class Graft : Sprite {
   protected int numTaps;
   protected int numTapsComplete;
   protected int numTapsWrong;
+  protected int topTaps = 0;
+  protected int topTapsComplete = 0;
   protected bool isFinished;
   protected Texture circleTexture;
   protected String previousConfirmation;
@@ -57,6 +59,13 @@ public class Graft : Sprite {
       graftTextures.Add(GetTexture());
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/EdgeDone" + (i+1) + ".png") as Texture;
+        graftTextures.Add(currImg);
+      }
+    }
+    else if(currentConfirmation == "Scroll") {
+      graftTextures.Add(GetTexture());
+      for(int i = 0; i < 3; i++) {
+        currImg = GD.Load("res://sprites/ScrollSimple" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
