@@ -10,7 +10,7 @@ extents = Vector2( 146.082, 346.613 )
 extents = Vector2( 122.024, 399.96 )
 
 [node name="EdgeFoldSprite" type="Sprite"]
-position = Vector2( 892.7, 442.795 )
+position = Vector2( 904.808, 468.936 )
 scale = Vector2( 0.716199, 0.716199 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

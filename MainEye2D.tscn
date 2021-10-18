@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://music/Tap.wav" type="AudioStream" id=1]
-[ext_resource path="res://sprites/WhiteBackground.jpg" type="Texture" id=2]
+[ext_resource path="res://sprites/EyeBackground.png" type="Texture" id=2]
 [ext_resource path="res://EscapeMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Cannula2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://CurrentConfirmation.tscn" type="PackedScene" id=5]
@@ -48,9 +48,10 @@ scale = Vector2( 0.749, 0.842 )
 script = SubResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]
-scale = Vector2( 1.52, 1.52 )
+position = Vector2( 0.0120792, -0.0168638 )
+scale = Vector2( 0.949, 0.845 )
 texture = ExtResource( 2 )
-offset = Vector2( 599.931, 299.89 )
+centered = false
 
 [node name="Cannulas" parent="." instance=ExtResource( 4 )]
 
