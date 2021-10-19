@@ -9,12 +9,12 @@ public static class Helper
     public const String mainSceneName = "MainEye2D";
     public const String tutorialSceneName = "MainEye2DTutorial";
 
-    
-    public static String[] confirmations = {"Scroll", "DoubleScroll", "SimpleFold", 
+
+    public static String[] confirmations = {"Scroll", "DoubleScroll", "SimpleFold",
     "Inverted", "Taco", "EdgeFold", "Bouquet", "Origami"};
     public static Random rand = new Random();
     // The level the game started on.
-    public static String startLevel = ""; 
+    public static String startLevel = "";
     // Adds the scene prefix and suffix to a name:
     public static String toFileName(String name)
     {

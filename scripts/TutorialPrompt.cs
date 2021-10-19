@@ -16,7 +16,7 @@ public class TutorialPrompt : RichTextLabel
         isTutorialMode = levelSwitcher.tutorialMode();
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
+  //  // Called every frame. 'delta' is the elapsed time since the previous frame.
   public override void _Process(float delta)
   {
     var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");

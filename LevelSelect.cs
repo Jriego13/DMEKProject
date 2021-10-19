@@ -1,7 +1,9 @@
 using Godot;
 using System;
 
-// This is a parent class for LevelSelect and TutorialSelect as they are very similar.
-// Any shared functionality between the two menus goes here.
-public class LevelSelect : LevelMenu
-{}
+// This class gains all of its functionality from LevelMenu.cs, but is remaining in case
+// non-tutorial specific logic is needed in the future.
+// This means: don't worry that it's empty.
+public class LevelSelect : LevelMenu {
+
+}

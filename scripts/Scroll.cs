@@ -3,47 +3,28 @@ using System;
 using System.Collections.Generic;
 
 public class Scroll : Graft {
-	Cannula2D lCannula;
-	Cannula2D rCannula;
-	PackedScene scene1;
-	PackedScene scene2;
-	PackedScene failScene;
 	bool topAreaEntered = false;
 	bool bottomAreaEntered = false;
-	int topTaps = 0;
-	int topTapsComplete = 0;
-	int numTapsWrong = 0;
-	Texture circleTexture;
-	Texture hitBoxTexture;
 	ColorRect topHitBox;
 	ColorRect midHitBox;
 
-	public override void _Ready() {
+	protected override void SetObjectives() {
+		currentConfirmation = "Scroll";
 		numTapsComplete = rng.Next(4,6);
 		topTapsComplete = rng.Next(3,5);
-    // scene1 = GD.Load<PackedScene>("res://SimpleFold.tscn");
-    // scene2 = GD.Load<PackedScene>("res://DoubleScroll.tscn");
-	failScene = GD.Load<PackedScene>("res://FailScreen.tscn");
-    lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
-    rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
-	circleTexture = GD.Load("res://images/circle.png") as Texture; 
-	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
-	isTutorialMode = levelSwitcher.tutorialMode();
-	setUpHitboxes(isTutorialMode);
-	GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
+		var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+		isTutorialMode = levelSwitcher.tutorialMode();
+		setUpHitboxes(isTutorialMode);
+		GD.Print("you have to tap " + numTapsComplete + " times!");
 	}
 
-	public async override void _Process(float delta) {
-
+	protected override void CheckObjectives() {
 		// i want to make a function that encapsulates this behavior
 		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
 			numTaps = 0;
 			topTaps = 0;
-			//Node sceneNode = scene1.Instance();
-			// GetNode("/root/Spatial/MainEye").AddChild(sceneNode);
-      // GetParent().RemoveChild(this);
-      GD.Print("tapping complete.");
-	  isFinished = true;
+	  	GD.Print("tapping complete.");
+	  	isFinished = true;
 		}
 
 		if(bottomAreaEntered) {
@@ -52,8 +33,9 @@ public class Scroll : Graft {
 					numTaps += 1;
 					lCannula.tapped = false;
 					rCannula.tapped = false;
-					// if(numTaps <= 4)
-					// 	objectMesh.SetMesh(inbetweens[numTaps-1]);
+					if(numTaps < graftTextures.Count && numTaps >= 0)
+						SetTexture(graftTextures[numTaps]);
+
 					GD.Print("bot tap registered");
 				}
 			}
@@ -72,33 +54,19 @@ public class Scroll : Graft {
 
 		if(!topAreaEntered && !bottomAreaEntered){
 			if(rCannula.tapped || lCannula.tapped){
-				if(numTapsWrong < 3){
-					GD.Print("You clicked outside of the correct areas");
-					Vector2 mousePos = GetViewport().GetMousePosition();
-					GD.Print(mousePos);
-					Sprite misclickCircle = new Sprite();
-					misclickCircle.Texture = circleTexture;
-					misclickCircle.Scale = new Vector2(0.1f , 0.1f);
-					misclickCircle.Position = mousePos;
-					misclickCircle.Modulate = new Color(1, 0 , 0);
+				if(numTaps > 0)
+					numTaps -= 1;
+				if(numTaps >= 0)
+					SetTexture(graftTextures[numTaps]);
 
-					GetTree().GetRoot().AddChild(misclickCircle);
-					await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
-					misclickCircle.QueueFree();
-					numTapsWrong++;
-				}
-				else{
-					GD.Print("Misclicked too many times. You fail!");
-					Node sceneNode = failScene.Instance();
-					GetNode("/root").AddChild(sceneNode);
-				}
+				registerMisclick();
 			}
 		}
 	}
 
   private void _OnTopAreaEntered(object area) {
 		topAreaEntered = true;
-    GD.Print("top area entered.");
+	GD.Print("top area entered.");
 	}
 
 	private void _OnTopAreaExited(object area) {
@@ -107,7 +75,7 @@ public class Scroll : Graft {
 
 	private void _OnMidAreaEntered(object area) {
 		bottomAreaEntered = true;
-    GD.Print("mid area entered.");
+	GD.Print("mid area entered.");
 	}
 
 	private void _OnMidAreaExited(object area) {
