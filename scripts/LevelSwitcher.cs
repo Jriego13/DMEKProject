@@ -9,6 +9,7 @@ public class LevelSwitcher : Node
 {
     Boolean isTutorialMode = false;
     String levelName = Helper.getRandomConfirmation();
+    Boolean shownWelcomeMessage = false;
 
     // Loads the lext level by storing the level name and switching to the
     // Main eye scene:
@@ -31,5 +32,13 @@ public class LevelSwitcher : Node
 
     public Boolean tutorialMode() {
         return isTutorialMode;
+    }
+
+    public Boolean welcomeMessage() {
+        return shownWelcomeMessage;
+    }
+
+    public void setWelcomeMessage(Boolean shownWelcomeMessage) {
+        this.shownWelcomeMessage = shownWelcomeMessage;
     }
 }
