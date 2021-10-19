@@ -9,6 +9,7 @@ public class MainEye2DTutorial : Node
 
     public override void _Ready()
     {
+        GD.Print("here inside maineye2dtut");
         tutorialPrompt = GetNode("Overlay/TutorialPrompt") as RichTextLabel;
         // Load the singleton:
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
