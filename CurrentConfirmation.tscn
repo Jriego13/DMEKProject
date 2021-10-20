@@ -68,10 +68,14 @@ __meta__ = {
 
 [node name="TutorialPrompt" type="RichTextLabel" parent="."]
 margin_left = 8.05165
+margin_top = 1.57177
 margin_right = 128.052
-margin_bottom = 188.0
+margin_bottom = 189.572
+rect_scale = Vector2( 0.85781, 0.64791 )
+size_flags_horizontal = 2
 custom_fonts/normal_font = ExtResource( 8 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
+fit_content_height = true
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false

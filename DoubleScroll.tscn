@@ -13,6 +13,7 @@ texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="MidArea" type="Area2D" parent="."]
+position = Vector2( 65.428, -10.6821 )
 
 [node name="MidHitbox" type="CollisionShape2D" parent="MidArea"]
 position = Vector2( -50.813, 15.8791 )
