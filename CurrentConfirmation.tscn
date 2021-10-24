@@ -50,11 +50,10 @@ __meta__ = {
 }
 
 [node name="MisclickCounter" type="RichTextLabel" parent="."]
-visible = false
-margin_left = -97.4055
-margin_top = 190.307
-margin_right = 134.595
-margin_bottom = 221.307
+margin_left = -89.9483
+margin_top = 195.914
+margin_right = 142.052
+margin_bottom = 226.914
 rect_scale = Vector2( 0.7757, 0.7757 )
 custom_fonts/normal_font = SubResource( 1 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )

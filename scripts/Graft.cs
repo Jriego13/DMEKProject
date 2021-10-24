@@ -18,6 +18,7 @@ public class Graft : Sprite {
   protected String currentConfirmation;
   protected Cannula2D lCannula;
 	protected Cannula2D rCannula;
+  protected RichTextLabel misclickText;
 	protected bool isTutorialMode;
 
   public override void _Process(float delta)
@@ -31,6 +32,7 @@ public class Graft : Sprite {
     LoadTextures();
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
+    misclickText = GetNode("../Overlay/MisclickCounter") as RichTextLabel;
 	  circleTexture = GD.Load("res://images/circle.png") as Texture;
   	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
   	isTutorialMode = levelSwitcher.tutorialMode();
@@ -87,13 +89,15 @@ public class Graft : Sprite {
 					GetTree().GetRoot().AddChild(misclickCircle);
 					await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
 					misclickCircle.QueueFree();
-					numTapsWrong++;
+					++numTapsWrong;
+          misclickText.Text = "Misclicks: " + numTapsWrong + "/3";
 				}
 				else{
 					GD.Print("Misclicked too many times. You fail!");
 					lCannula.locked = true;
 					rCannula.locked = true;
 					previousConfirmation = "Scroll";
+          numTapsWrong = 0;
           Input.SetMouseMode((Godot.Input.MouseMode)0);
 					GetTree().ChangeScene("res://FailScreen.tscn");
 				}
