@@ -7,15 +7,28 @@ public class MainEye2D : Node2D
     private String levelName = Helper.getRandomConfirmation();
     private Graft confirmation;
 
+    private TextureProgress bar;
+    private RichTextLabel waterLevelCounter;
+    private int waterLevel;
+   
+
     public override void _Ready()
     {
+        // PrintTreePretty();
+
         // Load the singleton:
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
         // Get the levelName from the levelSwitcher:
         levelName = levelSwitcher.getLevelName();
         Helper.startLevel = levelName;
         loadConfirmation(levelName);
-        // PrintTreePretty();
+
+        // _tween = GetNode("UI/Tween") as Tween;
+        bar = GetNode("UI/TextureProgress") as TextureProgress;
+        
+        waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
+        waterLevel = 100;
+        bar.Value = waterLevel;
     }
     public override void _Process(float delta)
     {
@@ -28,6 +41,26 @@ public class MainEye2D : Node2D
             // Add new node to the tree:
             String nextLevel = Helper.getNextConfirmation(levelName);
             loadConfirmation(nextLevel);
+        }
+
+        if(Input.IsActionPressed("addLiquid")){
+            GD.Print("trying to add liquid");
+            if(waterLevel <= 99){
+               waterLevel += 1;
+               bar.Value = waterLevel;
+               waterLevelCounter.Text = waterLevel.ToString();
+            }
+            
+        }
+        if(Input.IsActionPressed("removeLiquid")){
+            GD.Print("trying to remove liquid");
+            if(waterLevel >= 1){
+                waterLevel -= 1;
+                bar.Value = waterLevel;
+                waterLevelCounter.Text = waterLevel.ToString();
+
+            }
+
         }
     }
 
