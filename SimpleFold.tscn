@@ -21,6 +21,18 @@ script = ExtResource( 2 )
 position = Vector2( 123.185, -7.07593 )
 shape = SubResource( 1 )
 
+[node name="TapHitboxColorRect" type="ColorRect" parent="TapArea/TapHitbox"]
+visible = false
+show_behind_parent = true
+margin_left = -110.0
+margin_top = -322.0
+margin_right = 103.0
+margin_bottom = 322.0
+color = Color( 0.831373, 0.505882, 0.898039, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HoldArea" type="Area2D" parent="."]
 
 [node name="HoldHitbox" type="CollisionShape2D" parent="HoldArea"]
@@ -33,6 +45,17 @@ points = PoolVector2Array( -10.2507, -14.5275, -11.5015, -2.0188 )
 
 [node name="Axis" type="Line2D" parent="."]
 points = PoolVector2Array( -10, -422.218, -10, -395.473, -10, -335.296, -10, -259.517, -10, -172.594, -10, -81.214, -10, 25.767, -10, 126.063, -10, 221.901, -10, 313.281, -10, 402.432 )
+[node name="HoldHitboxColorRect" type="ColorRect" parent="HoldArea/HoldHitbox"]
+visible = false
+show_behind_parent = true
+margin_left = -95.0
+margin_top = -322.0
+margin_right = 89.0
+margin_bottom = 320.0
+color = Color( 0.164706, 0.905882, 0.34902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="area_entered" from="TapArea" to="." method="_OnTapAreaEntered"]
 [connection signal="area_exited" from="TapArea" to="." method="_OnTapAreaExited"]

@@ -1,7 +1,8 @@
 using Godot;
 using System;
 
-public class Options : MarginContainer
+// Alternative options menu that acts as a popup.
+public class OptionsPopUp : Popup
 {
     public override void _Ready()
     {
@@ -9,10 +10,11 @@ public class Options : MarginContainer
         goBackButton.Connect("pressed", this, "onGoBackButtonPressed");
     }
 
-    // Navigates back to the main menu:
     private void onGoBackButtonPressed()
     {
         GD.Print("Go back pressed");
-		GetTree().ChangeScene("res://MainMenu2.tscn");
+        Input.SetMouseMode((Godot.Input.MouseMode)1);
+		Hide();
     }
+    
 }

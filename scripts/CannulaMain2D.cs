@@ -4,6 +4,7 @@ using System;
 public class CannulaMain2D : Node2D {
 	Cannula2D lCannula;
 	Cannula2D rCannula;
+	AudioStreamPlayer audio;
 	bool lHeld = false;
 	bool rHeld = false;
 	bool lrRotating = false; // false defualts to rotating left cannula, true to right cannula
@@ -13,37 +14,49 @@ public class CannulaMain2D : Node2D {
 		Input.SetMouseMode((Godot.Input.MouseMode)1); // hide mouse
 		lCannula = GetNode("./CannulaLSprite") as Cannula2D;
 		rCannula = GetNode("./CannulaRSprite") as Cannula2D;
+		audio = GetNode("./CannulaLSprite/AudioStreamPlayer") as AudioStreamPlayer;
 	}
 
 	public override void _Process(float delta) {
-		if(Input.IsActionPressed("left_mouse"))	{
+		if(Input.IsActionPressed("left_mouse") && !lCannula.locked)	{
 			if(lHeld) {
 				timer += delta; // if cannula continues being held then keep adding to timer
 			}
-			if(timer >= 1) { // once held for longer than a second
+			if(timer >= 0.4f) { // once held for longer than a second
 				lCannula.LockCannula();
 				timer = -1;
 			}
 
 			lHeld = true;
 		}
-		else if(Input.IsActionPressed("right_mouse")) {
+		else if(Input.IsActionJustReleased("left_mouse")) {
+			if(lCannula.locked)
+				lCannula.LockCannula();
+		}
+		else if(Input.IsActionPressed("right_mouse") && !rCannula.locked) {
 			if(rHeld) {
 				timer += delta;
 			}
-			if(timer >= 1) {
+			if(timer >= 0.4f) {
 				rCannula.LockCannula();
 				timer = -1;
 			}
 
 			rHeld = true;
 		}
+		else if(Input.IsActionJustReleased("right_mouse")) {
+			if(rCannula.locked)
+				rCannula.LockCannula();
+		}
 		else {
 			if((timer < 1 && timer > 0) && (lHeld || rHeld)) { // left or right cannula was held and released in under a second
-				if(lHeld)
+				if(lHeld){
 					lCannula.tapped = true;
-				else
+				}
+				else{
 					rCannula.tapped = true;
+				}
+				audio.Play();
 			}
 			else {
 				lCannula.tapped = false;
@@ -64,15 +77,15 @@ public class CannulaMain2D : Node2D {
 		// !lrRotating = lCannula | lrRotating = rCannula
 		if(Input.IsActionPressed("cann_clock")) {
 			if(!lrRotating)
-				lCannula.Rotate(-0.1f);
+				lCannula.Rotate(-0.06f);
 			else
-				rCannula.Rotate(-0.1f);
+				rCannula.Rotate(-0.06f);
 		}
 		if(Input.IsActionPressed("cann_counterclock")) {
 			if(!lrRotating)
-				lCannula.Rotate(0.1f);
+				lCannula.Rotate(0.06f);
 			else
-				rCannula.Rotate(0.1f);
+				rCannula.Rotate(0.06f);
 		}
 		if(Input.IsActionJustPressed("cann_reset")) {
 			if(!lrRotating)

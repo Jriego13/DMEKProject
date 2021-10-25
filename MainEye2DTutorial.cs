@@ -1,14 +1,16 @@
 using Godot;
 using System;
 
-public class MainEye2D : Node2D
+public class MainEye2DTutorial : Node
 {
-    // levelName is random by default so it can be loaded without levelSelect
-    private String levelName = Helper.getRandomConfirmation();
+    private String levelName = "";
     private Graft confirmation;
+    RichTextLabel tutorialPrompt;
 
     public override void _Ready()
     {
+        GD.Print("here inside maineye2dtut");
+        tutorialPrompt = GetNode("Overlay/TutorialPrompt") as RichTextLabel;
         // Load the singleton:
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
         // Get the levelName from the levelSwitcher:
@@ -21,23 +23,18 @@ public class MainEye2D : Node2D
         // If confirmation is complete, load the next confirmation:
         if (confirmation.getIsFinished())
         {
+
             // Delete the current node:
             confirmation.QueueFree();
             // Add new node to the tree:
-            String nextLevel = Helper.getNextConfirmation(levelName);
-            loadConfirmation(nextLevel);
+            Input.SetMouseMode((Godot.Input.MouseMode)0);
+            GetTree().ChangeScene(Helper.toFileName("TutorialSuccessScreen"));
         }
     }
-
+    
     // Load the specified level/fold, instance it as a Node2D, then place it in the tree:
     private void loadConfirmation(String next)
     {
-        GD.Print(next);
-        if(next == "res://Done.tscn") {
-          GetTree().ChangeScene("res://Done.tscn");
-          return;
-        }
-
         levelName = next;
         GD.Print("instancing "+ levelName);
         var confirmationScene = GD.Load<PackedScene>(levelName);

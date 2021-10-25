@@ -1,80 +1,95 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-/*
- *  EdgeFold also has only one way to be unfolded being the dirisamer tech.
- *	It can unfold into:
- *  a. Done!
- */
+
 public class EdgeFold : Graft {
-	Cannula lCannula;
-	Cannula rCannula;
-	PackedScene scene1;
-	MeshInstance objectMesh;
-	List<Mesh> inbetweens = new List<Mesh>();
-	bool tapAreaEntered = false;
-	bool holdAreaEntered = false;
-	bool holding = false;
+  bool tapAreaEntered = false;
+  bool holdAreaEntered = false;
+  bool heldDown = false;
+  ColorRect tapHitBox;
+  ColorRect holdHitBox;
 
-	public override void _Ready() {
-		numTapsComplete = rng.Next(3,6);
-		scene1 = GD.Load<PackedScene>("res://Finished.tscn");
-		lCannula = GetNode("../../Cannulas/CannulaLMesh") as Cannula;
-		rCannula = GetNode("../../Cannulas/CannulaRMesh") as Cannula;
-		objectMesh = GetNode("./EdgeFoldMesh") as MeshInstance;
-		LoadInbetweens();
-		GD.Print("you have to tap " + numTapsComplete + " times!");
-	}
+  protected override void SetObjectives()
+  {
+    currentConfirmation = "EdgeFold";
+    numTapsComplete = rng.Next(3,6);
+    var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+    isTutorialMode = levelSwitcher.tutorialMode();
+    setUpHitboxes(isTutorialMode);
+    GD.Print("you have to tap " + numTapsComplete + " times!");
+  }
 
-	private void LoadInbetweens() {
-		Mesh tempMesh;
-		for(int i = 1; i <= 3; i++) {
-			tempMesh = GD.Load<Mesh>("res://models/new_models/EdgeFold" + i + ".obj");
-			inbetweens.Add(tempMesh);
-		}
-	}
+  protected override void CheckObjectives()
+  {
+    if(numTaps >= numTapsComplete) {
+      numTaps = 0;
+      isFinished = true;
+      GD.Print("tapping complete.");
+    }
 
-	public override void _Process(float delta) {
-		if(numTaps >= numTapsComplete) {
-			numTaps = 0;
-			Node sceneNode = scene1.Instance();
-			GetNode("/root/Spatial/MainEye").AddChild(sceneNode);
-	  GetParent().RemoveChild(this);
-		}
+    if(tapAreaEntered) {
+      if(heldDown) {
+        if(lCannula.tapped || rCannula.tapped) {
+          numTaps += 1;
+          lCannula.tapped = false;
+          rCannula.tapped = false;
+          if(numTaps < graftTextures.Count && numTaps >= 0)
+            SetTexture(graftTextures[numTaps]);
 
-		if(tapAreaEntered) {
-			if(holding) {
-				if(lCannula.tapped || rCannula.tapped) {
-					numTaps += 1;
-					lCannula.tapped = false;
-					rCannula.tapped = false;
-					if(numTaps <= 3)
-						objectMesh.SetMesh(inbetweens[numTaps-1]);
-					GD.Print("tap registered");
-				}
-			}
-		}
+          GD.Print("tap registered");
+        }
+      }
+    }
 
-		if(holdAreaEntered) {
-			if(lCannula.locked || rCannula.locked) {
-				holding = true;
-			}
-		}
-	}
+    if(holdAreaEntered) {
+      if(lCannula.locked || rCannula.locked) {
+        heldDown = true;
+      }
+    }
 
-	private void _on_TapArea_area_entered(object area) {
-		tapAreaEntered = true;
-	}
+    if(!tapAreaEntered){
+      if(rCannula.tapped || lCannula.tapped){
+        if(numTaps > 0)
+          numTaps -= 1;
+        if(numTaps >= 0)
+          SetTexture(graftTextures[numTaps]);
 
-	private void _on_TapArea_area_exited(object area) {
-		tapAreaEntered = false;
-	}
+        registerMisclick();
+      }
+    }
+  }
 
-	private void _on_HoldArea_area_entered(object area) {
-		holdAreaEntered = true;
-	}
+  public void _OnTapAreaEntered(object area) {
+    tapAreaEntered = true;
+  }
 
-	private void _on_HoldArea_area_exited(object area) {
-		holdAreaEntered = false;
-	}
+  public void _OnTapAreaExited(object area) {
+    tapAreaEntered = false;
+  }
+
+  public void _OnHoldAreaEntered(object area) {
+    holdAreaEntered = true;
+    GD.Print("hold area entered");
+  }
+
+  public void _OnHoldAreaExited(object area) {
+    holdAreaEntered = false;
+  }
+
+  public void setUpHitboxes(bool setup ) {
+    GD.Print("setup = " + setup);
+    tapHitBox = GetNode("TapArea/TapHitbox/TapHitboxColorRect") as ColorRect;
+    holdHitBox = GetNode("HoldArea/HoldHitbox/HoldHitboxColorRect") as ColorRect;
+    Color tapHitBoxColor = new Color( 0.98f, 0.5f, 0.45f, .5f );
+    Color holdHitBoxColor = new Color( 0.5f, 1f, 0f, .5f );
+    tapHitBox.Color = tapHitBoxColor;
+    holdHitBox.Color = holdHitBoxColor;
+    if (setup) {
+      tapHitBox.SetVisible(true);
+      holdHitBox.SetVisible(true);
+    }
+    else {
+      tapHitBox.SetVisible(false);
+      holdHitBox.SetVisible(false);
+    }
+  }
 }

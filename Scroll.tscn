@@ -1,40 +1,77 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://sprites/Scroll.png" type="Texture" id=1]
-[ext_resource path="res://scripts/Scroll2D.cs" type="Script" id=2]
+[ext_resource path="res://scripts/Scroll.cs" type="Script" id=1]
+[ext_resource path="res://sprites/Scroll.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 35.606, 20.0625 )
+extents = Vector2( 40.6204, 25.028 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 27.0184, 653.443 )
 
 [node name="ScrollSprite" type="Sprite"]
+<<<<<<< HEAD
 position = Vector2( 895.675, 470.243 )
 scale = Vector2( 0.16, 0.16 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+=======
+position = Vector2( 904.808, 468.936 )
+scale = Vector2( 0.708976, 0.708976 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+>>>>>>> e076c2feac4a72389358281b251c07c7550b2d37
 
 [node name="TopArea" type="Area2D" parent="."]
-position = Vector2( 165.511, -98.9473 )
-scale = Vector2( 22.7737, 22.7737 )
+show_behind_parent = true
+position = Vector2( 48.1965, -47.2489 )
+scale = Vector2( 4.86989, 4.86989 )
 
 [node name="TopHitbox" type="CollisionShape2D" parent="TopArea"]
-position = Vector2( -5.05463, -60.0568 )
+position = Vector2( -5.05463, -58.2322 )
 shape = SubResource( 1 )
 
+[node name="TopHitboxColorRect" type="ColorRect" parent="TopArea/TopHitbox"]
+visible = false
+show_behind_parent = true
+margin_left = -36.1941
+margin_top = -21.3287
+margin_right = 35.8059
+margin_bottom = 24.6713
+color = Color( 0.831373, 0.505882, 0.898039, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MidArea" type="Area2D" parent="."]
+show_behind_parent = true
+position = Vector2( 18.4805, 11.6003 )
+scale = Vector2( 0.226111, 0.226111 )
 
 [node name="MidHitbox" type="CollisionShape2D" parent="MidArea"]
 position = Vector2( 35.8789, -198.517 )
 scale = Vector2( 30.3333, 1 )
 shape = SubResource( 2 )
 
+<<<<<<< HEAD
 [node name="Center" type="Line2D" parent="."]
 points = PoolVector2Array( 44.2896, -166.646, 41.6616, -221.831 )
 
 [node name="Axis" type="Line2D" parent="."]
 points = PoolVector2Array( 20, -1934.72, 20, -1798.08, 20, -1671.94, 20, -1545.81, 20, -1440.7, 20, -1272.52, 20, -1135.87, 20, -978.204, 20, -820.536, 20, -641.845, 20, -515.711, 20, -273.953, 20, -95.263, 20, 72.917, 20, 230.585, 20, 367.23, 20, 556.432, 20, 777.167, 20, 955.858, 20, 1155.57, 19.0674, 1267.62, 21.2773, 1391.36, 20.7813, 1527.89, 20.7813, 1668.52 )
+=======
+[node name="MidHitboxColorRect" type="ColorRect" parent="MidArea/MidHitbox"]
+visible = false
+show_behind_parent = true
+margin_left = -27.0
+margin_top = -632.0
+margin_right = 27.0
+margin_bottom = 650.0
+color = Color( 0.831373, 0.505882, 0.898039, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+>>>>>>> e076c2feac4a72389358281b251c07c7550b2d37
 
 [connection signal="area_entered" from="TopArea" to="." method="_OnTopAreaEntered"]
 [connection signal="area_exited" from="TopArea" to="." method="_OnTopAreaExited"]

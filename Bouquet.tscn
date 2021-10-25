@@ -24,7 +24,7 @@ shape = SubResource( 1 )
 [node name="MidArea" type="Area2D" parent="."]
 
 [node name="MidHitbox" type="CollisionShape2D" parent="MidArea"]
-position = Vector2( -11.2355, 51.1879 )
+position = Vector2( -1.17495, 51.1879 )
 shape = SubResource( 2 )
 
 [connection signal="area_entered" from="TopArea" to="." method="_OnTopAreaEntered"]
