@@ -33,7 +33,7 @@ public class Graft : Sprite {
 
   // This is where each graft will check for their specific objectives.
   // This separation allows for a universal _Process function.
-  protected async virtual void CheckObjectives()
+  protected virtual void CheckObjectives()
   {
 
   }
@@ -95,11 +95,11 @@ public class Graft : Sprite {
     var torque = tapForce * r * Math.Sin(theta);
     rotationalVelocity = torque; // Make rotational velocity the torque because things are complicated enough
 
-    // GD.Print("axis slope ", axisSlope);
-    // GD.Print("mouse pos ", mousePos);
-    // GD.Print("slope of line from mouse to center ", slope);
-    // GD.Print("r ", r);
-    // GD.Print("theta ", theta);
-    // GD.Print("torque ", torque);
+    GD.Print("axis slope ", axisSlope);
+    GD.Print("mouse pos ", mousePos);
+    GD.Print("slope of line from mouse to center ", slope);
+    GD.Print("r ", r);
+    GD.Print("theta ", theta);
+    GD.Print("torque ", torque);
   }
 }
