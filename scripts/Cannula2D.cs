@@ -4,6 +4,7 @@ using System;
 public class Cannula2D : Sprite {
   public bool tapped = false;
   public bool locked = false;
+  public bool injecting = false;
 
   public void LockCannula() {
     //Sprite currentMat = this.GetActiveMaterial(0) as Sprite;

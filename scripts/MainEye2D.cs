@@ -10,7 +10,7 @@ public class MainEye2D : Node2D
     private TextureProgress bar;
     private RichTextLabel waterLevelCounter;
     private int waterLevel;
-   
+
 
     public override void _Ready()
     {
@@ -25,7 +25,7 @@ public class MainEye2D : Node2D
 
         // _tween = GetNode("UI/Tween") as Tween;
         bar = GetNode("UI/TextureProgress") as TextureProgress;
-        
+
         waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
         waterLevel = 100;
         bar.Value = waterLevel;
@@ -39,7 +39,13 @@ public class MainEye2D : Node2D
             // Delete the current node:
             confirmation.QueueFree();
             // Add new node to the tree:
-            String nextLevel = Helper.getNextConfirmation(levelName);
+            String nextLevel;
+            if(confirmation.getIsNextLevelSet()) {
+              nextLevel = Helper.setNextConfirmation(confirmation.getNextConfirmation());
+            }
+            else {
+              nextLevel = Helper.getNextConfirmation(levelName);
+            }
             loadConfirmation(nextLevel);
         }
 
@@ -50,7 +56,7 @@ public class MainEye2D : Node2D
                bar.Value = waterLevel;
                waterLevelCounter.Text = waterLevel.ToString();
             }
-            
+
         }
         if(Input.IsActionPressed("removeLiquid")){
             GD.Print("trying to remove liquid");

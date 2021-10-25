@@ -7,7 +7,7 @@
 extents = Vector2( 62.5461, 324.198 )
 
 [node name="DoubleScrollSprite" type="Sprite"]
-position = Vector2( 943.346, 439.776 )
+position = Vector2( 901.346, 463.776 )
 scale = Vector2( 0.706881, 0.706881 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
