@@ -19,7 +19,8 @@ public class ToggleHelp : RichTextLabel {
         SetBbcode("[right]Press 'h' to show controls[/right]");
     }
     else {
-      SetBbcode("[right]Rotate cannula clockwise: s" + "\n"
+      SetBbcode("[right] Press esc to return to previous screen \n" 
+              +"Rotate cannula clockwise: s" + "\n"
               + "counterclockwise: w" + "\n" + "\n"
               + "swap cannula: r" + "\n"
               + "reset cannula: e" + "\n" + "\n"
