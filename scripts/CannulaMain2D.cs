@@ -5,6 +5,7 @@ public class CannulaMain2D : Node2D {
 	Cannula2D lCannula;
 	Cannula2D rCannula;
 	AudioStreamPlayer audio;
+	bool inject = false;
 	bool lHeld = false;
 	bool rHeld = false;
 	bool lrRotating = false; // false defualts to rotating left cannula, true to right cannula
@@ -67,6 +68,15 @@ public class CannulaMain2D : Node2D {
 			lHeld = false;
 			rHeld = false;
 			timer = 0;
+		}
+
+		if(Input.IsActionJustPressed("cann_inject")) {
+			lCannula.injecting = true;
+			rCannula.injecting = true;
+		}
+		else {
+			lCannula.injecting = false;
+			rCannula.injecting = false;
 		}
 
 		if(Input.IsActionJustPressed("cann_swap")) {
