@@ -26,3 +26,11 @@ shape = SubResource( 1 )
 [node name="HoldHitbox" type="CollisionShape2D" parent="HoldArea"]
 position = Vector2( 1010.75, -321.073 )
 shape = SubResource( 2 )
+
+[node name="Axis" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 2, -420.34, 2, -380.017, 2, -339.694, 2, -287.274, 2, -228.806, 2, -186.467, 2, -136.063, 2, -101.789, 2, -63.482, 2, -7.03, 2, 35.309, 2, 95.793, 2, 160.31, 2, 212.73, 2, 275.23, 2, 335.062, 2, 398.171 )
+
+[node name="Center" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 4.96204, -1.97998, -0.124146, -1.97998 )
