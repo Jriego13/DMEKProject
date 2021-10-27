@@ -49,6 +49,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Center" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 0.307373, -1.0166, 4.91992, -0.0281372 )
+
+[node name="Axis" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 3, -419.302, 3, -369.367, 3, -316.113, 3, -251.024, 3, -206.646, 3, -156.35, 3, -91.261, 3, -58.717, 3, 9.33, 3, 77.377, 3, 151.342, 3, 207.555, 3, 269.685, 3, 337.732, 3, 382.11 )
+
 [connection signal="area_entered" from="HoldArea" to="." method="_OnHoldAreaEntered"]
 [connection signal="area_exited" from="HoldArea" to="." method="_OnHoldAreaExited"]
 [connection signal="area_entered" from="TapArea" to="." method="_OnTapAreaEntered"]

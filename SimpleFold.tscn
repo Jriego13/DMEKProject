@@ -39,12 +39,6 @@ __meta__ = {
 position = Vector2( 327.222, -7.07599 )
 shape = SubResource( 2 )
 
-[node name="Center" type="Line2D" parent="."]
-scale = Vector2( 1, 1 )
-points = PoolVector2Array( -10.2507, -14.5275, -11.5015, -2.0188 )
-
-[node name="Axis" type="Line2D" parent="."]
-points = PoolVector2Array( -10, -422.218, -10, -395.473, -10, -335.296, -10, -259.517, -10, -172.594, -10, -81.214, -10, 25.767, -10, 126.063, -10, 221.901, -10, 313.281, -10, 402.432 )
 [node name="HoldHitboxColorRect" type="ColorRect" parent="HoldArea/HoldHitbox"]
 visible = false
 show_behind_parent = true
@@ -56,6 +50,14 @@ color = Color( 0.164706, 0.905882, 0.34902, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Center" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( -10.2507, -14.5275, -11.5015, -2.0188 )
+
+[node name="Axis" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( -10, -422.218, -10, -395.473, -10, -335.296, -10, -259.517, -10, -172.594, -10, -81.214, -10, 25.767, -10, 126.063, -10, 221.901, -10, 313.281, -10, 402.432 )
 
 [connection signal="area_entered" from="TapArea" to="." method="_OnTapAreaEntered"]
 [connection signal="area_exited" from="TapArea" to="." method="_OnTapAreaExited"]

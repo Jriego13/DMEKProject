@@ -30,5 +30,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Axis" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 7, -436.104, 7, -399.323, 7, -362.541, 7, -322.931, 7, -269.173, 7, -212.587, 7, -167.317, 7, -119.219, 7, -79.608, 7, -23.022, 7, 36.394, 7, 92.981, 7, 155.226, 7, 200.496, 7, 262.741, 7, 319.327, 7, 356.109, 7, 398.549 )
+
+[node name="Center" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 2.87036, 0.116028, 7.62866, 0.116028 )
+
 [connection signal="area_entered" from="MidArea" to="." method="_OnAreaEntered"]
 [connection signal="area_exited" from="MidArea" to="." method="_OnAreaExited"]

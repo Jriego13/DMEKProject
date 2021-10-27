@@ -21,6 +21,8 @@ public class Graft : Sprite {
   protected RichTextLabel misclickText;
 	protected bool isTutorialMode;
   protected double rotationalVelocity;
+  protected Area2D interactionBox;
+  protected bool interactable = true;
   public override void _Ready()
   {
     SetObjectives();
@@ -101,13 +103,25 @@ public class Graft : Sprite {
   public bool getIsFinished() {
 		return isFinished;
 	}
+  public void onInteractionBoxEntered()
+	{
+		interactable = true;
+	}
+  public void onInteractionBoxExited()
+  {
+    interactable = false;
+  }
   public override void _Input(InputEvent @event)
     {
         base._Input(@event);
         if (@event.IsActionPressed("left_mouse") &&
-          GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())))
+          this.GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())) && interactable)
         {
           RotateFromTap();
+        }
+        if (@event.IsActionPressed("toggle_rotation"))
+        {
+          interactable = !interactable;
         }
     }
   public override void _Process(float delta)

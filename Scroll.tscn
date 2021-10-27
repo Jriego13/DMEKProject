@@ -10,17 +10,10 @@ extents = Vector2( 40.6204, 25.028 )
 extents = Vector2( 27.0184, 653.443 )
 
 [node name="ScrollSprite" type="Sprite"]
-<<<<<<< HEAD
-position = Vector2( 895.675, 470.243 )
-scale = Vector2( 0.16, 0.16 )
-texture = ExtResource( 1 )
-script = ExtResource( 2 )
-=======
 position = Vector2( 904.808, 468.936 )
 scale = Vector2( 0.708976, 0.708976 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
->>>>>>> e076c2feac4a72389358281b251c07c7550b2d37
 
 [node name="TopArea" type="Area2D" parent="."]
 show_behind_parent = true
@@ -53,13 +46,6 @@ position = Vector2( 35.8789, -198.517 )
 scale = Vector2( 30.3333, 1 )
 shape = SubResource( 2 )
 
-<<<<<<< HEAD
-[node name="Center" type="Line2D" parent="."]
-points = PoolVector2Array( 44.2896, -166.646, 41.6616, -221.831 )
-
-[node name="Axis" type="Line2D" parent="."]
-points = PoolVector2Array( 20, -1934.72, 20, -1798.08, 20, -1671.94, 20, -1545.81, 20, -1440.7, 20, -1272.52, 20, -1135.87, 20, -978.204, 20, -820.536, 20, -641.845, 20, -515.711, 20, -273.953, 20, -95.263, 20, 72.917, 20, 230.585, 20, 367.23, 20, 556.432, 20, 777.167, 20, 955.858, 20, 1155.57, 19.0674, 1267.62, 21.2773, 1391.36, 20.7813, 1527.89, 20.7813, 1668.52 )
-=======
 [node name="MidHitboxColorRect" type="ColorRect" parent="MidArea/MidHitbox"]
 visible = false
 show_behind_parent = true
@@ -71,7 +57,16 @@ color = Color( 0.831373, 0.505882, 0.898039, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
->>>>>>> e076c2feac4a72389358281b251c07c7550b2d37
+
+[node name="Center" type="Line2D" parent="."]
+visible = false
+position = Vector2( -22.3654, 50.1526 )
+scale = Vector2( 1.11106, 0.381602 )
+points = PoolVector2Array( 43.2039, -196.92, 41.6616, -221.831 )
+
+[node name="Axis" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 20, -1934.72, 20, -1798.08, 20, -1671.94, 20, -1545.81, 20, -1440.7, 20, -1272.52, 20, -1135.87, 20, -978.204, 20, -820.536, 20, -641.845, 20, -515.711, 20, -273.953, 20, -95.263, 20, 72.917, 20, 230.585, 20, 367.23, 20, 556.432, 20, 777.167, 20, 955.858, 20, 1155.57, 19.0674, 1267.62, 21.2773, 1391.36, 20.7813, 1527.89, 20.7813, 1668.52 )
 
 [connection signal="area_entered" from="TopArea" to="." method="_OnTopAreaEntered"]
 [connection signal="area_exited" from="TopArea" to="." method="_OnTopAreaExited"]
