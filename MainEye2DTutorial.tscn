@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://sprites/WhiteBackground.jpg" type="Texture" id=1]
+[ext_resource path="res://EscapeMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Cannula2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://CurrentConfirmation.tscn" type="PackedScene" id=5]
 [ext_resource path="res://images/circle.png" type="Texture" id=6]
@@ -42,6 +43,7 @@ offset = Vector2( 599.931, 299.89 )
 [node name="Cannulas" parent="." instance=ExtResource( 4 )]
 
 [node name="Overlay" parent="." instance=ExtResource( 5 )]
+position = Vector2( -7.12865, 6.34128 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
@@ -49,3 +51,9 @@ modulate = Color( 0.976471, 0.0431373, 0.0862745, 1 )
 position = Vector2( 249.164, 91.2082 )
 scale = Vector2( 0.0334727, 0.0240339 )
 texture = ExtResource( 6 )
+
+[node name="MenuPopup" parent="." instance=ExtResource( 2 )]
+margin_left = 910.082
+margin_top = 446.771
+margin_right = 910.082
+margin_bottom = 446.771

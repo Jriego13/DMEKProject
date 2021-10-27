@@ -4,17 +4,17 @@ using System;
 // Menu that appears when escape is pressed during the main game:
 public class EscapeMenu : Popup
 {
-    private bool visible;
+    public bool visible;
     private bool optionsVisible;
-    public override void _Input(InputEvent @event)
-    {
-        base._Input(@event);
-        if (@event.IsActionPressed("ui_cancel"))
-        {
-            GD.Print("escape pressed");
-            visible = !visible;
-        }
-    }
+    // public override void _Input(InputEvent @event)
+    // {
+    //     base._Input(@event);
+    //     if (@event.IsActionPressed("ui_cancel"))
+    //     {
+    //         GD.Print("escape pressed");
+    //         visible = !visible;
+    //     }
+    // }
     public override void _Ready()
     {
         visible = false;

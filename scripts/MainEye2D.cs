@@ -10,8 +10,17 @@ public class MainEye2D : Node2D
     private TextureProgress bar;
     private RichTextLabel waterLevelCounter;
     private int waterLevel;
+    protected EscapeMenu escapeMenu;
    
-
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+        if (@event.IsActionPressed("ui_cancel"))
+        {
+            GD.Print("escape pressed");
+            escapeMenu.visible = !escapeMenu.visible;
+        }
+    }
     public override void _Ready()
     {
         // PrintTreePretty();
@@ -29,6 +38,8 @@ public class MainEye2D : Node2D
         waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
         waterLevel = 100;
         bar.Value = waterLevel;
+
+        escapeMenu = GetNode("MenuPopup") as EscapeMenu;
     }
     public override void _Process(float delta)
     {
@@ -42,6 +53,7 @@ public class MainEye2D : Node2D
             String nextLevel = Helper.getNextConfirmation(levelName);
             loadConfirmation(nextLevel);
         }
+        confirmation.gamePaused = escapeMenu.visible;
 
         if(Input.IsActionPressed("addLiquid")){
             GD.Print("trying to add liquid");
