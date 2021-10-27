@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class Graft : Sprite {
   protected List<PackedScene> nextConfirmations = new List<PackedScene>();
   protected List<Texture> graftTextures = new List<Texture>();
+  protected List<Texture> graftTexturesOther = new List<Texture>();
   protected Random rng = new Random();
   protected int numTaps;
   protected int numTapsComplete;
@@ -13,9 +14,11 @@ public class Graft : Sprite {
   protected int topTaps = 0;
   protected int topTapsComplete = 0;
   protected bool isFinished;
+  protected bool isNextLevelSet;
   protected Texture circleTexture;
   protected String previousConfirmation;
   protected String currentConfirmation;
+  protected String nextConfirmation;
   protected Cannula2D lCannula;
 	protected Cannula2D rCannula;
   protected RichTextLabel misclickText;
@@ -66,6 +69,10 @@ public class Graft : Sprite {
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/ScrollSimple" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
+      }
+      for(int i = 0; i < 3; i++) {
+        currImg = GD.Load("res://sprites/ScrollDouble" + (i+1) + ".png") as Texture;
+        graftTexturesOther.Add(currImg);
       }
     }
   }
@@ -195,5 +202,12 @@ public class Graft : Sprite {
     GD.Print("r ", r);
     GD.Print("theta ", theta);
     GD.Print("torque ", torque);
+
+  public bool getIsNextLevelSet() {
+    return isNextLevelSet;
+  }
+
+  public String getNextConfirmation() {
+    return nextConfirmation;
   }
 }
