@@ -28,7 +28,7 @@ public class TutorialPrompt : RichTextLabel
       }
       else {
         if (levelName == "res://Scroll.tscn") {
-            SetText("This confirmation is called a scroll \n\n" +
+            SetText("This confirmation is a scroll \n\n" +
                         "Tap one cannula 3-5 times horizontally on the top end of " +  
                         "it to send fluid waves into the fold to open it \n" +
                         "Tap another cannula 4-6 times vertically on the center of the fold");
@@ -36,20 +36,20 @@ public class TutorialPrompt : RichTextLabel
         }
 
         if (levelName == "res://SimpleFold.tscn") {
-              SetText("This confirmation is called a simple fold \n\n" +
+              SetText("This confirmation is a simple fold \n\n" +
                         "Tap one cannula in the middle 3-6 times \n" +
                         "Hold the another cannula on the right portion of the graft");
           
         }
 
         if (levelName == "res://DoubleScroll.tscn") {
-              SetText("This confirmation is called a double scroll \n\n" +
+              SetText("This confirmation is a double scroll \n\n" +
                         "Tap one cannula in the middle 3-6 times");
           
         }
 
         if (levelName == "res://EdgeFold.tscn") {
-              SetText("This confirmation is called an edge fold \n\n" +
+              SetText("This confirmation is an edge fold \n\n" +
                         "Tap one cannula in the middle 3-6 times \n" +
                         "Hold the another cannula on the right portion of the graft");
           
@@ -57,6 +57,11 @@ public class TutorialPrompt : RichTextLabel
 
         if (levelName == "res://Taco.tscn") {
               SetText("This confirmation is called a taco \n\n");
+          
+        }
+
+        if (levelName == "res://Inverted.tscn") {
+              SetText("This confirmation is an inverted graft \n\n");
           
         }
       }
