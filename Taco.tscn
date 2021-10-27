@@ -21,8 +21,28 @@ script = ExtResource( 2 )
 position = Vector2( 123.185, -7.07593 )
 shape = SubResource( 1 )
 
+[node name="TapHitboxColorRect" type="ColorRect" parent="TapArea/TapHitbox"]
+show_behind_parent = true
+margin_left = -111.0
+margin_top = -319.0
+margin_right = 106.0
+margin_bottom = 324.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HoldArea" type="Area2D" parent="."]
 
 [node name="HoldHitbox" type="CollisionShape2D" parent="HoldArea"]
 position = Vector2( 327.222, -7.07599 )
 shape = SubResource( 2 )
+
+[node name="HoldHitboxColorRect" type="ColorRect" parent="HoldArea/HoldHitbox"]
+show_behind_parent = true
+margin_left = -95.0
+margin_top = -319.0
+margin_right = 88.0
+margin_bottom = 322.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
