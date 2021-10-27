@@ -54,6 +54,11 @@ public class TutorialPrompt : RichTextLabel
                         "Hold the another cannula on the right portion of the graft");
           
         }
+
+        if (levelName == "res://Taco.tscn") {
+              SetText("This confirmation is called a taco \n\n");
+          
+        }
       }
     } 
   }
