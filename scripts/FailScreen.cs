@@ -28,7 +28,7 @@ public class FailScreen : Control
   {
     GD.Print("Quit pressed, returning to main menu");
     Input.SetMouseMode((Godot.Input.MouseMode)0);
-    GetTree().ChangeScene("res://MainMenu2.tscn");
+    GetTree().ChangeScene("res://MainMenu.tscn");
   }
 
   private void onRestartLevelPressed()
