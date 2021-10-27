@@ -32,7 +32,7 @@ public class LevelMenu : MarginContainer
     private void onGoBackButtonPressed()
     {
         GD.Print("Go back pressed");
-		    GetTree().ChangeScene(Helper.toFileName("MainMenu2"));
+		    GetTree().ChangeScene(Helper.toFileName("MainMenu"));
     }
 
     // Loads the selected level:
