@@ -27,6 +27,14 @@ shape = SubResource( 1 )
 position = Vector2( -1.17495, 51.1879 )
 shape = SubResource( 2 )
 
+[node name="Center" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( -10.995, -77.138, -4.28784, -77.9764 )
+
+[node name="Axis" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( -6, -426.451, -6, -386.164, -6, -334.685, -6, -287.682, -6, -245.156, -6, -207.107, -6, -164.581, -6, -110.864, -6, -61.623, -6, -21.335, -6, 30.143, -6, 88.337, -6, 153.245, -6, 200.247, -6, 256.203, -6, 305.443, -6, 368.113, -6, 399.448 )
+
 [connection signal="area_entered" from="TopArea" to="." method="_OnTopAreaEntered"]
 [connection signal="area_exited" from="TopArea" to="." method="_OnTopAreaExited"]
 [connection signal="area_entered" from="MidArea" to="." method="_OnMidAreaEntered"]

@@ -58,6 +58,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Center" type="Line2D" parent="."]
+visible = false
+position = Vector2( -22.3654, 50.1526 )
+scale = Vector2( 1.11106, 0.381602 )
+points = PoolVector2Array( 43.2039, -196.92, 41.6616, -221.831 )
+
+[node name="Axis" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 20, -1934.72, 20, -1798.08, 20, -1671.94, 20, -1545.81, 20, -1440.7, 20, -1272.52, 20, -1135.87, 20, -978.204, 20, -820.536, 20, -641.845, 20, -515.711, 20, -273.953, 20, -95.263, 20, 72.917, 20, 230.585, 20, 367.23, 20, 556.432, 20, 777.167, 20, 955.858, 20, 1155.57, 19.0674, 1267.62, 21.2773, 1391.36, 20.7813, 1527.89, 20.7813, 1668.52 )
+
 [connection signal="area_entered" from="TopArea" to="." method="_OnTopAreaEntered"]
 [connection signal="area_exited" from="TopArea" to="." method="_OnTopAreaExited"]
 [connection signal="area_entered" from="MidArea" to="." method="_OnMidAreaEntered"]
