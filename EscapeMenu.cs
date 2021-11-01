@@ -5,7 +5,7 @@ using System;
 public class EscapeMenu : Popup
 {
     public bool visible;
-    private bool optionsVisible;
+    public bool optionsVisible;
     // public override void _Input(InputEvent @event)
     // {
     //     base._Input(@event);

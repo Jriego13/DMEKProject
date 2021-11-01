@@ -38,6 +38,7 @@ public class MainGame : Node2D
         bar.Value = waterLevel;
 
         escapeMenu = GetNode("MenuPopup") as EscapeMenu;
+        SetUp();
     }
     // What happens when the confirmation is finished in the respective game mode:
     protected virtual void OnConfirmationFinished(){}
@@ -55,7 +56,7 @@ public class MainGame : Node2D
             Input.SetMouseMode((Godot.Input.MouseMode)0);
             OnConfirmationFinished();
         }
-        confirmation.gamePaused = escapeMenu.visible;
+        confirmation.gamePaused = (escapeMenu.visible || escapeMenu.optionsVisible);
 
         if(Input.IsActionPressed("addLiquid")){
             GD.Print("trying to add liquid");

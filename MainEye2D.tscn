@@ -34,17 +34,17 @@ public class MainEye2D : Node2D
 }
 "
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0.238636, 0.836364 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=3]
-curve = SubResource( 2 )
+curve = SubResource( 6 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=7]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+curve = SubResource( 7 )
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.749, 0.842 )
