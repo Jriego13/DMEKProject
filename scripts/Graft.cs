@@ -24,6 +24,7 @@ public class Graft : Sprite {
   protected Area2D interactionBox;
   protected bool interactable = true;
   public bool gamePaused = false;
+  public bool misclicksOn = true;
   public override void _Ready()
   {
     SetObjectives();
@@ -74,7 +75,7 @@ public class Graft : Sprite {
   // What will happen when the player clicks outside of the correct areas:
   protected async void registerMisclick()
   {
-    if (gamePaused)
+    if (gamePaused || !misclicksOn)
       return;
     if(numTapsWrong < 3){
 					GD.Print("You clicked outside of the correct areas");
