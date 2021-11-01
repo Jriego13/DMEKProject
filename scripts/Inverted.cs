@@ -24,19 +24,23 @@ public class Inverted : Graft {
     // you want to be injecting perpendicular to the graft
     // so this will have to be checked for
     if(injectAreaEntered) {
-      if(lCannula.injecting || rCannula.injecting) {
+      if((lCannula.injecting && lCannula.inArea) || (rCannula.injecting && rCannula.inArea)) {
         numTaps += 1;
         GD.Print("inject registered.");
       }
     }
   }
 
-  public void _OnInjectAreaEntered(object area) {
+  public void _OnInjectAreaEntered(Area2D area) {
     injectAreaEntered = true;
+    Cannula2D currentCannula = area.GetParent() as Cannula2D;
+    currentCannula.inArea = true;
     GD.Print("inject area entered.");
   }
 
-  public void _OnInjectAreaExited(object area) {
+  public void _OnInjectAreaExited(Area2D area) {
     injectAreaEntered = false;
+    Cannula2D currentCannula = area.GetParent() as Cannula2D;
+    currentCannula.inArea = false;
   }
 }

@@ -28,7 +28,7 @@ public class EdgeFold : Graft {
 
     if(tapAreaEntered) {
       if(heldDown) {
-        if(lCannula.tapped || rCannula.tapped) {
+        if((lCannula.tapped && lCannula.inArea) || (rCannula.tapped && rCannula.inArea)) {
           numTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
@@ -48,34 +48,37 @@ public class EdgeFold : Graft {
 
     if(!tapAreaEntered){
       if(rCannula.tapped || lCannula.tapped){
-        if(numTaps > 0)
-          numTaps -= 1;
-        if(numTaps >= 0)
-          SetTexture(graftTextures[numTaps]);
-
         registerMisclick();
       }
     }
   }
 
-  public void _OnTapAreaEntered(object area) {
+  public void _OnTapAreaEntered(Area2D area) {
     tapAreaEntered = true;
+    Cannula2D currentCannula = area.GetParent() as Cannula2D;
+    currentCannula.inArea = true;
   }
 
-  public void _OnTapAreaExited(object area) {
+  public void _OnTapAreaExited(Area2D area) {
     tapAreaEntered = false;
+    Cannula2D currentCannula = area.GetParent() as Cannula2D;
+    currentCannula.inArea = false;
   }
 
-  public void _OnHoldAreaEntered(object area) {
+  public void _OnHoldAreaEntered(Area2D area) {
     holdAreaEntered = true;
+    Cannula2D currentCannula = area.GetParent() as Cannula2D;
+    currentCannula.inArea = true;
     GD.Print("hold area entered");
   }
 
-  public void _OnHoldAreaExited(object area) {
+  public void _OnHoldAreaExited(Area2D area) {
     holdAreaEntered = false;
+    Cannula2D currentCannula = area.GetParent() as Cannula2D;
+    currentCannula.inArea = false;
   }
 
-  public void setUpHitboxes(bool setup ) {
+  public void setUpHitboxes(bool setup) {
     GD.Print("setup = " + setup);
     tapHitBox = GetNode("TapArea/TapHitbox/TapHitboxColorRect") as ColorRect;
     holdHitBox = GetNode("HoldArea/HoldHitbox/HoldHitboxColorRect") as ColorRect;
