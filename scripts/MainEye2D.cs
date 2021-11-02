@@ -36,59 +36,14 @@ public class MainEye2D : Node2D
         levelCompletePrompt = GetNode("Overlay/LevelCompletePrompt") as RichTextLabel;
         levelCompletePrompt.SetVisible(false);
     }
-    public override void _Process(float delta)
+    protected override void OnConfirmationFinished()
     {
-        base._Process(delta);
-        // If confirmation is complete, load the next confirmation:
-        if (confirmation.getIsFinished())
-        {
-            // Delete the current node:
-            confirmation.QueueFree();
-            // Add new node to the tree:
-            String nextLevel;
-            if(confirmation.getIsNextLevelSet()) {
-              nextLevel = Helper.setNextConfirmation(confirmation.getNextConfirmation());
-            }
-            else {
-              nextLevel = Helper.getNextConfirmation(levelName);
-            }
-            loadConfirmation(nextLevel);
-        }
-
-        if(Input.IsActionPressed("addLiquid")){
-            GD.Print("trying to add liquid");
-            if(waterLevel <= 99){
-               waterLevel += 1;
-               bar.Value = waterLevel;
-               waterLevelCounter.Text = waterLevel.ToString();
-            }
-
-        }
-        if(Input.IsActionPressed("removeLiquid")){
-            GD.Print("trying to remove liquid");
-            if(waterLevel >= 1){
-                waterLevel -= 1;
-                bar.Value = waterLevel;
-                waterLevelCounter.Text = waterLevel.ToString();
-
-            }
-
-        }
+        // Add new node to the tree:
+        String nextLevel = Helper.getNextConfirmation(levelName);
+        loadConfirmation(nextLevel);
     }
-
-    // Load the specified level/fold, instance it as a Node2D, then place it in the tree:
-    private void loadConfirmation(String next)
+    protected override void SetUp()
     {
-        GD.Print(next);
-        if(next == "res://Done.tscn") {
-          GetTree().ChangeScene("res://Done.tscn");
-          return;
-        }
-
-        levelName = next;
-        GD.Print("instancing "+ levelName);
-        var confirmationScene = GD.Load<PackedScene>(levelName);
-        confirmation = (Graft)confirmationScene.Instance();
-        GetNode("/root/Main").AddChild(confirmation);
+        
     }
 }

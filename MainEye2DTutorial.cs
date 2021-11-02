@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public class MainEye2DTutorial : Node
+// This class should only contain code that is specific to the tutorial game
+// Otherwise, it should go in MainGame.cs
+public class MainEye2DTutorial : MainGame
 {
-    private String levelName = "";
-    private Graft confirmation;
     RichTextLabel tutorialPrompt;
     private RichTextLabel helpPrompt;
     private TextureProgress bar;
@@ -91,13 +91,23 @@ public class MainEye2DTutorial : Node
     }
     
     // Load the specified level/fold, instance it as a Node2D, then place it in the tree:
-    private void loadConfirmation(String next)
+   private void loadConfirmation(String next)
     {
         levelName = next;
         GD.Print("instancing "+ levelName);
         var confirmationScene = GD.Load<PackedScene>(levelName);
         confirmation = (Graft)confirmationScene.Instance();
         GetNode("/root/Main").AddChild(confirmation);
+    }
+    protected override void SetUp()
+    {
+        GD.Print("here inside maineye2dtut");
+        tutorialPrompt = GetNode("Overlay/TutorialPrompt") as RichTextLabel;
+        confirmation.misclicksOn = false;
+    }    
+    protected override void OnConfirmationFinished()
+    {
+        GetTree().ChangeScene(Helper.toFileName("TutorialSuccessScreen"));
     }
 
     private async void showSuccessfulTapPrompt() {

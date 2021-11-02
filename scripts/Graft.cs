@@ -26,6 +26,8 @@ public class Graft : Sprite {
   protected double rotationalVelocity;
   protected Area2D interactionBox;
   protected bool interactable = true;
+  public bool gamePaused = false;
+  public bool misclicksOn = true;
   public override void _Ready()
   {
     SetObjectives();
@@ -80,6 +82,8 @@ public class Graft : Sprite {
   // What will happen when the player clicks outside of the correct areas:
   protected async void registerMisclick()
   {
+    if (gamePaused || !misclicksOn)
+      return;
     if(numTapsWrong < 3){
 					GD.Print("You clicked outside of the correct areas");
 					Vector2 mousePos = GetViewport().GetMousePosition();
@@ -126,7 +130,7 @@ public class Graft : Sprite {
         {
           RotateFromTap();
         }
-        if (@event.IsActionPressed("toggle_rotation"))
+        else if (@event.IsActionPressed("toggle_rotation"))
         {
           interactable = !interactable;
         }
@@ -134,9 +138,12 @@ public class Graft : Sprite {
   public override void _Process(float delta)
   {
     Input.SetMouseMode((Godot.Input.MouseMode)0);
-    CheckObjectives();
-    if (Math.Abs(rotationalVelocity) > 0)
-      Deaccelerate();
+    if (!gamePaused)
+    {
+      CheckObjectives();
+      if (Math.Abs(rotationalVelocity) > 0)
+        Deaccelerate();
+    }
   }
   protected void Deaccelerate()
   {

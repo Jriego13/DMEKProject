@@ -27,12 +27,19 @@ public class LevelMenu : MarginContainer
             button.Connect("pressed", this, "loadLevel", new Godot.Collections.Array {button.Name});
         }
     }
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+        if (@event.IsActionPressed("ui_cancel")) {
+            GetTree().ChangeScene(Helper.toFileName("MainMenu"));
+        }
+    }
 
     // Navigates back to the main menu:
     private void onGoBackButtonPressed()
     {
         GD.Print("Go back pressed");
-		    GetTree().ChangeScene(Helper.toFileName("MainMenu"));
+		GetTree().ChangeScene(Helper.toFileName("MainMenu"));
     }
 
     // Loads the selected level:

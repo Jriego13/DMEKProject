@@ -4,7 +4,6 @@
 [ext_resource path="res://fonts/Dubai-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scripts/Options.cs" type="Script" id=3]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 100
 font_data = ExtResource( 2 )
@@ -23,6 +22,9 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1366.0
