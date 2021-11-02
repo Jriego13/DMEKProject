@@ -23,8 +23,31 @@ public class Scroll : Graft {
 		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
 			numTaps = 0;
 			topTaps = 0;
-	  	GD.Print("tapping complete.");
 	  	isFinished = true;
+			GD.Print("tapping complete.");
+		}
+		else if(topTaps >= topTapsComplete && numTaps == 0) {
+			numTaps = 0;
+			topTaps = 0;
+			isFinished = true;
+			isNextLevelSet = true;
+			nextConfirmation = "DoubleScroll";
+			GD.Print("tapping complete.");
+		}
+
+		if(topAreaEntered) {
+			if(lCannula.CheckCannulaRotation(1.39f, 1.74f) || rCannula.CheckCannulaRotation(1.39f, 1.74f)) {
+				if(lCannula.tapped || rCannula.tapped) {
+					topTaps += 1;
+					lCannula.tapped = false;
+					rCannula.tapped = false;
+					GD.Print(topTaps);
+					GD.Print(graftTexturesOther.Count);
+					if(topTaps <= graftTexturesOther.Count && topTaps >= 0)
+						SetTexture(graftTexturesOther[topTaps-1]);
+					GD.Print("top tap registered");
+				}
+			}
 		}
 
 		if(bottomAreaEntered) {
@@ -37,17 +60,6 @@ public class Scroll : Graft {
 						SetTexture(graftTextures[numTaps]);
 
 					GD.Print("bot tap registered");
-				}
-			}
-		}
-
-		if(topAreaEntered) {
-			if(lCannula.CheckCannulaRotation(1.39f, 1.74f) || rCannula.CheckCannulaRotation(1.39f, 1.74f)) {
-				if(lCannula.tapped || rCannula.tapped) {
-					topTaps += 1;
-					lCannula.tapped = false;
-					rCannula.tapped = false;
-					GD.Print("top tap registered");
 				}
 			}
 		}
