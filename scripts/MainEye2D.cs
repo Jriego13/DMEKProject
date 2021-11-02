@@ -9,6 +9,8 @@ public class MainEye2D : Node2D
 
     private TextureProgress bar;
     private RichTextLabel waterLevelCounter;
+    private RichTextLabel levelCompletePrompt;
+    private RichTextLabel successfulTapPrompt;
     private int waterLevel;
 
 
@@ -29,6 +31,10 @@ public class MainEye2D : Node2D
         waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
         waterLevel = 100;
         bar.Value = waterLevel;
+        successfulTapPrompt = GetNode("Overlay/SuccessfulTapPrompt") as RichTextLabel;
+        successfulTapPrompt.SetVisible(false);
+        levelCompletePrompt = GetNode("Overlay/LevelCompletePrompt") as RichTextLabel;
+        levelCompletePrompt.SetVisible(false);
     }
     public override void _Process(float delta)
     {

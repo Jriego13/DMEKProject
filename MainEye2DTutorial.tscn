@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://sprites/WhiteBackground.jpg" type="Texture" id=1]
+[ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=2]
+[ext_resource path="res://images/lifebar_fill.png" type="Texture" id=3]
 [ext_resource path="res://Cannula2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://CurrentConfirmation.tscn" type="PackedScene" id=5]
 [ext_resource path="res://images/circle.png" type="Texture" id=6]
+[ext_resource path="res://images/lifebar_bg.png" type="Texture" id=7]
+[ext_resource path="res://EscapeMenu.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CSharpScript" id=1]
 resource_name = "MainEye2D"
@@ -42,6 +46,7 @@ offset = Vector2( 599.931, 299.89 )
 [node name="Cannulas" parent="." instance=ExtResource( 4 )]
 
 [node name="Overlay" parent="." instance=ExtResource( 5 )]
+position = Vector2( 424.087, 17.7947 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
@@ -49,3 +54,44 @@ modulate = Color( 0.976471, 0.0431373, 0.0862745, 1 )
 position = Vector2( 249.164, 91.2082 )
 scale = Vector2( 0.0334727, 0.0240339 )
 texture = ExtResource( 6 )
+
+[node name="UI" type="MarginContainer" parent="."]
+margin_right = 1822.0
+margin_bottom = 910.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
+margin_right = 1822.0
+margin_bottom = 910.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaterLevel" type="RichTextLabel" parent="UI/NinePatchRect"]
+anchor_right = 0.042
+anchor_bottom = 0.079
+margin_left = 399.997
+margin_top = -19.5589
+margin_right = 1067.47
+margin_bottom = 164.551
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "100
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="UI"]
+margin_right = 1822.0
+margin_bottom = 910.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 3 )
+
+[node name="MenuPopup" parent="." instance=ExtResource( 8 )]
+margin_left = 910.082
+margin_top = 446.771
+margin_right = 910.082
+margin_bottom = 446.771

@@ -202,6 +202,7 @@ public class Graft : Sprite {
     GD.Print("r ", r);
     GD.Print("theta ", theta);
     GD.Print("torque ", torque);
+  }
 
   public bool getIsNextLevelSet() {
     return isNextLevelSet;
@@ -209,5 +210,13 @@ public class Graft : Sprite {
 
   public String getNextConfirmation() {
     return nextConfirmation;
+  }
+
+  public int getNumTaps() {
+    return numTaps;
+  }
+
+  public int getTopTaps() {
+    return topTaps;
   }
 }
