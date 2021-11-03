@@ -1,18 +1,9 @@
 using Godot;
 using System;
 
-public class MainEye2D : Node2D
+public class MainEye2D : MainGame
 {
     // levelName is random by default so it can be loaded without levelSelect
-    private String levelName = Helper.getRandomConfirmation();
-    private Graft confirmation;
-
-    private TextureProgress bar;
-    private RichTextLabel waterLevelCounter;
-    private RichTextLabel levelCompletePrompt;
-    private RichTextLabel successfulTapPrompt;
-    private int waterLevel;
-
 
     public override void _Ready()
     {
@@ -26,15 +17,24 @@ public class MainEye2D : Node2D
         loadConfirmation(levelName);
 
         // _tween = GetNode("UI/Tween") as Tween;
-        bar = GetNode("UI/TextureProgress") as TextureProgress;
-
-        waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
-        waterLevel = 100;
-        bar.Value = waterLevel;
         successfulTapPrompt = GetNode("Overlay/SuccessfulTapPrompt") as RichTextLabel;
         successfulTapPrompt.SetVisible(false);
         levelCompletePrompt = GetNode("Overlay/LevelCompletePrompt") as RichTextLabel;
         levelCompletePrompt.SetVisible(false);
+    }
+
+     public override void _Process(float delta)
+    {
+        //base._Process(delta);
+        
+        if (confirmation.getIsFinished())
+        {
+            // Delete the current node:
+            confirmation.QueueFree();
+            // Add new node to the tree:
+            Input.SetMouseMode((Godot.Input.MouseMode)0);
+            OnConfirmationFinished();
+        }
     }
     protected override void OnConfirmationFinished()
     {

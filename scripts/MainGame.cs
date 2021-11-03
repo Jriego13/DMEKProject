@@ -10,15 +10,17 @@ public class MainGame : Node2D
     protected RichTextLabel waterLevelCounter;
     protected int waterLevel;
     protected EscapeMenu escapeMenu;
+    protected RichTextLabel successfulTapPrompt;
+    protected RichTextLabel levelCompletePrompt;
    
     public override void _Input(InputEvent @event)
     {
-        base._Input(@event);
+       /*  base._Input(@event);
         if (@event.IsActionPressed("ui_cancel"))
         {
             GD.Print("escape pressed");
             escapeMenu.visible = !escapeMenu.visible;
-        }
+        } */
     }
     public override void _Ready()
     {
@@ -38,6 +40,9 @@ public class MainGame : Node2D
         bar.Value = waterLevel;
 
         escapeMenu = GetNode("MenuPopup") as EscapeMenu;
+
+        successfulTapPrompt = GetNode("Overlay/SuccessfulTapPrompt") as RichTextLabel;
+        levelCompletePrompt = GetNode("Overlay/LevelCompletePrompt") as RichTextLabel;
         SetUp();
     }
     // What happens when the confirmation is finished in the respective game mode:
@@ -48,14 +53,14 @@ public class MainGame : Node2D
     {
         base._Process(delta);
         // Check if objective complete:
-        if (confirmation.getIsFinished())
+        /* if (confirmation.getIsFinished())
         {
             // Delete the current node:
             confirmation.QueueFree();
             // Add new node to the tree:
             Input.SetMouseMode((Godot.Input.MouseMode)0);
             OnConfirmationFinished();
-        }
+        } */
         confirmation.gamePaused = (escapeMenu.visible || escapeMenu.optionsVisible);
 
         if(Input.IsActionPressed("addLiquid")){
@@ -73,6 +78,11 @@ public class MainGame : Node2D
                 bar.Value = waterLevel;
                 waterLevelCounter.Text = waterLevel.ToString();
             }
+        }
+        if (Input.IsActionPressed("ui_cancel"))
+        {
+            GD.Print("escape pressed");
+            escapeMenu.visible = !escapeMenu.visible;
         }
     }
 

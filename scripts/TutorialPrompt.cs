@@ -80,7 +80,6 @@ public class TutorialPrompt : RichTextLabel
       var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
       
       if (!shownWelcomeMessage && !shownWaterUIMessage) {
-        GD.Print("inside if1");
         this.SetVisible(true);
         SetText("Welcome to the tutorial! \n\n" +
                 "Press h to view the controls. \n\n" +
@@ -93,7 +92,6 @@ public class TutorialPrompt : RichTextLabel
           }
       }
       else if (shownWelcomeMessage && !shownWaterUIMessage) {
-        GD.Print("inside if2");
         this.SetVisible(false);
         waterUIPrompt.SetVisible(true);
         waterUIPrompt.SetText("Above is the fluid level in the eye\n" +
