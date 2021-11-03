@@ -11,6 +11,13 @@ public class CannulaMain2D : Node2D {
 	bool lrRotating = false; // false defualts to rotating left cannula, true to right cannula
 	float timer = 0;
 
+	public bool getLHeld(){
+		return lHeld;
+	}
+	public bool getRHeld(){
+		return rHeld;
+	}
+
 	public override void _Ready() {
 		Input.SetMouseMode((Godot.Input.MouseMode)1); // hide mouse
 		lCannula = GetNode("./CannulaLSprite") as Cannula2D;
