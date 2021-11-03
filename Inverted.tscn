@@ -17,6 +17,3 @@ script = ExtResource( 2 )
 [node name="InjectArea" type="CollisionShape2D" parent="InjectArea"]
 position = Vector2( 361.918, -4.58298 )
 shape = SubResource( 1 )
-
-[connection signal="area_entered" from="InjectArea" to="." method="_OnInjectAreaEntered"]
-[connection signal="area_exited" from="InjectArea" to="." method="_OnInjectAreaExited"]

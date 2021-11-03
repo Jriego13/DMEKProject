@@ -20,10 +20,10 @@ public class ToggleHelp : RichTextLabel {
     }
     else {
       SetBbcode("[right] Press esc to return to previous screen \n" 
-              +"Rotate cannula clockwise: s" + "\n"
-              + "counterclockwise: w" + "\n" + "\n"
-              + "swap cannula: r" + "\n"
-              + "reset cannula: e" + "\n" + "\n"
+              +"Rotate cannula cw: s ccw: w" + "\n" + "\n"
+              + "swap cannula control: r" + "\n"
+              + "reset cannula: e" + "\n" 
+              + "inject liquid in: p out: o \n \n"
               + "tap left cannula: left-mouse" + "\n"
               + "tap right cannula: right-mouse" + "\n" + "\n"
               + "hold mouse to keep cannula down[/right]");

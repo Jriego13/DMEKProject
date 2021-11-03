@@ -9,8 +9,8 @@ public class Inverted : Graft {
     currentConfirmation = "Inverted";
     numTapsComplete = rng.Next(3,5);
     var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
-		// isTutorialMode = levelSwitcher.tutorialMode();
-		// setUpHitboxes(isTutorialMode);
+		isTutorialMode = levelSwitcher.tutorialMode();
+		//setUpHitboxes(isTutorialMode);
 		GD.Print("you have to inject " + numTapsComplete + " times!");
   }
 

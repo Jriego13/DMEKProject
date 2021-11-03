@@ -115,14 +115,6 @@ public class Graft : Sprite {
 		return isFinished;
 	}
 
-  public bool getIsNextLevelSet() {
-    return isNextLevelSet;
-  }
-
-  public String getNextConfirmation() {
-    return nextConfirmation;
-  }
-
   public void onInteractionBoxEntered()
 	{
 		interactable = true;
@@ -217,11 +209,27 @@ public class Graft : Sprite {
     var torque = tapForce * r * Math.Sin(theta);
     rotationalVelocity = torque; // Make rotational velocity the torque because things are complicated enough
 
-    GD.Print("axis slope ", axisSlope);
-    GD.Print("mouse pos ", mousePos);
-    GD.Print("slope of line from mouse to center ", slope);
-    GD.Print("r ", r);
-    GD.Print("theta ", theta);
-    GD.Print("torque ", torque);
+    // GD.Print("axis slope ", axisSlope);
+    // GD.Print("mouse pos ", mousePos);
+    // GD.Print("slope of line from mouse to center ", slope);
+    // GD.Print("r ", r);
+    // GD.Print("theta ", theta);
+    // GD.Print("torque ", torque);
+  }
+
+  public bool getIsNextLevelSet() {
+    return isNextLevelSet;
+  }
+
+  public String getNextConfirmation() {
+    return nextConfirmation;
+  }
+
+  public int getNumTaps() {
+    return numTaps;
+  }
+
+  public int getTopTaps() {
+    return topTaps;
   }
 }
