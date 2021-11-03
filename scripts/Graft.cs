@@ -13,7 +13,6 @@ public class Graft : Sprite {
   protected int topTaps = 0;
   protected int topTapsComplete = 0;
   protected bool isFinished;
-  protected Texture circleTexture;
   protected String previousConfirmation;
   protected String currentConfirmation;
   protected Cannula2D lCannula;
@@ -32,7 +31,6 @@ public class Graft : Sprite {
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
     misclickText = GetNode("../Overlay/MisclickCounter") as RichTextLabel;
-	  circleTexture = GD.Load("res://images/circle.png") as Texture;
   	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
   	isTutorialMode = levelSwitcher.tutorialMode();
   }
@@ -50,21 +48,21 @@ public class Graft : Sprite {
     GD.Print("Loading Textures...");
 
     if(currentConfirmation == "SimpleFold") {
-      graftTextures.Add(GetTexture());
+      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/SimpleEdge" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
     else if(currentConfirmation == "EdgeFold") {
-      graftTextures.Add(GetTexture());
+      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/EdgeDone" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
     else if(currentConfirmation == "Scroll") {
-      graftTextures.Add(GetTexture());
+      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/ScrollSimple" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
@@ -73,23 +71,20 @@ public class Graft : Sprite {
   }
 
   // What will happen when the player clicks outside of the correct areas:
-  protected async void registerMisclick()
+  protected void registerMisclick()
   {
     if (gamePaused || !misclicksOn)
       return;
     if(numTapsWrong < 3){
 					GD.Print("You clicked outside of the correct areas");
-					Vector2 mousePos = GetViewport().GetMousePosition();
-					GD.Print(mousePos);
-					Sprite misclickCircle = new Sprite();
-					misclickCircle.Texture = circleTexture;
-					misclickCircle.Scale = new Vector2(0.1f , 0.1f);
-					misclickCircle.Position = mousePos;
-					misclickCircle.Modulate = new Color(1, 0 , 0);
-
-					GetTree().GetRoot().AddChild(misclickCircle);
-					await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
-					misclickCircle.QueueFree();
+          if (lCannula.tapped)
+          {
+            lCannula.ShowMisclickCircle();
+          }
+          if (rCannula.tapped)
+          {
+            rCannula.ShowMisclickCircle();
+          }
 					++numTapsWrong;
           misclickText.Text = "Misclicks: " + numTapsWrong + "/3";
 				}
@@ -103,7 +98,6 @@ public class Graft : Sprite {
 					GetTree().ChangeScene("res://FailScreen.tscn");
 				}
   }
-
   public bool getIsFinished() {
 		return isFinished;
 	}
@@ -130,7 +124,7 @@ public class Graft : Sprite {
     }
   public override void _Process(float delta)
   {
-    Input.SetMouseMode((Godot.Input.MouseMode)0);
+    //Input.SetMouseMode((Godot.Input.MouseMode)0);
     if (!gamePaused)
     {
       CheckObjectives();
@@ -196,11 +190,11 @@ public class Graft : Sprite {
     var torque = tapForce * r * Math.Sin(theta);
     rotationalVelocity = torque; // Make rotational velocity the torque because things are complicated enough
 
-    GD.Print("axis slope ", axisSlope);
-    GD.Print("mouse pos ", mousePos);
-    GD.Print("slope of line from mouse to center ", slope);
-    GD.Print("r ", r);
-    GD.Print("theta ", theta);
-    GD.Print("torque ", torque);
+    // GD.Print("axis slope ", axisSlope);
+    // GD.Print("mouse pos ", mousePos);
+    // GD.Print("slope of line from mouse to center ", slope);
+    // GD.Print("r ", r);
+    // GD.Print("theta ", theta);
+    // GD.Print("torque ", torque);
   }
 }

@@ -60,10 +60,12 @@ public class SimpleFold : Graft {
 
   public void _OnTapAreaEntered(object area) {
     tapAreaEntered = true;
+    GD.Print("tap area entered");
   }
 
   public void _OnTapAreaExited(object area) {
     tapAreaEntered = false;
+    GD.Print("tap area exited");
   }
 
   public void _OnHoldAreaEntered(object area) {
@@ -73,6 +75,7 @@ public class SimpleFold : Graft {
 
   public void _OnHoldAreaExited(object area) {
     holdAreaEntered = false;
+    GD.Print("hold area exited");
   }
 
   public void setUpHitboxes(bool setup) {

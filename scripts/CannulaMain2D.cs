@@ -99,7 +99,6 @@ public class CannulaMain2D : Node2D {
 		Vector2 localMousePos = this.GetLocalMousePosition(); // local pos of the mouse
 		Vector2 leftPos = new Vector2((localMousePos.x - 28.5f), localMousePos.y);
 		Vector2 rightPos = new Vector2((localMousePos.x + 28.5f), localMousePos.y);
-
 		// enabling and disabling cannula movement
 		if(!lCannula.locked)
 			lCannula.SetPosition(leftPos);

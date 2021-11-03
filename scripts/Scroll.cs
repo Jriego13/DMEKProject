@@ -58,7 +58,6 @@ public class Scroll : Graft {
 					numTaps -= 1;
 				if(numTaps >= 0)
 					SetTexture(graftTextures[numTaps]);
-
 				registerMisclick();
 			}
 		}

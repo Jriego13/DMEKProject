@@ -4,7 +4,12 @@ using System;
 public class Cannula2D : Sprite {
   public bool tapped = false;
   public bool locked = false;
+  private Texture circleTexture;
 
+  public override void _Ready()
+  {
+    circleTexture = GD.Load("res://images/circle.png") as Texture;
+  }
   public void LockCannula() {
     //Sprite currentMat = this.GetActiveMaterial(0) as Sprite;
 
@@ -27,5 +32,16 @@ public class Cannula2D : Sprite {
       return true;
 
     return false;
+  }
+  public async void ShowMisclickCircle()
+  {
+    Sprite misclickCircle = new Sprite();
+    misclickCircle.Texture = circleTexture;
+    misclickCircle.Scale = new Vector2(0.1f , 0.1f);
+    misclickCircle.Modulate = new Color(1, 0 , 0);
+    misclickCircle.Position = GlobalPosition;
+    GetTree().Root.AddChild(misclickCircle);
+    await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
+    misclickCircle.QueueFree();
   }
 }
