@@ -9,7 +9,7 @@
 [ext_resource path="res://images/lifebar_fill.png" type="Texture" id=7]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=8]
 
-[sub_resource type="CSharpScript" id=1]
+[sub_resource type="CSharpScript" id=8]
 resource_name = "MainEye2D"
 script/source = "using Godot;
 using System;
@@ -48,7 +48,7 @@ curve = SubResource( 7 )
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.749, 0.842 )
-script = SubResource( 1 )
+script = SubResource( 8 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 0.0120792, -0.0168638 )
@@ -99,6 +99,12 @@ stream = ExtResource( 1 )
 [node name="Overlay" parent="." instance=ExtResource( 5 )]
 position = Vector2( 421.522, 17.6158 )
 
+[node name="MisclickCounter" parent="Overlay" index="2"]
+margin_left = -93.7899
+margin_top = 169.743
+margin_right = 138.211
+margin_bottom = 200.743
+
 [node name="HorizontalMarker" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 906.01, 440 )
@@ -117,3 +123,5 @@ margin_left = 910.082
 margin_top = 446.771
 margin_right = 910.082
 margin_bottom = 446.771
+
+[editable path="Overlay"]

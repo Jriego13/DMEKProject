@@ -9,40 +9,12 @@ public class MainEye2DTutorial : MainGame
     private RichTextLabel helpPrompt;
     private RichTextLabel waterUIPrompt;
     private MarginContainer waterLevelUI;
-    private int waterLevel;
     private int curNumTaps;
     private int curTopTaps;
     private bool levelComplete;
 
-    public override void _Ready()
+    protected override void CheckObjectives()
     {
-        GD.Print("here inside maineye2dtut");
-        tutorialPrompt = GetNode("Overlay/TutorialPrompt") as RichTextLabel;
-        tutorialPrompt.SetVisible(true);
-        var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
-        levelName = levelSwitcher.getLevelName();
-        loadConfirmation(levelName);
-        waterLevelUI = GetNode("UI") as MarginContainer;
-        waterLevelUI.SetVisible(true);
-        curNumTaps = 0;
-        curTopTaps = 0;
-        successfulTapPrompt = GetNode("Overlay/SuccessfulTapPrompt") as RichTextLabel;
-        successfulTapPrompt.SetVisible(false);
-        helpPrompt = GetNode("Overlay/HelpPrompt") as RichTextLabel;
-        helpPrompt.SetVisible(true);
-        levelCompletePrompt = GetNode("Overlay/LevelCompletePrompt") as RichTextLabel;
-        levelCompletePrompt.SetVisible(false);
-        waterUIPrompt = GetNode("Overlay/WaterUIPrompt") as RichTextLabel;
-        levelComplete = false;
-    }
-    public override void _Process(float delta)
-    {
-        //base._Process(delta);
-        // If confirmation is complete, load the next confirmation:
-        if (confirmation.getIsFinished())
-        {
-            successMode();
-        }
         if (Input.IsActionPressed("continue") && levelComplete) {
             GD.Print("u pressed enter, here we go!");
             confirmation.QueueFree();
@@ -60,11 +32,23 @@ public class MainEye2DTutorial : MainGame
             curTopTaps = curTopTaps + 1;
         }
     }
+    // Sets up the tutorial
     protected override void SetUp()
     {
         GD.Print("here inside maineye2dtut");
         tutorialPrompt = GetNode("Overlay/TutorialPrompt") as RichTextLabel;
+        tutorialPrompt.Visible = true;
         confirmation.misclicksOn = false;
+        curNumTaps = 0;
+        curTopTaps = 0;
+        levelComplete = false;
+        
+        helpPrompt = GetNode("Overlay/HelpPrompt") as RichTextLabel;
+        helpPrompt.Visible = true;
+        
+        waterUIPrompt = GetNode("Overlay/WaterUIPrompt") as RichTextLabel;
+        waterLevelUI = GetNode("UI") as MarginContainer;
+        waterLevelUI.Visible = true;
     }    
     protected override void OnConfirmationFinished()
     {
@@ -72,19 +56,19 @@ public class MainEye2DTutorial : MainGame
     }
 
     private async void showSuccessfulTapPrompt() {
-        GD.Print("successfil tap");
-        successfulTapPrompt.SetVisible(true);
+        GD.Print("successful tap");
+        successfulTapPrompt.Visible = true;
         await ToSignal(GetTree().CreateTimer(1), "timeout");
-        successfulTapPrompt.SetVisible(false);
+        successfulTapPrompt.Visible = false;
     }
 
     private void successMode() {
-        successfulTapPrompt.SetVisible(false);
-        tutorialPrompt.SetVisible(false);
-        waterLevelUI.SetVisible(false);
-        helpPrompt.SetVisible(false);
-        levelCompletePrompt.SetVisible(true);
-        waterLevelUI.SetVisible(false);
+        successfulTapPrompt.Visible = false;
+        tutorialPrompt.Visible = false;
+        waterLevelUI.Visible = false;
+        helpPrompt.Visible = false;
+        levelCompletePrompt.Visible = true;
+        waterLevelUI.Visible = false;
         levelComplete = true;
     }
 }
