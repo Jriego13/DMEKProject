@@ -112,12 +112,8 @@ public class Graft : Sprite {
   public override void _Input(InputEvent @event)
     {
         base._Input(@event);
-        if (@event.IsActionPressed("left_mouse") &&
-          this.GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())) && interactable)
-        {
-          RotateFromTap();
-        }
-        else if (@event.IsActionPressed("toggle_rotation"))
+        
+        if (@event.IsActionPressed("toggle_rotation"))
         {
           interactable = !interactable;
         }
@@ -130,6 +126,11 @@ public class Graft : Sprite {
       CheckObjectives();
       if (Math.Abs(rotationalVelocity) > 0)
         Deaccelerate();
+    }
+    if ((lCannula.tapped || rCannula.tapped) &&
+      this.GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())) && interactable)
+    {
+      RotateFromTap();
     }
   }
   protected void Deaccelerate()
@@ -154,8 +155,11 @@ public class Graft : Sprite {
   }
   private void RotateFromTap()
   {
-    Vector2 mousePos = GetViewport().GetMousePosition();
-
+    Vector2 tapPos = new Vector2(0.0f,0.0f);
+    if (lCannula.tapped)
+      tapPos = lCannula.GlobalPosition;
+    else if (rCannula.tapped)
+      tapPos = rCannula.GlobalPosition;
     var axis = GetNode("Axis") as Line2D;
     var axisPoint0 = GlobalTransform.BasisXform(axis.Points[0]);
     var axisPoint1 = GlobalTransform.BasisXform(axis.Points[1]);
@@ -169,7 +173,7 @@ public class Graft : Sprite {
     var closestAxisPoint = new Vector2();
     foreach (Vector2 point in axis.Points)
     {
-      var distance = ToGlobal(point).DistanceTo(mousePos);
+      var distance = ToGlobal(point).DistanceTo(tapPos);
       if (distance < minDistance)
       {
         minDistance = distance;
@@ -179,7 +183,7 @@ public class Graft : Sprite {
     // 3. Find slope of line going from where the user clicked to center of the graft:
     var centerLine = GetNode("Center") as Line2D;
     var centerPoint = ToGlobal(centerLine.Points[0]);
-    var slope = (mousePos.y - centerPoint.y)/(mousePos.x - centerPoint.x);
+    var slope = (tapPos.y - centerPoint.y)/(tapPos.x - centerPoint.x);
 
     // 4. Calculate r and θ:
     var r = Math.Abs(centerPoint.DistanceTo(closestAxisPoint));
