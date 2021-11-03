@@ -30,17 +30,17 @@ public class Taco : Graft {
     }
   }
 
-  public void _OnInjectAreaEntered(Area2D area) {
+  public void _OnInjectAreaEntered(object area) {
     injectAreaEntered = true;
-    Cannula2D currentCannula = area.GetParent() as Cannula2D;
-    currentCannula.inArea = true;
+    // Cannula2D currentCannula = area.GetParent() as Cannula2D;
+    // currentCannula.inArea = true;
     GD.Print("inject area entered.");
   }
 
-  public void _OnInjectAreaExited(Area2D area) {
+  public void _OnInjectAreaExited(object area) {
     injectAreaEntered = false;
-    Cannula2D currentCannula = area.GetParent() as Cannula2D;
-    currentCannula.inArea = false;
+    // Cannula2D currentCannula = area.GetParent() as Cannula2D;
+    // currentCannula.inArea = false;
   }
 
   // public void setUpHitboxes(bool setup) {

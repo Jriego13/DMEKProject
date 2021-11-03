@@ -26,7 +26,7 @@ public class DoubleScroll : Graft {
     }
 
     if(areaEntered) {
-      if((lCannula.tapped && lCannula.inArea) || (rCannula.tapped && rCannula.inArea)) {
+      if(lCannula.tapped || rCannula.tapped) {
         numTaps += 1;
         lCannula.tapped = false;
         rCannula.tapped = false;
@@ -39,21 +39,21 @@ public class DoubleScroll : Graft {
 
     if(!areaEntered){
       if(rCannula.tapped || lCannula.tapped){
+        // numTaps -= 1;
+        // if(numTaps >= 0)
+        //   SetTexture(graftTextures[numTaps]);
+
         registerMisclick();
       }
     }
   }
 
-  private void _OnAreaEntered(Area2D area) {
+  private void _OnAreaEntered(object area) {
     areaEntered = true;
-    Cannula2D currentCannula = area.GetParent() as Cannula2D;
-    currentCannula.inArea = true;
   }
 
-  private void _OnAreaExited(Area2D area) {
+  private void _OnAreaExited(object area) {
     areaEntered = false;
-    Cannula2D currentCannula = area.GetParent() as Cannula2D;
-    currentCannula.inArea = false;
   }
 
   private void setUpHitboxes(bool setup) {

@@ -139,7 +139,7 @@ public class Graft : Sprite {
         if (@event.IsActionPressed("left_mouse") &&
           this.GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())) && interactable)
         {
-          // RotateFromTap();
+          RotateFromTap();
         }
         else if (@event.IsActionPressed("toggle_rotation"))
         {

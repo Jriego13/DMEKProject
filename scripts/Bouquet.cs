@@ -24,7 +24,7 @@ public class Bouquet : Graft {
 
     if(midAreaEntered) {
       if(lCannula.CheckCannulaRotation(0f, 0.34f) || rCannula.CheckCannulaRotation(0f, 0.34f)) {
-        if((lCannula.tapped && lCannula.inArea) || (rCannula.tapped && rCannula.inArea)) {
+        if(lCannula.tapped || rCannula.tapped) {
           numTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
@@ -35,7 +35,7 @@ public class Bouquet : Graft {
 
     if(topAreaEntered) {
       if(lCannula.CheckCannulaRotation(1.39f, 1.74f) || rCannula.CheckCannulaRotation(1.39f, 1.74f)) {
-        if((lCannula.tapped && lCannula.inArea) || (rCannula.tapped && rCannula.inArea)) {
+        if(lCannula.tapped || rCannula.tapped) {
           topTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
@@ -45,29 +45,19 @@ public class Bouquet : Graft {
     }
   }
 
-  private void _OnTopAreaEntered(Area2D area) {
+  private void _OnTopAreaEntered(object area) {
     topAreaEntered = true;
-    Cannula2D currentCannula = area.GetParent() as Cannula2D;
-    currentCannula.inArea = true;
-    GD.Print("top area entered.");
   }
 
-  private void _OnTopAreaExited(Area2D area) {
+  private void _OnTopAreaExited(object area) {
     topAreaEntered = false;
-    Cannula2D currentCannula = area.GetParent() as Cannula2D;
-    currentCannula.inArea = false;
   }
 
-  private void _OnMidAreaEntered(Area2D area) {
+  private void _OnMidAreaEntered(object area) {
     midAreaEntered = true;
-    Cannula2D currentCannula = area.GetParent() as Cannula2D;
-    currentCannula.inArea = true;
-    GD.Print("mid area entered.");
   }
 
-  private void _OnMidAreaExited(Area2D area) {
+  private void _OnMidAreaExited(object area) {
     midAreaEntered = false;
-		Cannula2D currentCannula = area.GetParent() as Cannula2D;
-		currentCannula.inArea = false;
   }
 }
