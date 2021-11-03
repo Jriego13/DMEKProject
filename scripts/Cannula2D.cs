@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 public class Cannula2D : Sprite {
+  public bool inArea = false;
   public bool tapped = false;
   public bool locked = false;
   public bool injecting = false;

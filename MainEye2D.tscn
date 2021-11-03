@@ -34,17 +34,17 @@ public class MainEye2D : Node2D
 }
 "
 
-[sub_resource type="Curve" id=6]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0.238636, 0.836364 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=3]
-curve = SubResource( 6 )
+curve = SubResource( 2 )
 
-[sub_resource type="Curve" id=7]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=5]
-curve = SubResource( 7 )
+curve = SubResource( 4 )
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.749, 0.842 )
@@ -106,12 +106,14 @@ margin_right = 138.211
 margin_bottom = 200.743
 
 [node name="HorizontalMarker" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 906.01, 440 )
 scale = Vector2( 2.08307, 4.03082 )
 texture = SubResource( 3 )
 
 [node name="VerticalMarker" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 914.307, 444.54 )
 rotation = 1.5708
