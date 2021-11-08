@@ -5,11 +5,11 @@ using System;
 public class MainGame : Node2D
 {
     // levelName is random by default so it can be loaded without levelSelect
+    protected int waterLevel;
     protected String levelName = Helper.getRandomConfirmation();
     protected Graft confirmation;
     protected TextureProgress bar;
     protected RichTextLabel waterLevelCounter;
-    protected int waterLevel;
     protected EscapeMenu escapeMenu;
     protected RichTextLabel successfulTapPrompt;
     protected RichTextLabel levelCompletePrompt;
@@ -39,6 +39,7 @@ public class MainGame : Node2D
             }
         }
     }
+
     public override void _Ready()
     {
         // Load the singleton:

@@ -22,19 +22,8 @@ public class Bouquet : Graft {
       GD.Print("tapping complete.");
     }
 
-    if(midAreaEntered) {
-      if(lCannula.CheckCannulaRotation(0f, 0.34f) || rCannula.CheckCannulaRotation(0f, 0.34f)) {
-        if(lCannula.tapped || rCannula.tapped) {
-          numTaps += 1;
-          lCannula.tapped = false;
-          rCannula.tapped = false;
-          GD.Print("bot tap registered");
-        }
-      }
-    }
-
     if(topAreaEntered) {
-      if(lCannula.CheckCannulaRotation(1.39f, 1.74f) || rCannula.CheckCannulaRotation(1.39f, 1.74f)) {
+      if(lCannula.CheckCannulaRotation(this.GetRotation(), 1.396f, 1.745f) || rCannula.CheckCannulaRotation(this.GetRotation(), 1.396f, 1.745f)) {
         if(lCannula.tapped || rCannula.tapped) {
           topTaps += 1;
           lCannula.tapped = false;
@@ -43,10 +32,22 @@ public class Bouquet : Graft {
         }
       }
     }
+
+    if(midAreaEntered) {
+      if(lCannula.CheckCannulaRotation(this.GetRotation(), 0f, 0.52f) || rCannula.CheckCannulaRotation(this.GetRotation(), 0f, 0.52f)) {
+        if(lCannula.tapped || rCannula.tapped) {
+          numTaps += 1;
+          lCannula.tapped = false;
+          rCannula.tapped = false;
+          GD.Print("bot tap registered");
+        }
+      }
+    }
   }
 
   private void _OnTopAreaEntered(object area) {
     topAreaEntered = true;
+    GD.Print("top area entered.");
   }
 
   private void _OnTopAreaExited(object area) {
@@ -55,6 +56,7 @@ public class Bouquet : Graft {
 
   private void _OnMidAreaEntered(object area) {
     midAreaEntered = true;
+    GD.Print("mid area entered.");
   }
 
   private void _OnMidAreaExited(object area) {
