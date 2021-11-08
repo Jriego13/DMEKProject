@@ -13,7 +13,7 @@ public class MainGame : Node2D
     protected EscapeMenu escapeMenu;
     protected RichTextLabel successfulTapPrompt;
     protected RichTextLabel levelCompletePrompt;
-   
+
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
@@ -50,7 +50,7 @@ public class MainGame : Node2D
 
         // _tween = GetNode("UI/Tween") as Tween;
         bar = GetNode("UI/TextureProgress") as TextureProgress;
-        
+
         waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
         waterLevel = 100;
         bar.Value = waterLevel;
@@ -93,5 +93,9 @@ public class MainGame : Node2D
         }
         confirmation = (Graft)confirmationScene.Instance();
         GetNode("/root/Main").AddChild(confirmation);
+    }
+
+    public int getWaterLevel() {
+      return waterLevel;
     }
 }

@@ -11,6 +11,13 @@ public class CannulaMain2D : Node2D {
 	bool lrRotating = false; // false defualts to rotating left cannula, true to right cannula
 	float timer = 0;
 
+	public bool getLHeld(){
+		return lHeld;
+	}
+	public bool getRHeld(){
+		return rHeld;
+	}
+
 	public override void _Ready() {
 		Input.SetMouseMode((Godot.Input.MouseMode)1); // hide mouse
 		lCannula = GetNode("./CannulaLSprite") as Cannula2D;
@@ -22,8 +29,9 @@ public class CannulaMain2D : Node2D {
 		if(Input.IsActionPressed("left_mouse") && !lCannula.locked)	{
 			if(lHeld) {
 				timer += delta; // if cannula continues being held then keep adding to timer
+				lCannula.SetScale(new Vector2(0.28f, 0.28f));
 			}
-			if(timer >= 0.4f) { // once held for longer than a second
+			if(timer >= 0.4f) { // once held for longer than whatever time
 				lCannula.LockCannula();
 				timer = -1;
 			}
@@ -37,6 +45,7 @@ public class CannulaMain2D : Node2D {
 		else if(Input.IsActionPressed("right_mouse") && !rCannula.locked) {
 			if(rHeld) {
 				timer += delta;
+				rCannula.SetScale(new Vector2(0.28f, 0.28f));
 			}
 			if(timer >= 0.4f) {
 				rCannula.LockCannula();
@@ -65,6 +74,8 @@ public class CannulaMain2D : Node2D {
 			}
 
 			// reset their states
+			lCannula.SetScale(new Vector2(0.3f, 0.3f));
+			rCannula.SetScale(new Vector2(0.3f, 0.3f));
 			lHeld = false;
 			rHeld = false;
 			timer = 0;

@@ -43,7 +43,7 @@ public class Bouquet : Graft {
         }
       }
     }
-  } 
+  }
 
   private void _OnTopAreaEntered(object area) {
     topAreaEntered = true;
