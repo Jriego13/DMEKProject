@@ -8,6 +8,12 @@ public class Scroll : Graft {
 	ColorRect topHitBox;
 	ColorRect midHitBox;
 
+	public override void _Process(float delta) {
+		base._Process(delta);
+		// GD.Print("top: " + topAreaEntered);
+		// GD.Print("mid: " + bottomAreaEntered);
+	}
+
 	protected override void SetObjectives() {
 		currentConfirmation = "Scroll";
 		numTapsComplete = rng.Next(4,6);
@@ -36,7 +42,7 @@ public class Scroll : Graft {
 		}
 
 		if(topAreaEntered) {
-			if(lCannula.CheckCannulaRotation(1.39f, 1.74f) || rCannula.CheckCannulaRotation(1.39f, 1.74f)) {
+			if(lCannula.CheckCannulaRotation(this.GetRotation(), 1.396f, 1.745f) || rCannula.CheckCannulaRotation(this.GetRotation(), 1.396f, 1.745f)) {
 				if(lCannula.tapped || rCannula.tapped) {
 					topTaps += 1;
 					lCannula.tapped = false;
@@ -51,8 +57,8 @@ public class Scroll : Graft {
 		}
 
 		if(bottomAreaEntered) {
-			if(lCannula.CheckCannulaRotation(0f, 0.34f) || rCannula.CheckCannulaRotation(0f, 0.34f)) {
-				if(lCannula.tapped || rCannula.tapped) {
+			if(lCannula.CheckCannulaRotation(this.GetRotation(), 0f, 0.52f) || rCannula.CheckCannulaRotation(this.GetRotation(), 0f, 0.52f)) {
+				if((lCannula.inArea && lCannula.tapped) || (rCannula.inArea && rCannula.tapped)) {
 					numTaps += 1;
 					lCannula.tapped = false;
 					rCannula.tapped = false;
@@ -76,22 +82,30 @@ public class Scroll : Graft {
 		}
 	}
 
-  private void _OnTopAreaEntered(object area) {
+  private void _OnTopAreaEntered(Area2D area) {
 		topAreaEntered = true;
-	GD.Print("top area entered.");
+		Cannula2D currentCannula = area.GetParent() as Cannula2D;
+		currentCannula.inArea = true;
+		GD.Print("top area entered.");
 	}
 
-	private void _OnTopAreaExited(object area) {
+	private void _OnTopAreaExited(Area2D area) {
 		topAreaEntered = false;
+		Cannula2D currentCannula = area.GetParent() as Cannula2D;
+		currentCannula.inArea = false;
 	}
 
-	private void _OnMidAreaEntered(object area) {
+	private void _OnMidAreaEntered(Area2D area) {
 		bottomAreaEntered = true;
-	GD.Print("mid area entered.");
+		Cannula2D currentCannula = area.GetParent() as Cannula2D;
+		currentCannula.inArea = true;
+		GD.Print("mid area entered.");
 	}
 
-	private void _OnMidAreaExited(object area) {
+	private void _OnMidAreaExited(Area2D area) {
 		bottomAreaEntered = false;
+		Cannula2D currentCannula = area.GetParent() as Cannula2D;
+		currentCannula.inArea = false;
 	}
 
 	private void setUpHitboxes(bool setup) {
