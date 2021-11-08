@@ -14,13 +14,21 @@ public class MainMenu : MarginContainer
 		tutorialButton.Connect("pressed", this, "onTutorialPressed");
 		var playButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Play");
 		playButton.Connect("pressed", this, "onPlayPressed");
+		var infoButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Info");
+		infoButton.Connect("pressed", this, "onInfoPressed");
+
 	}
 
 	// Starts the game at a random confirmation:
+	private void onInfoPressed()
+	{
+		GD.Print("Info pressed");
+		GetTree().ChangeScene(Helper.toFileName("MainEyeInfoScreen"));
+	}
 	private void onPlayPressed()
 	{
 		GD.Print("Play pressed");
-		GetTree().ChangeScene(Helper.toFileName("MainEye"));
+		//GetTree().ChangeScene(Helper.toFileName("MainEyeInfoScreen"));
 	}
 	// Navigates to the level select screen:
 	private void onLevelSelectPressed()
