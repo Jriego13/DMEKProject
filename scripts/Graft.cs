@@ -114,14 +114,17 @@ public class Graft : Sprite {
   public bool getIsFinished() {
 		return isFinished;
 	}
+
   public void onInteractionBoxEntered()
 	{
 		interactable = true;
 	}
+
   public void onInteractionBoxExited()
   {
     interactable = false;
   }
+
   public override void _Input(InputEvent @event)
     {
         base._Input(@event);
@@ -135,6 +138,7 @@ public class Graft : Sprite {
           interactable = !interactable;
         }
     }
+
   public override void _Process(float delta)
   {
     Input.SetMouseMode((Godot.Input.MouseMode)0);
@@ -145,6 +149,7 @@ public class Graft : Sprite {
         Deaccelerate();
     }
   }
+
   protected void Deaccelerate()
   {
     const float deacceleration = 0.01f;
@@ -163,8 +168,9 @@ public class Graft : Sprite {
       if (rotationalVelocity > 0)
         rotationalVelocity = 0;
     }
-      
+
   }
+
   private void RotateFromTap()
   {
     Vector2 mousePos = GetViewport().GetMousePosition();
@@ -203,12 +209,12 @@ public class Graft : Sprite {
     var torque = tapForce * r * Math.Sin(theta);
     rotationalVelocity = torque; // Make rotational velocity the torque because things are complicated enough
 
-    GD.Print("axis slope ", axisSlope);
-    GD.Print("mouse pos ", mousePos);
-    GD.Print("slope of line from mouse to center ", slope);
-    GD.Print("r ", r);
-    GD.Print("theta ", theta);
-    GD.Print("torque ", torque);
+    // GD.Print("axis slope ", axisSlope);
+    // GD.Print("mouse pos ", mousePos);
+    // GD.Print("slope of line from mouse to center ", slope);
+    // GD.Print("r ", r);
+    // GD.Print("theta ", theta);
+    // GD.Print("torque ", torque);
   }
 
   public bool getIsNextLevelSet() {

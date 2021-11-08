@@ -1,13 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sprites/Taco.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Taco.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 107.911, 324.523 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 89.8973, 326.215 )
+extents = Vector2( 158.104, 376.213 )
 
 [node name="TacoSprite" type="Sprite"]
 position = Vector2( 891.295, 454.358 )
@@ -15,37 +12,11 @@ scale = Vector2( 0.706333, 0.706333 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="TapArea" type="Area2D" parent="."]
+[node name="InjectArea" type="Area2D" parent="."]
 
-[node name="TapHitbox" type="CollisionShape2D" parent="TapArea"]
-position = Vector2( 123.185, -7.07593 )
+[node name="InjectArea" type="CollisionShape2D" parent="InjectArea"]
+position = Vector2( 361.918, -4.58298 )
 shape = SubResource( 1 )
-
-[node name="TapHitboxColorRect" type="ColorRect" parent="TapArea/TapHitbox"]
-show_behind_parent = true
-margin_left = -111.0
-margin_top = -319.0
-margin_right = 106.0
-margin_bottom = 324.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HoldArea" type="Area2D" parent="."]
-
-[node name="HoldHitbox" type="CollisionShape2D" parent="HoldArea"]
-position = Vector2( 327.222, -7.07599 )
-shape = SubResource( 2 )
-
-[node name="HoldHitboxColorRect" type="ColorRect" parent="HoldArea/HoldHitbox"]
-show_behind_parent = true
-margin_left = -95.0
-margin_top = -319.0
-margin_right = 88.0
-margin_bottom = 322.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Center" type="Line2D" parent="."]
 visible = false
@@ -54,3 +25,6 @@ points = PoolVector2Array( 92.3148, -6.16986, 98.6857, -5.46198 )
 [node name="Axis" type="Line2D" parent="."]
 visible = false
 points = PoolVector2Array( 95, -404.523, 95, -361.639, 95, -311.187, 95, -255.69, 95, -202.715, 95, -142.173, 95, -79.108, 95, -18.565, 95, 49.545, 95, 117.655, 95, 185.766, 95, 238.74, 95, 296.76, 95, 344.69, 95, 387.574 )
+
+[connection signal="area_entered" from="InjectArea" to="." method="_OnInjectAreaEntered"]
+[connection signal="area_exited" from="InjectArea" to="." method="_OnInjectAreaExited"]

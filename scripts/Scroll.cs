@@ -66,10 +66,10 @@ public class Scroll : Graft {
 
 		if(!topAreaEntered && !bottomAreaEntered){
 			if(rCannula.tapped || lCannula.tapped){
-				if(numTaps > 0)
-					numTaps -= 1;
-				if(numTaps >= 0)
-					SetTexture(graftTextures[numTaps]);
+				// if(numTaps > 0)
+				// 	numTaps -= 1;
+				// if(numTaps >= 0)
+				// 	SetTexture(graftTextures[numTaps]);
 
 				registerMisclick();
 			}

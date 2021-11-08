@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://music/Tap.wav" type="AudioStream" id=1]
 [ext_resource path="res://sprites/EyeBackground.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://images/lifebar_bg.png" type="Texture" id=6]
 [ext_resource path="res://images/lifebar_fill.png" type="Texture" id=7]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=8]
+[ext_resource path="res://scripts/Incisions.cs" type="Script" id=9]
 
 [sub_resource type="CSharpScript" id=1]
 resource_name = "MainEye2D"
@@ -32,6 +33,13 @@ public class MainEye2D : Node2D
 //
 //  }
 }
+
+
+private void _on_Incision1_area_entered(object area)
+{
+	GD.Print(\"HII\");
+	// Replace with function body.
+}
 "
 
 [sub_resource type="Curve" id=2]
@@ -45,6 +53,10 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=5]
 curve = SubResource( 4 )
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 22.7219
+height = 0.0
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.749, 0.842 )
@@ -99,13 +111,21 @@ stream = ExtResource( 1 )
 [node name="Overlay" parent="." instance=ExtResource( 5 )]
 position = Vector2( 421.522, 17.6158 )
 
+[node name="MisclickCounter" parent="Overlay" index="2"]
+margin_left = -95.7728
+margin_top = 192.674
+margin_right = 136.228
+margin_bottom = 223.674
+
 [node name="HorizontalMarker" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 906.01, 440 )
 scale = Vector2( 2.08307, 4.03082 )
 texture = SubResource( 3 )
 
 [node name="VerticalMarker" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 914.307, 444.54 )
 rotation = 1.5708
@@ -117,3 +137,68 @@ margin_left = 910.082
 margin_top = 446.771
 margin_right = 910.082
 margin_bottom = 446.771
+
+[node name="Incisions" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="Incision1" type="Area2D" parent="Incisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision1"]
+position = Vector2( 918.224, 46.1755 )
+shape = SubResource( 6 )
+
+[node name="Incision2" type="Area2D" parent="Incisions"]
+visible = false
+position = Vector2( 308.477, 110.743 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision2"]
+position = Vector2( 918.224, 46.1755 )
+shape = SubResource( 6 )
+
+[node name="Incision3" type="Area2D" parent="Incisions"]
+visible = false
+position = Vector2( 452.401, 387.959 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision3"]
+position = Vector2( 918.224, 46.1755 )
+shape = SubResource( 6 )
+
+[node name="Incision4" type="Area2D" parent="Incisions"]
+position = Vector2( 325.536, 687.566 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision4"]
+position = Vector2( 918.224, 46.1755 )
+shape = SubResource( 6 )
+
+[node name="Incision5" type="Area2D" parent="Incisions"]
+position = Vector2( -6.78061, 811.403 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision5"]
+position = Vector2( 918.224, 46.1755 )
+shape = SubResource( 6 )
+
+[node name="Incision6" type="Area2D" parent="Incisions"]
+position = Vector2( -335.729, 681.574 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision6"]
+position = Vector2( 918.224, 46.1755 )
+shape = SubResource( 6 )
+
+[node name="Incision7" type="Area2D" parent="Incisions"]
+position = Vector2( -455.89, 389.412 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision7"]
+position = Vector2( 918.224, 46.1755 )
+shape = SubResource( 6 )
+
+[node name="Incision8" type="Area2D" parent="Incisions"]
+position = Vector2( -313.032, 115.065 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision8"]
+position = Vector2( 918.224, 46.1755 )
+shape = SubResource( 6 )
+
+[connection signal="area_entered" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_exited"]
+
+[editable path="Overlay"]
