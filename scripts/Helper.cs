@@ -93,6 +93,11 @@ public static class Helper
         return nextLevel;
     }
 
+    public static String setNextConfirmation(String nextLevel) {
+      nextLevel = toFileName(nextLevel);
+      return nextLevel;
+    }
+
      public static String getNextTutorialConfirmation(String current) {
         String nextLevel = "";
         if (current.Contains("Scroll"))

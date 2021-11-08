@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/Confirmation.cs" type="Script" id=1]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=2]
@@ -8,9 +8,9 @@
 [ext_resource path="res://MisclickCounter.cs" type="Script" id=6]
 [ext_resource path="res://scripts/TutorialPrompt.cs" type="Script" id=7]
 [ext_resource path="res://ChiKareGoSizeSmaller.tres" type="DynamicFont" id=8]
+[ext_resource path="res://sprites/AnteriorChamber100.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
-size = 14
 font_data = ExtResource( 5 )
 
 [node name="Node2D" type="Node2D"]
@@ -32,10 +32,9 @@ __meta__ = {
 }
 
 [node name="HelpPrompt" type="RichTextLabel" parent="."]
-margin_left = 160.178
-margin_top = 0.048187
-margin_right = 363.673
-margin_bottom = 231.066
+margin_left = 160.0
+margin_right = 363.0
+margin_bottom = 230.0
 rect_scale = Vector2( 0.7757, 0.7757 )
 custom_fonts/normal_font = ExtResource( 4 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
@@ -50,10 +49,10 @@ __meta__ = {
 }
 
 [node name="MisclickCounter" type="RichTextLabel" parent="."]
-margin_left = -89.9483
-margin_top = 195.914
-margin_right = 142.052
-margin_bottom = 226.914
+margin_left = -159.963
+margin_top = 168.958
+margin_right = 72.0377
+margin_bottom = 199.958
 rect_scale = Vector2( 0.7757, 0.7757 )
 custom_fonts/normal_font = SubResource( 1 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
@@ -66,10 +65,10 @@ __meta__ = {
 }
 
 [node name="TutorialPrompt" type="RichTextLabel" parent="."]
-margin_left = 8.05165
-margin_top = 1.57177
-margin_right = 128.052
-margin_bottom = 189.572
+margin_left = -78.0
+margin_top = 27.0
+margin_right = 89.0
+margin_bottom = 256.0
 rect_scale = Vector2( 0.85781, 0.64791 )
 size_flags_horizontal = 2
 custom_fonts/normal_font = ExtResource( 8 )
@@ -79,3 +78,48 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SuccessfulTapPrompt" type="RichTextLabel" parent="."]
+margin_left = 207.0
+margin_top = 103.0
+margin_right = 326.0
+margin_bottom = 135.0
+custom_fonts/normal_font = ExtResource( 4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Good Tap!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelCompletePrompt" type="RichTextLabel" parent="."]
+margin_left = 48.703
+margin_top = 11.901
+margin_right = 280.703
+margin_bottom = 60.901
+custom_fonts/normal_font = ExtResource( 4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "Success! 
+Press enter to continue"
+text = "Success! 
+Press enter to continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaterUIPrompt" type="RichTextLabel" parent="."]
+margin_left = -75.0
+margin_top = 24.0
+margin_right = 78.0
+margin_bottom = 179.0
+custom_fonts/normal_font = ExtResource( 8 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnteriorChamber" type="Sprite" parent="."]
+position = Vector2( 277.426, 177.759 )
+scale = Vector2( 0.231952, 0.231952 )
+texture = ExtResource( 9 )

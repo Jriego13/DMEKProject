@@ -2,9 +2,14 @@ using Godot;
 using System;
 
 public class Cannula2D : Sprite {
+  public bool inArea = false;
   public bool tapped = false;
   public bool locked = false;
+<<<<<<< HEAD
   private Texture circleTexture;
+=======
+  public bool injecting = false;
+>>>>>>> 952c55bf2d2207361841cf844bfcd930390e3060
 
   public override void _Ready()
   {

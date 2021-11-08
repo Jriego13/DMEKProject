@@ -13,7 +13,7 @@ public class TutorialSuccessScreen : Control
         Input.SetMouseMode((Godot.Input.MouseMode)0); // displays the mouse
         var tutorialMenuButton = GetNode("ColorRect/CenterContainer/VBoxContainer/Buttons/MainMenu");
         tutorialMenuButton.Connect("pressed" , this , "onTutorialMenuPressed");
-        var replayButton = GetNode("ColorRect/CenterContainer/VBoxContainer/Buttons/TryAgain");
+        var replayButton = GetNode("ColorRect/CenterContainer/VBoxContainer/Buttons/PlayAgain");
         replayButton.Connect("pressed" , this , "onReplayPressed");
     }
 

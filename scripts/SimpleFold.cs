@@ -48,11 +48,11 @@ public class SimpleFold : Graft {
 
     if(!tapAreaEntered){
 			if(lCannula.tapped || rCannula.tapped){
-        if(numTaps > 0)
-          numTaps -= 1;
-        if(numTaps >= 0)
-          SetTexture(graftTextures[numTaps]);
-          
+        // if(numTaps > 0)
+        //   numTaps -= 1;
+        // if(numTaps >= 0)
+        //   SetTexture(graftTextures[numTaps]);
+
 				registerMisclick();
 			}
 		}

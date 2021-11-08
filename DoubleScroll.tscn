@@ -7,7 +7,7 @@
 extents = Vector2( 62.5461, 324.198 )
 
 [node name="DoubleScrollSprite" type="Sprite"]
-position = Vector2( 943.346, 439.776 )
+position = Vector2( 901.346, 463.776 )
 scale = Vector2( 0.706881, 0.706881 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
@@ -20,11 +20,10 @@ position = Vector2( -50.813, 15.8791 )
 shape = SubResource( 1 )
 
 [node name="MidHitboxColorRect" type="ColorRect" parent="MidArea/MidHitbox"]
-visible = false
 show_behind_parent = true
-margin_left = -64.0
+margin_left = -18.0
 margin_top = -321.0
-margin_right = 52.0
+margin_right = 32.0
 margin_bottom = 324.0
 __meta__ = {
 "_edit_use_anchors_": false
