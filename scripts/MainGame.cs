@@ -46,7 +46,6 @@ public class MainGame : Node2D
         // Get the levelName from the levelSwitcher:
         levelName = levelSwitcher.getLevelName();
         Helper.startLevel = levelName;
-        
         loadConfirmation(levelName);
 
         // _tween = GetNode("UI/Tween") as Tween;
