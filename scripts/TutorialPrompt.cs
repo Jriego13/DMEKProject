@@ -8,12 +8,16 @@ public class TutorialPrompt : RichTextLabel
     private Boolean shownWaterUIMessage = false;
     private Boolean isTutorialMode;
     private RichTextLabel waterUIPrompt;
+    protected Cannula2D lCannula;
+	  protected Cannula2D rCannula;
     
     
 
     //ok will get the level, then based on the level offer the correct prompts
     public override void _Ready()
-    {
+    { 
+        lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
+        rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
         waterUIPrompt = GetNode("../WaterUIPrompt") as RichTextLabel;
         waterUIPrompt.SetVisible(false);
@@ -85,7 +89,8 @@ public class TutorialPrompt : RichTextLabel
                 "Press h to view the controls. \n\n" +
                 "The tutorial will walk you through " + 
                 "how to tap each cornea transplant confirmation correctly.\n" + 
-                "TAP on PINK areas and HOLD the cannula on GREEN ones \n\n" +
+                "TAP on PINK areas and HOLD the cannula on GREEN ones." +
+                "The purple dots are incisions that you hold on to let in liquid \n\n" +
                 "Press enter to continue!");
           if (Input.IsActionJustPressed("continue")) {
           shownWelcomeMessage = true;
@@ -95,7 +100,7 @@ public class TutorialPrompt : RichTextLabel
         this.SetVisible(false);
         waterUIPrompt.SetVisible(true);
         waterUIPrompt.SetText("Above is the fluid level in the eye\n" +
-         "For most grafts, keep it between 10-30.\n For flipped grafts" + 
+         "For most grafts, keep it between 10-30.\n For flipped grafts " + 
          "like taco and inverted it needs to be deep (>50). \n Fluid is" +
          " inserted by holding on an incision point in purple.\n Hit enter to continue");
         if (Input.IsActionJustPressed("continue")) {

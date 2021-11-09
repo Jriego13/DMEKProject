@@ -82,17 +82,17 @@ margin_right = 725.0
 margin_bottom = 284.0
 texture_normal = ExtResource( 3 )
 
-[node name="Options" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+[node name="Info" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
 margin_top = 314.0
 margin_right = 725.0
 margin_bottom = 376.0
-texture_normal = ExtResource( 6 )
+texture_normal = ExtResource( 8 )
 
-[node name="Info" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+[node name="Options" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
 margin_top = 406.0
 margin_right = 725.0
 margin_bottom = 468.0
-texture_normal = ExtResource( 8 )
+texture_normal = ExtResource( 6 )
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
 margin_left = 729.0

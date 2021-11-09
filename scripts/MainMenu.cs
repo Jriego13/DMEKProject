@@ -16,6 +16,7 @@ public class MainMenu : MarginContainer
 		playButton.Connect("pressed", this, "onPlayPressed");
 		var infoButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Info");
 		infoButton.Connect("pressed", this, "onInfoPressed");
+		var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
 
 	}
 
@@ -47,7 +48,14 @@ public class MainMenu : MarginContainer
 	}
 	private void onTutorialPressed()
 	{
+		var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
 		GD.Print("Tutorial pressed");
-		GetTree().ChangeScene(Helper.toFileName("TutorialSelect"));
+		if (levelSwitcher.welcomeMessage()) {
+			GetTree().ChangeScene(Helper.toFileName("TutorialSelect"));
+		}
+		else {
+			levelSwitcher.ChangeLevel(Helper.toFileName("TutorialWelcomeScreen"), Helper.toFileName("SimpleFold"));
+		}
 	}
+
 }

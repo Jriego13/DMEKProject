@@ -99,10 +99,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="WaterLevel" type="RichTextLabel" parent="UI/NinePatchRect"]
+anchor_right = 0.042
+anchor_bottom = 0.079
+margin_left = 399.997
+margin_top = -19.5589
+margin_right = 1067.47
+margin_bottom = 164.551
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "100
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TextureProgress" type="TextureProgress" parent="UI"]
 margin_right = 1822.0
 margin_bottom = 910.0
 texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 3 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
+margin_right = 1822.0
+margin_bottom = 910.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="UI"]
+margin_right = 1822.0
+margin_bottom = 910.0
 texture_progress = ExtResource( 3 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI"]
@@ -131,8 +158,15 @@ margin_top = 173.116
 margin_right = 43.9946
 margin_bottom = 204.116
 
+[node name="TutorialPrompt" parent="Overlay" index="3"]
+margin_left = -85.0
+margin_top = 17.0
+margin_right = 90.0
+margin_bottom = 278.0
+
 [node name="WaterUIPrompt" parent="Overlay" index="6"]
 margin_left = -88.0
+margin_top = 15.0
 margin_bottom = 196.0
 custom_fonts/normal_font = ExtResource( 10 )
 
@@ -165,39 +199,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-<<<<<<< HEAD
-[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
-margin_right = 1822.0
-margin_bottom = 910.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WaterLevel" type="RichTextLabel" parent="UI/NinePatchRect"]
-anchor_right = 0.042
-anchor_bottom = 0.079
-margin_left = 399.997
-margin_top = -19.5589
-margin_right = 1067.47
-margin_bottom = 164.551
-custom_fonts/normal_font = ExtResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "100
-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureProgress" type="TextureProgress" parent="UI"]
-margin_right = 1822.0
-margin_bottom = 910.0
-texture_under = ExtResource( 7 )
-texture_progress = ExtResource( 3 )
-
-[node name="MenuPopup" parent="." instance=ExtResource( 2 )]
-=======
 [node name="MenuPopup" parent="." instance=ExtResource( 8 )]
->>>>>>> 952c55bf2d2207361841cf844bfcd930390e3060
 margin_left = 910.082
 margin_top = 446.771
 margin_right = 910.082

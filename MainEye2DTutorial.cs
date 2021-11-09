@@ -21,7 +21,6 @@ public class MainEye2DTutorial : MainGame
             Input.SetMouseMode((Godot.Input.MouseMode)0);
             GetTree().ChangeScene(Helper.toFileName("TutorialSuccessScreen"));
         }
-        
         if (curNumTaps < confirmation.getNumTaps()) {
             showSuccessfulTapPrompt();
             curNumTaps = curNumTaps + 1;
