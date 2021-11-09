@@ -5,7 +5,7 @@ public class DoubleScroll : Graft {
   PackedScene scene1;
   PackedScene scene2;
   ColorRect midHitBox;
-  bool areaEntered = false;
+  int areaState = 0; // 0-no cannulas, 1-left cannula, 2-right cannula, 3-both
 
   protected override void SetObjectives()
   {
@@ -25,8 +25,10 @@ public class DoubleScroll : Graft {
       isFinished = true;
     }
 
-    if(areaEntered) {
-      if(lCannula.tapped || rCannula.tapped) {
+    // if at least one cannula in the area:
+    if(areaState != 0) {
+      // if cannula tapped and it isn't the other cannula in the area:
+      if((lCannula.tapped && areaState != 2) || (rCannula.tapped && areaState != 1)) {
         numTaps += 1;
         lCannula.tapped = false;
         rCannula.tapped = false;
@@ -39,12 +41,18 @@ public class DoubleScroll : Graft {
 
   }
 
-  private void _OnAreaEntered(object area) {
-    areaEntered = true;
+  private void _OnAreaEntered(Area2D area) {
+    int nextState = Helper.getNextHitboxState(area, true, areaState);
+		if (nextState != -1)
+			areaState = nextState;
+		GD.Print("area entered.");
   }
 
-  private void _OnAreaExited(object area) {
-    areaEntered = false;
+  private void _OnAreaExited(Area2D area) {
+    int nextState = Helper.getNextHitboxState(area, false, areaState);
+		if (nextState != -1)
+			areaState = nextState;
+		GD.Print("area entered.");
   }
 
   private void setUpHitboxes(bool setup) {
