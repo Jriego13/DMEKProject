@@ -18,7 +18,7 @@ script = ExtResource( 2 )
 [node name="TapArea" type="Area2D" parent="."]
 
 [node name="TapHitbox" type="CollisionShape2D" parent="TapArea"]
-position = Vector2( 101.343, -7.076 )
+position = Vector2( 123.185, -7.07593 )
 shape = SubResource( 1 )
 
 [node name="TapHitboxColorRect" type="ColorRect" parent="TapArea/TapHitbox"]
