@@ -22,23 +22,23 @@ public class Bouquet : Graft {
       GD.Print("tapping complete.");
     }
 
-    if(midAreaState != 0) {
-      if((lCannula.tapped && midAreaState != 2 && lCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f))
-       || (rCannula.tapped && midAreaState !=1 && rCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f))) {
-          numTaps += 1;
-          lCannula.tapped = false;
-          rCannula.tapped = false;
-          GD.Print("mid tap registered");
-      }
-    }
-
     if(topAreaState != 0) {
-      if((lCannula.tapped && topAreaState != 2 && lCannula.CheckCannulaRotation(Rotation, 0f, 0.52f))
-       || (rCannula.tapped && topAreaState != 1 && rCannula.CheckCannulaRotation(Rotation, 0f, 0.52f))) {
+      if((lCannula.tapped && topAreaState != 2 && lCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f))
+       || (rCannula.tapped && topAreaState !=1 && rCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f))) {
           topTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
           GD.Print("top tap registered");
+      }
+    }
+
+    if(midAreaState != 0) {
+      if((lCannula.tapped && midAreaState != 2 && lCannula.CheckCannulaRotation(Rotation, 0f, 0.52f))
+       || (rCannula.tapped && midAreaState != 1 && rCannula.CheckCannulaRotation(Rotation, 0f, 0.52f))) {
+          numTaps += 1;
+          lCannula.tapped = false;
+          rCannula.tapped = false;
+          GD.Print("mid tap registered");
       }
     }
   }

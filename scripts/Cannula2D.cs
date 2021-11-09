@@ -32,7 +32,7 @@ public class Cannula2D : Sprite {
   // check rotation function where range can be fed as argument? and we return a bool?
   public bool CheckCannulaRotation(float graftRotation, float lowerBound, float upperBound) {
     float calculated_rotation = Math.Abs((Math.Abs(graftRotation) - Math.Abs(this.GetRotation())));
-    // GD.Print(calculated_rotation);
+    GD.Print(calculated_rotation);
     if(calculated_rotation >= lowerBound && calculated_rotation <= upperBound)
       return true;
 

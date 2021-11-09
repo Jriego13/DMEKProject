@@ -4,10 +4,10 @@
 [ext_resource path="res://sprites/Scroll.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 40.6204, 11.5942 )
+extents = Vector2( 40.6204, 25.028 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 27.0184, 592.374 )
+extents = Vector2( 27.0184, 653.443 )
 
 [node name="ScrollSprite" type="Sprite"]
 position = Vector2( 896.808, 468.936 )
@@ -21,7 +21,7 @@ position = Vector2( 48.1965, -47.2489 )
 scale = Vector2( 4.86989, 4.86989 )
 
 [node name="TopHitbox" type="CollisionShape2D" parent="TopArea"]
-position = Vector2( -5.3797, -66.3598 )
+position = Vector2( -5.05463, -58.2322 )
 shape = SubResource( 1 )
 
 [node name="TopHitboxColorRect" type="ColorRect" parent="TopArea/TopHitbox"]
@@ -42,7 +42,7 @@ position = Vector2( 18.4805, 11.6003 )
 scale = Vector2( 0.226111, 0.226111 )
 
 [node name="MidHitbox" type="CollisionShape2D" parent="MidArea"]
-position = Vector2( 21.8755, 494.675 )
+position = Vector2( 35.8789, -198.517 )
 scale = Vector2( 30.3333, 1 )
 shape = SubResource( 2 )
 
