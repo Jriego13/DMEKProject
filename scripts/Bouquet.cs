@@ -2,8 +2,8 @@ using Godot;
 using System;
 
 public class Bouquet : Graft {
-  bool topAreaEntered = false;
-  bool midAreaEntered = false;
+  int topAreaState = 0; // 0-no cannulas, 1-left cannula, 2-right cannula, 3-both
+  int midAreaState = 0;
   int topTaps = 0;
   int topTapsComplete = 0;
 
@@ -22,42 +22,52 @@ public class Bouquet : Graft {
       GD.Print("tapping complete.");
     }
 
-    if(midAreaEntered) {
-      if(lCannula.CheckCannulaRotation(0f, 0.34f) || rCannula.CheckCannulaRotation(0f, 0.34f)) {
-        if(lCannula.tapped || rCannula.tapped) {
+    if(midAreaState != 0) {
+      if((lCannula.tapped && midAreaState != 2 && lCannula.CheckCannulaRotation(0f, 0.34f))
+       || (rCannula.tapped && midAreaState !=1 && rCannula.CheckCannulaRotation(0f, 0.34f))) {
           numTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
-          GD.Print("bot tap registered");
-        }
+          GD.Print("mid tap registered");
       }
     }
 
-    if(topAreaEntered) {
-      if(lCannula.CheckCannulaRotation(1.39f, 1.74f) || rCannula.CheckCannulaRotation(1.39f, 1.74f)) {
-        if(lCannula.tapped || rCannula.tapped) {
+    if(topAreaState != 0) {
+      if((lCannula.tapped && topAreaState != 2 && lCannula.CheckCannulaRotation(1.39f, 1.74f))
+       || (rCannula.tapped && topAreaState != 1 && rCannula.CheckCannulaRotation(1.39f, 1.74f))) {
           topTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
           GD.Print("top tap registered");
-        }
       }
     }
   }
 
-  private void _OnTopAreaEntered(object area) {
-    topAreaEntered = true;
-  }
+  private void _OnTopAreaEntered(Area2D area) {
+    int nextState = Helper.getNextHitboxState(area, true, topAreaState);
+		if (nextState != -1)
+			topAreaState = nextState;
+		GD.Print("top area entered.");
+	}
 
-  private void _OnTopAreaExited(object area) {
-    topAreaEntered = false;
-  }
+	private void _OnTopAreaExited(Area2D area) {
+		int nextState = Helper.getNextHitboxState(area, false, topAreaState);
+		if (nextState != -1)
+			topAreaState = nextState;
+		GD.Print("top area exited");
+	}
 
-  private void _OnMidAreaEntered(object area) {
-    midAreaEntered = true;
-  }
+	private void _OnMidAreaEntered(Area2D area) {
+		int nextState = Helper.getNextHitboxState(area, true, midAreaState);
+		if (nextState != -1)
+			midAreaState = nextState;
+		GD.Print("mid area entered.");
+	}
 
-  private void _OnMidAreaExited(object area) {
-    midAreaEntered = false;
-  }
+	private void _OnMidAreaExited(Area2D area) {
+		int nextState = Helper.getNextHitboxState(area, false, midAreaState);
+		if (nextState != -1)
+			midAreaState = nextState;
+		GD.Print("mid area exited");
+	}
 }
