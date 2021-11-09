@@ -82,7 +82,6 @@ public class Graft : Sprite {
   // What will happen when the player clicks outside of the correct areas:
   protected void registerMisclick()
   {
-    GD.Print("misclick stats:", lCannula.tapped, lCannula.numAreasIn);
     if (gamePaused || !misclicksOn)
       return;
     if(numTapsWrong < 3){

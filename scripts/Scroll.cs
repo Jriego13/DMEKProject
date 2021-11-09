@@ -8,6 +8,12 @@ public class Scroll : Graft {
 	ColorRect topHitBox;
 	ColorRect midHitBox;
 
+	public override void _Process(float delta) {
+		base._Process(delta);
+		// GD.Print("top: " + topAreaEntered);
+		// GD.Print("mid: " + bottomAreaEntered);
+	}
+
 	protected override void SetObjectives() {
 		currentConfirmation = "Scroll";
 		numTapsComplete = rng.Next(4,6);
@@ -37,11 +43,9 @@ public class Scroll : Graft {
 		// Only bother checking all this stuff is something was tapped:
 		if (lCannula.tapped || rCannula.tapped)
 		{
-			GD.Print(bottomAreaState, rCannula.tapped, rCannula.CheckCannulaRotation(0f, 0.34f));
-			GD.Print(topAreaState, lCannula.tapped, lCannula.CheckCannulaRotation(1.39f, 1.74f));
 			if(topAreaState != 0) {
-				if((lCannula.CheckCannulaRotation(1.39f, 1.74f)  && lCannula.tapped && topAreaState != 2) ||
-				(rCannula.CheckCannulaRotation(1.39f, 1.74f)  && rCannula.tapped && topAreaState != 1)) {
+				if((lCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f)  && lCannula.tapped && topAreaState != 2) ||
+				(rCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f)  && rCannula.tapped && topAreaState != 1)) {
 					topTaps += 1;
 					lCannula.tapped = false;
 					rCannula.tapped = false;
@@ -54,8 +58,8 @@ public class Scroll : Graft {
 			}
 
 			if(bottomAreaState != 0) {
-				if ((lCannula.CheckCannulaRotation(0f, 0.34f) && lCannula.tapped && bottomAreaState != 2)||
-				(rCannula.CheckCannulaRotation(0f, 0.34f) && rCannula.tapped && bottomAreaState != 1)){
+				if ((lCannula.CheckCannulaRotation(Rotation, 0f, 0.52f) && lCannula.tapped && bottomAreaState != 2)||
+				(rCannula.CheckCannulaRotation(Rotation, 0f, 0.52f) && rCannula.tapped && bottomAreaState != 1)){
 						numTaps += 1;
 						lCannula.tapped = false;
 						rCannula.tapped = false;
