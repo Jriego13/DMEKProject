@@ -106,15 +106,15 @@ shape = SubResource( 2 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Cannulas/CannulaRSprite"]
 
 [node name="UI2" type="MarginContainer" parent="."]
-margin_right = 1822.0
-margin_bottom = 910.0
+margin_right = 1356.0
+margin_bottom = 768.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI2"]
-margin_right = 1822.0
-margin_bottom = 910.0
+margin_right = 1356.0
+margin_bottom = 768.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -165,31 +165,31 @@ __meta__ = {
 }
 
 [node name="TextureProgress" type="TextureProgress" parent="UI2"]
-margin_right = 1822.0
-margin_bottom = 910.0
+margin_right = 1356.0
+margin_bottom = 768.0
 texture_under = ExtResource( 12 )
 texture_progress = ExtResource( 11 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI2"]
-margin_right = 1822.0
-margin_bottom = 910.0
+margin_right = 1356.0
+margin_bottom = 768.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureProgress" type="TextureProgress" parent="UI2"]
-margin_right = 1822.0
-margin_bottom = 910.0
+margin_right = 1356.0
+margin_bottom = 768.0
 texture_progress = ExtResource( 11 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI2"]
-margin_right = 1822.0
-margin_bottom = 910.0
+margin_right = 1356.0
+margin_bottom = 768.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureProgress" type="TextureProgress" parent="UI2"]
-margin_right = 1822.0
-margin_bottom = 910.0
+margin_right = 1356.0
+margin_bottom = 768.0
 texture_progress = ExtResource( 11 )
