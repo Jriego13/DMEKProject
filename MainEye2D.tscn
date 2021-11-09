@@ -10,7 +10,7 @@
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=8]
 [ext_resource path="res://scripts/Incisions.cs" type="Script" id=9]
 
-[sub_resource type="CSharpScript" id=8]
+[sub_resource type="CSharpScript" id=1]
 resource_name = "MainEye2D"
 script/source = "using Godot;
 using System;
@@ -60,7 +60,7 @@ height = 0.0
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.749, 0.842 )
-script = SubResource( 8 )
+script = SubResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 0.0120792, -0.0168638 )

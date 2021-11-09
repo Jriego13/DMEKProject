@@ -2,14 +2,12 @@ using Godot;
 using System;
 
 public class Cannula2D : Sprite {
-  public bool inArea = false;
+  // the number of hitboxes the cannula is in. If it's 0, and they tap, it's a misclick.
+  public int numAreasIn = 0;
   public bool tapped = false;
   public bool locked = false;
-<<<<<<< HEAD
-  private Texture circleTexture;
-=======
   public bool injecting = false;
->>>>>>> 952c55bf2d2207361841cf844bfcd930390e3060
+  private Texture circleTexture;
 
   public override void _Ready()
   {

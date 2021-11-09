@@ -53,7 +53,6 @@ public class EdgeFold : Graft {
         // if(numTaps >= 0)
         //   SetTexture(graftTextures[numTaps]);
 
-        registerMisclick();
       }
     }
   }

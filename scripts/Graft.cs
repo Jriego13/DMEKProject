@@ -14,11 +14,8 @@ public class Graft : Sprite {
   protected int topTaps = 0;
   protected int topTapsComplete = 0;
   protected bool isFinished;
-<<<<<<< HEAD
-=======
   protected bool isNextLevelSet;
-  protected Texture circleTexture;
->>>>>>> 952c55bf2d2207361841cf844bfcd930390e3060
+
   protected String previousConfirmation;
   protected String currentConfirmation;
   protected String nextConfirmation;
@@ -49,6 +46,7 @@ public class Graft : Sprite {
   // This is where each graft sets up their specific objectives.
   // This separation allows for a universal _Ready function.
   protected virtual void SetObjectives() {}
+  protected virtual void RegisterClick() {}
 
   protected void LoadTextures() {
     Texture currImg;
@@ -84,6 +82,7 @@ public class Graft : Sprite {
   // What will happen when the player clicks outside of the correct areas:
   protected void registerMisclick()
   {
+    GD.Print("misclick stats:", lCannula.tapped, lCannula.numAreasIn);
     if (gamePaused || !misclicksOn)
       return;
     if(numTapsWrong < 3){
@@ -147,6 +146,11 @@ public class Graft : Sprite {
     {
       RotateFromTap();
     }
+      // if the player taps outside of a hitbox:
+			if((lCannula.tapped && lCannula.numAreasIn == 0)||(rCannula.tapped && rCannula.numAreasIn == 0))
+			{
+				registerMisclick();
+			}
   }
 
   protected void Deaccelerate()
@@ -167,7 +171,6 @@ public class Graft : Sprite {
       if (rotationalVelocity > 0)
         rotationalVelocity = 0;
     }
-
   }
 
   private void RotateFromTap()
@@ -217,8 +220,6 @@ public class Graft : Sprite {
     // GD.Print("r ", r);
     // GD.Print("theta ", theta);
     // GD.Print("torque ", torque);
-<<<<<<< HEAD
-=======
   }
 
   public bool getIsNextLevelSet() {
@@ -235,6 +236,5 @@ public class Graft : Sprite {
 
   public int getTopTaps() {
     return topTaps;
->>>>>>> 952c55bf2d2207361841cf844bfcd930390e3060
   }
 }

@@ -37,15 +37,6 @@ public class DoubleScroll : Graft {
       }
     }
 
-    if(!areaEntered){
-      if(rCannula.tapped || lCannula.tapped){
-        // numTaps -= 1;
-        // if(numTaps >= 0)
-        //   SetTexture(graftTextures[numTaps]);
-
-        registerMisclick();
-      }
-    }
   }
 
   private void _OnAreaEntered(object area) {

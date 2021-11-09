@@ -53,7 +53,6 @@ public class SimpleFold : Graft {
         // if(numTaps >= 0)
         //   SetTexture(graftTextures[numTaps]);
 
-				registerMisclick();
 			}
 		}
   }
