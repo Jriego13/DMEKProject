@@ -3,10 +3,16 @@ using System;
 using System.Collections.Generic;
 
 public class Scroll : Graft {
-	bool topAreaEntered = false;
-	bool bottomAreaEntered = false;
+	int topAreaState = 0; // 0-no cannulas, 1-left cannula, 2-right cannula, 3-both
+	int bottomAreaState = 0;
 	ColorRect topHitBox;
 	ColorRect midHitBox;
+
+	public override void _Process(float delta) {
+		base._Process(delta);
+		// GD.Print("top: " + topAreaEntered);
+		// GD.Print("mid: " + bottomAreaEntered);
+	}
 
 	protected override void SetObjectives() {
 		currentConfirmation = "Scroll";
@@ -34,64 +40,65 @@ public class Scroll : Graft {
 			nextConfirmation = "DoubleScroll";
 			GD.Print("tapping complete.");
 		}
-
-		if(topAreaEntered) {
-			if(lCannula.CheckCannulaRotation(1.39f, 1.74f) || rCannula.CheckCannulaRotation(1.39f, 1.74f)) {
-				if(lCannula.tapped || rCannula.tapped) {
+		// Only bother checking all this stuff is something was tapped:
+		if (lCannula.tapped || rCannula.tapped)
+		{
+			if(topAreaState != 0) {
+				if((lCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f)  && lCannula.tapped && topAreaState != 2) ||
+				(rCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f)  && rCannula.tapped && topAreaState != 1)) {
 					topTaps += 1;
 					lCannula.tapped = false;
 					rCannula.tapped = false;
-					GD.Print(topTaps);
-					GD.Print(graftTexturesOther.Count);
+					//GD.Print(topTaps);
+					//GD.Print(graftTexturesOther.Count);
 					if(topTaps <= graftTexturesOther.Count && topTaps >= 0)
 						SetTexture(graftTexturesOther[topTaps-1]);
 					GD.Print("top tap registered");
 				}
 			}
-		}
 
-		if(bottomAreaEntered) {
-			if(lCannula.CheckCannulaRotation(0f, 0.34f) || rCannula.CheckCannulaRotation(0f, 0.34f)) {
-				if(lCannula.tapped || rCannula.tapped) {
-					numTaps += 1;
-					lCannula.tapped = false;
-					rCannula.tapped = false;
-					if(numTaps < graftTextures.Count && numTaps >= 0)
-						SetTexture(graftTextures[numTaps]);
+			if(bottomAreaState != 0) {
+				if ((lCannula.CheckCannulaRotation(Rotation, 0f, 0.52f) && lCannula.tapped && bottomAreaState != 2)||
+				(rCannula.CheckCannulaRotation(Rotation, 0f, 0.52f) && rCannula.tapped && bottomAreaState != 1)){
+						numTaps += 1;
+						lCannula.tapped = false;
+						rCannula.tapped = false;
+						if(numTaps < graftTextures.Count && numTaps >= 0)
+							SetTexture(graftTextures[numTaps]);
 
-					GD.Print("bot tap registered");
-				}
+						GD.Print("bot tap registered");
+					}
 			}
-		}
 
-		if(!topAreaEntered && !bottomAreaEntered){
-			if(rCannula.tapped || lCannula.tapped){
-				// if(numTaps > 0)
-				// 	numTaps -= 1;
-				// if(numTaps >= 0)
-				// 	SetTexture(graftTextures[numTaps]);
-
-				registerMisclick();
-			}
 		}
 	}
 
-  private void _OnTopAreaEntered(object area) {
-		topAreaEntered = true;
-	GD.Print("top area entered.");
+  	private void _OnTopAreaEntered(Area2D area) {
+	  	int nextState = Helper.getNextHitboxState(area, true, topAreaState);
+		if (nextState != -1)
+			topAreaState = nextState;
+		GD.Print("top area entered.");
 	}
 
-	private void _OnTopAreaExited(object area) {
-		topAreaEntered = false;
+	private void _OnTopAreaExited(Area2D area) {
+		int nextState = Helper.getNextHitboxState(area, false, topAreaState);
+		if (nextState != -1)
+			topAreaState = nextState;
+		GD.Print("top area exited");
 	}
 
-	private void _OnMidAreaEntered(object area) {
-		bottomAreaEntered = true;
-	GD.Print("mid area entered.");
+	private void _OnMidAreaEntered(Area2D area) {
+		int nextState = Helper.getNextHitboxState(area, true, bottomAreaState);
+		if (nextState != -1)
+			bottomAreaState = nextState;
+		GD.Print("mid area entered.");
 	}
 
-	private void _OnMidAreaExited(object area) {
-		bottomAreaEntered = false;
+	private void _OnMidAreaExited(Area2D area) {
+		int nextState = Helper.getNextHitboxState(area, false, bottomAreaState);
+		if (nextState != -1)
+			bottomAreaState = nextState;
+		GD.Print("mid area exited");
 	}
 
 	private void setUpHitboxes(bool setup) {

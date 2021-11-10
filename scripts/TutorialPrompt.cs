@@ -95,8 +95,8 @@ public class TutorialPrompt : RichTextLabel
         this.SetVisible(false);
         waterUIPrompt.SetVisible(true);
         waterUIPrompt.SetText("Above is the fluid level in the eye\n" +
-         "For most grafts, keep it between 10-30. For flipped grafts" + 
-         "like taco and inverted it needs to be deep (>50). Fluid is" +
+         "For most grafts, keep it between 10-30.\n For flipped grafts" + 
+         "like taco and inverted it needs to be deep (>50). \n Fluid is" +
          " inserted by holding on an incision point in purple.\n Hit enter to continue");
         if (Input.IsActionJustPressed("continue")) {
           levelSwitcher.setWelcomeMessage(true);

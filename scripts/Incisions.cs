@@ -10,7 +10,6 @@ public class Incisions : Node2D
     protected bool flag = false;
     protected MainEye2D eye; 
 
-
     public override void _Process(float delta){
         if(flag){
             if(cannulas.getLHeld()){
@@ -39,10 +38,11 @@ public class Incisions : Node2D
             }
         }
     }
+
     public override void _Ready()
     {
         // bar = GetNode("../UI/TextureProgress") as TextureProgress;
-        
+
         waterLevelCounter = GetNode("../UI/NinePatchRect/WaterLevel") as RichTextLabel;
         cannulas = GetNode("../Cannulas") as CannulaMain2D;
         eye = GetNode("../") as MainEye2D;
@@ -52,13 +52,13 @@ public class Incisions : Node2D
 
     }
 
-    public  void _on_Incision1_area_entered(object area){
+    public void _on_Incision1_area_entered(object area){
         bar = GetNode("../UI/TextureProgress") as TextureProgress;
         waterLevel = (float)bar.Value;
         flag = true;
     }
 
-    public  void _on_Incision1_area_exited(object area){
+    public void _on_Incision1_area_exited(object area){
         bar = GetNode("../UI/TextureProgress") as TextureProgress;
         waterLevel = (float)bar.Value;
         flag = false;

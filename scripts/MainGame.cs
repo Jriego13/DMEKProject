@@ -39,6 +39,7 @@ public class MainGame : Node2D
         //     }
         // }
     }
+
     public override void _Ready()
     {
         // Load the singleton:
@@ -46,7 +47,6 @@ public class MainGame : Node2D
         // Get the levelName from the levelSwitcher:
         levelName = levelSwitcher.getLevelName();
         Helper.startLevel = levelName;
-
         loadConfirmation(levelName);
 
         // _tween = GetNode("UI/Tween") as Tween;
@@ -54,7 +54,7 @@ public class MainGame : Node2D
 
         waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
         // waterLevel = 100.0f;
-        bar.Value = waterLevel;
+        bar.Value = this.waterLevel;
 
         escapeMenu = GetNode("MenuPopup") as EscapeMenu;
         successfulTapPrompt = GetNode("Overlay/SuccessfulTapPrompt") as RichTextLabel;

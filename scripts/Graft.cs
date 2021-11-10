@@ -15,7 +15,7 @@ public class Graft : Sprite {
   protected int topTapsComplete = 0;
   protected bool isFinished;
   protected bool isNextLevelSet;
-  protected Texture circleTexture;
+
   protected String previousConfirmation;
   protected String currentConfirmation;
   protected String nextConfirmation;
@@ -35,7 +35,6 @@ public class Graft : Sprite {
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
     misclickText = GetNode("../Overlay/MisclickCounter") as RichTextLabel;
-	  circleTexture = GD.Load("res://images/circle.png") as Texture;
   	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
   	isTutorialMode = levelSwitcher.tutorialMode();
   }
@@ -47,27 +46,28 @@ public class Graft : Sprite {
   // This is where each graft sets up their specific objectives.
   // This separation allows for a universal _Ready function.
   protected virtual void SetObjectives() {}
+  protected virtual void RegisterClick() {}
 
   protected void LoadTextures() {
     Texture currImg;
     GD.Print("Loading Textures...");
 
     if(currentConfirmation == "SimpleFold") {
-      graftTextures.Add(GetTexture());
+      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/SimpleEdge" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
     else if(currentConfirmation == "EdgeFold") {
-      graftTextures.Add(GetTexture());
+      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/EdgeDone" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
     else if(currentConfirmation == "Scroll") {
-      graftTextures.Add(GetTexture());
+      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/ScrollSimple" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
@@ -80,23 +80,20 @@ public class Graft : Sprite {
   }
 
   // What will happen when the player clicks outside of the correct areas:
-  protected async void registerMisclick()
+  protected void registerMisclick()
   {
     if (gamePaused || !misclicksOn)
       return;
     if(numTapsWrong < 3){
 					GD.Print("You clicked outside of the correct areas");
-					Vector2 mousePos = GetViewport().GetMousePosition();
-					GD.Print(mousePos);
-					Sprite misclickCircle = new Sprite();
-					misclickCircle.Texture = circleTexture;
-					misclickCircle.Scale = new Vector2(0.1f , 0.1f);
-					misclickCircle.Position = mousePos;
-					misclickCircle.Modulate = new Color(1, 0 , 0);
-
-					GetTree().GetRoot().AddChild(misclickCircle);
-					await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
-					misclickCircle.QueueFree();
+          if (lCannula.tapped)
+          {
+            lCannula.ShowMisclickCircle();
+          }
+          if (rCannula.tapped)
+          {
+            rCannula.ShowMisclickCircle();
+          }
 					++numTapsWrong;
           misclickText.Text = "Misclicks: " + numTapsWrong + "/3";
 				}
@@ -110,7 +107,6 @@ public class Graft : Sprite {
 					// GetTree().ChangeScene("res://FailScreen.tscn");
 				}
   }
-
   public bool getIsFinished() {
 		return isFinished;
 	}
@@ -128,12 +124,8 @@ public class Graft : Sprite {
   public override void _Input(InputEvent @event)
     {
         base._Input(@event);
-        if (@event.IsActionPressed("left_mouse") &&
-          this.GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())) && interactable)
-        {
-          RotateFromTap();
-        }
-        else if (@event.IsActionPressed("toggle_rotation"))
+        
+        if (@event.IsActionPressed("toggle_rotation"))
         {
           interactable = !interactable;
         }
@@ -141,13 +133,23 @@ public class Graft : Sprite {
 
   public override void _Process(float delta)
   {
-    Input.SetMouseMode((Godot.Input.MouseMode)0);
+    //Input.SetMouseMode((Godot.Input.MouseMode)0);
     if (!gamePaused)
     {
       CheckObjectives();
       if (Math.Abs(rotationalVelocity) > 0)
         Deaccelerate();
     }
+    if ((lCannula.tapped || rCannula.tapped) &&
+      this.GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())) && interactable)
+    {
+      RotateFromTap();
+    }
+      // if the player taps outside of a hitbox:
+			if((lCannula.tapped && lCannula.numAreasIn == 0)||(rCannula.tapped && rCannula.numAreasIn == 0))
+			{
+				registerMisclick();
+			}
   }
 
   protected void Deaccelerate()
@@ -168,13 +170,15 @@ public class Graft : Sprite {
       if (rotationalVelocity > 0)
         rotationalVelocity = 0;
     }
-
   }
 
   private void RotateFromTap()
   {
-    Vector2 mousePos = GetViewport().GetMousePosition();
-
+    Vector2 tapPos = new Vector2(0.0f,0.0f);
+    if (lCannula.tapped)
+      tapPos = lCannula.GlobalPosition;
+    else if (rCannula.tapped)
+      tapPos = rCannula.GlobalPosition;
     var axis = GetNode("Axis") as Line2D;
     var axisPoint0 = GlobalTransform.BasisXform(axis.Points[0]);
     var axisPoint1 = GlobalTransform.BasisXform(axis.Points[1]);
@@ -188,7 +192,7 @@ public class Graft : Sprite {
     var closestAxisPoint = new Vector2();
     foreach (Vector2 point in axis.Points)
     {
-      var distance = ToGlobal(point).DistanceTo(mousePos);
+      var distance = ToGlobal(point).DistanceTo(tapPos);
       if (distance < minDistance)
       {
         minDistance = distance;
@@ -198,7 +202,7 @@ public class Graft : Sprite {
     // 3. Find slope of line going from where the user clicked to center of the graft:
     var centerLine = GetNode("Center") as Line2D;
     var centerPoint = ToGlobal(centerLine.Points[0]);
-    var slope = (mousePos.y - centerPoint.y)/(mousePos.x - centerPoint.x);
+    var slope = (tapPos.y - centerPoint.y)/(tapPos.x - centerPoint.x);
 
     // 4. Calculate r and θ:
     var r = Math.Abs(centerPoint.DistanceTo(closestAxisPoint));

@@ -14,6 +14,5 @@ public class MainEye2D : MainGame
             // Add new node to the tree:
             String nextLevel = Helper.getNextConfirmation(levelName);
             loadConfirmation(nextLevel);
-
     }
 }

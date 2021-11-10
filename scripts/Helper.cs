@@ -1,4 +1,5 @@
 using System;
+using Godot;
 
 // Static class for things like constants and helper functions that don't
 // need to be in any particular class:
@@ -119,4 +120,57 @@ public static class Helper
         nextLevel = toFileName(nextLevel);
         return nextLevel;
     }
+    // Gets the next hitbox state based on what cannula just entered/exited and the current state
+	public static int getNextHitboxState(Area2D area, bool entered, int currentState)
+	{
+		Cannula2D currentCannula = area.GetParent() as Cannula2D;
+		if (currentCannula == null)
+			return -1;
+		if (entered)
+		{
+            currentCannula.numAreasIn += 1;
+			if (area.Name == "CannulaL")
+			{
+				// no cannulas in area-> only left in area
+				if (currentState == 0)
+					return 1;
+				// only right in area -> both
+				else if (currentState == 2)
+					return 3;
+			}
+			else if (area.Name == "CannulaR")
+			{
+				// no cannulas in area-> only right in area
+				if (currentState == 0)
+					return 2;
+				// only left in area -> both
+				else if (currentState == 1)
+					return 3;
+			}
+		}
+		// when cannula leaves area
+		else if (!entered)
+		{
+            currentCannula.numAreasIn -=1;
+			if (area.Name == "CannulaL")
+			{	
+				// only left in area -> none
+				if (currentState == 1)
+					return 0;
+				// both -> only right
+				else if (currentState == 3)
+					return 2;
+			}
+			else if (area.Name == "CannulaR")
+			{
+				// only right -> none
+				if (currentState == 2)
+					return 0;
+				// both -> only left
+				else if (currentState == 3)
+					return 1;
+			}
+		}
+        return -1;
+	}
 }
