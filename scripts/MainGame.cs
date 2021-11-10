@@ -5,11 +5,11 @@ using System;
 public class MainGame : Node2D
 {
     // levelName is random by default so it can be loaded without levelSelect
-    protected int waterLevel;
     protected String levelName = Helper.getRandomConfirmation();
     protected Graft confirmation;
     protected TextureProgress bar;
     protected RichTextLabel waterLevelCounter;
+    protected float waterLevel = 100.0f;
     protected EscapeMenu escapeMenu;
     protected RichTextLabel successfulTapPrompt;
     protected RichTextLabel levelCompletePrompt;
@@ -22,22 +22,22 @@ public class MainGame : Node2D
             GD.Print("escape pressed");
             escapeMenu.visible = !escapeMenu.visible;
         }
-        if(@event.IsActionPressed("addLiquid")){
-            GD.Print("trying to add liquid");
-            if(waterLevel <= 99){
-               waterLevel += 1;
-               bar.Value = waterLevel;
-               waterLevelCounter.Text = waterLevel.ToString();
-            }
-        }
-        if(@event.IsActionPressed("removeLiquid")){
-            GD.Print("trying to remove liquid");
-            if(waterLevel >= 1){
-                waterLevel -= 1;
-                bar.Value = waterLevel;
-                waterLevelCounter.Text = waterLevel.ToString();
-            }
-        }
+        // if(@event.IsActionPressed("addLiquid")){
+        //     GD.Print("trying to add liquid");
+        //     if(waterLevel <= 99){
+        //        waterLevel += 1;
+        //        bar.Value = waterLevel;
+        //        waterLevelCounter.Text = waterLevel.ToString();
+        //     }
+        // }
+        // if(@event.IsActionPressed("removeLiquid")){
+        //     GD.Print("trying to remove liquid");
+        //     if(waterLevel >= 1){
+        //         waterLevel -= 1;
+        //         bar.Value = waterLevel;
+        //         waterLevelCounter.Text = waterLevel.ToString();
+        //     }
+        // }
     }
 
     public override void _Ready()
@@ -53,8 +53,8 @@ public class MainGame : Node2D
         bar = GetNode("UI/TextureProgress") as TextureProgress;
 
         waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
-        waterLevel = 100;
-        bar.Value = waterLevel;
+        // waterLevel = 100.0f;
+        bar.Value = this.waterLevel;
 
         escapeMenu = GetNode("MenuPopup") as EscapeMenu;
         successfulTapPrompt = GetNode("Overlay/SuccessfulTapPrompt") as RichTextLabel;
@@ -96,7 +96,11 @@ public class MainGame : Node2D
         GetNode("/root/Main").AddChild(confirmation);
     }
 
-    public int getWaterLevel() {
-      return waterLevel;
+    public float getWaterLevel() {
+      return this.waterLevel;
+    }
+
+    public void setWaterLevel(float level){
+        this.waterLevel = level;
     }
 }
