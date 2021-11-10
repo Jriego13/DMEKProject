@@ -101,13 +101,13 @@ public class Graft : Sprite {
           misclickText.Text = "Misclicks: " + numTapsWrong + "/3";
 				}
 				else{
-					GD.Print("Misclicked too many times. You fail!");
-					lCannula.locked = true;
-					rCannula.locked = true;
-					previousConfirmation = "Scroll";
-          numTapsWrong = 0;
-          Input.SetMouseMode((Godot.Input.MouseMode)0);
-					GetTree().ChangeScene("res://FailScreen.tscn");
+					// GD.Print("Misclicked too many times. You fail!");
+					// lCannula.locked = true;
+					// rCannula.locked = true;
+					// previousConfirmation = "Scroll";
+          // numTapsWrong = 0;
+          // Input.SetMouseMode((Godot.Input.MouseMode)0);
+					// GetTree().ChangeScene("res://FailScreen.tscn");
 				}
   }
 
