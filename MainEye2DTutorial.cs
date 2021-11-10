@@ -6,7 +6,7 @@ using System;
 public class MainEye2DTutorial : MainGame
 {
     RichTextLabel tutorialPrompt;
-    private RichTextLabel helpPrompt;
+    private HelpPrompt helpPrompt;
     private RichTextLabel waterUIPrompt;
     private MarginContainer waterLevelUI;
     private int curNumTaps;
@@ -19,7 +19,7 @@ public class MainEye2DTutorial : MainGame
             GD.Print("u pressed enter, here we go!");
             confirmation.QueueFree();
             Input.SetMouseMode((Godot.Input.MouseMode)0);
-            GetTree().ChangeScene(Helper.toFileName("TutorialSuccessScreen"));
+            GetTree().ChangeScene(Helper.toFileName("TutorialSelect"));
         }
         if (curNumTaps < confirmation.getNumTaps()) {
             showSuccessfulTapPrompt();
@@ -42,7 +42,7 @@ public class MainEye2DTutorial : MainGame
         curTopTaps = 0;
         levelComplete = false;
         
-        helpPrompt = GetNode("Overlay/HelpPrompt") as RichTextLabel;
+        helpPrompt = GetNode("Overlay/HelpPrompt") as HelpPrompt;
         helpPrompt.Visible = true;
         
         waterUIPrompt = GetNode("Overlay/WaterUIPrompt") as RichTextLabel;
@@ -55,8 +55,10 @@ public class MainEye2DTutorial : MainGame
     }
 
     private async void showSuccessfulTapPrompt() {
+        
         GD.Print("successful tap");
         successfulTapPrompt.Visible = true;
+        helpPrompt.setShowHelp(false);
         await ToSignal(GetTree().CreateTimer(1), "timeout");
         successfulTapPrompt.Visible = false;
     }

@@ -38,42 +38,51 @@ public class TutorialPrompt : RichTextLabel
         WelcomeMessage();
       }
       else {
+        String basic = "\n\nRemember to tap on pink, hold on green. \n" +
+                        "For inverted and taco, water level must be over 50. " +
+                        "Raise it by holding on a purple incision point.";
         if (levelName == "res://Scroll.tscn") {
             SetText("This confirmation is a scroll \n\n" +
                         "Tap one cannula 3-5 times horizontally on the top end of " +  
                         "it to send fluid waves into the fold to open it \n" +
-                        "Tap another cannula 4-6 times vertically on the center of the fold");
+                        "Tap another cannula 4-6 times vertically on the center of the fold"
+                        + basic);
           
         }
 
         if (levelName == "res://SimpleFold.tscn") {
               SetText("This confirmation is a simple fold \n\n" +
                         "Tap one cannula in the middle 3-6 times \n" +
-                        "Hold the another cannula on the right portion of the graft");
+                        "Hold the another cannula on the right portion of the graft"
+                        + basic);
           
         }
 
         if (levelName == "res://DoubleScroll.tscn") {
               SetText("This confirmation is a double scroll \n\n" +
-                        "Tap one cannula in the middle 3-6 times");
+                        "Tap one cannula in the middle 3-6 times"
+                        +basic);
           
         }
 
         if (levelName == "res://EdgeFold.tscn") {
               SetText("This confirmation is an edge fold \n\n" +
                         "Tap one cannula in the middle 3-6 times \n" +
-                        "Hold the another cannula on the right portion of the graft");
+                        "Hold the another cannula on the right portion of the graft"
+                        + basic);
           
         }
 
         if (levelName == "res://Taco.tscn") {
-              SetText("This confirmation is called a taco \n\n");
+              SetText("This confirmation is called a taco \n\n"
+                    + basic);
           
         }
 
         if (levelName == "res://Inverted.tscn") {
               SetText("This confirmation is an inverted graft \n\n" +
-                      "You need to inject fluid into the inverted section");
+                      "You need to inject fluid into the inverted section"
+                      + basic);
           
         }
       }

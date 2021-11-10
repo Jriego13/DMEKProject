@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 
 // text at the front which tells you which confirmation you are on
-public class ToggleHelp : RichTextLabel {
+public class HelpPrompt : RichTextLabel {
   bool showHelp;
 
   public override void _Ready() {
@@ -27,5 +27,13 @@ public class ToggleHelp : RichTextLabel {
               + "tap l/r cannula: l/r mouse" + "\n"+ "\n"
               + "hold mouse to keep cannula down[/right]");
     }
+  }
+
+  public bool showingHelp() {
+      return showHelp;
+  }
+
+  public void setShowHelp(bool input) {
+      this.showHelp = input;
   }
 }

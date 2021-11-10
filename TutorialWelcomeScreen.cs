@@ -45,7 +45,7 @@ public class TutorialWelcomeScreen : Node2D
             if (enterCount == 0) {
             prompt.SetText("Welcome to the tutorial! \n\n" +
                     "Press h to view the controls. \n\n" +
-                    "The tutorial will walk you through " + 
+                    "The tutorial levels will teach you through " + 
                     "how to tap each cornea transplant confirmation correctly.\n\n" + 
                     "TAP on PINK areas and HOLD the cannula on GREEN ones." +
                     "The purple dots are incisions that you hold on to let in liquid \n\n" +
