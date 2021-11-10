@@ -32,8 +32,8 @@ public class DoubleScroll : Graft {
         numTaps += 1;
         lCannula.tapped = false;
         rCannula.tapped = false;
-        // if(numTaps < graftTextures.Count)
-        //   SetTexture(graftTextures[numTaps]);
+        if(numTaps < graftTextures.Count)
+          SetTexture(graftTextures[numTaps]);
 
         GD.Print("tap registered");
       }

@@ -40,6 +40,15 @@ public class Scroll : Graft {
 			nextConfirmation = "DoubleScroll";
 			GD.Print("tapping complete.");
 		}
+		else if(topTaps > 0 && (numTaps >= numTapsComplete)) {
+			numTaps = 0;
+			topTaps = 0;
+			isFinished = true;
+			isNextLevelSet = true;
+			nextConfirmation = "SimpleFold";
+			GD.Print("tapping complete");
+		}
+
 		// Only bother checking all this stuff is something was tapped:
 		if (lCannula.tapped || rCannula.tapped)
 		{
@@ -49,10 +58,9 @@ public class Scroll : Graft {
 					topTaps += 1;
 					lCannula.tapped = false;
 					rCannula.tapped = false;
-					//GD.Print(topTaps);
-					//GD.Print(graftTexturesOther.Count);
 					if(topTaps <= graftTexturesOther.Count && topTaps >= 0)
 						SetTexture(graftTexturesOther[topTaps-1]);
+						
 					GD.Print("top tap registered");
 				}
 			}
@@ -60,13 +68,15 @@ public class Scroll : Graft {
 			if(bottomAreaState != 0) {
 				if ((lCannula.CheckCannulaRotation(Rotation, 0f, 0.52f) && lCannula.tapped && bottomAreaState != 2)||
 				(rCannula.CheckCannulaRotation(Rotation, 0f, 0.52f) && rCannula.tapped && bottomAreaState != 1)){
-						numTaps += 1;
-						lCannula.tapped = false;
-						rCannula.tapped = false;
-						if(numTaps < graftTextures.Count && numTaps >= 0)
-							SetTexture(graftTextures[numTaps]);
+						if(topTaps > 0) {
+							numTaps += 1;
+							lCannula.tapped = false;
+							rCannula.tapped = false;
+							if(numTaps < graftTextures.Count && numTaps >= 0)
+								SetTexture(graftTextures[numTaps]);
 
-						GD.Print("bot tap registered");
+							GD.Print("bot tap registered");
+						}
 					}
 			}
 
