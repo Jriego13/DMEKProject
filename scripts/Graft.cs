@@ -77,6 +77,13 @@ public class Graft : Sprite {
         graftTexturesOther.Add(currImg);
       }
     }
+    else if(currentConfirmation == "DoubleScroll") {
+      graftTextures.Add(Texture);
+      for(int i = 0; i < 3; i++) {
+        currImg = GD.Load("res://sprites/DoubleSimple" + (i+1) + ".png") as Texture;
+        graftTextures.Add(currImg);
+      }
+    }
   }
 
   // What will happen when the player clicks outside of the correct areas:
@@ -124,7 +131,7 @@ public class Graft : Sprite {
   public override void _Input(InputEvent @event)
     {
         base._Input(@event);
-        
+
         if (@event.IsActionPressed("toggle_rotation"))
         {
           interactable = !interactable;
@@ -225,7 +232,7 @@ public class Graft : Sprite {
     return isNextLevelSet;
   }
 
-  public String getNextConfirmation() {
+  public String getSetConfirmation() {
     return nextConfirmation;
   }
 

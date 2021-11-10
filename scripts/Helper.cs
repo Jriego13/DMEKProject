@@ -29,11 +29,12 @@ public static class Helper
     // Based on the input current confirmation, returns a new confirmation:
     public static String getNextConfirmation(String current)
     {
+        GD.Print("HHHHH " + current);
         var randomNumber = rand.Next() % 100;
         String nextLevel = "";
         // Chosen next confirmations are based on the powerpoint
         // Actual percentage chances are made up
-        if (current.Contains("Scroll"))
+        if (current.Equals("res://Scroll.tscn"))
         {
             if (randomNumber < 50)
                 nextLevel = "SimpleFold";
@@ -42,25 +43,26 @@ public static class Helper
             else
                 nextLevel = "DoubleScroll";
         }
-        else if (current.Contains("DoubleScroll"))
+        else if (current.Equals("res://DoubleScroll.tscn"))
         {
-            if (randomNumber < 75)
+            GD.Print("Double scroll");
+            if (randomNumber < 95)
                 nextLevel = "SimpleFold";
             else
                 nextLevel = "Bouquet";
         }
-        else if (current.Contains("SimpleFold"))
+        else if (current.Equals("res://SimpleFold.tscn"))
         {
             nextLevel = "EdgeFold";
         }
-        else if (current.Contains("Inverted"))
+        else if (current.Equals("res://Inverted.tscn"))
         {
             if (randomNumber < 50)
                 nextLevel = "Scroll";
             else
                 nextLevel = "SimpleFold";
         }
-        else if (current.Contains("Taco"))
+        else if (current.Equals("res://Taco.tscn"))
         {
             if (randomNumber < 33)
             {
@@ -75,21 +77,22 @@ public static class Helper
                 nextLevel = "Origami";
             }
         }
-        else if (current.Contains("EdgeFold"))
+        else if (current.Equals("res://EdgeFold.tscn"))
         {
             nextLevel = "Done"; // Need special behavior for "Done"
         }
-        else if (current.Contains("Bouquet"))
+        else if (current.Equals("res://Bouquet.tscn"))
         {
             if (randomNumber < 50)
                 nextLevel = "SimpleFold";
             else
                 nextLevel = "EdgeFold";
         }
-        else if (current.Contains("Origami"))
+        else if (current.Equals("res://Origami.tscn"))
         {
             nextLevel = "Scroll";
         }
+
         nextLevel = toFileName(nextLevel);
         return nextLevel;
     }
@@ -101,19 +104,19 @@ public static class Helper
 
      public static String getNextTutorialConfirmation(String current) {
         String nextLevel = "";
-        if (current.Contains("Scroll"))
+        if (current.Equals("res://Scroll.tscn"))
         {
                 nextLevel = "DoubleScroll";
         }
-        else if (current.Contains("DoubleScroll"))
+        else if (current.Equals("res://DoubleScroll.tscn"))
         {
                 nextLevel = "SimpleFold";
         }
-        else if (current.Contains("SimpleFold"))
+        else if (current.Equals("res://SimpleFold.tscn"))
         {
             nextLevel = "EdgeFold";
         }
-        else if (current.Contains("EdgeFold"))
+        else if (current.Equals("res://EdgeFold.tscn"))
         {
             nextLevel = "Inverted";
         }
@@ -153,7 +156,7 @@ public static class Helper
 		{
             currentCannula.numAreasIn -=1;
 			if (area.Name == "CannulaL")
-			{	
+			{
 				// only left in area -> none
 				if (currentState == 1)
 					return 0;

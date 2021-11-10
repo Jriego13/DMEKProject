@@ -20,7 +20,7 @@ public class MainMenu : MarginContainer
 	private void onPlayPressed()
 	{
 		GD.Print("Play pressed");
-		GetTree().ChangeScene(Helper.toFileName("MainEye"));
+		GetTree().ChangeScene(Helper.toFileName("MainEye2D"));
 	}
 	// Navigates to the level select screen:
 	private void onLevelSelectPressed()
