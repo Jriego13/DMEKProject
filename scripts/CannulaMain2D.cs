@@ -18,6 +18,13 @@ public class CannulaMain2D : Node2D {
 		return rHeld;
 	}
 
+	public bool getLLocked(){
+		return lCannula.locked;
+	}
+	public bool getRLocked(){
+		return rCannula.locked;
+	}
+
 	public override void _Ready() {
 		Input.SetMouseMode((Godot.Input.MouseMode)1); // hide mouse
 		lCannula = GetNode("./CannulaLSprite") as Cannula2D;

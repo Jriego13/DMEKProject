@@ -13,6 +13,7 @@ public class MainGame : Node2D
     protected EscapeMenu escapeMenu;
     protected RichTextLabel successfulTapPrompt;
     protected RichTextLabel levelCompletePrompt;
+    protected bool inIncision = false; 
 
     public override void _Input(InputEvent @event)
     {
@@ -55,6 +56,7 @@ public class MainGame : Node2D
         waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
         // waterLevel = 100.0f;
         bar.Value = this.waterLevel;
+        bar.RectRotation = -90;
 
         escapeMenu = GetNode("MenuPopup") as EscapeMenu;
         successfulTapPrompt = GetNode("Overlay/SuccessfulTapPrompt") as RichTextLabel;
@@ -102,5 +104,12 @@ public class MainGame : Node2D
 
     public void setWaterLevel(float level){
         this.waterLevel = level;
+    }
+
+    public bool getInIncision(){
+        return this.inIncision;
+    }
+    public void setInIncision(bool value){
+        this.inIncision = value;
     }
 }
