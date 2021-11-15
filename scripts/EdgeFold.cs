@@ -2,8 +2,9 @@ using Godot;
 using System;
 
 public class EdgeFold : Graft {
-  bool tapAreaEntered = false;
-  bool holdAreaEntered = false;
+  // 0-no cannulas, 1-left cannula, 2-right cannula, 3-both
+  int tapAreaState = 0;
+  int holdAreaState = 0;
   bool heldDown = false;
   ColorRect tapHitBox;
   ColorRect holdHitBox;
@@ -26,9 +27,10 @@ public class EdgeFold : Graft {
       GD.Print("tapping complete.");
     }
 
-    if(tapAreaEntered) {
-      if(heldDown) {
-        if(lCannula.tapped || rCannula.tapped) {
+    // if at least one cannula is in tap area:
+    if(tapAreaState != 0 && heldDown) {
+      // if cannula is being tapped and is not the state where only the other cannula is there:
+        if((lCannula.tapped && tapAreaState != 2) || (rCannula.tapped && tapAreaState != 1)) {
           numTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
@@ -37,42 +39,45 @@ public class EdgeFold : Graft {
 
           GD.Print("tap registered");
         }
-      }
     }
-
-    if(holdAreaEntered) {
-      if(lCannula.locked || rCannula.locked) {
+    // if at least one cannula is in hold area:
+    if((holdAreaState != 0)) {
+      // if cannula is being held and is not the state where only the other cannula is there:
+      if((lCannula.locked && holdAreaState != 2) || (rCannula.locked && holdAreaState != 1)) {
         heldDown = true;
       }
-    }
-
-    if(!tapAreaEntered){
-      if(rCannula.tapped || lCannula.tapped){
-        // if(numTaps > 0)
-        //   numTaps -= 1;
-        // if(numTaps >= 0)
-        //   SetTexture(graftTextures[numTaps]);
-
-        registerMisclick();
+      else {
+        heldDown = false;
       }
     }
   }
 
-  public void _OnTapAreaEntered(object area) {
-    tapAreaEntered = true;
+  public void _OnTapAreaEntered(Area2D area) {
+    int nextState = Helper.getNextHitboxState(area, true, tapAreaState);
+		if (nextState != -1)
+			tapAreaState = nextState;
+		GD.Print("tap area entered.");
   }
 
-  public void _OnTapAreaExited(object area) {
-    tapAreaEntered = false;
+  public void _OnTapAreaExited(Area2D area) {
+    int nextState = Helper.getNextHitboxState(area, false, tapAreaState);
+		if (nextState != -1)
+			tapAreaState = nextState;
+		GD.Print("tap area exited.");
   }
 
-  public void _OnHoldAreaEntered(object area) {
-    holdAreaEntered = true;
-    GD.Print("hold area entered");
+  public void _OnHoldAreaEntered(Area2D area) {
+    int nextState = Helper.getNextHitboxState(area, true, holdAreaState);
+		if (nextState != -1)
+			holdAreaState = nextState;
+		GD.Print("hold area entered.");
   }
 
-  public void _OnHoldAreaExited(object area) {
-    holdAreaEntered = false;
+  public void _OnHoldAreaExited(Area2D area) {
+    int nextState = Helper.getNextHitboxState(area, false, holdAreaState);
+		if (nextState != -1)
+			holdAreaState = nextState;
+		GD.Print("hold area exited.");
   }
 
   public void setUpHitboxes(bool setup ) {
