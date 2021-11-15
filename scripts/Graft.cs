@@ -28,6 +28,7 @@ public class Graft : Sprite {
   protected bool interactable = true;
   public bool gamePaused = false;
   public bool misclicksOn = true;
+  protected MainEye2D eye; 
   public override void _Ready()
   {
     SetObjectives();
@@ -35,6 +36,7 @@ public class Graft : Sprite {
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
     misclickText = GetNode("../Overlay/MisclickCounter") as RichTextLabel;
+    eye = GetNode("../") as MainEye2D;
   	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
   	isTutorialMode = levelSwitcher.tutorialMode();
   }
@@ -155,7 +157,11 @@ public class Graft : Sprite {
       // if the player taps outside of a hitbox:
 			if((lCannula.tapped && lCannula.numAreasIn == 0)||(rCannula.tapped && rCannula.numAreasIn == 0))
 			{
-				registerMisclick();
+        // Don't register misclick if inside an incision
+        if(eye.getInIncision() == false){
+          registerMisclick();
+        }
+
 			}
   }
 
