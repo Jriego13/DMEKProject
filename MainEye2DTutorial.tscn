@@ -45,7 +45,7 @@ curve = SubResource( 2 )
 [sub_resource type="CurveTexture" id=4]
 curve = SubResource( 2 )
 
-[node name="Main" type="Node2D"]
+[node name="Main2" type="Node2D"]
 scale = Vector2( 0.749, 0.842 )
 script = SubResource( 1 )
 

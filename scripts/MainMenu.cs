@@ -14,6 +14,9 @@ public class MainMenu : MarginContainer
 		tutorialButton.Connect("pressed", this, "onTutorialPressed");
 		var playButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Play");
 		playButton.Connect("pressed", this, "onPlayPressed");
+		var music = GetNode("/root/Music") as AudioStreamPlayer;
+        music.Stream = ResourceLoader.Load("res://music/MainMenuMusic.wav") as AudioStream;
+        music.Play();
 	}
 
 	// Starts the game at a random confirmation:

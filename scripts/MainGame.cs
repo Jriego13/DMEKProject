@@ -64,6 +64,9 @@ public class MainGame : Node2D
         levelCompletePrompt = GetNode("Overlay/LevelCompletePrompt") as RichTextLabel;
         levelCompletePrompt.Visible = false;
         SetUp();
+        var music = GetNode("/root/Music") as AudioStreamPlayer;
+        music.Stream = ResourceLoader.Load("res://music/MainGameMusic.wav") as AudioStream;
+        music.Play();
     }
     // What happens when the confirmation is finished in the respective game mode:
     protected virtual void OnConfirmationFinished(){}
