@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/done.jpg" type="Texture" id=2]
 [ext_resource path="res://music/Victory.mp3" type="AudioStream" id=3]
+[ext_resource path="res://EndMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://EndMenu.cs" type="Script" id=5]
 
 [node name="DoneSprite" type="Sprite"]
 position = Vector2( 687.774, 327.851 )
@@ -25,3 +27,10 @@ __meta__ = {
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 autoplay = true
+
+[node name="MenuPopup" parent="." instance=ExtResource( 4 )]
+margin_left = 141.185
+margin_top = -186.364
+margin_right = 141.185
+margin_bottom = -186.364
+script = ExtResource( 5 )

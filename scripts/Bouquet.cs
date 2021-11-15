@@ -9,6 +9,7 @@ public class Bouquet : Graft {
 
   protected override void SetObjectives()
   {
+    currentConfirmation = "Bouquet";
     numTapsComplete = rng.Next(4,6);
 		topTapsComplete = numTapsComplete;
     GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
@@ -28,6 +29,9 @@ public class Bouquet : Graft {
           topTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
+          if(topTaps + numTaps < graftTextures.Count && topTaps >= 0)
+            SetTexture(graftTextures[numTaps + topTaps]);
+
           GD.Print("top tap registered");
       }
     }
@@ -38,6 +42,9 @@ public class Bouquet : Graft {
           numTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
+          if(topTaps + numTaps < graftTextures.Count && numTaps >= 0)
+            SetTexture(graftTextures[numTaps + topTaps]);
+
           GD.Print("mid tap registered");
       }
     }
