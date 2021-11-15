@@ -79,6 +79,13 @@ public class Graft : Sprite {
         graftTexturesOther.Add(currImg);
       }
     }
+    else if(currentConfirmation == "Bouquet") {
+      graftTextures.Add(Texture);
+      for(int i = 0; i < 6; i++) {
+        currImg = GD.Load("res://sprites/BouquetSimple" + (i+1) + ".png") as Texture;
+        graftTextures.Add(currImg);
+      }
+    }
     else if(currentConfirmation == "DoubleScroll") {
       graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
