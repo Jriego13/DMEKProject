@@ -13,8 +13,8 @@ public class Incisions : Node2D
     public override void _Process(float delta){
         if(flag){
             if(  (cannulas.getLHeld() || cannulas.getRHeld()) || (cannulas.getLLocked() || cannulas.getRLocked())  ){
-                // holding left cannula will remove liquid 
-                
+                // holding left cannula will remove liquid
+
                 if(waterLevel > 0 ){
                   // water level can't go below zero
                   waterLevel-= 0.25f;
@@ -23,11 +23,11 @@ public class Incisions : Node2D
                   waterLevelCounter.Text = waterLevel.ToString();
                 }
             }
-          
+
             if(Input.IsActionPressed("cann_inject")){
                 if(waterLevel < 100 ){
                 // water level can't go below zero
-                waterLevel+= 0.5f;
+                waterLevel+= 0.25f;
                 eye.setWaterLevel(waterLevel);
                 bar.Value = waterLevel;
                 waterLevelCounter.Text = waterLevel.ToString();

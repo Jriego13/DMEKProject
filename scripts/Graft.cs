@@ -31,6 +31,7 @@ public class Graft : Sprite {
   protected MainEye2D eye; 
   protected AudioStreamPlayer goodTapSound = new AudioStreamPlayer();
   protected AudioStreamPlayer badTapSound = new AudioStreamPlayer();
+
   public override void _Ready()
   {
     SetObjectives();
@@ -57,22 +58,24 @@ public class Graft : Sprite {
     Texture currImg;
     GD.Print("Loading Textures...");
 
+    graftTextures.Add(Texture);
     if(currentConfirmation == "SimpleFold") {
-      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/SimpleEdge" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
+    else if(currentConfirmation == "Taco") {
+      currImg = GD.Load("res://sprites/Inverted.png") as Texture;
+      graftTextures.Add(currImg);
+    }
     else if(currentConfirmation == "EdgeFold") {
-      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/EdgeDone" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
     else if(currentConfirmation == "Scroll") {
-      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/ScrollSimple" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
@@ -83,14 +86,12 @@ public class Graft : Sprite {
       }
     }
     else if(currentConfirmation == "Bouquet") {
-      graftTextures.Add(Texture);
       for(int i = 0; i < 6; i++) {
         currImg = GD.Load("res://sprites/BouquetSimple" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
     else if(currentConfirmation == "DoubleScroll") {
-      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/DoubleSimple" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
