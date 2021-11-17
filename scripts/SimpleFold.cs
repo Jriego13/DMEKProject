@@ -3,7 +3,7 @@ using System;
 
 public class SimpleFold : Graft {
 // 0-no cannulas, 1-left cannula, 2-right cannula, 3-both
-  int tapAreaState = 0; 
+  int tapAreaState = 0;
   int holdAreaState = 0;
   bool heldDown = false;
   ColorRect tapHitBox;
@@ -26,7 +26,7 @@ public class SimpleFold : Graft {
       isFinished = true;
       GD.Print("tapping complete.");
     }
-    
+
     // if at least one cannula is in tap area:
     if(tapAreaState != 0 && heldDown) {
       // if cannula is being tapped and is not the state where only the other cannula is there:
@@ -45,6 +45,9 @@ public class SimpleFold : Graft {
       // if cannula is being held and is not the state where only the other cannula is there:
       if((lCannula.locked && holdAreaState != 2) || (rCannula.locked && holdAreaState != 1)) {
         heldDown = true;
+      }
+      else {
+        heldDown = false;
       }
     }
   }

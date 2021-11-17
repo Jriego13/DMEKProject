@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://images/simple_fold.png" type="Texture" id=1]
 [ext_resource path="res://images/double_scroll.png" type="Texture" id=2]
-[ext_resource path="res://images/eyeIcon.png" type="Texture" id=3]
+[ext_resource path="res://sprites/DoubleScrollThumb.png" type="Texture" id=3]
 [ext_resource path="res://images/level_select.png" type="Texture" id=4]
 [ext_resource path="res://images/scroll.png" type="Texture" id=5]
 [ext_resource path="res://images/inverted.png" type="Texture" id=6]
@@ -14,8 +14,13 @@
 [ext_resource path="res://images/bouquet.png" type="Texture" id=12]
 [ext_resource path="res://sound_effects/HoverSound.mp3" type="AudioStream" id=13]
 [ext_resource path="res://sound_effects/ClickSound.mp3" type="AudioStream" id=14]
+[ext_resource path="res://sprites/TacoThumb.png" type="Texture" id=15]
+[ext_resource path="res://sprites/SimpleFoldThumb.png" type="Texture" id=16]
+[ext_resource path="res://sprites/EdgeFoldThumb.png" type="Texture" id=17]
+[ext_resource path="res://sprites/InvertedThumb.png" type="Texture" id=18]
+[ext_resource path="res://sprites/BouquetThumb.png" type="Texture" id=19]
 
-[node name="MarginContainer" type="MarginContainer"]
+[node name="MarginContainer2" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 10 )
@@ -83,7 +88,7 @@ margin_bottom = 234.0
 [node name="SimpleFold" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels1and4/Level1"]
 margin_right = 281.0
 margin_bottom = 182.0
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource( 16 )
 
 [node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels1and4/Level1"]
 margin_top = 186.0
@@ -102,7 +107,7 @@ margin_bottom = 499.0
 [node name="Inverted" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels1and4/Level4"]
 margin_right = 281.0
 margin_bottom = 182.0
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource( 18 )
 
 [node name="TextureButton3" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels1and4/Level4"]
 margin_top = 186.0
@@ -148,7 +153,7 @@ margin_bottom = 491.0
 [node name="Taco" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels2and5/Level5"]
 margin_right = 281.0
 margin_bottom = 182.0
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource( 15 )
 
 [node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels2and5/Level5"]
 margin_top = 186.0
@@ -194,7 +199,7 @@ margin_bottom = 496.0
 [node name="EdgeFold" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels3and6/Level6"]
 margin_right = 281.0
 margin_bottom = 182.0
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource( 17 )
 
 [node name="TextureButton4" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels3and6/Level6"]
 margin_top = 186.0
@@ -219,7 +224,7 @@ margin_bottom = 364.0
 [node name="Bouquet" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Level7/Level7"]
 margin_right = 271.0
 margin_bottom = 182.0
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource( 19 )
 
 [node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Level7/Level7"]
 margin_top = 186.0
