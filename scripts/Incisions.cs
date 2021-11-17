@@ -16,17 +16,15 @@ public class Incisions : Node2D
                 // holding left cannula will remove liquid
 
                 if(waterLevel > 0 ){
-                // water level can't go below zero
-                waterLevel-= 0.25f;
-                eye.setWaterLevel(waterLevel);
-                bar.Value = waterLevel;
-                waterLevelCounter.Text = waterLevel.ToString();
+                  // water level can't go below zero
+                  waterLevel-= 0.25f;
+                  eye.setWaterLevel(waterLevel);
+                  bar.Value = waterLevel;
+                  waterLevelCounter.Text = waterLevel.ToString();
                 }
             }
 
             if(Input.IsActionPressed("cann_inject")){
-                // holding right cannula will add liquid
-
                 if(waterLevel < 100 ){
                 // water level can't go below zero
                 waterLevel+= 0.25f;
