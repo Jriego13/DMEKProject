@@ -131,7 +131,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = -30.0
 max_value = 10.0
-value = -5.0
+value = -10.0
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/SliderVBox"]
 margin_top = 346.0

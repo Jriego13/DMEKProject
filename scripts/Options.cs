@@ -26,6 +26,7 @@ public class Options : MarginContainer
         effectsSlider.Connect("value_changed", this, "onEffectsVolumeChanged");
         music = GetNode("/root/Music") as AudioStreamPlayer;
         musicSlider.Value = Helper.musicVolumeDb;
+        effectsSlider.Value = Helper.soundEffectsVolumeDb;
     }
 
     // Navigates back to the main menu:
@@ -40,5 +41,9 @@ public class Options : MarginContainer
         GD.Print(value);
         music.VolumeDb = value; 
         Helper.musicVolumeDb = value;
+    }
+    private void onEffectsVolumeChanged(float value)
+    {
+        Helper.soundEffectsVolumeDb = value;
     }
 }

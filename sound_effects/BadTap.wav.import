@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Tap.wav-c32614d21e2f3294f2067ff0abdf9963.sample"
+path="res://.import/BadTap.wav-93ad38f9a78b0a8719e882458bb46135.sample"
 
 [deps]
 
-source_file="res://music/Tap.wav"
-dest_files=[ "res://.import/Tap.wav-c32614d21e2f3294f2067ff0abdf9963.sample" ]
+source_file="res://sound_effects/BadTap.wav"
+dest_files=[ "res://.import/BadTap.wav-93ad38f9a78b0a8719e882458bb46135.sample" ]
 
 [params]
 

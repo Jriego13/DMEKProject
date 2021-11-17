@@ -21,11 +21,7 @@ public class LevelMenu : MarginContainer
         var edgeFoldButton = GetNode(levelHBoxPath + "/Levels3and6/Level6/EdgeFold");
         var bouquetButton = GetNode(levelHBoxPath + "/Level7/Level7/Bouquet");
 
-        // Sound effects:
-        hoverSound = GetNode("HoverSound") as AudioStreamPlayer;
-        clickSound = GetNode("ClickSound") as AudioStreamPlayer;
-        clickSound.Play(); // player just clicked into this scene, so play sound
-
+        SetUpSound();
         // Create array of the buttons so we can loop over all of them:
         var buttons = new[] {simpleFoldButton, invertedButton, scrollButton, tacoButton, doubleScrollButton, edgeFoldButton, bouquetButton};
 
@@ -66,4 +62,12 @@ public class LevelMenu : MarginContainer
 	{
 		hoverSound.Play();
 	}
+    private void SetUpSound()
+    {
+        hoverSound = GetNode("HoverSound") as AudioStreamPlayer;
+        clickSound = GetNode("ClickSound") as AudioStreamPlayer;
+        hoverSound.VolumeDb = Helper.soundEffectsVolumeDb;
+		clickSound.VolumeDb = Helper.soundEffectsVolumeDb;
+        clickSound.Play(); // player just clicked into this scene, so play sound
+    }
 }
