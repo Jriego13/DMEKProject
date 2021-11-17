@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-// Alternative options menu that acts as a popup.
+// Alternative options menu that acts as a popup. Holds an Options.cs in it.
 public class OptionsPopUp : Popup
 {
     public override void _Ready()
     {
-        var goBackButton = GetNode("MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/GoBackButton");
+        var goBackButton = GetNode("MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/GoBackButton");
         goBackButton.Connect("pressed", this, "onGoBackButtonPressed");
     }
 
@@ -16,5 +16,4 @@ public class OptionsPopUp : Popup
         Input.SetMouseMode((Godot.Input.MouseMode)1);
 		Hide();
     }
-    
 }

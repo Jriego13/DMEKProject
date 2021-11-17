@@ -6,7 +6,7 @@
 [ext_resource path="res://Cannula2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://CurrentConfirmation.tscn" type="PackedScene" id=5]
 [ext_resource path="res://images/circle.png" type="Texture" id=6]
-[ext_resource path="res://music/Tap.wav" type="AudioStream" id=7]
+[ext_resource path="res://sound_effects/BadTap.wav" type="AudioStream" id=7]
 [ext_resource path="res://EscapeMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://images/lifebar_bg.png" type="Texture" id=9]
 [ext_resource path="res://WaterUIFont.tres" type="DynamicFont" id=10]
@@ -45,7 +45,7 @@ curve = SubResource( 2 )
 [sub_resource type="CurveTexture" id=4]
 curve = SubResource( 2 )
 
-[node name="Main" type="Node2D"]
+[node name="Main2" type="Node2D"]
 scale = Vector2( 0.749, 0.842 )
 script = SubResource( 1 )
 
