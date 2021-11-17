@@ -4,7 +4,7 @@ using System;
 public class CannulaMain2D : Node2D {
 	Cannula2D lCannula;
 	Cannula2D rCannula;
-	AudioStreamPlayer audio;
+	
 	bool inject = false;
 	bool lHeld = false;
 	bool rHeld = false;
@@ -29,7 +29,6 @@ public class CannulaMain2D : Node2D {
 		Input.SetMouseMode((Godot.Input.MouseMode)1); // hide mouse
 		lCannula = GetNode("./CannulaLSprite") as Cannula2D;
 		rCannula = GetNode("./CannulaRSprite") as Cannula2D;
-		audio = GetNode("./CannulaLSprite/AudioStreamPlayer") as AudioStreamPlayer;
 	}
 
 	public override void _Process(float delta) {
@@ -73,7 +72,6 @@ public class CannulaMain2D : Node2D {
 				else{
 					rCannula.tapped = true;
 				}
-				audio.Play();
 			}
 			else {
 				lCannula.tapped = false;
