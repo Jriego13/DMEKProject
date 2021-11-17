@@ -5,6 +5,8 @@ using System;
 // Any shared functionality between the two menus goes here.
 public class LevelMenu : MarginContainer
 {
+    AudioStreamPlayer hoverSound;
+    AudioStreamPlayer clickSound;
     public override void _Ready()
     {
         var goBackButton = GetNode("MarginContainer/VBoxContainer2/HBoxContainer2/GoBackButton");
@@ -19,6 +21,11 @@ public class LevelMenu : MarginContainer
         var edgeFoldButton = GetNode(levelHBoxPath + "/Levels3and6/Level6/EdgeFold");
         var bouquetButton = GetNode(levelHBoxPath + "/Level7/Level7/Bouquet");
 
+        // Sound effects:
+        hoverSound = GetNode("HoverSound") as AudioStreamPlayer;
+        clickSound = GetNode("ClickSound") as AudioStreamPlayer;
+        clickSound.Play(); // player just clicked into this scene, so play sound
+
         // Create array of the buttons so we can loop over all of them:
         var buttons = new[] {simpleFoldButton, invertedButton, scrollButton, tacoButton, doubleScrollButton, edgeFoldButton, bouquetButton};
 
@@ -26,7 +33,9 @@ public class LevelMenu : MarginContainer
         foreach (var button in buttons)
         {
             button.Connect("pressed", this, "loadLevel", new Godot.Collections.Array {button.Name});
+            button.Connect("mouse_entered", this, "onMouseEnteredButton");
         }
+        
     }
     public override void _Input(InputEvent @event)
     {
@@ -52,4 +61,9 @@ public class LevelMenu : MarginContainer
         // Store the next level and change to the MainEye scene:
         levelSwitcher.ChangeLevel(Helper.toFileName(Helper.mainSceneName), Helper.toFileName(sceneName));
     }
+    // Play a sound when the player hovers over a button:
+	private void onMouseEnteredButton()
+	{
+		hoverSound.Play();
+	}
 }

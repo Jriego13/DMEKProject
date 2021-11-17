@@ -9,6 +9,8 @@ public static class Helper
     public const String sceneSuffix = ".tscn";
     public const String mainSceneName = "MainEye2D";
     public const String tutorialSceneName = "MainEye2DTutorial";
+    public static float musicVolumeDb = -10;
+    public static float soundEffectsVolumeDb = -10;
 
 
     public static String[] confirmations = {"Scroll", "DoubleScroll", "SimpleFold",

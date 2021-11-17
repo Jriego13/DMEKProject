@@ -19,8 +19,8 @@ public class Graft : Sprite {
   protected String previousConfirmation;
   protected String currentConfirmation;
   protected String nextConfirmation;
-  protected Cannula2D lCannula;
-	protected Cannula2D rCannula;
+  public Cannula2D lCannula;
+	public Cannula2D rCannula;
   protected RichTextLabel misclickText;
 	protected bool isTutorialMode;
   protected double rotationalVelocity;
