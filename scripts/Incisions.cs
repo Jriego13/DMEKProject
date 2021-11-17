@@ -17,7 +17,7 @@ public class Incisions : Node2D
 
                 if(waterLevel > 0 ){
                 // water level can't go below zero
-                waterLevel-= 0.5f;
+                waterLevel-= 0.25f;
                 eye.setWaterLevel(waterLevel);
                 bar.Value = waterLevel;
                 waterLevelCounter.Text = waterLevel.ToString();

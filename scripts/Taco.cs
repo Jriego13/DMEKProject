@@ -3,10 +3,11 @@ using System;
 
 public class Taco : Graft {
   bool injectAreaEntered = false;
+  int areaState = 0; // 0-no cannulas, 1-left cannula, 2-right cannula, 3-both
 
   protected override void SetObjectives() {
     currentConfirmation = "Taco";
-    numTapsComplete = rng.Next(3,5);
+    numTapsComplete = 2;
     var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
 		// isTutorialMode = levelSwitcher.tutorialMode();
 		// setUpHitboxes(isTutorialMode);
@@ -22,25 +23,28 @@ public class Taco : Graft {
 
     // you want to be injecting perpendicular to the graft
     // so this will have to be checked for
-    if(injectAreaEntered) {
+    if(areaState != 0) {
       if((lCannula.injecting && lCannula.numAreasIn != 0) || (rCannula.injecting && rCannula.numAreasIn != 0)) {
         numTaps += 1;
+        if(numTaps < graftTextures.Count && numTaps >= 0)
+          SetTexture(graftTextures[numTaps]);
+
         GD.Print("inject registered.");
       }
     }
   }
 
-  public void _OnInjectAreaEntered(object area) {
-    injectAreaEntered = true;
-    // Cannula2D currentCannula = area.GetParent() as Cannula2D;
-    // currentCannula.inArea = true;
+  public void _OnInjectAreaEntered(Area2D area) {
+    int nextState = Helper.getNextHitboxState(area, true, areaState);
+    if (nextState != -1)
+      areaState = nextState;
     GD.Print("inject area entered.");
   }
 
-  public void _OnInjectAreaExited(object area) {
-    injectAreaEntered = false;
-    // Cannula2D currentCannula = area.GetParent() as Cannula2D;
-    // currentCannula.inArea = false;
+  public void _OnInjectAreaExited(Area2D area) {
+    int nextState = Helper.getNextHitboxState(area, false, areaState);
+		if (nextState != -1)
+			areaState = nextState;
   }
 
   // public void setUpHitboxes(bool setup) {

@@ -64,17 +64,13 @@ public static class Helper
         }
         else if (current.Equals("res://Taco.tscn"))
         {
-            if (randomNumber < 33)
+            if (randomNumber < 50)
             {
                 nextLevel = "SimpleFold";
             }
-            else if (randomNumber < 66)
+            else if (randomNumber < 99)
             {
                 nextLevel = "Scroll";
-            }
-            else if (randomNumber < 100)
-            {
-                nextLevel = "Origami";
             }
         }
         else if (current.Equals("res://EdgeFold.tscn"))
