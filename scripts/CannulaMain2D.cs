@@ -4,26 +4,12 @@ using System;
 public class CannulaMain2D : Node2D {
 	Cannula2D lCannula;
 	Cannula2D rCannula;
-	
+
 	bool inject = false;
 	bool lHeld = false;
 	bool rHeld = false;
 	bool lrRotating = false; // false defualts to rotating left cannula, true to right cannula
 	float timer = 0;
-
-	public bool getLHeld(){
-		return lHeld;
-	}
-	public bool getRHeld(){
-		return rHeld;
-	}
-
-	public bool getLLocked(){
-		return lCannula.locked;
-	}
-	public bool getRLocked(){
-		return rCannula.locked;
-	}
 
 	public override void _Ready() {
 		Input.SetMouseMode((Godot.Input.MouseMode)1); // hide mouse
@@ -134,5 +120,29 @@ public class CannulaMain2D : Node2D {
 			Input.SetMouseMode((Godot.Input.MouseMode)0); // displays the mouse
 		else
 			Input.SetMouseMode((Godot.Input.MouseMode)1); // hides the mouse
+	}
+
+	public Cannula2D getLCannula() {
+		return lCannula;
+	}
+
+	public Cannula2D getRCannula() {
+		return rCannula;
+	}
+
+	public bool getLHeld(){
+		return lHeld;
+	}
+
+	public bool getRHeld(){
+		return rHeld;
+	}
+
+	public bool getLLocked(){
+		return lCannula.locked;
+	}
+
+	public bool getRLocked(){
+		return rCannula.locked;
 	}
 }

@@ -4,5 +4,5 @@
 font_path = "res://ChiKareGo2.ttf"
 
 [resource]
-size = 128
+size = 96
 font_data = SubResource( 1 )
