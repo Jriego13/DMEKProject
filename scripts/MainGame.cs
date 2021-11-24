@@ -64,6 +64,10 @@ public class MainGame : Node2D
         levelCompletePrompt = GetNode("Overlay/LevelCompletePrompt") as RichTextLabel;
         levelCompletePrompt.Visible = false;
         SetUp();
+        var music = GetNode("/root/Music") as AudioStreamPlayer;
+        music.Stream = ResourceLoader.Load("res://music/MainGameMusic.wav") as AudioStream;
+        music.VolumeDb = Helper.musicVolumeDb;
+        music.Play();
     }
     // What happens when the confirmation is finished in the respective game mode:
     protected virtual void OnConfirmationFinished(){}
@@ -80,7 +84,11 @@ public class MainGame : Node2D
             OnConfirmationFinished();
         }
         else
+        {
             confirmation.gamePaused = (escapeMenu.visible || escapeMenu.optionsVisible);
+            confirmation.lCannula.Visible = !(escapeMenu.visible || escapeMenu.optionsVisible);
+            confirmation.rCannula.Visible = !(escapeMenu.visible || escapeMenu.optionsVisible);
+        }
     }
 
     // Load the specified level/fold, instance it as a Node2D, then place it in the tree:

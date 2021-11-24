@@ -10,7 +10,7 @@ public class Bouquet : Graft {
   protected override void SetObjectives()
   {
     currentConfirmation = "Bouquet";
-    numTapsComplete = rng.Next(4,6);
+    numTapsComplete = 3;
 		topTapsComplete = numTapsComplete;
     GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
   }

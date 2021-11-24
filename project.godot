@@ -17,6 +17,7 @@ config/icon="res://images/eyeIcon.png"
 [autoload]
 
 LevelSwitcher="*res://scripts/LevelSwitcher.cs"
+Music="*res://music/Music.tscn"
 
 [display]
 

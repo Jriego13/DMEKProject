@@ -3,6 +3,8 @@ using System;
 
 public class MainMenu : MarginContainer
 {
+	AudioStreamPlayer hoverSound;
+	AudioStreamPlayer clickSound;
 	public override void _Ready()
 	{
 		String menuOptions = "MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/";
@@ -18,8 +20,19 @@ public class MainMenu : MarginContainer
 		infoButton.Connect("pressed", this, "onInfoPressed");
 		var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
 
+		SetUpSound();
+		var buttons = new[] {optionsButton, levelSelectButton, tutorialButton, playButton};
+		foreach (var button in buttons)
+        {
+            button.Connect("mouse_entered", this, "onMouseEnteredButton");
+        }
 	}
-
+	// Play a sound when the player hovers over a button:
+	private void onMouseEnteredButton()
+	{
+		hoverSound.VolumeDb = Helper.soundEffectsVolumeDb;
+		hoverSound.Play();
+	}
 	// Starts the game at a random confirmation:
 	private void onInfoPressed()
 	{
@@ -40,11 +53,12 @@ public class MainMenu : MarginContainer
 	// Navigates to the options screen:
 	private void onOptionsPressed()
 	{
+		clickSound.VolumeDb = Helper.soundEffectsVolumeDb;
+		clickSound.Play();
 		GD.Print("Options pressed");
 		var optionsScene = GD.Load<PackedScene>("res://Options.tscn");
 		var optionsMenu = (Node)optionsScene.Instance();
 		GetNode("/root/MarginContainer").AddChild(optionsMenu);
-
 	}
 	private void onTutorialPressed()
 	{
@@ -57,5 +71,21 @@ public class MainMenu : MarginContainer
 			levelSwitcher.ChangeLevel(Helper.toFileName("TutorialWelcomeScreen"), Helper.toFileName("SimpleFold"));
 		}
 	}
-
+	private void SetUpSound()
+	{
+		// Music:
+		var music = GetNode("/root/Music") as AudioStreamPlayer;
+		music.VolumeDb = Helper.musicVolumeDb;
+		// Only restart menu music if it isn't already playing:
+		if (music.Stream.ResourcePath != "res://music/MainMenuMusic.wav")
+		{
+        	music.Stream = ResourceLoader.Load("res://music/MainMenuMusic.wav") as AudioStream;
+        	music.Play();
+		}
+		hoverSound = GetNode("HoverSound") as AudioStreamPlayer;
+		clickSound = GetNode("ClickSound") as AudioStreamPlayer;
+		hoverSound.VolumeDb = Helper.soundEffectsVolumeDb;
+		clickSound.VolumeDb = Helper.soundEffectsVolumeDb;
+		clickSound.Play();
+	}
 }

@@ -13,6 +13,7 @@ texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="InjectArea" type="Area2D" parent="."]
+position = Vector2( 130.25, 0 )
 
 [node name="InjectArea" type="CollisionShape2D" parent="InjectArea"]
 position = Vector2( 361.918, -4.58298 )

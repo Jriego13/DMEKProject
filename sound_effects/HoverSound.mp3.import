@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/HoverSound.mp3-24f9d898895cca86ffa3e9078e68e2c4.mp3str"
+
+[deps]
+
+source_file="res://sound_effects/HoverSound.mp3"
+dest_files=[ "res://.import/HoverSound.mp3-24f9d898895cca86ffa3e9078e68e2c4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

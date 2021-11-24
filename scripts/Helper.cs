@@ -9,6 +9,8 @@ public static class Helper
     public const String sceneSuffix = ".tscn";
     public const String mainSceneName = "MainEye2D";
     public const String tutorialSceneName = "MainEye2DTutorial";
+    public static float musicVolumeDb = -10;
+    public static float soundEffectsVolumeDb = -10;
 
 
     public static String[] confirmations = {"Scroll", "DoubleScroll", "SimpleFold",
@@ -64,17 +66,13 @@ public static class Helper
         }
         else if (current.Equals("res://Taco.tscn"))
         {
-            if (randomNumber < 33)
+            if (randomNumber < 50)
             {
                 nextLevel = "SimpleFold";
             }
-            else if (randomNumber < 66)
+            else if (randomNumber < 99)
             {
                 nextLevel = "Scroll";
-            }
-            else if (randomNumber < 100)
-            {
-                nextLevel = "Origami";
             }
         }
         else if (current.Equals("res://EdgeFold.tscn"))

@@ -19,8 +19,8 @@ public class Graft : Sprite {
   protected String previousConfirmation;
   protected String currentConfirmation;
   protected String nextConfirmation;
-  protected Cannula2D lCannula;
-	protected Cannula2D rCannula;
+  public Cannula2D lCannula;
+	public Cannula2D rCannula;
   protected RichTextLabel misclickText;
 	protected bool isTutorialMode;
   protected double rotationalVelocity;
@@ -28,7 +28,10 @@ public class Graft : Sprite {
   protected bool interactable = true;
   public bool gamePaused = false;
   public bool misclicksOn = true;
-  protected MainEye2D eye; 
+  protected MainGame eye; 
+  protected AudioStreamPlayer goodTapSound = new AudioStreamPlayer();
+  protected AudioStreamPlayer badTapSound = new AudioStreamPlayer();
+
   public override void _Ready()
   {
     SetObjectives();
@@ -36,9 +39,10 @@ public class Graft : Sprite {
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
     misclickText = GetNode("../Overlay/MisclickCounter") as RichTextLabel;
-    eye = GetNode("../") as MainEye2D;
+    eye = GetNode("../") as MainGame;
   	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
   	isTutorialMode = levelSwitcher.tutorialMode();
+    SetUpSound();
   }
 
   // This is where each graft will check for their specific objectives.
@@ -54,22 +58,24 @@ public class Graft : Sprite {
     Texture currImg;
     GD.Print("Loading Textures...");
 
+    graftTextures.Add(Texture);
     if(currentConfirmation == "SimpleFold") {
-      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/SimpleEdge" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
+    else if(currentConfirmation == "Taco") {
+      currImg = GD.Load("res://sprites/Inverted.png") as Texture;
+      graftTextures.Add(currImg);
+    }
     else if(currentConfirmation == "EdgeFold") {
-      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/EdgeDone" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
     else if(currentConfirmation == "Scroll") {
-      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/ScrollSimple" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
@@ -80,14 +86,12 @@ public class Graft : Sprite {
       }
     }
     else if(currentConfirmation == "Bouquet") {
-      graftTextures.Add(Texture);
       for(int i = 0; i < 6; i++) {
         currImg = GD.Load("res://sprites/BouquetSimple" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
       }
     }
     else if(currentConfirmation == "DoubleScroll") {
-      graftTextures.Add(Texture);
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/DoubleSimple" + (i+1) + ".png") as Texture;
         graftTextures.Add(currImg);
@@ -100,6 +104,8 @@ public class Graft : Sprite {
   {
     if (gamePaused || !misclicksOn)
       return;
+    badTapSound.VolumeDb = Helper.soundEffectsVolumeDb;
+    badTapSound.Play();
     if(numTapsWrong < 3){
 					GD.Print("You clicked outside of the correct areas");
           if (lCannula.tapped)
@@ -162,14 +168,17 @@ public class Graft : Sprite {
       RotateFromTap();
     }
       // if the player taps outside of a hitbox:
-			if((lCannula.tapped && lCannula.numAreasIn == 0)||(rCannula.tapped && rCannula.numAreasIn == 0))
+      // Don't register misclick if inside an incision
+			if(eye.getInIncision() == false && (lCannula.tapped && lCannula.numAreasIn == 0)||(rCannula.tapped && rCannula.numAreasIn == 0))
 			{
-        // Don't register misclick if inside an incision
-        if(eye.getInIncision() == false){
-          registerMisclick();
-        }
-
+        registerMisclick();
 			}
+      // Not a misclick, so play normal tap sound:
+      else if ((lCannula.tapped || rCannula.tapped) && !gamePaused)
+      {
+        goodTapSound.VolumeDb = Helper.soundEffectsVolumeDb;
+        goodTapSound.Play();
+      }
   }
 
   protected void Deaccelerate()
@@ -255,5 +264,14 @@ public class Graft : Sprite {
 
   public int getTopTaps() {
     return topTaps;
+  }
+  protected void SetUpSound()
+  {
+    goodTapSound.Stream = ResourceLoader.Load("res://sound_effects/GoodTap.wav") as AudioStream;
+    badTapSound.Stream = ResourceLoader.Load("res://sound_effects/BadTap.wav") as AudioStream;
+    goodTapSound.VolumeDb = Helper.soundEffectsVolumeDb;
+    badTapSound.VolumeDb = Helper.soundEffectsVolumeDb;
+    AddChild(goodTapSound);
+    AddChild(badTapSound);
   }
 }
