@@ -28,7 +28,7 @@ public class Graft : Sprite {
   protected bool interactable = true;
   public bool gamePaused = false;
   public bool misclicksOn = true;
-  protected MainEye2D eye; 
+  protected MainGame eye; 
   protected AudioStreamPlayer goodTapSound = new AudioStreamPlayer();
   protected AudioStreamPlayer badTapSound = new AudioStreamPlayer();
 
@@ -39,7 +39,7 @@ public class Graft : Sprite {
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
     misclickText = GetNode("../Overlay/MisclickCounter") as RichTextLabel;
-    eye = GetNode("../") as MainEye2D;
+    eye = GetNode("../") as MainGame;
   	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
   	isTutorialMode = levelSwitcher.tutorialMode();
     SetUpSound();

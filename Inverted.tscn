@@ -18,5 +18,15 @@ script = ExtResource( 2 )
 position = Vector2( 361.918, -4.58298 )
 shape = SubResource( 1 )
 
+[node name="Center" type="Line2D" parent="."]
+visible = false
+scale = Vector2( 1, 1 )
+points = PoolVector2Array( -54.406, -1.91168, -59.7885, -3.93011 )
+default_color = Color( 0.4, 0.501961, 1, 1 )
+
+[node name="Axis" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( -56, -413.726, -56, -365.283, -56, -306.076, -56, -254.943, -56, -187.662, -56, -96.16, -56, -23.497, -56, 35.71, -56, 119.138, -56, 197.184, -56, 277.921, -56, 329.055, -56, 388.262 )
+
 [connection signal="area_entered" from="InjectArea" to="." method="_OnInjectAreaEntered"]
 [connection signal="area_exited" from="InjectArea" to="." method="_OnInjectAreaExited"]
