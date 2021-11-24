@@ -113,10 +113,12 @@ __meta__ = {
 [node name="TextureProgress" type="TextureProgress" parent="UI"]
 margin_right = 1822.0
 margin_bottom = 910.0
+value = 100.0
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 7 )
 
 [node name="Cannulas" parent="." instance=ExtResource( 4 )]
+z_index = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Cannulas"]
 stream = ExtResource( 1 )
@@ -161,54 +163,45 @@ position = Vector2( 918.224, 46.1755 )
 shape = SubResource( 6 )
 
 [node name="Incision2" type="Area2D" parent="Incisions"]
-visible = false
-position = Vector2( 308.477, 110.743 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision2"]
-position = Vector2( 918.224, 46.1755 )
+position = Vector2( 1223.29, 156.502 )
 shape = SubResource( 6 )
 
 [node name="Incision3" type="Area2D" parent="Incisions"]
-visible = false
-position = Vector2( 452.401, 387.959 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision3"]
-position = Vector2( 918.224, 46.1755 )
+position = Vector2( 1371.21, 433.933 )
 shape = SubResource( 6 )
 
 [node name="Incision4" type="Area2D" parent="Incisions"]
-position = Vector2( 325.536, 687.566 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision4"]
-position = Vector2( 918.224, 46.1755 )
+position = Vector2( 1244.67, 730.388 )
 shape = SubResource( 6 )
 
 [node name="Incision5" type="Area2D" parent="Incisions"]
-position = Vector2( -6.78061, 811.403 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision5"]
-position = Vector2( 918.224, 46.1755 )
+position = Vector2( 909.626, 858.799 )
 shape = SubResource( 6 )
 
 [node name="Incision6" type="Area2D" parent="Incisions"]
-position = Vector2( -335.729, 681.574 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision6"]
-position = Vector2( 918.224, 46.1755 )
+position = Vector2( 579.925, 727.217 )
 shape = SubResource( 6 )
 
 [node name="Incision7" type="Area2D" parent="Incisions"]
-position = Vector2( -455.89, 389.412 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision7"]
-position = Vector2( 918.224, 46.1755 )
+position = Vector2( 464.085, 433.933 )
 shape = SubResource( 6 )
 
 [node name="Incision8" type="Area2D" parent="Incisions"]
-position = Vector2( -313.032, 115.065 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision8"]
-position = Vector2( 918.224, 46.1755 )
+position = Vector2( 606.658, 162.843 )
 shape = SubResource( 6 )
 
 [node name="HelpPopup" type="Popup" parent="."]
@@ -324,5 +317,19 @@ __meta__ = {
 
 [connection signal="area_entered" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_entered"]
 [connection signal="area_exited" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision2" to="Incisions" method="_on_Incision1_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision2" to="Incisions" method="_on_Incision1_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision3" to="Incisions" method="_on_Incision1_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision3" to="Incisions" method="_on_Incision1_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision4" to="Incisions" method="_on_Incision1_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision4" to="Incisions" method="_on_Incision1_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision5" to="Incisions" method="_on_Incision1_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision5" to="Incisions" method="_on_Incision1_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision6" to="Incisions" method="_on_Incision1_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision6" to="Incisions" method="_on_Incision1_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision7" to="Incisions" method="_on_Incision1_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision7" to="Incisions" method="_on_Incision1_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision8" to="Incisions" method="_on_Incision1_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision8" to="Incisions" method="_on_Incision1_area_exited"]
 
 [editable path="Overlay"]

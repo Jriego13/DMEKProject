@@ -7,11 +7,14 @@ using System.Threading;
 public class HelpPrompt : RichTextLabel {
   bool showHelp;
   private HelpPopup helpPopUp;
+  private Sprite anteriorChamber;
 
   public override void _Ready() {
 	  showHelp = false;
     helpPopUp = GetNode("../../HelpPopup") as HelpPopup;
     SetBbcode("[right]Press 'h' to show controls[/right]");
+	  showHelp = false;
+    anteriorChamber = GetNode("../AnteriorChamber") as Sprite;
   }
 
   public override void _Process(float delta) {
@@ -22,6 +25,7 @@ public class HelpPrompt : RichTextLabel {
 
     if (showHelp) {
       SetBbcode("[right]Press 'h' to close window![/right]");
+      anteriorChamber.SetVisible(!showHelp);
     }
 
     if (!showHelp) {
@@ -42,8 +46,10 @@ public class HelpPrompt : RichTextLabel {
     else {
      /*  SetBbcode("[right] Press esc to return to menu \n" 
               +"Rotate cannula clockwise: s ccw: w" + "\n" + "\n"
+      SetBbcode("[right] Press esc to return to previous screen \n"
+              +"Rotate cannula cw: s ccw: w" + "\n" + "\n"
               + "swap cannula control: r" + "\n"
-              + "reset cannula: e" + "\n" 
+              + "reset cannula: e" + "\n"
               + "inject liquid in: p out: o \n \n"
               + "tap l/r cannula: l/r mouse" + "\n"+ "\n"
               + "hold mouse to keep cannula down[/right]"); 

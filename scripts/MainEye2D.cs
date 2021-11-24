@@ -11,9 +11,16 @@ public class MainEye2D : MainGame
     {
             // Delete the current node:
             confirmation.QueueFree();
-            // Add new node to the tree:
-            String nextLevel = Helper.getNextConfirmation(levelName);
-            loadConfirmation(nextLevel);
 
+            // Add new node to the tree:
+            String nextLevel;
+            if(confirmation.getIsNextLevelSet()) {
+              nextLevel = Helper.setNextConfirmation(confirmation.getSetConfirmation());
+            }
+            else {
+              nextLevel = Helper.getNextConfirmation(levelName);
+            }
+
+            loadConfirmation(nextLevel);
     }
 }

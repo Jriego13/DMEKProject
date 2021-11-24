@@ -17,9 +17,10 @@ public class LevelMenu : MarginContainer
         var tacoButton = GetNode(levelHBoxPath + "/Levels2and5/Level5/Taco");
         var doubleScrollButton = GetNode(levelHBoxPath + "/Levels3and6/Level3/DoubleScroll");
         var edgeFoldButton = GetNode(levelHBoxPath + "/Levels3and6/Level6/EdgeFold");
+        var bouquetButton = GetNode(levelHBoxPath + "/Level7/Level7/Bouquet");
 
         // Create array of the buttons so we can loop over all of them:
-        var buttons = new[] {simpleFoldButton, invertedButton, scrollButton, tacoButton, doubleScrollButton, edgeFoldButton};
+        var buttons = new[] {simpleFoldButton, invertedButton, scrollButton, tacoButton, doubleScrollButton, edgeFoldButton, bouquetButton};
 
         // Connect each level select button to its corresponding scene:
         foreach (var button in buttons)

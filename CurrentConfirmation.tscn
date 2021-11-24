@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/Confirmation.cs" type="Script" id=1]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://MisclickCounter.cs" type="Script" id=6]
 [ext_resource path="res://ChiKareGoSizeSmaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://sprites/AnteriorChamber100.png" type="Texture" id=9]
+[ext_resource path="res://scripts/AnteriorChamber.cs" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 5 )
@@ -107,3 +108,4 @@ __meta__ = {
 position = Vector2( 277.426, 177.759 )
 scale = Vector2( 0.231952, 0.231952 )
 texture = ExtResource( 9 )
+script = ExtResource( 10 )

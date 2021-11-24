@@ -125,10 +125,13 @@ public class CannulaMain2D : Node2D {
 	}
 
 	public override void _PhysicsProcess(float delta) {
+		Vector2 localMousePos = this.GetLocalMousePosition(); // local pos of the mouse
+		Vector2 leftPos = new Vector2((localMousePos.x - 28.5f), localMousePos.y);
+		Vector2 rightPos = new Vector2((localMousePos.x + 28.5f), localMousePos.y);
 		if (!menuOpen) {
-			Vector2 localMousePos = this.GetLocalMousePosition(); // local pos of the mouse
-			Vector2 leftPos = new Vector2((localMousePos.x - 28.5f), localMousePos.y);
-			Vector2 rightPos = new Vector2((localMousePos.x + 28.5f), localMousePos.y);
+			localMousePos = this.GetLocalMousePosition(); // local pos of the mouse
+			leftPos = new Vector2((localMousePos.x - 28.5f), localMousePos.y);
+			rightPos = new Vector2((localMousePos.x + 28.5f), localMousePos.y);
 
 			// enabling and disabling cannula movement
 			if(!lCannula.locked)
@@ -140,5 +143,15 @@ public class CannulaMain2D : Node2D {
 			else
 				Input.SetMouseMode((Godot.Input.MouseMode)1); // hides the mouse
 		}
+		
+		// enabling and disabling cannula movement
+		if(!lCannula.locked)
+			lCannula.SetPosition(leftPos);
+		if(!rCannula.locked)
+			rCannula.SetPosition(rightPos);
+		if(lCannula.locked && rCannula.locked)
+			Input.SetMouseMode((Godot.Input.MouseMode)0); // displays the mouse
+		else
+			Input.SetMouseMode((Godot.Input.MouseMode)1); // hides the mouse
 	}
 }

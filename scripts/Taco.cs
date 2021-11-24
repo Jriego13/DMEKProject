@@ -23,7 +23,7 @@ public class Taco : Graft {
     // you want to be injecting perpendicular to the graft
     // so this will have to be checked for
     if(injectAreaEntered) {
-      if((lCannula.injecting && lCannula.inArea) || (rCannula.injecting && rCannula.inArea)) {
+      if((lCannula.injecting && lCannula.numAreasIn != 0) || (rCannula.injecting && rCannula.numAreasIn != 0)) {
         numTaps += 1;
         GD.Print("inject registered.");
       }
