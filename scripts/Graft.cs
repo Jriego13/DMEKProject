@@ -28,6 +28,7 @@ public class Graft : Sprite {
   protected bool interactable = true;
   public bool gamePaused = false;
   public bool misclicksOn = true;
+  protected MainEye2D eye; 
   public override void _Ready()
   {
     SetObjectives();
@@ -35,6 +36,7 @@ public class Graft : Sprite {
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
     misclickText = GetNode("../Overlay/MisclickCounter") as RichTextLabel;
+    eye = GetNode("../") as MainEye2D;
   	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
   	isTutorialMode = levelSwitcher.tutorialMode();
   }
@@ -75,6 +77,13 @@ public class Graft : Sprite {
       for(int i = 0; i < 3; i++) {
         currImg = GD.Load("res://sprites/ScrollDouble" + (i+1) + ".png") as Texture;
         graftTexturesOther.Add(currImg);
+      }
+    }
+    else if(currentConfirmation == "Bouquet") {
+      graftTextures.Add(Texture);
+      for(int i = 0; i < 6; i++) {
+        currImg = GD.Load("res://sprites/BouquetSimple" + (i+1) + ".png") as Texture;
+        graftTextures.Add(currImg);
       }
     }
     else if(currentConfirmation == "DoubleScroll") {
@@ -155,7 +164,11 @@ public class Graft : Sprite {
       // if the player taps outside of a hitbox:
 			if((lCannula.tapped && lCannula.numAreasIn == 0)||(rCannula.tapped && rCannula.numAreasIn == 0))
 			{
-				registerMisclick();
+        // Don't register misclick if inside an incision
+        if(eye.getInIncision() == false){
+          registerMisclick();
+        }
+
 			}
   }
 

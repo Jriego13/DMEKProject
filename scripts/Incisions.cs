@@ -8,28 +8,25 @@ public class Incisions : Node2D
     protected float waterLevel;
     protected CannulaMain2D cannulas;
     protected bool flag = false;
-    protected MainEye2D eye; 
+    protected MainEye2D eye;
 
     public override void _Process(float delta){
         if(flag){
-            if(cannulas.getLHeld()){
+            if(  (cannulas.getLHeld() || cannulas.getRHeld()) || (cannulas.getLLocked() || cannulas.getRLocked())  ){
                 // holding left cannula will remove liquid 
                 
                 if(waterLevel > 0 ){
-                // water level can't go below zero
-                GD.Print("Removing");
-                waterLevel-= 0.5f;
-                eye.setWaterLevel(waterLevel);
-                bar.Value = waterLevel;
-                waterLevelCounter.Text = waterLevel.ToString();
+                  // water level can't go below zero
+                  waterLevel-= 0.25f;
+                  eye.setWaterLevel(waterLevel);
+                  bar.Value = waterLevel;
+                  waterLevelCounter.Text = waterLevel.ToString();
                 }
             }
-            if(cannulas.getRHeld()){
-                // holding right cannula will add liquid 
-                
+          
+            if(Input.IsActionPressed("cann_inject")){
                 if(waterLevel < 100 ){
                 // water level can't go below zero
-                GD.Print("Adding");
                 waterLevel+= 0.5f;
                 eye.setWaterLevel(waterLevel);
                 bar.Value = waterLevel;
@@ -42,26 +39,25 @@ public class Incisions : Node2D
     public override void _Ready()
     {
         // bar = GetNode("../UI/TextureProgress") as TextureProgress;
-
         waterLevelCounter = GetNode("../UI/NinePatchRect/WaterLevel") as RichTextLabel;
         cannulas = GetNode("../Cannulas") as CannulaMain2D;
         eye = GetNode("../") as MainEye2D;
         waterLevel = eye.getWaterLevel();
-
-
-
     }
 
     public void _on_Incision1_area_entered(object area){
         bar = GetNode("../UI/TextureProgress") as TextureProgress;
         waterLevel = (float)bar.Value;
         flag = true;
+        // set a flag in the main eye that doesnt allow for misclicks
+        eye.setInIncision(true);
     }
 
     public void _on_Incision1_area_exited(object area){
         bar = GetNode("../UI/TextureProgress") as TextureProgress;
         waterLevel = (float)bar.Value;
         flag = false;
+        eye.setInIncision(false);
     }
 
 
