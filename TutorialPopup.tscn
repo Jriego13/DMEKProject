@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://images/tutorialBasicPrompt.png" type="Texture" id=1]
+[ext_resource path="res://images/enterPrompt.png" type="Texture" id=2]
+[ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=3]
+[ext_resource path="res://images/scrollPrompt.png" type="Texture" id=4]
+[ext_resource path="res://scripts/TutorialPopup.cs" type="Script" id=5]
+
+[node name="TutorialPopup" type="Popup"]
+margin_top = 3.56294
+margin_right = 1025.0
+margin_bottom = 628.563
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_top = -6.4005e-09
+margin_left = 54.0
+margin_top = 58.0
+margin_right = 1007.0
+margin_bottom = 646.0
+rect_pivot_offset = Vector2( 234.253, 396.523 )
+color = Color( 0.792157, 0.792157, 0.792157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="RichTextLabel" parent="ColorRect"]
+margin_left = 134.0
+margin_top = 27.0
+margin_right = 885.0
+margin_bottom = 612.0
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollSprite" type="Sprite" parent="ColorRect"]
+position = Vector2( 470.369, 226.313 )
+scale = Vector2( 0.493893, 0.479672 )
+texture = ExtResource( 4 )
+
+[node name="MessageSprite" type="Sprite" parent="ColorRect"]
+visible = false
+position = Vector2( 401.826, 304.447 )
+scale = Vector2( 0.402698, 0.723797 )
+texture = ExtResource( 1 )
+
+[node name="PressEnterSprite" type="Sprite" parent="ColorRect"]
+position = Vector2( 456.86, 530.137 )
+scale = Vector2( 0.355373, 0.491551 )
+texture = ExtResource( 2 )

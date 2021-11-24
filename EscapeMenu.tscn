@@ -90,3 +90,4 @@ expand = true
 stretch_mode = 5
 
 [node name="OptionsPopup" parent="." instance=ExtResource( 6 )]
+visible = false

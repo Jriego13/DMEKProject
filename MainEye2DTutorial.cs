@@ -5,13 +5,13 @@ using System;
 // Otherwise, it should go in MainGame.cs
 public class MainEye2DTutorial : MainGame
 {
-    RichTextLabel tutorialPrompt;
     private HelpPrompt helpPrompt;
     private RichTextLabel waterUIPrompt;
     private MarginContainer waterLevelUI;
     private int curNumTaps;
     private int curTopTaps;
     private bool levelComplete;
+    private TutorialPopup tutorialPopup;
 
     protected override void CheckObjectives()
     {
@@ -35,8 +35,6 @@ public class MainEye2DTutorial : MainGame
     protected override void SetUp()
     {
         GD.Print("here inside maineye2dtut");
-        tutorialPrompt = GetNode("Overlay/TutorialPrompt") as RichTextLabel;
-        tutorialPrompt.Visible = true;
         confirmation.misclicksOn = false;
         curNumTaps = 0;
         curTopTaps = 0;
@@ -48,6 +46,9 @@ public class MainEye2DTutorial : MainGame
         waterUIPrompt = GetNode("Overlay/WaterUIPrompt") as RichTextLabel;
         waterLevelUI = GetNode("UI") as MarginContainer;
         waterLevelUI.Visible = true;
+
+        tutorialPopup = GetNode("./TutorialPopup") as TutorialPopup;
+        //tutorialPopup.SetVisible(true);
     }    
     protected override void OnConfirmationFinished()
     {
@@ -65,7 +66,6 @@ public class MainEye2DTutorial : MainGame
 
     private void successMode() {
         successfulTapPrompt.Visible = false;
-        tutorialPrompt.Visible = false;
         waterLevelUI.Visible = false;
         helpPrompt.Visible = false;
         levelCompletePrompt.Visible = true;

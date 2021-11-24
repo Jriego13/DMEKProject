@@ -9,6 +9,7 @@ public class TutorialWelcomeScreen : Node2D
     private ColorRect hold;
     private int enterCount = 0;
     private bool showHelpPrompt;
+    private HelpPopup helpPopup;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -20,6 +21,7 @@ public class TutorialWelcomeScreen : Node2D
         tap.Color = tapColor;
         hold.Color = holdColor;
         showHelpPrompt = false;
+        helpPopup = GetNode("HelpPopup") as HelpPopup;
 
     }
 
@@ -30,6 +32,7 @@ public class TutorialWelcomeScreen : Node2D
         
         if(Input.IsActionJustPressed("toggle_help")) {
             showHelpPrompt = !showHelpPrompt;
+            helpPopup.changeVisiblity(showHelpPrompt);
         }
 
         if (!showHelpPrompt) {
@@ -55,7 +58,8 @@ public class TutorialWelcomeScreen : Node2D
             prompt.SetText("Above is the fluid level in the eye\n" +
             "For most grafts, keep it between 10-30.\n\nFor flipped grafts " + 
             "like taco and inverted it needs to be deep (>50). \n\nFluid is" +
-            " inserted by holding on an incision point in purple.\n\nHit enter to test your skills"
+            " inserted by holding space on an incision point in purple and " +
+            "extracted by clicking on one\n\nHit enter to test your skills"
             +"\nPress left arrow to see previous message");
             }
             if (enterCount == 2) {
@@ -65,15 +69,8 @@ public class TutorialWelcomeScreen : Node2D
             }
         }
         else {
-            prompt.SetText("Press esc to return to menu \n" 
-              +"Rotate cannula clockwise: s ccw: w" + "\n" + "\n"
-              + "swap cannula control: r" + "\n"
-              + "reset cannula: e" + "\n" 
-              + "inject liquid: hold cannula on incision marks \n" 
-              + "extract liquod: o \n \n"
-              + "tap l/r cannula: l/r mouse" + "\n"+ "\n"
-              + "hold mouse to keep cannula down"
-              + "press h to minimze this message");
+            prompt.SetText("");
+            
         }
 
     }  
