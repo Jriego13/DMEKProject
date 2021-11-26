@@ -2,11 +2,10 @@
 
 [ext_resource path="res://scripts/Confirmation.cs" type="Script" id=1]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=2]
-[ext_resource path="res://scripts/ToggleHelp.cs" type="Script" id=3]
+[ext_resource path="res://scripts/HelpPrompt.cs" type="Script" id=3]
 [ext_resource path="res://ChiKareGoSize12.tres" type="DynamicFont" id=4]
 [ext_resource path="res://ChiKareGoSmaller.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://MisclickCounter.cs" type="Script" id=6]
-[ext_resource path="res://scripts/TutorialPrompt.cs" type="Script" id=7]
 [ext_resource path="res://ChiKareGoSizeSmaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://sprites/AnteriorChamber100.png" type="Texture" id=9]
 [ext_resource path="res://scripts/AnteriorChamber.cs" type="Script" id=10]
@@ -61,21 +60,6 @@ bbcode_enabled = true
 bbcode_text = "Misclicks: 0/3"
 text = "Misclicks: 0/3"
 script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TutorialPrompt" type="RichTextLabel" parent="."]
-margin_left = -78.0
-margin_top = 27.0
-margin_right = 89.0
-margin_bottom = 256.0
-rect_scale = Vector2( 0.85781, 0.64791 )
-size_flags_horizontal = 2
-custom_fonts/normal_font = ExtResource( 8 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-fit_content_height = true
-script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

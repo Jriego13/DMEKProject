@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://sound_effects/BadTap.wav" type="AudioStream" id=1]
 [ext_resource path="res://sprites/EyeBackground.png" type="Texture" id=2]
@@ -9,6 +9,19 @@
 [ext_resource path="res://images/lifebar_fill.png" type="Texture" id=7]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=8]
 [ext_resource path="res://scripts/Incisions.cs" type="Script" id=9]
+[ext_resource path="res://images/helpPrompt1.png" type="Texture" id=10]
+[ext_resource path="res://HelpPopup.cs" type="Script" id=11]
+[ext_resource path="res://images/go_back_symbol.png" type="Texture" id=12]
+[ext_resource path="res://images/S-Key.png" type="Texture" id=13]
+[ext_resource path="res://images/D-Key.png" type="Texture" id=14]
+[ext_resource path="res://images/CannulaControl.png" type="Texture" id=15]
+[ext_resource path="res://images/controls.png" type="Texture" id=16]
+[ext_resource path="res://images/EscKey.png" type="Texture" id=17]
+[ext_resource path="res://images/leftclick.png" type="Texture" id=18]
+[ext_resource path="res://images/HKey.png" type="Texture" id=19]
+[ext_resource path="res://images/escape.png" type="Texture" id=20]
+[ext_resource path="res://images/rightclick1.png" type="Texture" id=21]
+[ext_resource path="res://images/R-Key.png" type="Texture" id=22]
 
 [sub_resource type="CSharpScript" id=1]
 resource_name = "MainEye2D"
@@ -190,6 +203,117 @@ shape = SubResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Incisions/Incision8"]
 position = Vector2( 606.658, 162.843 )
 shape = SubResource( 6 )
+
+[node name="HelpPopup" type="Popup" parent="."]
+visible = true
+margin_left = 212.76
+margin_top = 56.9357
+margin_right = 1070.76
+margin_bottom = 652.936
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="HelpPopup"]
+anchor_top = -6.4005e-09
+margin_left = 5.38826
+margin_top = 55.7464
+margin_right = 983.388
+margin_bottom = 582.746
+rect_pivot_offset = Vector2( 234.253, 396.523 )
+color = Color( 0.792157, 0.792157, 0.792157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HelpPopup/ColorRect"]
+visible = false
+margin_left = 134.0
+margin_top = 27.0
+margin_right = 885.0
+margin_bottom = 612.0
+custom_fonts/normal_font = ExtResource( 8 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cannula Instructions" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 196.028, 70.0222 )
+scale = Vector2( 0.344912, 0.357892 )
+texture = ExtResource( 10 )
+
+[node name="SKey" type="Sprite" parent="HelpPopup/ColorRect/Cannula Instructions"]
+position = Vector2( 614.501, -72.4647 )
+scale = Vector2( 4.39592, 3.54113 )
+texture = ExtResource( 13 )
+
+[node name="DKey" type="Sprite" parent="HelpPopup/ColorRect/Cannula Instructions"]
+position = Vector2( 301.385, 78.7672 )
+scale = Vector2( 4.11214, 3.21803 )
+texture = ExtResource( 14 )
+
+[node name="CannulaControl" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 154.699, 156.233 )
+scale = Vector2( 0.311914, 0.363179 )
+texture = ExtResource( 15 )
+
+[node name="RKey" type="Sprite" parent="HelpPopup/ColorRect/CannulaControl"]
+position = Vector2( 581.798, 0.12384 )
+scale = Vector2( 5.38446, 3.2173 )
+texture = ExtResource( 22 )
+
+[node name="Controls" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 311.029, 329.866 )
+scale = Vector2( 0.320718, 0.367971 )
+texture = ExtResource( 16 )
+
+[node name="LeftClick" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( -790.453, -155.631 )
+scale = Vector2( 1.67582, 1.07153 )
+texture = ExtResource( 18 )
+
+[node name="RightClick" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( 423.704, -155.387 )
+scale = Vector2( 1.7077, 1.09668 )
+texture = ExtResource( 21 )
+
+[node name="LeftClick1" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( -131.974, 172.331 )
+scale = Vector2( 1.87607, 1 )
+texture = ExtResource( 18 )
+
+[node name="RightClick1" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( 807.123, 176.64 )
+scale = Vector2( 1.81255, 1.05039 )
+texture = ExtResource( 21 )
+
+[node name="EscapeAndH" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 753.855, 71.7358 )
+scale = Vector2( 0.337882, 0.383131 )
+texture = ExtResource( 20 )
+
+[node name="Sprite" type="Sprite" parent="HelpPopup/ColorRect/EscapeAndH"]
+position = Vector2( -283.505, 82.7559 )
+scale = Vector2( 4.04932, 3.71543 )
+texture = ExtResource( 19 )
+
+[node name="Sprite2" type="Sprite" parent="HelpPopup/ColorRect/EscapeAndH"]
+position = Vector2( -288.78, -78.6181 )
+scale = Vector2( 4.37897, 3.97404 )
+texture = ExtResource( 17 )
+
+[node name="GoBackButton" type="TextureButton" parent="HelpPopup"]
+visible = false
+margin_left = 891.506
+margin_top = 77.7923
+margin_right = 977.506
+margin_bottom = 157.792
+texture_normal = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="area_entered" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_entered"]
 [connection signal="area_exited" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_exited"]

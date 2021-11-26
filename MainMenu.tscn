@@ -87,6 +87,12 @@ margin_bottom = 340.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 8 )
 
+[node name="Info" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+margin_top = 314.0
+margin_right = 725.0
+margin_bottom = 376.0
+texture_normal = ExtResource( 8 )
+
 [node name="Options" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
 margin_top = 370.0
 margin_right = 725.0
