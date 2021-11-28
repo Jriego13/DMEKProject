@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://sprites/EyeBackground.png" type="Texture" id=1]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=2]
@@ -10,6 +10,28 @@
 [ext_resource path="res://EscapeMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://images/lifebar_bg.png" type="Texture" id=9]
 [ext_resource path="res://WaterUIFont.tres" type="DynamicFont" id=10]
+[ext_resource path="res://images/helpPrompt1.png" type="Texture" id=11]
+[ext_resource path="res://HelpPopup.cs" type="Script" id=12]
+[ext_resource path="res://images/go_back_symbol.png" type="Texture" id=13]
+[ext_resource path="res://images/S-Key.png" type="Texture" id=14]
+[ext_resource path="res://images/EscKey.png" type="Texture" id=15]
+[ext_resource path="res://images/leftclick.png" type="Texture" id=16]
+[ext_resource path="res://images/HKey.png" type="Texture" id=17]
+[ext_resource path="res://images/escape.png" type="Texture" id=18]
+[ext_resource path="res://images/D-Key.png" type="Texture" id=19]
+[ext_resource path="res://images/CannulaControl.png" type="Texture" id=20]
+[ext_resource path="res://images/rightclick1.png" type="Texture" id=21]
+[ext_resource path="res://images/controls.png" type="Texture" id=22]
+[ext_resource path="res://images/R-Key.png" type="Texture" id=23]
+[ext_resource path="res://images/basicTutorialPrompt.png" type="Texture" id=24]
+[ext_resource path="res://images/altPressEnter.png" type="Texture" id=25]
+[ext_resource path="res://images/scrollPrompt.png" type="Texture" id=26]
+[ext_resource path="res://scripts/TutorialPopup.cs" type="Script" id=27]
+[ext_resource path="res://images/doubleScrollPrompt.png" type="Texture" id=28]
+[ext_resource path="res://images/simpleFoldPrompt.png" type="Texture" id=29]
+[ext_resource path="res://images/invertedPrompt.png" type="Texture" id=30]
+[ext_resource path="res://images/tacoPrompt.png" type="Texture" id=31]
+[ext_resource path="res://images/edgeFoldPrompt.png" type="Texture" id=32]
 
 [sub_resource type="CSharpScript" id=1]
 resource_name = "MainEye2D"
@@ -44,6 +66,13 @@ curve = SubResource( 2 )
 
 [sub_resource type="CurveTexture" id=4]
 curve = SubResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0.129412, 0.647059, 0.721569 )
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.749, 0.842 )
@@ -99,10 +128,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="WaterLevel" type="RichTextLabel" parent="UI/NinePatchRect"]
+anchor_right = 0.042
+anchor_bottom = 0.079
+margin_left = 399.997
+margin_top = -19.5589
+margin_right = 1067.47
+margin_bottom = 164.551
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "100
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TextureProgress" type="TextureProgress" parent="UI"]
 margin_right = 1822.0
 margin_bottom = 910.0
 texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 3 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
+margin_right = 1822.0
+margin_bottom = 910.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="UI"]
+margin_right = 1822.0
+margin_bottom = 910.0
 texture_progress = ExtResource( 3 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI"]
@@ -131,8 +187,9 @@ margin_top = 173.116
 margin_right = 43.9946
 margin_bottom = 204.116
 
-[node name="WaterUIPrompt" parent="Overlay" index="6"]
+[node name="WaterUIPrompt" parent="Overlay" index="5"]
 margin_left = -88.0
+margin_top = 15.0
 margin_bottom = 196.0
 custom_fonts/normal_font = ExtResource( 10 )
 
@@ -159,8 +216,9 @@ scale = Vector2( 0.0334727, 0.0240339 )
 texture = ExtResource( 6 )
 
 [node name="UI" type="MarginContainer" parent="."]
+margin_top = 9.42638
 margin_right = 1822.0
-margin_bottom = 910.0
+margin_bottom = 919.426
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -170,5 +228,196 @@ margin_left = 910.082
 margin_top = 446.771
 margin_right = 910.082
 margin_bottom = 446.771
+
+[node name="HelpPopup" type="Popup" parent="."]
+margin_left = 212.76
+margin_top = 56.9357
+margin_right = 1070.76
+margin_bottom = 652.936
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="HelpPopup"]
+anchor_top = -6.4005e-09
+margin_left = 5.38826
+margin_top = 55.7464
+margin_right = 983.388
+margin_bottom = 582.746
+rect_pivot_offset = Vector2( 234.253, 396.523 )
+color = Color( 0.792157, 0.792157, 0.792157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HelpPopup/ColorRect"]
+visible = false
+margin_left = 134.0
+margin_top = 27.0
+margin_right = 885.0
+margin_bottom = 612.0
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cannula Instructions" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 196.028, 70.0222 )
+scale = Vector2( 0.344912, 0.357892 )
+texture = ExtResource( 11 )
+
+[node name="SKey" type="Sprite" parent="HelpPopup/ColorRect/Cannula Instructions"]
+position = Vector2( 614.501, -72.4647 )
+scale = Vector2( 4.39592, 3.54113 )
+texture = ExtResource( 14 )
+
+[node name="DKey" type="Sprite" parent="HelpPopup/ColorRect/Cannula Instructions"]
+position = Vector2( 301.385, 78.7672 )
+scale = Vector2( 4.11214, 3.21803 )
+texture = ExtResource( 19 )
+
+[node name="CannulaControl" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 154.699, 156.233 )
+scale = Vector2( 0.311914, 0.363179 )
+texture = ExtResource( 20 )
+
+[node name="RKey" type="Sprite" parent="HelpPopup/ColorRect/CannulaControl"]
+position = Vector2( 581.798, 0.12384 )
+scale = Vector2( 5.38446, 3.2173 )
+texture = ExtResource( 23 )
+
+[node name="Controls" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 311.029, 329.866 )
+scale = Vector2( 0.320718, 0.367971 )
+texture = ExtResource( 22 )
+
+[node name="LeftClick" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( -790.453, -155.631 )
+scale = Vector2( 1.67582, 1.07153 )
+texture = ExtResource( 16 )
+
+[node name="RightClick" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( 423.704, -155.387 )
+scale = Vector2( 1.7077, 1.09668 )
+texture = ExtResource( 21 )
+
+[node name="LeftClick1" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( -131.974, 172.331 )
+scale = Vector2( 1.87607, 1 )
+texture = ExtResource( 16 )
+
+[node name="RightClick1" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( 807.123, 176.64 )
+scale = Vector2( 1.81255, 1.05039 )
+texture = ExtResource( 21 )
+
+[node name="EscapeAndH" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 753.855, 71.7358 )
+scale = Vector2( 0.337882, 0.383131 )
+texture = ExtResource( 18 )
+
+[node name="Sprite" type="Sprite" parent="HelpPopup/ColorRect/EscapeAndH"]
+position = Vector2( -283.505, 82.7559 )
+scale = Vector2( 4.04932, 3.71543 )
+texture = ExtResource( 17 )
+
+[node name="Sprite2" type="Sprite" parent="HelpPopup/ColorRect/EscapeAndH"]
+position = Vector2( -288.78, -78.6181 )
+scale = Vector2( 4.37897, 3.97404 )
+texture = ExtResource( 15 )
+
+[node name="GoBackButton" type="TextureButton" parent="HelpPopup"]
+visible = false
+margin_left = 891.506
+margin_top = 77.7923
+margin_right = 977.506
+margin_bottom = 157.792
+texture_normal = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutorialPopup" type="Popup" parent="."]
+visible = true
+margin_left = 3.17904
+margin_top = 67.6623
+margin_right = 1028.18
+margin_bottom = 692.662
+script = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="TutorialPopup"]
+visible = false
+anchor_top = -6.4005e-09
+margin_left = 18.0
+margin_top = 26.0
+margin_right = 583.0
+margin_bottom = 375.0
+rect_pivot_offset = Vector2( 234.253, 396.523 )
+color = Color( 0.792157, 0.792157, 0.792157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="TutorialPopup"]
+margin_left = 6.22431
+margin_top = 41.9675
+margin_right = 573.224
+margin_bottom = 391.967
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PressEnterSprite" type="Sprite" parent="TutorialPopup/Panel"]
+position = Vector2( 279.741, 313.299 )
+scale = Vector2( 0.594046, 0.975007 )
+texture = ExtResource( 25 )
+
+[node name="InvertedSprite" type="Sprite" parent="TutorialPopup/Panel"]
+visible = false
+position = Vector2( 349.387, 137.753 )
+scale = Vector2( 0.823033, 0.745488 )
+texture = ExtResource( 30 )
+
+[node name="TacoSprite" type="Sprite" parent="TutorialPopup/Panel"]
+visible = false
+position = Vector2( 338.811, 135.773 )
+scale = Vector2( 0.796541, 0.783193 )
+texture = ExtResource( 31 )
+
+[node name="EdgeFoldSprite" type="Sprite" parent="TutorialPopup/Panel"]
+visible = false
+position = Vector2( 321.305, 140.43 )
+scale = Vector2( 0.752035, 0.79969 )
+texture = ExtResource( 32 )
+
+[node name="DoubleScrollSprite" type="Sprite" parent="TutorialPopup/Panel"]
+visible = false
+position = Vector2( 295.356, 168.892 )
+scale = Vector2( 0.688454, 0.964651 )
+texture = ExtResource( 28 )
+
+[node name="SimpleFoldSprite" type="Sprite" parent="TutorialPopup/Panel"]
+visible = false
+position = Vector2( 295.187, 119.241 )
+scale = Vector2( 0.703996, 0.750201 )
+texture = ExtResource( 29 )
+
+[node name="MessageSprite" type="Sprite" parent="TutorialPopup/Panel"]
+visible = false
+position = Vector2( 286.333, 131.368 )
+scale = Vector2( 0.58652, 0.583891 )
+texture = ExtResource( 24 )
+
+[node name="ScrollSprite" type="Sprite" parent="TutorialPopup/Panel"]
+visible = false
+position = Vector2( 459.225, 118.824 )
+scale = Vector2( 0.625294, 0.693796 )
+texture = ExtResource( 26 )
 
 [editable path="Overlay"]

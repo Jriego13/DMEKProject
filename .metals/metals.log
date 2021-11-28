@@ -4,3 +4,4 @@
 [0m2021.11.08 10:20:56 WARN  no build tool detected in workspace 'C:\Users\vandy\Desktop\projects\DMEKProject'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
 Nov 08, 2021 10:39:47 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+[0m2021.11.09 08:39:06 INFO  shutting down Metals[0m

@@ -15,7 +15,8 @@ public class LevelSwitcher : Node
     // Main eye scene:
     public void ChangeLevel(String next_scene, String levelName)
     {
-        if (next_scene == "res://MainEye2DTutorial.tscn") {
+        if (next_scene == "res://MainEye2DTutorial.tscn"
+            || next_scene == "res://TutorialWelcomeScreen.tscn") {
             isTutorialMode = true;
         }
         else { 

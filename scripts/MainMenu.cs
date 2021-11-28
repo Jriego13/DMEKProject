@@ -16,6 +16,10 @@ public class MainMenu : MarginContainer
 		tutorialButton.Connect("pressed", this, "onTutorialPressed");
 		var playButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Play");
 		playButton.Connect("pressed", this, "onPlayPressed");
+		var infoButton = GetNode("MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Info");
+		infoButton.Connect("pressed", this, "onInfoPressed");
+		var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+
 		SetUpSound();
 		var buttons = new[] {optionsButton, levelSelectButton, tutorialButton, playButton};
 		foreach (var button in buttons)
@@ -30,6 +34,11 @@ public class MainMenu : MarginContainer
 		hoverSound.Play();
 	}
 	// Starts the game at a random confirmation:
+	private void onInfoPressed()
+	{
+		GD.Print("Info pressed");
+		GetTree().ChangeScene(Helper.toFileName("MainEyeInfoScreen"));
+	}
 	private void onPlayPressed()
 	{
 		GD.Print("Play pressed");
@@ -53,8 +62,14 @@ public class MainMenu : MarginContainer
 	}
 	private void onTutorialPressed()
 	{
+		var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
 		GD.Print("Tutorial pressed");
-		GetTree().ChangeScene(Helper.toFileName("TutorialSelect"));
+		if (levelSwitcher.welcomeMessage()) {
+			GetTree().ChangeScene(Helper.toFileName("TutorialSelect"));
+		}
+		else {
+			levelSwitcher.ChangeLevel(Helper.toFileName("TutorialWelcomeScreen"), Helper.toFileName("SimpleFold"));
+		}
 	}
 	private void SetUpSound()
 	{
