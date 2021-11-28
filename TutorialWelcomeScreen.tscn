@@ -6,7 +6,7 @@
 [ext_resource path="res://sprites/SimpleFold.png" type="Texture" id=4]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=5]
 [ext_resource path="res://sprites/CannulaL.png" type="Texture" id=6]
-[ext_resource path="res://music/Tap.wav" type="AudioStream" id=7]
+[ext_resource path="res://sound_effects/GoodTap.wav" type="AudioStream" id=7]
 [ext_resource path="res://sprites/CannulaR.png" type="Texture" id=8]
 [ext_resource path="res://scripts/Cannula2D.cs" type="Script" id=9]
 [ext_resource path="res://TutorialWelcomeScreen.cs" type="Script" id=10]
@@ -25,6 +25,7 @@
 [ext_resource path="res://images/R-Key.png" type="Texture" id=23]
 [ext_resource path="res://images/CannulaControl.png" type="Texture" id=24]
 [ext_resource path="res://images/D-Key.png" type="Texture" id=25]
+
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 179.356

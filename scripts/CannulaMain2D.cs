@@ -4,6 +4,7 @@ using System;
 public class CannulaMain2D : Node2D {
 	Cannula2D lCannula;
 	Cannula2D rCannula;
+	AudioStreamPlayer audio;
 
 	bool inject = false;
 	bool lHeld = false;
