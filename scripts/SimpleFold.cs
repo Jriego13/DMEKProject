@@ -6,6 +6,8 @@ public class SimpleFold : Graft {
   int tapAreaState = 0;
   int holdAreaState = 0;
   bool heldDown = false;
+  RectangleShape2D tapRect;
+  CollisionShape2D tapCollider;
   ColorRect tapHitBox;
   ColorRect holdHitBox;
 
@@ -14,6 +16,8 @@ public class SimpleFold : Graft {
     currentConfirmation = "SimpleFold";
     numTapsComplete = rng.Next(3,6);
     var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+    tapCollider = GetNode("./TapArea/TapHitbox") as CollisionShape2D;
+    tapRect = tapCollider.GetShape() as RectangleShape2D;
     isTutorialMode = levelSwitcher.tutorialMode();
     setUpHitboxes(isTutorialMode);
     GD.Print("you have to tap " + numTapsComplete + " times!");
@@ -34,12 +38,17 @@ public class SimpleFold : Graft {
           numTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
-          if(numTaps < graftTextures.Count && numTaps >= 0)
+          if(numTaps < graftTextures.Count && numTaps >= 0) {
             SetTexture(graftTextures[numTaps]);
+          }
 
+          Vector2 rect = tapRect.GetExtents();
+          tapRect.SetExtents(new Vector2(rect.x + (14.113f  / numTapsComplete), rect.y));
+          tapCollider.Translate(new Vector2(-13.358f / numTapsComplete, 0));
           GD.Print("tap registered");
         }
     }
+    
     // if at least one cannula is in hold area:
     if((holdAreaState != 0)) {
       // if cannula is being held and is not the state where only the other cannula is there:

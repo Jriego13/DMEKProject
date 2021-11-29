@@ -32,14 +32,23 @@ public class Incisions : Node2D
 
       if(Input.IsActionPressed("cann_inject")) {
         if(incisionState != 0) {
-          if((cannulas.getLCannula().CheckCannulaRotation(1.3f, 1.9f) && incisionState !=2)
-            || (cannulas.getRCannula().CheckCannulaRotation(1.3f, 1.9f) && incisionState != 1)) {
-            if(waterLevel < 250) {
-              waterLevel+= 0.50f;
-              eye.setWaterLevel(waterLevel);
-              bar.Value = waterLevel;
-              waterLevelCounter.Text = waterLevel.ToString();
-            }
+          if((cannulas.getLCannula().CheckCannulaRotation(1.3f, 1.9f) && incisionState !=2 && cannulas.getLCannula().injecting)
+            || (cannulas.getRCannula().CheckCannulaRotation(1.3f, 1.9f) && incisionState != 1 && cannulas.getRCannula().injecting)) {
+              if(incisionState == 1) {
+                cannulas.getLCannula().Inject();
+              }
+              else if(incisionState == 2) {
+                cannulas.getRCannula().Inject();
+              }
+
+              if(waterLevel < 250) {
+                waterLevel+= 0.50f;
+                eye.setWaterLevel(waterLevel);
+                bar.Value = waterLevel;
+
+                int waterLevelInt = (int) waterLevel;
+                waterLevelCounter.Text = (waterLevelInt.ToString() + "uL");
+              }
           }
         }
       }

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sprites/CannulaR.png" type="Texture" id=1]
 [ext_resource path="res://sprites/CannulaL.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Cannula2D.cs" type="Script" id=3]
 [ext_resource path="res://scripts/CannulaMain2D.cs" type="Script" id=4]
 [ext_resource path="res://sound_effects/BadTap.wav" type="AudioStream" id=5]
+[ext_resource path="res://sprites/selected.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 179.356
@@ -33,6 +34,11 @@ shape = SubResource( 1 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CannulaLSprite"]
 stream = ExtResource( 5 )
 
+[node name="Selected" type="Sprite" parent="CannulaLSprite"]
+position = Vector2( -184.357, 287.107 )
+scale = Vector2( 0.292038, 0.292038 )
+texture = ExtResource( 6 )
+
 [node name="CannulaRSprite" type="Sprite" parent="."]
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )
@@ -48,3 +54,9 @@ position = Vector2( 0, -12.3875 )
 shape = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CannulaRSprite"]
+
+[node name="Selected" type="Sprite" parent="CannulaRSprite"]
+visible = false
+position = Vector2( 173.774, 290.649 )
+scale = Vector2( 0.299032, 0.299032 )
+texture = ExtResource( 6 )

@@ -98,10 +98,10 @@ __meta__ = {
 [node name="WaterLevel" type="RichTextLabel" parent="UI/NinePatchRect"]
 anchor_right = 0.042
 anchor_bottom = 0.079
-margin_left = 410.972
-margin_top = -14.5176
-margin_right = 1078.45
-margin_bottom = 169.592
+margin_left = 406.733
+margin_top = -6.9765
+margin_right = 1074.21
+margin_bottom = 177.133
 custom_fonts/normal_font = ExtResource( 8 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "250μuL
@@ -111,8 +111,6 @@ __meta__ = {
 }
 
 [node name="TextureProgress" type="TextureProgress" parent="UI"]
-margin_left = 6.0
-margin_top = 4.0
 margin_right = 1822.0
 margin_bottom = 910.0
 max_value = 250.0
