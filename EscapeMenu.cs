@@ -6,6 +6,7 @@ public class EscapeMenu : Popup
 {
     public bool visible;
     public bool optionsVisible;
+    public OptionsPopUp optionsMenu;
     // public override void _Input(InputEvent @event)
     // {
     //     base._Input(@event);
@@ -28,6 +29,7 @@ public class EscapeMenu : Popup
 		restartLevelButton.Connect("pressed", this, "onRestartLevelPressed");
         var quitButton = GetNode(menuOptions + "Quit");
         quitButton.Connect("pressed", this, "onQuitPressed");
+        optionsMenu = GetNode("OptionsPopup") as OptionsPopUp;
     }
     public override void _Process(float delta)
     {
@@ -35,23 +37,29 @@ public class EscapeMenu : Popup
         {
             Popup_();
             // Make mouse visible:
+            
+        }
+        if (visible || optionsMenu.visible)
+        {
             Input.SetMouseMode((Godot.Input.MouseMode)0);
         }
         else
         {
             Hide();
         }
-        if (optionsVisible)
-        {
-            var optionsMenu = GetNode("OptionsPopup") as Popup;
-            visible = false;
-            optionsMenu.Popup_();
-            optionsVisible = false;
-        }
+        // if (optionsVisible)
+        // {
+        //     var optionsMenu = GetNode("OptionsPopup") as Popup;
+        //     visible = false;
+        //     optionsMenu.Popup_();
+        //     optionsVisible = false;
+        // }
     }
     private void onOptionsPressed()
     {
-        optionsVisible = true;
+        visible = false;
+        optionsMenu.visible = true;
+        optionsMenu.Popup_();
     }
     private void onResumeGamePressed()
     {
