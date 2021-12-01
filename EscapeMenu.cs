@@ -24,7 +24,7 @@ public class EscapeMenu : Popup
         var optionsButton = GetNode(menuOptions + "Options");
 		optionsButton.Connect("pressed", this, "onOptionsPressed");
 		var resumeGameButton = GetNode(menuOptions + "ResumeGame");
-		resumeGameButton.Connect("pressed", this, "onResumeGamePressed");
+		resumeGameButton.Connect("button_up", this, "onResumeGameButtonUp");
 		var restartLevelButton = GetNode(menuOptions + "RestartLevel");
 		restartLevelButton.Connect("pressed", this, "onRestartLevelPressed");
         var quitButton = GetNode(menuOptions + "Quit");
@@ -61,16 +61,18 @@ public class EscapeMenu : Popup
         optionsMenu.visible = true;
         optionsMenu.Popup_();
     }
-    private void onResumeGamePressed()
+    private async void onResumeGameButtonUp()
     {
         GD.Print("Resume game pressed");
+        await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
         visible = false;
     }
-    private void onRestartLevelPressed()
+    private async void onRestartLevelPressed()
     {
         GD.Print("Loading scene " + Helper.startLevel);
         // Load the singleton levelSwitcher:
         var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+        await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
         // Store the next level and change to the MainEye scene:
         levelSwitcher.ChangeLevel(Helper.toFileName(Helper.mainSceneName), Helper.startLevel);
     }
