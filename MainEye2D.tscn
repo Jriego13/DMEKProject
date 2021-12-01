@@ -111,8 +111,6 @@ __meta__ = {
 }
 
 [node name="TextureProgress" type="TextureProgress" parent="UI"]
-margin_left = 6.0
-margin_top = 4.0
 margin_right = 1822.0
 margin_bottom = 910.0
 max_value = 250.0
