@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://sound_effects/BadTap.wav" type="AudioStream" id=1]
 [ext_resource path="res://sprites/EyeBackground.png" type="Texture" id=2]
@@ -55,19 +55,26 @@ private void _on_Incision1_area_entered(object area)
 }
 "
 
-[sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.238636, 0.836364 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://ChiKareGo2.ttf"
 
-[sub_resource type="CurveTexture" id=3]
-curve = SubResource( 2 )
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = SubResource( 2 )
 
 [sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0.238636, 0.836364 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=5]
 curve = SubResource( 4 )
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="CapsuleShape2D" id=8]
 radius = 22.7219
 height = 28.522
 
@@ -98,11 +105,11 @@ __meta__ = {
 [node name="WaterLevel" type="RichTextLabel" parent="UI/NinePatchRect"]
 anchor_right = 0.042
 anchor_bottom = 0.079
-margin_left = 410.972
-margin_top = -14.5176
+margin_left = 442.0
+margin_top = 7.0
 margin_right = 1078.45
 margin_bottom = 169.592
-custom_fonts/normal_font = ExtResource( 8 )
+custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "250μuL
 "
@@ -117,7 +124,6 @@ max_value = 250.0
 value = 250.0
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 7 )
-fill_mode = 8
 
 [node name="Cannulas" parent="." instance=ExtResource( 4 )]
 z_index = 1
@@ -139,7 +145,7 @@ visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 906.01, 440 )
 scale = Vector2( 2.08307, 4.03082 )
-texture = SubResource( 3 )
+texture = SubResource( 5 )
 
 [node name="VerticalMarker" type="Sprite" parent="."]
 visible = false
@@ -147,7 +153,7 @@ modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 914.307, 444.54 )
 rotation = 1.5708
 scale = Vector2( 3.2527, 7.88836 )
-texture = SubResource( 5 )
+texture = SubResource( 7 )
 
 [node name="MenuPopup" parent="." instance=ExtResource( 3 )]
 margin_left = 910.082
@@ -162,28 +168,28 @@ script = ExtResource( 9 )
 
 [node name="IncisionColl1" type="CollisionShape2D" parent="Incisions/Incision1"]
 position = Vector2( 918.224, 46.1755 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Incision3" type="Area2D" parent="Incisions"]
 
 [node name="IncisionColl3" type="CollisionShape2D" parent="Incisions/Incision3"]
 position = Vector2( 1371.23, 445.949 )
 rotation = -1.55499
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Incision5" type="Area2D" parent="Incisions"]
 
 [node name="IncisionColl5" type="CollisionShape2D" parent="Incisions/Incision5"]
 position = Vector2( 917.185, 858.821 )
 rotation = -1.58067
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Incision7" type="Area2D" parent="Incisions"]
 
 [node name="IncisionColl7" type="CollisionShape2D" parent="Incisions/Incision7"]
 position = Vector2( 471.185, 445.931 )
 rotation = 1.55071
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="HelpPopup" type="Popup" parent="."]
 visible = true
@@ -298,11 +304,11 @@ __meta__ = {
 
 [connection signal="area_entered" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_entered"]
 [connection signal="area_exited" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_exited"]
-[connection signal="area_entered" from="Incisions/Incision3" to="Incisions" method="_on_Incision1_area_entered"]
-[connection signal="area_exited" from="Incisions/Incision3" to="Incisions" method="_on_Incision1_area_exited"]
-[connection signal="area_entered" from="Incisions/Incision5" to="Incisions" method="_on_Incision1_area_entered"]
-[connection signal="area_exited" from="Incisions/Incision5" to="Incisions" method="_on_Incision1_area_exited"]
-[connection signal="area_entered" from="Incisions/Incision7" to="Incisions" method="_on_Incision1_area_entered"]
-[connection signal="area_exited" from="Incisions/Incision7" to="Incisions" method="_on_Incision1_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision3" to="Incisions" method="_on_Incision3_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision3" to="Incisions" method="_on_Incision3_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision5" to="Incisions" method="_on_Incision5_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision5" to="Incisions" method="_on_Incision5_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision7" to="Incisions" method="_on_Incision7_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision7" to="Incisions" method="_on_Incision7_area_exited"]
 
 [editable path="Overlay"]
