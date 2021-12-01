@@ -28,7 +28,7 @@ public class Graft : Sprite {
   protected bool interactable = true;
   public bool gamePaused = false;
   public bool misclicksOn = true;
-  protected MainGame eye; 
+  protected MainGame eye;
   protected AudioStreamPlayer goodTapSound = new AudioStreamPlayer();
   protected AudioStreamPlayer badTapSound = new AudioStreamPlayer();
 
@@ -47,7 +47,7 @@ public class Graft : Sprite {
 
   // This is where each graft will check for their specific objectives.
   // This separation allows for a universal _Process function.
-  protected virtual void CheckObjectives() {}
+  protected virtual void CheckObjectives(float delta) {}
 
   // This is where each graft sets up their specific objectives.
   // This separation allows for a universal _Ready function.
@@ -97,6 +97,10 @@ public class Graft : Sprite {
         graftTextures.Add(currImg);
       }
     }
+    else if(currentConfirmation == "Inverted") {
+      currImg = GD.Load("res://sprites/InvertedScroll1.png") as Texture;
+      graftTextures.Add(currImg);
+    }
   }
 
   // What will happen when the player clicks outside of the correct areas:
@@ -129,6 +133,7 @@ public class Graft : Sprite {
 					// GetTree().ChangeScene("res://FailScreen.tscn");
 				}
   }
+
   public bool getIsFinished() {
 		return isFinished;
 	}
@@ -158,7 +163,7 @@ public class Graft : Sprite {
     //Input.SetMouseMode((Godot.Input.MouseMode)0);
     if (!gamePaused)
     {
-      CheckObjectives();
+      CheckObjectives(delta);
       if (Math.Abs(rotationalVelocity) > 0)
         Deaccelerate();
     }

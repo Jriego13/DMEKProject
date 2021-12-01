@@ -23,7 +23,7 @@ public class SimpleFold : Graft {
     GD.Print("you have to tap " + numTapsComplete + " times!");
   }
 
-  protected override void CheckObjectives()
+  protected override void CheckObjectives(float delta)
   {
     if(numTaps >= numTapsComplete) {
       numTaps = 0;
@@ -48,7 +48,7 @@ public class SimpleFold : Graft {
           GD.Print("tap registered");
         }
     }
-    
+
     // if at least one cannula is in hold area:
     if((holdAreaState != 0)) {
       // if cannula is being held and is not the state where only the other cannula is there:

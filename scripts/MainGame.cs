@@ -59,10 +59,10 @@ public class MainGame : Node2D
 
     // Set up everything needed specifically for tutorial or non-tutorial:
     protected virtual void SetUp(){}
-    protected virtual void CheckObjectives(){}
+    protected virtual void CheckObjectives(float delta){}
 
     public override void _Process(float delta) {
-        CheckObjectives();
+        CheckObjectives(delta);
         // Check if objective complete:
         if (confirmation.getIsFinished()) {
             // Add new node to the tree:
