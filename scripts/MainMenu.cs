@@ -23,9 +23,9 @@ public class MainMenu : MarginContainer
 		SetUpSound();
 		var buttons = new[] {optionsButton, levelSelectButton, tutorialButton, playButton};
 		foreach (var button in buttons)
-        {
-            button.Connect("mouse_entered", this, "onMouseEnteredButton");
-        }
+		{
+			button.Connect("mouse_entered", this, "onMouseEnteredButton");
+		}
 	}
 	// Play a sound when the player hovers over a button:
 	private void onMouseEnteredButton()
@@ -79,8 +79,8 @@ public class MainMenu : MarginContainer
 		// Only restart menu music if it isn't already playing:
 		if (music.Stream.ResourcePath != "res://music/MainMenuMusic.wav")
 		{
-        	music.Stream = ResourceLoader.Load("res://music/MainMenuMusic.wav") as AudioStream;
-        	music.Play();
+			music.Stream = ResourceLoader.Load("res://music/MainMenuMusic.wav") as AudioStream;
+			music.Play();
 		}
 		hoverSound = GetNode("HoverSound") as AudioStreamPlayer;
 		clickSound = GetNode("ClickSound") as AudioStreamPlayer;

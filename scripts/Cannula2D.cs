@@ -31,7 +31,9 @@ public class Cannula2D : Sprite {
   }
 
   public bool CheckCannulaRotation(float lowerBound, float upperBound) {
-    if(GetRotation() >= lowerBound && GetRotation() <= upperBound)
+    GD.Print(GetRotation());
+    
+    if(Math.Abs(GetRotation()) >= lowerBound && Math.Abs(GetRotation()) <= upperBound)
       return true;
 
     return false;
