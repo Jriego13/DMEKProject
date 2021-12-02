@@ -374,38 +374,37 @@ __meta__ = {
 }
 
 [node name="PressEnterSprite" type="Sprite" parent="TutorialPopup/Panel"]
-position = Vector2( 279.741, 313.299 )
-scale = Vector2( 0.594046, 0.975007 )
+position = Vector2( 275.771, 316.83 )
+scale = Vector2( 0.605591, 1.01095 )
 texture = ExtResource( 25 )
 
 [node name="InvertedSprite" type="Sprite" parent="TutorialPopup/Panel"]
 visible = false
-position = Vector2( 349.387, 137.753 )
-scale = Vector2( 0.823033, 0.745488 )
+position = Vector2( 305.88, 161.887 )
+scale = Vector2( 0.687955, 0.866159 )
 texture = ExtResource( 30 )
 
 [node name="TacoSprite" type="Sprite" parent="TutorialPopup/Panel"]
 visible = false
-position = Vector2( 338.811, 135.773 )
+position = Vector2( 338.811, 160.714 )
 scale = Vector2( 0.796541, 0.783193 )
 texture = ExtResource( 31 )
 
 [node name="EdgeFoldSprite" type="Sprite" parent="TutorialPopup/Panel"]
-visible = false
-position = Vector2( 321.305, 140.43 )
-scale = Vector2( 0.752035, 0.79969 )
+position = Vector2( 291.978, 175.477 )
+scale = Vector2( 0.631966, 0.951171 )
 texture = ExtResource( 32 )
 
 [node name="DoubleScrollSprite" type="Sprite" parent="TutorialPopup/Panel"]
 visible = false
-position = Vector2( 295.356, 168.892 )
+position = Vector2( 299.361, 168.892 )
 scale = Vector2( 0.688454, 0.964651 )
 texture = ExtResource( 28 )
 
 [node name="SimpleFoldSprite" type="Sprite" parent="TutorialPopup/Panel"]
 visible = false
-position = Vector2( 295.187, 119.241 )
-scale = Vector2( 0.703996, 0.750201 )
+position = Vector2( 315.065, 142.994 )
+scale = Vector2( 0.757104, 0.750201 )
 texture = ExtResource( 29 )
 
 [node name="MessageSprite" type="Sprite" parent="TutorialPopup/Panel"]
@@ -416,8 +415,8 @@ texture = ExtResource( 24 )
 
 [node name="ScrollSprite" type="Sprite" parent="TutorialPopup/Panel"]
 visible = false
-position = Vector2( 459.225, 118.824 )
-scale = Vector2( 0.625294, 0.693796 )
+position = Vector2( 344.947, 135.451 )
+scale = Vector2( 0.676092, 0.693796 )
 texture = ExtResource( 26 )
 
 [editable path="Overlay"]

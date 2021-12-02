@@ -16,7 +16,6 @@
 [ext_resource path="res://images/D-Key.png" type="Texture" id=14]
 
 [node name="HelpPopup" type="Popup"]
-visible = true
 margin_left = 212.76
 margin_top = 56.9357
 margin_right = 1070.76
