@@ -31,6 +31,7 @@ public class Graft : Sprite {
   protected MainGame eye;
   protected AudioStreamPlayer goodTapSound = new AudioStreamPlayer();
   protected AudioStreamPlayer badTapSound = new AudioStreamPlayer();
+  protected float waterLevel; 
 
   public override void _Ready()
   {
@@ -43,6 +44,7 @@ public class Graft : Sprite {
   	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
   	isTutorialMode = levelSwitcher.tutorialMode();
     SetUpSound();
+    waterLevel = eye.getWaterLevel();
   }
 
   // This is where each graft will check for their specific objectives.
@@ -122,6 +124,7 @@ public class Graft : Sprite {
           }
 					++numTapsWrong;
           misclickText.Text = "Misclicks: " + numTapsWrong + "/3";
+          GD.Print("IN HERE");
 				}
 				else{
 					// GD.Print("Misclicked too many times. You fail!");
@@ -161,7 +164,8 @@ public class Graft : Sprite {
   public override void _Process(float delta)
   {
     //Input.SetMouseMode((Godot.Input.MouseMode)0);
-    if (!gamePaused)
+    waterLevel = eye.getWaterLevel();
+    if (!gamePaused && waterLevel <= 200.0f && waterLevel > 100.0f )
     {
       CheckObjectives(delta);
       if (Math.Abs(rotationalVelocity) > 0)
@@ -271,6 +275,9 @@ public class Graft : Sprite {
   public int getTopTaps() {
     return topTaps;
   }
+  public String getCurrentConformation(){
+    return currentConfirmation; 
+  }
   protected void SetUpSound()
   {
     goodTapSound.Stream = ResourceLoader.Load("res://sound_effects/GoodTap.wav") as AudioStream;
@@ -280,4 +287,5 @@ public class Graft : Sprite {
     AddChild(goodTapSound);
     AddChild(badTapSound);
   }
+  
 }
