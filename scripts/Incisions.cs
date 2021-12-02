@@ -8,32 +8,51 @@ public class Incisions : Node2D
     protected RichTextLabel waterLevelCounter;
     protected TextureProgress bar;
     protected bool flag = false;
-    protected float waterLevel;
+    protected int waterLevelInt;
     protected int incisionState = 0;
+    protected int incisionNumber = -1;
+    protected float waterLevel;
+    protected float lowerBound;
+    protected float upperBound;
 
     public override void _Process(float delta) {
-
       if((cannulas.getLHeld() || cannulas.getRHeld()) || (cannulas.getLLocked() || cannulas.getRLocked())) {
-        if(incisionState != 0) {
-          GD.Print(incisionState);
-          if((cannulas.getLCannula().CheckCannulaRotation(1.3f, 1.9f) && (cannulas.getLHeld() || cannulas.getLLocked()) && incisionState !=2)
-            || (cannulas.getRCannula().CheckCannulaRotation(1.3f, 1.9f) && (cannulas.getRHeld() || cannulas.getRLocked()) && incisionState != 1)) {
-            if(waterLevel > 0) {
-              waterLevel -= 0.50f;
-              eye.setWaterLevel(waterLevel);
-              bar.Value = waterLevel;
+    		if(incisionState != 0) {
+    			if(incisionNumber == 1 ){
+    				lowerBound = 2.9f;
+    				upperBound = 3.3f;
+    			}
+    			else if(incisionNumber == 3) {
+    				lowerBound = 1.3f;
+    				upperBound = 1.8f;
+    			}
+    			else if(incisionNumber == 5) {
+    				lowerBound = 0.1f;
+    				upperBound = 0.5f;
+    			}
+    			else if(incisionNumber == 7) {
+    				lowerBound = 1.4f;
+    				upperBound = 1.8f;
+    			}
 
-              int waterLevelInt = (int) waterLevel;
-              waterLevelCounter.Text = (waterLevelInt.ToString() + "uL");
-            }
-          }
-        }
-      }
+    		  if((cannulas.getLCannula().CheckCannulaRotation(lowerBound, upperBound) && (cannulas.getLHeld() || cannulas.getLLocked()) && incisionState !=2)
+    			|| (cannulas.getRCannula().CheckCannulaRotation(lowerBound, upperBound) && (cannulas.getRHeld() || cannulas.getRLocked()) && incisionState != 1)) {
+      			if(waterLevel > 0) {
+      			  waterLevel -= 0.50f;
+      			  eye.setWaterLevel(waterLevel);
+      			  bar.Value = waterLevel;
+      			  waterLevelInt = (int) waterLevel;
+      			  waterLevelCounter.Text = (waterLevelInt.ToString() + "uL");
+      			}
+    		  }
+    		}
+  	  }
+
 
       if(Input.IsActionPressed("cann_inject")) {
         if(incisionState != 0) {
-          if((cannulas.getLCannula().CheckCannulaRotation(1.3f, 1.9f) && incisionState !=2 && cannulas.getLCannula().injecting)
-            || (cannulas.getRCannula().CheckCannulaRotation(1.3f, 1.9f) && incisionState != 1 && cannulas.getRCannula().injecting)) {
+          if((cannulas.getLCannula().CheckCannulaRotation(lowerBound, upperBound) && incisionState !=2 && cannulas.getLCannula().injecting)
+            || (cannulas.getRCannula().CheckCannulaRotation(lowerBound, upperBound) && incisionState != 1 && cannulas.getRCannula().injecting)) {
               if(incisionState == 1) {
                 cannulas.getLCannula().Inject();
               }
@@ -62,23 +81,96 @@ public class Incisions : Node2D
         waterLevel = eye.getWaterLevel();
     }
 
-    // we need signals for each incision
-    public void _on_Incision1_area_entered(Area2D area) {
-        GD.Print(area.GetName());
-        bar = GetNode("../UI/TextureProgress") as TextureProgress;
-        waterLevel = (float)bar.Value;
-        eye.setInIncision(true);
-        int nextState = Helper.getNextHitboxState(area, true, incisionState);
-        if (nextState != -1)
-          incisionState = nextState;
-    }
+  	public void _on_Incision1_area_entered(Area2D area) {
+  		incisionNumber = 1;
+  		GD.Print("in incision");
+  		GD.Print(area.GetName());
+  		bar = GetNode("../UI/TextureProgress") as TextureProgress;
+  		waterLevel = (float)bar.Value;
+  		eye.setInIncision(true);
+  		int nextState = Helper.getNextHitboxState(area, true, incisionState);
+  		if (nextState != -1)
+  		  incisionState = nextState;
+  	}
 
-    public void _on_Incision1_area_exited(Area2D area) {
-        bar = GetNode("../UI/TextureProgress") as TextureProgress;
-        waterLevel = (float)bar.Value;
-        eye.setInIncision(false);
-        int nextState = Helper.getNextHitboxState(area, false, incisionState);
-        if (nextState != -1)
-          incisionState = nextState;
-    }
+  	public void _on_Incision1_area_exited(Area2D area) {
+  		incisionNumber = -1;
+  		bar = GetNode("../UI/TextureProgress") as TextureProgress;
+  		waterLevel = (float)bar.Value;
+  		eye.setInIncision(false);
+  		int nextState = Helper.getNextHitboxState(area, false, incisionState);
+  		if (nextState != -1)
+  		  incisionState = nextState;
+  	}
+
+  	public void _on_Incision3_area_entered(Area2D area){
+  		// Replace with function body.
+  		incisionNumber = 3;
+  		GD.Print("in incision 3");
+  		GD.Print(area.GetName());
+  		bar = GetNode("../UI/TextureProgress") as TextureProgress;
+  		waterLevel = (float)bar.Value;
+  		eye.setInIncision(true);
+  		int nextState = Helper.getNextHitboxState(area, true, incisionState);
+  		if (nextState != -1)
+  		  incisionState = nextState;
+  	}
+
+  	public void _on_Incision3_area_exited(Area2D area) {
+  		incisionNumber = -1;
+  		bar = GetNode("../UI/TextureProgress") as TextureProgress;
+  		GD.Print("exiting incision 3");
+  		waterLevel = (float)bar.Value;
+  		eye.setInIncision(false);
+  		int nextState = Helper.getNextHitboxState(area, false, incisionState);
+  		if (nextState != -1)
+  		  incisionState = nextState;
+  	}
+
+  	public void _on_Incision5_area_entered(Area2D area){
+  		incisionNumber = 5;
+  		// Replace with function body.
+  		GD.Print("in incision 5");
+  		GD.Print(area.GetName());
+  		bar = GetNode("../UI/TextureProgress") as TextureProgress;
+  		waterLevel = (float)bar.Value;
+  		eye.setInIncision(true);
+  		int nextState = Helper.getNextHitboxState(area, true, incisionState);
+  		if (nextState != -1)
+  		  incisionState = nextState;
+  	}
+
+  	public void _on_Incision5_area_exited(Area2D area) {
+  		incisionNumber = -1;
+  		bar = GetNode("../UI/TextureProgress") as TextureProgress;
+  		GD.Print("exiting incision 5");
+  		waterLevel = (float)bar.Value;
+  		eye.setInIncision(false);
+  		int nextState = Helper.getNextHitboxState(area, false, incisionState);
+  		if (nextState != -1)
+  		  incisionState = nextState;
+  	}
+
+  	public void _on_Incision7_area_entered(Area2D area){
+  		incisionNumber = 7;
+  		GD.Print("in incision 7");
+  		GD.Print(area.GetName());
+  		bar = GetNode("../UI/TextureProgress") as TextureProgress;
+  		waterLevel = (float)bar.Value;
+  		eye.setInIncision(true);
+  		int nextState = Helper.getNextHitboxState(area, true, incisionState);
+  		if (nextState != -1)
+  		  incisionState = nextState;
+  	}
+
+  	public void _on_Incision7_area_exited(Area2D area) {
+  		incisionNumber = -1;
+  		bar = GetNode("../UI/TextureProgress") as TextureProgress;
+  		GD.Print("exiting incision 7");
+  		waterLevel = (float)bar.Value;
+  		eye.setInIncision(false);
+  		int nextState = Helper.getNextHitboxState(area, false, incisionState);
+  		if (nextState != -1)
+  		  incisionState = nextState;
+  	}
 }

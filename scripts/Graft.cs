@@ -166,23 +166,24 @@ public class Graft : Sprite {
       CheckObjectives(delta);
       if (Math.Abs(rotationalVelocity) > 0)
         Deaccelerate();
-    }
-    if ((lCannula.tapped || rCannula.tapped) &&
-      this.GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())) && interactable)
-    {
-      RotateFromTap();
-    }
-      // if the player taps outside of a hitbox:
-      // Don't register misclick if inside an incision
-			if(eye.getInIncision() == false && (lCannula.tapped && lCannula.numAreasIn == 0)||(rCannula.tapped && rCannula.numAreasIn == 0))
-			{
-        registerMisclick();
-			}
-      // Not a misclick, so play normal tap sound:
-      else if ((lCannula.tapped || rCannula.tapped) && !gamePaused)
+    
+      if ((lCannula.tapped || rCannula.tapped) &&
+        this.GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())) && interactable)
       {
-        goodTapSound.VolumeDb = Helper.soundEffectsVolumeDb;
-        goodTapSound.Play();
+        RotateFromTap();
+      }
+        // if the player taps outside of a hitbox:
+        // Don't register misclick if inside an incision
+        if(eye.getInIncision() == false && (lCannula.tapped && lCannula.numAreasIn == 0)||(rCannula.tapped && rCannula.numAreasIn == 0))
+        {
+          registerMisclick();
+        }
+        // Not a misclick, so play normal tap sound:
+        else if ((lCannula.tapped || rCannula.tapped))
+        {
+          goodTapSound.VolumeDb = Helper.soundEffectsVolumeDb;
+          goodTapSound.Play();
+        }
       }
   }
 

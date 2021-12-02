@@ -21,7 +21,9 @@ public class MainGame : Node2D
         if (@event.IsActionPressed("ui_cancel"))
         {
             GD.Print("escape pressed");
+            escapeMenu.optionsMenu.visible = false;
             escapeMenu.visible = !escapeMenu.visible;
+
         }
     }
 
@@ -69,9 +71,9 @@ public class MainGame : Node2D
             OnConfirmationFinished();
         }
         else {
-            confirmation.gamePaused = (escapeMenu.visible || escapeMenu.optionsVisible);
-            confirmation.lCannula.Visible = !(escapeMenu.visible || escapeMenu.optionsVisible);
-            confirmation.rCannula.Visible = !(escapeMenu.visible || escapeMenu.optionsVisible);
+            confirmation.gamePaused = (escapeMenu.visible || escapeMenu.optionsMenu.visible);
+            confirmation.lCannula.Visible = !(escapeMenu.visible || escapeMenu.optionsMenu.visible);
+            confirmation.rCannula.Visible = !(escapeMenu.visible || escapeMenu.optionsMenu.visible);
         }
     }
 
