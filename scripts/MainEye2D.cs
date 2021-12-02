@@ -14,7 +14,9 @@ public class MainEye2D : MainGame
 
             // Add new node to the tree:
             String nextLevel;
+            // GD.Print(confirmation.getCurrentConformation());
             if(confirmation.getIsNextLevelSet()) {
+              
               nextLevel = Helper.setNextConfirmation(confirmation.getSetConfirmation());
             }
             else {
