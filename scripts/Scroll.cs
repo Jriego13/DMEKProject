@@ -53,21 +53,21 @@ public class Scroll : Graft {
 		if (lCannula.tapped || rCannula.tapped)
 		{
 			if(topAreaState != 0) {
-				if((lCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f)  && lCannula.tapped && topAreaState != 2) ||
-				(rCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f)  && rCannula.tapped && topAreaState != 1)) {
+				if((lCannula.CheckCannulaRotationRelative(Rotation, 1.396f, 1.745f)  && lCannula.tapped && topAreaState != 2) ||
+				(rCannula.CheckCannulaRotationRelative(Rotation, 1.396f, 1.745f)  && rCannula.tapped && topAreaState != 1)) {
 					topTaps += 1;
 					lCannula.tapped = false;
 					rCannula.tapped = false;
 					if(topTaps <= graftTexturesOther.Count && topTaps >= 0)
 						SetTexture(graftTexturesOther[topTaps-1]);
-						
+
 					GD.Print("top tap registered");
 				}
 			}
 
 			if(bottomAreaState != 0) {
-				if ((lCannula.CheckCannulaRotation(Rotation, 0f, 0.52f) && lCannula.tapped && bottomAreaState != 2)||
-				(rCannula.CheckCannulaRotation(Rotation, 0f, 0.52f) && rCannula.tapped && bottomAreaState != 1)){
+				if ((lCannula.CheckCannulaRotationRelative(Rotation, 0f, 0.52f) && lCannula.tapped && bottomAreaState != 2)||
+				(rCannula.CheckCannulaRotationRelative(Rotation, 0f, 0.52f) && rCannula.tapped && bottomAreaState != 1)){
 						if(topTaps > 0) {
 							numTaps += 1;
 							lCannula.tapped = false;
@@ -83,8 +83,8 @@ public class Scroll : Graft {
 		}
 	}
 
-  	private void _OnTopAreaEntered(Area2D area) {
-	  	int nextState = Helper.getNextHitboxState(area, true, topAreaState);
+  private void _OnTopAreaEntered(Area2D area) {
+	  int nextState = Helper.getNextHitboxState(area, true, topAreaState);
 		if (nextState != -1)
 			topAreaState = nextState;
 		GD.Print("top area entered.");

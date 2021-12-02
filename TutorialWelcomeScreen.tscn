@@ -29,6 +29,7 @@
 [ext_resource path="res://images/A-Key.png" type="Texture" id=28]
 [ext_resource path="res://images/Space-Key.png" type="Texture" id=29]
 
+
 [sub_resource type="CapsuleShape2D" id=1]
 height = 179.356
 

@@ -8,6 +8,7 @@
 [ext_resource path="res://OptionsPopUp.tscn" type="PackedScene" id=6]
 
 [node name="MenuPopup" type="Popup"]
+visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )

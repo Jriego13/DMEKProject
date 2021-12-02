@@ -24,8 +24,8 @@ public class Bouquet : Graft {
     }
 
     if(topAreaState != 0) {
-      if((lCannula.tapped && topAreaState != 2 && lCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f))
-       || (rCannula.tapped && topAreaState !=1 && rCannula.CheckCannulaRotation(Rotation, 1.396f, 1.745f))) {
+      if((lCannula.tapped && topAreaState != 2 && lCannula.CheckCannulaRotationRelative(Rotation, 1.396f, 1.745f))
+       || (rCannula.tapped && topAreaState !=1 && rCannula.CheckCannulaRotationRelative(Rotation, 1.396f, 1.745f))) {
           topTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;
@@ -37,8 +37,8 @@ public class Bouquet : Graft {
     }
 
     if(midAreaState != 0) {
-      if((lCannula.tapped && midAreaState != 2 && lCannula.CheckCannulaRotation(Rotation, 0f, 0.52f))
-       || (rCannula.tapped && midAreaState != 1 && rCannula.CheckCannulaRotation(Rotation, 0f, 0.52f))) {
+      if((lCannula.tapped && midAreaState != 2 && lCannula.CheckCannulaRotationRelative(Rotation, 0f, 0.52f))
+       || (rCannula.tapped && midAreaState != 1 && rCannula.CheckCannulaRotationRelative(Rotation, 0f, 0.52f))) {
           numTaps += 1;
           lCannula.tapped = false;
           rCannula.tapped = false;

@@ -20,7 +20,6 @@ shape = SubResource( 1 )
 
 [node name="Center" type="Line2D" parent="."]
 visible = false
-scale = Vector2( 1, 1 )
 points = PoolVector2Array( -54.406, -1.91168, -59.7885, -3.93011 )
 default_color = Color( 0.4, 0.501961, 1, 1 )
 
