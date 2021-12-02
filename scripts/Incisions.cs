@@ -16,6 +16,7 @@ public class Incisions : Node2D
     protected float upperBound;
 
     public override void _Process(float delta) {
+
       if((cannulas.getLHeld() || cannulas.getRHeld()) || (cannulas.getLLocked() || cannulas.getRLocked())) {
     		if(incisionState != 0) {
     			if(incisionNumber == 1 ){
@@ -74,7 +75,6 @@ public class Incisions : Node2D
     }
 
     public override void _Ready() {
-        // bar = GetNode("../UI/TextureProgress") as TextureProgress;
         waterLevelCounter = GetNode("../UI/NinePatchRect/WaterLevel") as RichTextLabel;
         cannulas = GetNode("../Cannulas") as CannulaMain2D;
         eye = GetNode("../") as MainEye2D;
@@ -104,7 +104,6 @@ public class Incisions : Node2D
   	}
 
   	public void _on_Incision3_area_entered(Area2D area){
-  		// Replace with function body.
   		incisionNumber = 3;
   		GD.Print("in incision 3");
   		GD.Print(area.GetName());
