@@ -74,17 +74,30 @@ public class CannulaMain2D : Node2D {
 				timer = 0;
 			}
 
-			if(Input.IsActionJustPressed("cann_inject")) {
-				lCannula.injecting = true;
-				rCannula.injecting = true;
+			if(Input.IsActionPressed("cann_inject")) {
+				if(!lrRotating) {
+					lCannula.injecting = true;
+					lCannula.Inject();
+				}
+				else {
+					rCannula.injecting = true;
+					rCannula.Inject();
+				}
 			}
-			else {
-				lCannula.injecting = false;
-				rCannula.injecting = false;
+			else if(Input.IsActionJustReleased("cann_inject")){
+				if(!lrRotating) {
+					lCannula.injecting = false;
+					lCannula.Inject();
+				}
+				else {
+					rCannula.injecting = false;
+					rCannula.Inject();
+				}
 			}
 
 			if(Input.IsActionJustPressed("cann_swap")) {
 				lrRotating = !lrRotating;
+				invertSelectedSprites();
 				GD.Print("cannula control swap.");
 			}
 
@@ -139,6 +152,13 @@ public class CannulaMain2D : Node2D {
 			Input.SetMouseMode((Godot.Input.MouseMode)0); // displays the mouse
 		else
 			Input.SetMouseMode((Godot.Input.MouseMode)1); // hides the mouse
+	}
+
+	public void invertSelectedSprites() {
+		Sprite lSprite = GetNode("./CannulaLSprite/Selected") as Sprite;
+		Sprite rSprite = GetNode("./CannulaRSprite/Selected") as Sprite;
+		lSprite.SetVisible(!lSprite.IsVisible());
+		rSprite.SetVisible(!rSprite.IsVisible());
 	}
 
 	public Cannula2D getLCannula() {

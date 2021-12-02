@@ -14,7 +14,7 @@ public class Bouquet : Graft {
 		topTapsComplete = numTapsComplete;
     GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
   }
-  protected override void CheckObjectives()
+  protected override void CheckObjectives(float delta)
   {
     if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
       numTaps = 0;
