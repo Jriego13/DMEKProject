@@ -13,7 +13,7 @@ public class MainEye2DTutorial : MainGame
     private bool levelComplete;
     private TutorialPopup tutorialPopup;
 
-    protected override void CheckObjectives()
+    protected override void CheckObjectives(float delta)
     {
         if (Input.IsActionPressed("continue") && levelComplete) {
             GD.Print("u pressed enter, here we go!");

@@ -17,7 +17,7 @@ public class DoubleScroll : Graft {
     GD.Print("you have to tap the bottom " + numTapsComplete + " times!");
   }
 
-  protected override void CheckObjectives()
+  protected override void CheckObjectives(float delta)
   {
     if(numTaps >= numTapsComplete) {
       numTaps = 0;

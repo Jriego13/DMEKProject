@@ -24,7 +24,7 @@ public class Scroll : Graft {
 		GD.Print("you have to tap " + numTapsComplete + " times!");
 	}
 
-	protected override void CheckObjectives() {
+	protected override void CheckObjectives(float delta) {
 		// i want to make a function that encapsulates this behavior
 		if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {
 			numTaps = 0;

@@ -15,8 +15,6 @@ public class Cannula2D : Sprite {
   }
 
   public void LockCannula() {
-    //Sprite currentMat = this.GetActiveMaterial(0) as Sprite;
-
     if(!locked) { // this means the user wants to hold the cannula in place
       this.Modulate = new Color(1,0,0,1);
       this.SetScale(new Vector2(0.28f, 0.28f));
@@ -37,6 +35,18 @@ public class Cannula2D : Sprite {
       return true;
 
     return false;
+  }
+
+  public void Inject() {
+    if(injecting) {
+      this.Modulate = new Color(0,1,0,1);
+      this.SetScale(new Vector2(0.28f, 0.28f));
+    }
+    else {
+      this.injecting = false;
+      this.Modulate = new Color(1,1,1,1);
+      this.SetScale(new Vector2(0.3f, 0.3f));
+    }
   }
 
   // check rotation function where we calculate the cannulas rotation relative to the graft

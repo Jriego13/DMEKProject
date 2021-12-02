@@ -4,6 +4,8 @@ using System;
 public class Taco : Graft {
   bool injectAreaEntered = false;
   int areaState = 0; // 0-no cannulas, 1-left cannula, 2-right cannula, 3-both
+  float lastInject = 0;
+  float timePassed = 0;
 
   protected override void SetObjectives() {
     currentConfirmation = "Taco";
@@ -14,7 +16,8 @@ public class Taco : Graft {
 		GD.Print("you have to inject " + numTapsComplete + " times!");
   }
 
-  protected override void CheckObjectives() {
+  protected override void CheckObjectives(float delta) {
+    timePassed += delta;
     if(numTaps >= numTapsComplete) {
       numTaps = 0;
       isFinished = true;
@@ -24,7 +27,8 @@ public class Taco : Graft {
     // you want to be injecting perpendicular to the graft
     // so this will have to be checked for
     if(areaState != 0) {
-      if((lCannula.injecting && lCannula.numAreasIn != 0) || (rCannula.injecting && rCannula.numAreasIn != 0)) {
+      if(((lCannula.injecting && lCannula.numAreasIn != 0) || (rCannula.injecting && rCannula.numAreasIn != 0)) && (((timePassed - lastInject) > 0.5f) || numTaps == 0)) {
+        lastInject = timePassed;
         numTaps += 1;
         if(numTaps < graftTextures.Count && numTaps >= 0)
           SetTexture(graftTextures[numTaps]);

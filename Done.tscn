@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/done.jpg" type="Texture" id=2]
-[ext_resource path="res://music/Victory.mp3" type="AudioStream" id=3]
 [ext_resource path="res://EndMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://EndMenu.cs" type="Script" id=5]
 
@@ -23,10 +22,6 @@ text = "Congratulations!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
-autoplay = true
 
 [node name="MenuPopup" parent="." instance=ExtResource( 4 )]
 margin_left = 141.185
