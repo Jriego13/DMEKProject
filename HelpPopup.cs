@@ -11,8 +11,7 @@ public class HelpPopup : Popup
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        var goBackButton = GetNode("GoBackButton");
-        goBackButton.Connect("pressed", this, "onGoBackButtonPressed");
+        
         cannula = GetNode("../Cannulas") as CannulaMain2D;
         colorRect = GetNode("ColorRect") as ColorRect;
         colorRect.Color = new Color( 0.0f, 0.13f, 0.65f, 0.5f );

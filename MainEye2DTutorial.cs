@@ -30,6 +30,11 @@ public class MainEye2DTutorial : MainGame
             showSuccessfulTapPrompt();
             curTopTaps = curTopTaps + 1;
         }
+
+        if(Input.IsActionJustPressed("toggle_help")) {
+            GD.Print("popup should go away");
+            tutorialPopup.HidePopup();
+        }
     }
     // Sets up the tutorial
     protected override void SetUp()
@@ -47,7 +52,7 @@ public class MainEye2DTutorial : MainGame
         waterLevelUI = GetNode("UI") as MarginContainer;
         waterLevelUI.Visible = true;
 
-        tutorialPopup = GetNode("./TutorialPopup") as TutorialPopup;
+        tutorialPopup = GetNode("TutorialPopup") as TutorialPopup;
         //tutorialPopup.SetVisible(true);
     }    
     protected override void OnConfirmationFinished()

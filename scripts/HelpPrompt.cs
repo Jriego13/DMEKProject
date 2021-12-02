@@ -8,8 +8,11 @@ public class HelpPrompt : RichTextLabel {
   bool showHelp;
   private HelpPopup helpPopUp;
   private Sprite anteriorChamber;
+  private Boolean isTutorial;
 
   public override void _Ready() {
+    var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+    isTutorial = levelSwitcher.tutorialMode();
 	  showHelp = false;
     helpPopUp = GetNode("../../HelpPopup") as HelpPopup;
     SetBbcode("[right]Press 'h' to show controls[/right]");
@@ -29,31 +32,16 @@ public class HelpPrompt : RichTextLabel {
     }
 
     if (!showHelp) {
-      SetBbcode("[right]Press 'h' to show controls[/right]");
-    }
-
-    if (!showHelp) {
-      SetBbcode("[right]Press 'h' to show controls[/right]\n" +
+      if (isTutorial) {
+        SetBbcode("[right]Press 'h' to show controls[/right]\n" +
                "[right]'k' for tutorial help[/right]");
+      }
+      else {
+        SetBbcode("[right]Press 'h' to show controls[/right]");
+      }
     }
 
-    /* if (!helpPopUp.visible) {
-      helpPopUp.visible = true;
-    } */
-    /* if (!showHelp) {
-        SetBbcode("[right]Press 'h' to show controls[/right]");
-    }
-    else {
-     /*  SetBbcode("[right] Press esc to return to menu \n" 
-              +"Rotate cannula clockwise: s ccw: w" + "\n" + "\n"
-      SetBbcode("[right] Press esc to return to previous screen \n"
-              +"Rotate cannula cw: s ccw: w" + "\n" + "\n"
-              + "swap cannula control: r" + "\n"
-              + "reset cannula: e" + "\n"
-              + "inject liquid in: p out: o \n \n"
-              + "tap l/r cannula: l/r mouse" + "\n"+ "\n"
-              + "hold mouse to keep cannula down[/right]"); 
-          } */ 
+  
   }
 
   public bool showingHelp() {

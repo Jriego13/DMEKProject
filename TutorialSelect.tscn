@@ -23,17 +23,26 @@
 [node name="MarginContainer" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 3.0
+margin_bottom = 11.0
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1366.0
+margin_right = 1369.0
 margin_bottom = 779.0
+color = Color( 0, 0.129412, 0.647059, 1 )
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 1366.0
+margin_right = 1369.0
 margin_bottom = 779.0
 custom_constants/margin_right = 120
 custom_constants/margin_top = 80
@@ -43,38 +52,41 @@ custom_constants/margin_bottom = 80
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 120.0
 margin_top = 80.0
-margin_right = 1246.0
+margin_right = 1249.0
 margin_bottom = 699.0
 size_flags_vertical = 3
 custom_constants/separation = 40
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
-margin_right = 1126.0
+margin_right = 1129.0
 margin_bottom = 80.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Tutorial" type="TextureButton" parent="MarginContainer/VBoxContainer2/HBoxContainer2"]
-margin_right = 1036.0
+margin_right = 1039.0
 margin_bottom = 80.0
 size_flags_horizontal = 3
 texture_normal = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="GoBackButton" type="TextureButton" parent="MarginContainer/VBoxContainer2/HBoxContainer2"]
-margin_left = 1040.0
-margin_right = 1126.0
+margin_left = 1043.0
+margin_right = 1129.0
 margin_bottom = 80.0
 texture_normal = ExtResource( 9 )
 
 [node name="levelHBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
 margin_top = 120.0
-margin_right = 1126.0
+margin_right = 1129.0
 margin_bottom = 619.0
 size_flags_vertical = 3
 
 [node name="Levels1and4" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/levelHBox"]
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 499.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -82,17 +94,17 @@ custom_constants/separation = 40
 alignment = 1
 
 [node name="Level1" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/levelHBox/Levels1and4"]
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 234.0
 
 [node name="SimpleFold" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels1and4/Level1"]
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 182.0
 texture_normal = ExtResource( 15 )
 
 [node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels1and4/Level1"]
 margin_top = 186.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 234.0
 texture_normal = ExtResource( 1 )
 __meta__ = {
@@ -101,17 +113,17 @@ __meta__ = {
 
 [node name="Level4" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/levelHBox/Levels1and4"]
 margin_top = 274.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 499.0
 
 [node name="Inverted" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels1and4/Level4"]
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 182.0
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource( 15 )
 
 [node name="TextureButton3" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels1and4/Level4"]
 margin_top = 186.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 225.0
 texture_normal = ExtResource( 6 )
 __meta__ = {
@@ -119,8 +131,8 @@ __meta__ = {
 }
 
 [node name="Levels2and5" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/levelHBox"]
-margin_left = 285.0
-margin_right = 566.0
+margin_left = 286.0
+margin_right = 568.0
 margin_bottom = 499.0
 size_flags_horizontal = 3
 custom_constants/separation = 40
@@ -128,17 +140,17 @@ alignment = 1
 
 [node name="Level2" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/levelHBox/Levels2and5"]
 margin_top = 7.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 230.0
 
 [node name="Scroll" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels2and5/Level2"]
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 182.0
 texture_normal = ExtResource( 17 )
 
 [node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels2and5/Level2"]
 margin_top = 186.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 223.0
 texture_normal = ExtResource( 5 )
 __meta__ = {
@@ -147,17 +159,17 @@ __meta__ = {
 
 [node name="Level5" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/levelHBox/Levels2and5"]
 margin_top = 270.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 491.0
 
 [node name="Taco" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels2and5/Level5"]
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 182.0
 texture_normal = ExtResource( 18 )
 
 [node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels2and5/Level5"]
 margin_top = 186.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 221.0
 texture_normal = ExtResource( 7 )
 __meta__ = {
@@ -165,8 +177,8 @@ __meta__ = {
 }
 
 [node name="Levels3and6" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/levelHBox"]
-margin_left = 570.0
-margin_right = 851.0
+margin_left = 572.0
+margin_right = 854.0
 margin_bottom = 499.0
 size_flags_horizontal = 3
 custom_constants/separation = 40
@@ -174,17 +186,17 @@ alignment = 1
 
 [node name="Level3" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/levelHBox/Levels3and6"]
 margin_top = 2.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 225.0
 
 [node name="DoubleScroll" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels3and6/Level3"]
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 182.0
 texture_normal = ExtResource( 19 )
 
 [node name="TextureButton3" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels3and6/Level3"]
 margin_top = 186.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 223.0
 texture_normal = ExtResource( 2 )
 __meta__ = {
@@ -193,17 +205,17 @@ __meta__ = {
 
 [node name="Level6" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/levelHBox/Levels3and6"]
 margin_top = 265.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 496.0
 
 [node name="EdgeFold" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels3and6/Level6"]
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 182.0
 texture_normal = ExtResource( 16 )
 
 [node name="TextureButton4" type="TextureButton" parent="MarginContainer/VBoxContainer2/levelHBox/Levels3and6/Level6"]
 margin_top = 186.0
-margin_right = 281.0
+margin_right = 282.0
 margin_bottom = 231.0
 texture_normal = ExtResource( 8 )
 __meta__ = {
@@ -211,8 +223,8 @@ __meta__ = {
 }
 
 [node name="Level7" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/levelHBox"]
-margin_left = 855.0
-margin_right = 1126.0
+margin_left = 858.0
+margin_right = 1129.0
 margin_bottom = 499.0
 alignment = 1
 
@@ -231,9 +243,3 @@ margin_top = 186.0
 margin_right = 271.0
 margin_bottom = 230.0
 texture_normal = ExtResource( 11 )
-
-[node name="ClickSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-
-[node name="HoverSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )

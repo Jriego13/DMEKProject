@@ -51,4 +51,8 @@ public class TutorialPopup : Popup
             this.Hide();
         }
     }
+
+    public void HidePopup() {
+        enterCount = 2;
+    }
 }

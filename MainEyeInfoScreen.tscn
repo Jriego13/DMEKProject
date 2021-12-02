@@ -17,8 +17,8 @@ scale = Vector2( 1.13561, 1.29768 )
 texture = ExtResource( 3 )
 
 [node name="Eyeball" type="Sprite" parent="Background"]
-position = Vector2( 246.662, -37.5339 )
-scale = Vector2( 0.368025, 0.319929 )
+position = Vector2( 299.022, -15.5401 )
+scale = Vector2( 0.313484, 0.2792 )
 texture = ExtResource( 1 )
 
 [node name="DemoGraft" type="Sprite" parent="Background/Eyeball"]
@@ -30,7 +30,8 @@ margin_top = -258.771
 margin_right = -38.4808
 margin_bottom = 233.229
 custom_fonts/normal_font = ExtResource( 5 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
 fit_content_height = true
 script = ExtResource( 4 )
 __meta__ = {
