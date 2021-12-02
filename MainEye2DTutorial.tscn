@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://sprites/EyeBackground.png" type="Texture" id=1]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://WaterUIFont.tres" type="DynamicFont" id=10]
 [ext_resource path="res://images/helpPrompt1.png" type="Texture" id=11]
 [ext_resource path="res://HelpPopup.cs" type="Script" id=12]
-[ext_resource path="res://images/go_back_symbol.png" type="Texture" id=13]
 [ext_resource path="res://images/S-Key.png" type="Texture" id=14]
 [ext_resource path="res://images/EscKey.png" type="Texture" id=15]
 [ext_resource path="res://images/leftclick.png" type="Texture" id=16]
@@ -21,7 +20,7 @@
 [ext_resource path="res://images/D-Key.png" type="Texture" id=19]
 [ext_resource path="res://images/CannulaControl.png" type="Texture" id=20]
 [ext_resource path="res://images/rightclick1.png" type="Texture" id=21]
-[ext_resource path="res://images/controls.png" type="Texture" id=22]
+[ext_resource path="res://images/liquidPrompt.png" type="Texture" id=22]
 [ext_resource path="res://images/R-Key.png" type="Texture" id=23]
 [ext_resource path="res://images/basicTutorialPrompt.png" type="Texture" id=24]
 [ext_resource path="res://images/altPressEnter.png" type="Texture" id=25]
@@ -32,6 +31,10 @@
 [ext_resource path="res://images/invertedPrompt.png" type="Texture" id=30]
 [ext_resource path="res://images/tacoPrompt.png" type="Texture" id=31]
 [ext_resource path="res://images/edgeFoldPrompt.png" type="Texture" id=32]
+[ext_resource path="res://images/A-Key.png" type="Texture" id=33]
+[ext_resource path="res://images/resetCannula.png" type="Texture" id=34]
+[ext_resource path="res://images/tapRight.png" type="Texture" id=35]
+[ext_resource path="res://images/Space-Key.png" type="Texture" id=36]
 
 [sub_resource type="CSharpScript" id=1]
 resource_name = "MainEye2D"
@@ -230,6 +233,7 @@ margin_right = 910.082
 margin_bottom = 446.771
 
 [node name="HelpPopup" type="Popup" parent="."]
+visible = true
 margin_left = 212.76
 margin_top = 56.9357
 margin_right = 1070.76
@@ -241,10 +245,10 @@ __meta__ = {
 
 [node name="ColorRect" type="ColorRect" parent="HelpPopup"]
 anchor_top = -6.4005e-09
-margin_left = 5.38826
-margin_top = 55.7464
-margin_right = 983.388
-margin_bottom = 582.746
+margin_left = 28.1618
+margin_top = 70.0229
+margin_right = 1006.16
+margin_bottom = 597.022
 rect_pivot_offset = Vector2( 234.253, 396.523 )
 color = Color( 0.792157, 0.792157, 0.792157, 1 )
 __meta__ = {
@@ -264,54 +268,59 @@ __meta__ = {
 }
 
 [node name="Cannula Instructions" type="Sprite" parent="HelpPopup/ColorRect"]
-position = Vector2( 196.028, 70.0222 )
-scale = Vector2( 0.344912, 0.357892 )
+position = Vector2( 205.694, 88.7314 )
+scale = Vector2( 0.631677, 0.604575 )
 texture = ExtResource( 11 )
 
-[node name="SKey" type="Sprite" parent="HelpPopup/ColorRect/Cannula Instructions"]
-position = Vector2( 614.501, -72.4647 )
-scale = Vector2( 4.39592, 3.54113 )
-texture = ExtResource( 14 )
-
 [node name="DKey" type="Sprite" parent="HelpPopup/ColorRect/Cannula Instructions"]
-position = Vector2( 301.385, 78.7672 )
-scale = Vector2( 4.11214, 3.21803 )
+position = Vector2( 163.281, 27.7893 )
+scale = Vector2( 2.38605, 2.39018 )
 texture = ExtResource( 19 )
 
-[node name="CannulaControl" type="Sprite" parent="HelpPopup/ColorRect"]
-position = Vector2( 154.699, 156.233 )
-scale = Vector2( 0.311914, 0.363179 )
-texture = ExtResource( 20 )
+[node name="Sprite" type="Sprite" parent="HelpPopup/ColorRect/Cannula Instructions"]
+position = Vector2( 327.373, -60.4329 )
+scale = Vector2( 2.43142, 2.21267 )
+texture = ExtResource( 33 )
 
-[node name="RKey" type="Sprite" parent="HelpPopup/ColorRect/CannulaControl"]
-position = Vector2( 581.798, 0.12384 )
-scale = Vector2( 5.38446, 3.2173 )
+[node name="RKey" type="Sprite" parent="HelpPopup/ColorRect/Cannula Instructions"]
+position = Vector2( 266.512, 123.64 )
+scale = Vector2( 2.49283, 2.14263 )
 texture = ExtResource( 23 )
 
+[node name="CannulaControl" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 175.45, 167.886 )
+scale = Vector2( 0.632561, 0.58631 )
+texture = ExtResource( 20 )
+
 [node name="Controls" type="Sprite" parent="HelpPopup/ColorRect"]
-position = Vector2( 311.029, 329.866 )
-scale = Vector2( 0.320718, 0.367971 )
+position = Vector2( 280.055, 366.037 )
+scale = Vector2( 0.5918, 0.641367 )
 texture = ExtResource( 22 )
 
-[node name="LeftClick" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
-position = Vector2( -790.453, -155.631 )
-scale = Vector2( 1.67582, 1.07153 )
-texture = ExtResource( 16 )
-
-[node name="RightClick" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
-position = Vector2( 423.704, -155.387 )
-scale = Vector2( 1.7077, 1.09668 )
-texture = ExtResource( 21 )
+[node name="TapRight" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( 470.118, 102.733 )
+scale = Vector2( 1.00341, 1.02519 )
+texture = ExtResource( 35 )
 
 [node name="LeftClick1" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
-position = Vector2( -131.974, 172.331 )
-scale = Vector2( 1.87607, 1 )
+position = Vector2( -17.6432, 67.6563 )
+scale = Vector2( 0.918936, 0.553964 )
 texture = ExtResource( 16 )
 
 [node name="RightClick1" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
-position = Vector2( 807.123, 176.64 )
-scale = Vector2( 1.81255, 1.05039 )
+position = Vector2( 336.672, 65.5832 )
+scale = Vector2( 0.890219, 0.578221 )
 texture = ExtResource( 21 )
+
+[node name="RightClick" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( -228.027, -31.7855 )
+scale = Vector2( 0.909939, 0.540081 )
+texture = ExtResource( 21 )
+
+[node name="Space" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
+position = Vector2( -158.658, -129.054 )
+scale = Vector2( 1.4878, 1.88209 )
+texture = ExtResource( 36 )
 
 [node name="EscapeAndH" type="Sprite" parent="HelpPopup/ColorRect"]
 position = Vector2( 753.855, 71.7358 )
@@ -328,19 +337,17 @@ position = Vector2( -288.78, -78.6181 )
 scale = Vector2( 4.37897, 3.97404 )
 texture = ExtResource( 15 )
 
-[node name="GoBackButton" type="TextureButton" parent="HelpPopup"]
-visible = false
-margin_left = 891.506
-margin_top = 77.7923
-margin_right = 977.506
-margin_bottom = 157.792
-texture_normal = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Reset" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 711.582, 228.976 )
+scale = Vector2( 0.643627, 0.630491 )
+texture = ExtResource( 34 )
+
+[node name="SKey" type="Sprite" parent="HelpPopup/ColorRect/Reset"]
+position = Vector2( 318.046, -5.6105 )
+scale = Vector2( 2.65398, 2.15555 )
+texture = ExtResource( 14 )
 
 [node name="TutorialPopup" type="Popup" parent="."]
-visible = true
 margin_left = 3.17904
 margin_top = 67.6623
 margin_right = 1028.18
@@ -391,6 +398,7 @@ scale = Vector2( 0.796541, 0.783193 )
 texture = ExtResource( 31 )
 
 [node name="EdgeFoldSprite" type="Sprite" parent="TutorialPopup/Panel"]
+visible = false
 position = Vector2( 291.978, 175.477 )
 scale = Vector2( 0.631966, 0.951171 )
 texture = ExtResource( 32 )
