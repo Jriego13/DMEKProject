@@ -8,12 +8,12 @@ public class MainGame : Node2D
     protected String levelName = Helper.getRandomConfirmation();
     protected Graft confirmation;
     protected TextureProgress bar;
-    protected RichTextLabel waterLevelCounter;
-    protected float waterLevel = 100.0f;
     protected EscapeMenu escapeMenu;
     protected RichTextLabel successfulTapPrompt;
     protected RichTextLabel levelCompletePrompt;
-    protected bool inIncision = false; 
+    protected RichTextLabel waterLevelCounter;
+    protected float waterLevel = 250.0f;
+    protected bool inIncision = false;
 
     public override void _Input(InputEvent @event)
     {
@@ -21,24 +21,10 @@ public class MainGame : Node2D
         if (@event.IsActionPressed("ui_cancel"))
         {
             GD.Print("escape pressed");
+            escapeMenu.optionsMenu.visible = false;
             escapeMenu.visible = !escapeMenu.visible;
+
         }
-        // if(@event.IsActionPressed("addLiquid")){
-        //     GD.Print("trying to add liquid");
-        //     if(waterLevel <= 99){
-        //        waterLevel += 1;
-        //        bar.Value = waterLevel;
-        //        waterLevelCounter.Text = waterLevel.ToString();
-        //     }
-        // }
-        // if(@event.IsActionPressed("removeLiquid")){
-        //     GD.Print("trying to remove liquid");
-        //     if(waterLevel >= 1){
-        //         waterLevel -= 1;
-        //         bar.Value = waterLevel;
-        //         waterLevelCounter.Text = waterLevel.ToString();
-        //     }
-        // }
     }
 
     public override void _Ready()
@@ -69,31 +55,30 @@ public class MainGame : Node2D
         music.VolumeDb = Helper.musicVolumeDb;
         music.Play();
     }
+
     // What happens when the confirmation is finished in the respective game mode:
     protected virtual void OnConfirmationFinished(){}
+
     // Set up everything needed specifically for tutorial or non-tutorial:
     protected virtual void SetUp(){}
     protected virtual void CheckObjectives(){}
-    public override void _Process(float delta)
-    {
+
+    public override void _Process(float delta) {
         CheckObjectives();
         // Check if objective complete:
-        if (confirmation.getIsFinished())
-        {
+        if (confirmation.getIsFinished()) {
             // Add new node to the tree:
             OnConfirmationFinished();
         }
-        else
-        {
-            confirmation.gamePaused = (escapeMenu.visible || escapeMenu.optionsVisible);
-            confirmation.lCannula.Visible = !(escapeMenu.visible || escapeMenu.optionsVisible);
-            confirmation.rCannula.Visible = !(escapeMenu.visible || escapeMenu.optionsVisible);
+        else {
+            confirmation.gamePaused = (escapeMenu.visible || escapeMenu.optionsMenu.visible);
+            confirmation.lCannula.Visible = !(escapeMenu.visible || escapeMenu.optionsMenu.visible);
+            confirmation.rCannula.Visible = !(escapeMenu.visible || escapeMenu.optionsMenu.visible);
         }
     }
 
     // Load the specified level/fold, instance it as a Node2D, then place it in the tree:
-    protected void loadConfirmation(String next)
-    {
+    protected void loadConfirmation(String next) {
         levelName = next;
         GD.Print("instancing "+ levelName);
         var confirmationScene = GD.Load<PackedScene>(levelName);

@@ -13,7 +13,7 @@ public class Cannula2D : Sprite {
   {
     circleTexture = GD.Load("res://images/circle.png") as Texture;
   }
-  
+
   public void LockCannula() {
     //Sprite currentMat = this.GetActiveMaterial(0) as Sprite;
 
@@ -30,8 +30,18 @@ public class Cannula2D : Sprite {
     GD.Print("you locked the " + this.GetName() + ".");
   }
 
-  // check rotation function where range can be fed as argument? and we return a bool?
-  public bool CheckCannulaRotation(float graftRotation, float lowerBound, float upperBound) {
+  public bool CheckCannulaRotation(float lowerBound, float upperBound) {
+    GD.Print(GetRotation());
+    
+    if(Math.Abs(GetRotation()) >= lowerBound && Math.Abs(GetRotation()) <= upperBound)
+      return true;
+
+    return false;
+  }
+
+  // check rotation function where we calculate the cannulas rotation relative to the graft
+  // and check whether its between the bound arguments.
+  public bool CheckCannulaRotationRelative(float graftRotation, float lowerBound, float upperBound) {
     float calculated_rotation = Math.Abs((Math.Abs(graftRotation) - Math.Abs(this.GetRotation())));
     // GD.Print(calculated_rotation);
     if(calculated_rotation >= lowerBound && calculated_rotation <= upperBound)

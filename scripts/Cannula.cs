@@ -20,7 +20,7 @@ public class Cannula : MeshInstance {
   }
 
   // check rotation function where range can be fed as argument? and we return a bool?
-  public bool CheckCannulaRotation(float lowerBound, float upperBound) {
+  public bool CheckCannulaRotationRelative(float lowerBound, float upperBound) {
     if(Math.Abs(this.GetRotation().y) >= lowerBound && Math.Abs(this.GetRotation().y) <= upperBound)
       return true;
 
