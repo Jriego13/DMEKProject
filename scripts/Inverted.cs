@@ -17,8 +17,6 @@ public class Inverted : Graft {
   }
 
   protected override void CheckObjectives(float delta) {
-    GD.Print(timePassed);
-    GD.Print(lastInject);
     timePassed += delta;
     if(numTaps >= numTapsComplete) {
       numTaps = 0;
