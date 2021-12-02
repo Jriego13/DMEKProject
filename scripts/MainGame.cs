@@ -6,13 +6,14 @@ public class MainGame : Node2D
 {
 	// levelName is random by default so it can be loaded without levelSelect
 	protected String levelName = Helper.getRandomConfirmation();
-	protected Graft confirmation;
+	protected Graft confirmation = null;
 	protected TextureProgress bar;
 	protected EscapeMenu escapeMenu;
 	protected RichTextLabel successfulTapPrompt;
 	protected RichTextLabel levelCompletePrompt;
 	protected RichTextLabel waterLevelCounter;
 	protected float waterLevel = 250.0f;
+	protected float prevRotation = 0;
 	protected bool inIncision = false;
 
 	public override void _Input(InputEvent @event)
@@ -82,12 +83,17 @@ public class MainGame : Node2D
 		levelName = next;
 		GD.Print("instancing "+ levelName);
 		var confirmationScene = GD.Load<PackedScene>(levelName);
-		if (levelName == "res://Done.tscn")
-		{
+		if (levelName == "res://Done.tscn") {
 			GetTree().ChangeScene("res://Done.tscn");
 			return;
 		}
+
+		if(confirmation != null) {
+			prevRotation = confirmation.GetRotation();
+		}
+
 		confirmation = (Graft)confirmationScene.Instance();
+		confirmation.SetRotation(prevRotation);
 		GetNode("/root/Main").AddChild(confirmation);
 	}
 

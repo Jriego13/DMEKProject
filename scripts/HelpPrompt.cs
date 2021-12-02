@@ -32,6 +32,7 @@ public class HelpPrompt : RichTextLabel {
     }
 
     if (!showHelp) {
+      anteriorChamber.SetVisible(!showHelp);
       if (isTutorial) {
         SetBbcode("[right]Press 'h' to show controls[/right]\n" +
                "[right]'k' for tutorial help[/right]");
@@ -41,7 +42,7 @@ public class HelpPrompt : RichTextLabel {
       }
     }
 
-  
+
   }
 
   public bool showingHelp() {
