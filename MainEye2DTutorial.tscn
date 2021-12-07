@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://sprites/EyeBackground.png" type="Texture" id=1]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://WaterUIFont.tres" type="DynamicFont" id=10]
 [ext_resource path="res://images/helpPrompt1.png" type="Texture" id=11]
 [ext_resource path="res://HelpPopup.cs" type="Script" id=12]
+[ext_resource path="res://images/bouquetPrompt.png" type="Texture" id=13]
 [ext_resource path="res://images/S-Key.png" type="Texture" id=14]
 [ext_resource path="res://images/EscKey.png" type="Texture" id=15]
 [ext_resource path="res://images/leftclick.png" type="Texture" id=16]
@@ -35,6 +36,7 @@
 [ext_resource path="res://images/resetCannula.png" type="Texture" id=34]
 [ext_resource path="res://images/tapRight.png" type="Texture" id=35]
 [ext_resource path="res://images/Space-Key.png" type="Texture" id=36]
+[ext_resource path="res://images/rightClickMac.png" type="Texture" id=37]
 
 [sub_resource type="CSharpScript" id=1]
 resource_name = "MainEye2D"
@@ -227,6 +229,7 @@ __meta__ = {
 }
 
 [node name="MenuPopup" parent="." instance=ExtResource( 8 )]
+visible = false
 margin_left = 910.082
 margin_top = 446.771
 margin_right = 910.082
@@ -347,6 +350,11 @@ position = Vector2( 318.046, -5.6105 )
 scale = Vector2( 2.65398, 2.15555 )
 texture = ExtResource( 14 )
 
+[node name="RightClickMac" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 743.964, 343.899 )
+scale = Vector2( 0.68059, 0.616494 )
+texture = ExtResource( 37 )
+
 [node name="TutorialPopup" type="Popup" parent="."]
 margin_left = 3.17904
 margin_top = 67.6623
@@ -426,5 +434,11 @@ visible = false
 position = Vector2( 344.947, 135.451 )
 scale = Vector2( 0.676092, 0.693796 )
 texture = ExtResource( 26 )
+
+[node name="BouquetSprite" type="Sprite" parent="TutorialPopup/Panel"]
+visible = false
+position = Vector2( 285.86, 132.704 )
+scale = Vector2( 0.826921, 0.871232 )
+texture = ExtResource( 13 )
 
 [editable path="Overlay"]
