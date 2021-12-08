@@ -12,7 +12,7 @@ public class MainGame : Node2D
 	protected RichTextLabel successfulTapPrompt;
 	protected RichTextLabel levelCompletePrompt;
 	protected RichTextLabel waterLevelCounter;
-	protected float waterLevel = 150.0f;
+	protected float waterLevel = 75.0f;
 	protected float prevRotation = 0;
 	protected bool inIncision = false;
 
