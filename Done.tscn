@@ -1,24 +1,26 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=1]
-[ext_resource path="res://sprites/done.jpg" type="Texture" id=2]
+[ext_resource path="res://sprites/WhiteBackground.jpg" type="Texture" id=2]
 [ext_resource path="res://EndMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://EndMenu.cs" type="Script" id=5]
 
 [node name="DoneSprite" type="Sprite"]
-position = Vector2( 687.774, 327.851 )
-scale = Vector2( 0.750408, 0.750408 )
+position = Vector2( 742.519, 398.642 )
+scale = Vector2( 1.34505, 1.42056 )
 texture = ExtResource( 2 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = -647.0
-margin_top = 445.0
-margin_right = 642.0
-margin_bottom = 582.0
+margin_left = -594.386
+margin_top = -62.5374
+margin_right = 481.614
+margin_bottom = 53.4626
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
-bbcode_text = "[center][wave amp=150 freq=6]Congratulations![/wave][/center]"
-text = "Congratulations!"
+bbcode_text = "[center][wave amp=150 freq=6]
+Congratulations![/wave][/center]"
+text = "
+Congratulations!"
 __meta__ = {
 "_edit_use_anchors_": false
 }

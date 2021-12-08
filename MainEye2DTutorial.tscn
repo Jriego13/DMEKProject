@@ -116,7 +116,7 @@ margin_right = 1117.37
 margin_bottom = 188.331
 custom_fonts/normal_font = ExtResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "150μuL
+text = "75μuL
 "
 __meta__ = {
 "_edit_use_anchors_": false
