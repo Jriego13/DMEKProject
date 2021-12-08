@@ -5,15 +5,17 @@ public class Incisions : Node2D
 {
     protected CannulaMain2D cannulas;
     protected MainEye2D eye;
+	protected MainEye2DTutorial eyeTutorial; // this one is only used if in tutorial levels
     protected RichTextLabel waterLevelCounter;
     protected TextureProgress bar;
     protected bool flag = false;
     protected int waterLevelInt;
     protected int incisionState = 0;
     protected int incisionNumber = -1;
-    protected float waterLevel;
+    protected float waterLevel ;
     protected float lowerBound;
     protected float upperBound;
+	protected bool inTutorial = false; 
 
     public override void _Process(float delta) {
 
@@ -40,7 +42,12 @@ public class Incisions : Node2D
     			|| (cannulas.getRCannula().CheckCannulaRotation(lowerBound, upperBound) && (cannulas.getRHeld() || cannulas.getRLocked()) && incisionState != 1)) {
       			if(waterLevel > 0) {
       			  waterLevel -= 0.50f;
-      			  eye.setWaterLevel(waterLevel);
+					if(!inTutorial){
+						eye.setWaterLevel(waterLevel);
+					}
+					else{
+						eyeTutorial.setWaterLevel(waterLevel);
+					}
       			  bar.Value = waterLevel;
       			  waterLevelInt = (int) waterLevel;
       			  waterLevelCounter.Text = (waterLevelInt.ToString() + "uL");
@@ -63,7 +70,12 @@ public class Incisions : Node2D
 
               if(waterLevel < 250) {
                 waterLevel+= 0.50f;
-                eye.setWaterLevel(waterLevel);
+					if(!inTutorial){
+						eye.setWaterLevel(waterLevel);
+					}
+					else{
+						eyeTutorial.setWaterLevel(waterLevel);
+					}
                 bar.Value = waterLevel;
 
                 int waterLevelInt = (int) waterLevel;
@@ -77,8 +89,18 @@ public class Incisions : Node2D
     public override void _Ready() {
         waterLevelCounter = GetNode("../UI/NinePatchRect/WaterLevel") as RichTextLabel;
         cannulas = GetNode("../Cannulas") as CannulaMain2D;
+		GD.Print(GetTree().GetCurrentScene().GetName());
         eye = GetNode("../") as MainEye2D;
-        waterLevel = eye.getWaterLevel();
+
+		if(eye == null){
+			inTutorial = true;
+			eyeTutorial = GetNode("../") as MainEye2DTutorial;
+			waterLevel = eyeTutorial.getWaterLevel();
+		}
+		else{
+			waterLevel = eye.getWaterLevel();
+		}
+
     }
 
   	public void _on_Incision1_area_entered(Area2D area) {
@@ -87,7 +109,13 @@ public class Incisions : Node2D
   		GD.Print(area.GetName());
   		bar = GetNode("../UI/TextureProgress") as TextureProgress;
   		waterLevel = (float)bar.Value;
-  		eye.setInIncision(true);
+		if(!inTutorial){
+			eye.setInIncision(true);
+		}
+		else{
+			eyeTutorial.setInIncision(true);
+		}
+
   		int nextState = Helper.getNextHitboxState(area, true, incisionState);
   		if (nextState != -1)
   		  incisionState = nextState;
@@ -97,7 +125,12 @@ public class Incisions : Node2D
   		incisionNumber = -1;
   		bar = GetNode("../UI/TextureProgress") as TextureProgress;
   		waterLevel = (float)bar.Value;
-  		eye.setInIncision(false);
+		if(!inTutorial){
+			eye.setInIncision(false);
+		}
+		else{
+			eyeTutorial.setInIncision(false);
+		}
   		int nextState = Helper.getNextHitboxState(area, false, incisionState);
   		if (nextState != -1)
   		  incisionState = nextState;
@@ -109,7 +142,12 @@ public class Incisions : Node2D
   		GD.Print(area.GetName());
   		bar = GetNode("../UI/TextureProgress") as TextureProgress;
   		waterLevel = (float)bar.Value;
-  		eye.setInIncision(true);
+  		if(!inTutorial){
+			eye.setInIncision(true);
+		}
+		else{
+			eyeTutorial.setInIncision(true);
+		}
   		int nextState = Helper.getNextHitboxState(area, true, incisionState);
   		if (nextState != -1)
   		  incisionState = nextState;
@@ -120,7 +158,12 @@ public class Incisions : Node2D
   		bar = GetNode("../UI/TextureProgress") as TextureProgress;
   		GD.Print("exiting incision 3");
   		waterLevel = (float)bar.Value;
-  		eye.setInIncision(false);
+		if(!inTutorial){
+			eye.setInIncision(false);
+		}
+		else{
+			eyeTutorial.setInIncision(false);
+		}
   		int nextState = Helper.getNextHitboxState(area, false, incisionState);
   		if (nextState != -1)
   		  incisionState = nextState;
@@ -133,7 +176,12 @@ public class Incisions : Node2D
   		GD.Print(area.GetName());
   		bar = GetNode("../UI/TextureProgress") as TextureProgress;
   		waterLevel = (float)bar.Value;
-  		eye.setInIncision(true);
+		if(!inTutorial){
+			eye.setInIncision(true);
+		}
+		else{
+			eyeTutorial.setInIncision(true);
+		}
   		int nextState = Helper.getNextHitboxState(area, true, incisionState);
   		if (nextState != -1)
   		  incisionState = nextState;
@@ -144,7 +192,12 @@ public class Incisions : Node2D
   		bar = GetNode("../UI/TextureProgress") as TextureProgress;
   		GD.Print("exiting incision 5");
   		waterLevel = (float)bar.Value;
-  		eye.setInIncision(false);
+		if(!inTutorial){
+			eye.setInIncision(false);
+		}
+		else{
+			eyeTutorial.setInIncision(false);
+		}
   		int nextState = Helper.getNextHitboxState(area, false, incisionState);
   		if (nextState != -1)
   		  incisionState = nextState;
@@ -156,7 +209,12 @@ public class Incisions : Node2D
   		GD.Print(area.GetName());
   		bar = GetNode("../UI/TextureProgress") as TextureProgress;
   		waterLevel = (float)bar.Value;
-  		eye.setInIncision(true);
+		if(!inTutorial){
+			eye.setInIncision(true);
+		}
+		else{
+			eyeTutorial.setInIncision(true);
+		}
   		int nextState = Helper.getNextHitboxState(area, true, incisionState);
   		if (nextState != -1)
   		  incisionState = nextState;
@@ -167,7 +225,12 @@ public class Incisions : Node2D
   		bar = GetNode("../UI/TextureProgress") as TextureProgress;
   		GD.Print("exiting incision 7");
   		waterLevel = (float)bar.Value;
-  		eye.setInIncision(false);
+		if(!inTutorial){
+			eye.setInIncision(false);
+		}
+		else{
+			eyeTutorial.setInIncision(false);
+		}
   		int nextState = Helper.getNextHitboxState(area, false, incisionState);
   		if (nextState != -1)
   		  incisionState = nextState;

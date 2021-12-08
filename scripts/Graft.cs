@@ -112,7 +112,7 @@ public class Graft : Sprite {
       return;
     badTapSound.VolumeDb = Helper.soundEffectsVolumeDb;
     badTapSound.Play();
-    if(numTapsWrong < 3){
+  
 					GD.Print("You clicked outside of the correct areas");
           if (lCannula.tapped)
           {
@@ -123,18 +123,9 @@ public class Graft : Sprite {
             rCannula.ShowMisclickCircle();
           }
 					++numTapsWrong;
-          misclickText.Text = "Misclicks: " + numTapsWrong + "/3";
+          misclickText.Text = "Misclicks: " + numTapsWrong ;
           GD.Print("IN HERE");
-				}
-				else{
-					// GD.Print("Misclicked too many times. You fail!");
-					// lCannula.locked = true;
-					// rCannula.locked = true;
-					// previousConfirmation = "Scroll";
-          // numTapsWrong = 0;
-          // Input.SetMouseMode((Godot.Input.MouseMode)0);
-					// GetTree().ChangeScene("res://FailScreen.tscn");
-				}
+
   }
 
   public bool getIsFinished() {

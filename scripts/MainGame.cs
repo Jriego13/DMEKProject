@@ -12,7 +12,7 @@ public class MainGame : Node2D
 	protected RichTextLabel successfulTapPrompt;
 	protected RichTextLabel levelCompletePrompt;
 	protected RichTextLabel waterLevelCounter;
-	protected float waterLevel = 250.0f;
+	protected float waterLevel = 150.0f;
 	protected float prevRotation = 0;
 	protected bool inIncision = false;
 
@@ -43,7 +43,6 @@ public class MainGame : Node2D
 		waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
 		// waterLevel = 100.0f;
 		bar.Value = this.waterLevel;
-		bar.RectRotation = -90;
 
 		escapeMenu = GetNode("MenuPopup") as EscapeMenu;
 		successfulTapPrompt = GetNode("Overlay/SuccessfulTapPrompt") as RichTextLabel;

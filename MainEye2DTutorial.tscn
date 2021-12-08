@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://sprites/EyeBackground.png" type="Texture" id=1]
 [ext_resource path="res://ChiKareGo.tres" type="DynamicFont" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://WaterUIFont.tres" type="DynamicFont" id=10]
 [ext_resource path="res://images/helpPrompt1.png" type="Texture" id=11]
 [ext_resource path="res://HelpPopup.cs" type="Script" id=12]
+[ext_resource path="res://scripts/Incisions.cs" type="Script" id=13]
 [ext_resource path="res://images/S-Key.png" type="Texture" id=14]
 [ext_resource path="res://images/EscKey.png" type="Texture" id=15]
 [ext_resource path="res://images/leftclick.png" type="Texture" id=16]
@@ -77,6 +78,10 @@ corner_radius_top_right = 45
 corner_radius_bottom_right = 45
 corner_radius_bottom_left = 45
 
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 22.7219
+height = 28.522
+
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.749, 0.842 )
 script = SubResource( 1 )
@@ -104,43 +109,13 @@ __meta__ = {
 [node name="WaterLevel" type="RichTextLabel" parent="UI/NinePatchRect"]
 anchor_right = 0.042
 anchor_bottom = 0.079
-margin_left = 399.997
-margin_top = -19.5589
-margin_right = 1067.47
-margin_bottom = 164.551
+margin_left = 449.898
+margin_top = 4.22092
+margin_right = 1117.37
+margin_bottom = 188.331
 custom_fonts/normal_font = ExtResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "100
-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WaterLevel" type="RichTextLabel" parent="UI/NinePatchRect"]
-anchor_right = 0.042
-anchor_bottom = 0.079
-margin_left = 399.997
-margin_top = -19.5589
-margin_right = 1067.47
-margin_bottom = 164.551
-custom_fonts/normal_font = ExtResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "100
-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WaterLevel" type="RichTextLabel" parent="UI/NinePatchRect"]
-anchor_right = 0.042
-anchor_bottom = 0.079
-margin_left = 399.997
-margin_top = -19.5589
-margin_right = 1067.47
-margin_bottom = 164.551
-custom_fonts/normal_font = ExtResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "100
+text = "150μuL
 "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -149,31 +124,8 @@ __meta__ = {
 [node name="TextureProgress" type="TextureProgress" parent="UI"]
 margin_right = 1822.0
 margin_bottom = 910.0
+max_value = 250.0
 texture_under = ExtResource( 9 )
-texture_progress = ExtResource( 3 )
-
-[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
-margin_right = 1822.0
-margin_bottom = 910.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureProgress" type="TextureProgress" parent="UI"]
-margin_right = 1822.0
-margin_bottom = 910.0
-texture_progress = ExtResource( 3 )
-
-[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
-margin_right = 1822.0
-margin_bottom = 910.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureProgress" type="TextureProgress" parent="UI"]
-margin_right = 1822.0
-margin_bottom = 910.0
 texture_progress = ExtResource( 3 )
 
 [node name="Cannulas" parent="." instance=ExtResource( 4 )]
@@ -426,5 +378,44 @@ visible = false
 position = Vector2( 344.947, 135.451 )
 scale = Vector2( 0.676092, 0.693796 )
 texture = ExtResource( 26 )
+
+[node name="Incisions" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="Incision1" type="Area2D" parent="Incisions"]
+
+[node name="IncisionColl1" type="CollisionShape2D" parent="Incisions/Incision1"]
+position = Vector2( 918.224, 46.1755 )
+shape = SubResource( 6 )
+
+[node name="Incision3" type="Area2D" parent="Incisions"]
+
+[node name="IncisionColl3" type="CollisionShape2D" parent="Incisions/Incision3"]
+position = Vector2( 1371.23, 445.949 )
+rotation = -1.55499
+shape = SubResource( 6 )
+
+[node name="Incision5" type="Area2D" parent="Incisions"]
+
+[node name="IncisionColl5" type="CollisionShape2D" parent="Incisions/Incision5"]
+position = Vector2( 917.185, 858.821 )
+rotation = -1.58067
+shape = SubResource( 6 )
+
+[node name="Incision7" type="Area2D" parent="Incisions"]
+
+[node name="IncisionColl7" type="CollisionShape2D" parent="Incisions/Incision7"]
+position = Vector2( 471.185, 445.931 )
+rotation = 1.55071
+shape = SubResource( 6 )
+
+[connection signal="area_entered" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision3" to="Incisions" method="_on_Incision3_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision3" to="Incisions" method="_on_Incision3_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision5" to="Incisions" method="_on_Incision5_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision5" to="Incisions" method="_on_Incision5_area_exited"]
+[connection signal="area_entered" from="Incisions/Incision7" to="Incisions" method="_on_Incision7_area_entered"]
+[connection signal="area_exited" from="Incisions/Incision7" to="Incisions" method="_on_Incision7_area_exited"]
 
 [editable path="Overlay"]
