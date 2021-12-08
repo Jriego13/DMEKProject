@@ -56,8 +56,8 @@ public class TutorialWelcomeScreen : Node2D
             }
             if (enterCount == 1) {
             prompt.SetText("Above is the fluid level in the eye\n" +
-            "For most grafts, keep it between 10-30.\n\nFor flipped grafts " + 
-            "like taco and inverted it needs to be deep (>50). \n\nFluid is" +
+            "For most grafts, keep it more shallow.\n\nFor flipped grafts " + 
+            "like taco and inverted it needs to be deeper. \n\nFluid is" +
             " inserted by holding space on an incision point in purple and " +
             "extracted by clicking on one\n\nHit enter to test your skills"
             +"\nPress left arrow to see previous message");

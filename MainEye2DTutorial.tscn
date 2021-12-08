@@ -12,7 +12,7 @@
 [ext_resource path="res://WaterUIFont.tres" type="DynamicFont" id=10]
 [ext_resource path="res://images/helpPrompt1.png" type="Texture" id=11]
 [ext_resource path="res://HelpPopup.cs" type="Script" id=12]
-[ext_resource path="res://scripts/Incisions.cs" type="Script" id=13]
+[ext_resource path="res://images/liquidPrompt2.png" type="Texture" id=13]
 [ext_resource path="res://images/S-Key.png" type="Texture" id=14]
 [ext_resource path="res://images/EscKey.png" type="Texture" id=15]
 [ext_resource path="res://images/leftclick.png" type="Texture" id=16]
@@ -21,7 +21,6 @@
 [ext_resource path="res://images/D-Key.png" type="Texture" id=19]
 [ext_resource path="res://images/CannulaControl.png" type="Texture" id=20]
 [ext_resource path="res://images/rightclick1.png" type="Texture" id=21]
-[ext_resource path="res://images/liquidPrompt.png" type="Texture" id=22]
 [ext_resource path="res://images/R-Key.png" type="Texture" id=23]
 [ext_resource path="res://images/basicTutorialPrompt.png" type="Texture" id=24]
 [ext_resource path="res://images/altPressEnter.png" type="Texture" id=25]
@@ -34,8 +33,9 @@
 [ext_resource path="res://images/edgeFoldPrompt.png" type="Texture" id=32]
 [ext_resource path="res://images/A-Key.png" type="Texture" id=33]
 [ext_resource path="res://images/resetCannula.png" type="Texture" id=34]
-[ext_resource path="res://images/tapRight.png" type="Texture" id=35]
 [ext_resource path="res://images/Space-Key.png" type="Texture" id=36]
+[ext_resource path="res://images/rightClickMac.png" type="Texture" id=37]
+[ext_resource path="res://images/bouquetPrompt.png" type="Texture" id=38]
 
 [sub_resource type="CSharpScript" id=1]
 resource_name = "MainEye2D"
@@ -179,6 +179,7 @@ __meta__ = {
 }
 
 [node name="MenuPopup" parent="." instance=ExtResource( 8 )]
+visible = false
 margin_left = 910.082
 margin_top = 446.771
 margin_right = 910.082
@@ -245,33 +246,23 @@ scale = Vector2( 0.632561, 0.58631 )
 texture = ExtResource( 20 )
 
 [node name="Controls" type="Sprite" parent="HelpPopup/ColorRect"]
-position = Vector2( 280.055, 366.037 )
-scale = Vector2( 0.5918, 0.641367 )
-texture = ExtResource( 22 )
-
-[node name="TapRight" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
-position = Vector2( 470.118, 102.733 )
-scale = Vector2( 1.00341, 1.02519 )
-texture = ExtResource( 35 )
+position = Vector2( 261.187, 355.107 )
+scale = Vector2( 0.567674, 0.581182 )
+texture = ExtResource( 13 )
 
 [node name="LeftClick1" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
-position = Vector2( -17.6432, 67.6563 )
-scale = Vector2( 0.918936, 0.553964 )
+position = Vector2( -8.86938, 140.327 )
+scale = Vector2( 0.904565, 0.437747 )
 texture = ExtResource( 16 )
 
 [node name="RightClick1" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
-position = Vector2( 336.672, 65.5832 )
-scale = Vector2( 0.890219, 0.578221 )
-texture = ExtResource( 21 )
-
-[node name="RightClick" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
-position = Vector2( -228.027, -31.7855 )
-scale = Vector2( 0.909939, 0.540081 )
+position = Vector2( 10.4436, 43.9785 )
+scale = Vector2( 0.875168, 0.448048 )
 texture = ExtResource( 21 )
 
 [node name="Space" type="Sprite" parent="HelpPopup/ColorRect/Controls"]
-position = Vector2( -158.658, -129.054 )
-scale = Vector2( 1.4878, 1.88209 )
+position = Vector2( -205.921, -136.573 )
+scale = Vector2( 1.8423, 2.00881 )
 texture = ExtResource( 36 )
 
 [node name="EscapeAndH" type="Sprite" parent="HelpPopup/ColorRect"]
@@ -298,6 +289,11 @@ texture = ExtResource( 34 )
 position = Vector2( 318.046, -5.6105 )
 scale = Vector2( 2.65398, 2.15555 )
 texture = ExtResource( 14 )
+
+[node name="RightClickMac" type="Sprite" parent="HelpPopup/ColorRect"]
+position = Vector2( 743.964, 343.899 )
+scale = Vector2( 0.68059, 0.616494 )
+texture = ExtResource( 37 )
 
 [node name="TutorialPopup" type="Popup" parent="."]
 margin_left = 3.17904
@@ -379,8 +375,14 @@ position = Vector2( 344.947, 135.451 )
 scale = Vector2( 0.676092, 0.693796 )
 texture = ExtResource( 26 )
 
+[node name="BouquetSprite" type="Sprite" parent="TutorialPopup/Panel"]
+visible = false
+position = Vector2( 285.86, 132.704 )
+scale = Vector2( 0.826921, 0.871232 )
+texture = ExtResource( 38 )
+
 [node name="Incisions" type="Node2D" parent="."]
-script = ExtResource( 13 )
+script = ExtResource( 38 )
 
 [node name="Incision1" type="Area2D" parent="Incisions"]
 
