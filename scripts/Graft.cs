@@ -20,9 +20,9 @@ public class Graft : Sprite {
   protected String currentConfirmation;
   protected String nextConfirmation;
   public Cannula2D lCannula;
-	public Cannula2D rCannula;
+  public Cannula2D rCannula;
   protected RichTextLabel misclickText;
-	protected bool isTutorialMode;
+  protected bool isTutorialMode;
   protected double rotationalVelocity;
   protected Area2D interactionBox;
   protected bool interactable = true;
@@ -31,7 +31,7 @@ public class Graft : Sprite {
   protected MainGame eye;
   protected AudioStreamPlayer goodTapSound = new AudioStreamPlayer();
   protected AudioStreamPlayer badTapSound = new AudioStreamPlayer();
-  protected float waterLevel; 
+  protected float waterLevel;
 
   public override void _Ready()
   {
@@ -41,8 +41,8 @@ public class Graft : Sprite {
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
     misclickText = GetNode("../Overlay/MisclickCounter") as RichTextLabel;
     eye = GetNode("../") as MainGame;
-  	var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
-  	isTutorialMode = levelSwitcher.tutorialMode();
+    var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+    isTutorialMode = levelSwitcher.tutorialMode();
     SetUpSound();
     waterLevel = eye.getWaterLevel();
   }
@@ -108,34 +108,31 @@ public class Graft : Sprite {
   // What will happen when the player clicks outside of the correct areas:
   protected void registerMisclick()
   {
-    if (gamePaused || !misclicksOn)
+    if (gamePaused || !misclicksOn) {
       return;
+    }
     badTapSound.VolumeDb = Helper.soundEffectsVolumeDb;
     badTapSound.Play();
-  
-					GD.Print("You clicked outside of the correct areas");
-          if (lCannula.tapped)
-          {
-            lCannula.ShowMisclickCircle();
-          }
-          if (rCannula.tapped)
-          {
-            rCannula.ShowMisclickCircle();
-          }
-					++numTapsWrong;
-          misclickText.Text = "Misclicks: " + numTapsWrong ;
-          GD.Print("IN HERE");
 
+    GD.Print("You clicked outside of the correct areas");
+    if (lCannula.tapped) {
+      lCannula.ShowMisclickCircle();
+    }
+    if (rCannula.tapped) {
+      rCannula.ShowMisclickCircle();
+    }
+    ++numTapsWrong;
+    misclickText.Text = "Misclicks: " + numTapsWrong ;
   }
 
   public bool getIsFinished() {
-		return isFinished;
-	}
+    return isFinished;
+  }
 
   public void onInteractionBoxEntered()
-	{
-		interactable = true;
-	}
+  {
+    interactable = true;
+  }
 
   public void onInteractionBoxExited()
   {
@@ -143,43 +140,43 @@ public class Graft : Sprite {
   }
 
   public override void _Input(InputEvent @event)
-    {
-        base._Input(@event);
+  {
+    base._Input(@event);
 
-        if (@event.IsActionPressed("toggle_rotation"))
-        {
-          interactable = !interactable;
-        }
+    if (@event.IsActionPressed("toggle_rotation"))
+    {
+      interactable = !interactable;
     }
+  }
 
   public override void _Process(float delta)
   {
     //Input.SetMouseMode((Godot.Input.MouseMode)0);
     waterLevel = eye.getWaterLevel();
-    if (!gamePaused && waterLevel <= 200.0f && waterLevel > 100.0f )
+    if (!gamePaused && waterLevel >= 75.0f && waterLevel <= 150.0f)
     {
       CheckObjectives(delta);
-      if (Math.Abs(rotationalVelocity) > 0)
+      if (Math.Abs(rotationalVelocity) > 0) {
         Deaccelerate();
-    
-      if ((lCannula.tapped || rCannula.tapped) &&
-        this.GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())) && interactable)
+      }
+
+      if ((lCannula.tapped || rCannula.tapped) && this.GetRect().HasPoint(ToLocal(GetViewport().GetMousePosition())) && interactable)
       {
         RotateFromTap();
       }
-        // if the player taps outside of a hitbox:
-        // Don't register misclick if inside an incision
-        if(eye.getInIncision() == false && (lCannula.tapped && lCannula.numAreasIn == 0)||(rCannula.tapped && rCannula.numAreasIn == 0))
-        {
-          registerMisclick();
-        }
-        // Not a misclick, so play normal tap sound:
-        else if ((lCannula.tapped || rCannula.tapped))
-        {
-          goodTapSound.VolumeDb = Helper.soundEffectsVolumeDb;
-          goodTapSound.Play();
-        }
+      // if the player taps outside of a hitbox:
+      // Don't register misclick if inside an incision
+      if(eye.getInIncision() == false && (lCannula.tapped && lCannula.numAreasIn == 0)||(rCannula.tapped && rCannula.numAreasIn == 0))
+      {
+        registerMisclick();
       }
+      // Not a misclick, so play normal tap sound:
+      else if ((lCannula.tapped || rCannula.tapped))
+      {
+        goodTapSound.VolumeDb = Helper.soundEffectsVolumeDb;
+        goodTapSound.Play();
+      }
+    }
   }
 
   protected void Deaccelerate()
@@ -192,23 +189,25 @@ public class Graft : Sprite {
     {
       rotationalVelocity -= deacceleration;
       if (rotationalVelocity < 0)
-        rotationalVelocity = 0;
+      rotationalVelocity = 0;
     }
     else
     {
       rotationalVelocity += deacceleration;
       if (rotationalVelocity > 0)
-        rotationalVelocity = 0;
+      rotationalVelocity = 0;
     }
   }
 
   private void RotateFromTap()
   {
     Vector2 tapPos = new Vector2(0.0f,0.0f);
-    if (lCannula.tapped)
+    if (lCannula.tapped) {
       tapPos = lCannula.GlobalPosition;
-    else if (rCannula.tapped)
+    }
+    else if (rCannula.tapped) {
       tapPos = rCannula.GlobalPosition;
+    }
     var axis = GetNode("Axis") as Line2D;
     var axisPoint0 = GlobalTransform.BasisXform(axis.Points[0]);
     var axisPoint1 = GlobalTransform.BasisXform(axis.Points[1]);
@@ -242,13 +241,6 @@ public class Graft : Sprite {
     const float tapForce = 0.001f;
     var torque = tapForce * r * Math.Sin(theta);
     rotationalVelocity = torque; // Make rotational velocity the torque because things are complicated enough
-
-    // GD.Print("axis slope ", axisSlope);
-    // GD.Print("mouse pos ", mousePos);
-    // GD.Print("slope of line from mouse to center ", slope);
-    // GD.Print("r ", r);
-    // GD.Print("theta ", theta);
-    // GD.Print("torque ", torque);
   }
 
   public bool getIsNextLevelSet() {
@@ -266,8 +258,8 @@ public class Graft : Sprite {
   public int getTopTaps() {
     return topTaps;
   }
-  public String getCurrentConformation(){
-    return currentConfirmation; 
+  public String getCurrentConformation() {
+    return currentConfirmation;
   }
   protected void SetUpSound()
   {
@@ -278,5 +270,5 @@ public class Graft : Sprite {
     AddChild(goodTapSound);
     AddChild(badTapSound);
   }
-  
+
 }
