@@ -7,7 +7,7 @@ public class InfoScreenPrompt : RichTextLabel
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+
         enterCount = 0;
     }
 
@@ -18,12 +18,12 @@ public class InfoScreenPrompt : RichTextLabel
             enterCount++;
         }
       if (enterCount == 0) {
-          SetText("Welcome to our DMEK Simulation Game \n\n" + 
+          SetText("Welcome to our DMEK Simulation Game \n\n" +
                             "Descemet Membrane Edothelial Keratoplasty (DMEK) Surgery " +
                             "is the most advanced form of partial corneal transplant " +
                             "procedure for diseases affecting the innermost endothelial " +
-                            "layer of the cornea. \n\nOnly a single thing layer of cells are replaced" +
-                            " which allows for an exact replacement of the damaged cells\n\n" + 
+                            "layer of the cornea. \n\nOnly a single thin layer of cells are replaced" +
+                            " which allows for an exact replacement of the damaged cells\n\n" +
                             "Press enter to read more!");
       }
       if (enterCount == 1) {
@@ -32,5 +32,5 @@ public class InfoScreenPrompt : RichTextLabel
           "common configurations as demonstrated in the figure on the right. \n\nThe game will train you on how to use the tap of the cannulas and " +
           "the insertion and extraction of liquid into/from the eye to make the graft lie flat.");
       }
-    }   
+    }
 }

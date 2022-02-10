@@ -10,10 +10,11 @@ public class Bouquet : Graft {
   protected override void SetObjectives()
   {
     currentConfirmation = "Bouquet";
-    numTapsComplete = 3;
+    numTapsComplete = 2;
 		topTapsComplete = numTapsComplete;
     GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
   }
+
   protected override void CheckObjectives(float delta)
   {
     if(numTaps >= numTapsComplete && topTaps >= topTapsComplete) {

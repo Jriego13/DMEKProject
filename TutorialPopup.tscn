@@ -7,7 +7,6 @@
 [ext_resource path="res://scripts/TutorialPopup.cs" type="Script" id=5]
 
 [node name="TutorialPopup" type="Popup"]
-visible = true
 margin_top = 3.56294
 margin_right = 1025.0
 margin_bottom = 628.563

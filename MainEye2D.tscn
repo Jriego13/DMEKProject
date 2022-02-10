@@ -111,7 +111,7 @@ margin_right = 1078.45
 margin_bottom = 169.592
 custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "75μuL
+text = "250μuL
 "
 __meta__ = {
 "_edit_use_anchors_": false
