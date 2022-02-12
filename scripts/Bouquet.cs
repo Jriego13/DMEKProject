@@ -6,12 +6,16 @@ public class Bouquet : Graft {
   int midAreaState = 0;
   int topTaps = 0;
   int topTapsComplete = 0;
+  ColorRect topHitBox;
 
   protected override void SetObjectives()
   {
     currentConfirmation = "Bouquet";
     numTapsComplete = 3;
 		topTapsComplete = numTapsComplete;
+    var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
+    isTutorialMode = levelSwitcher.tutorialMode();
+    setUpHitboxes(isTutorialMode);
     GD.Print("you have to tap the bottom " + numTapsComplete + " and the top " + topTapsComplete + " times!");
   }
   protected override void CheckObjectives(float delta)
@@ -77,4 +81,16 @@ public class Bouquet : Graft {
 			midAreaState = nextState;
 		GD.Print("mid area exited");
 	}
+
+    public void setUpHitboxes(bool setup) {
+	    topHitBox = GetNode("TopArea/TopHitbox/TopHitboxColor") as ColorRect;
+      Color topHitBoxColor = new Color( 0.98f, 0.5f, 0.45f, .5f );
+	    topHitBox.Color = topHitBoxColor;
+      if (setup) {
+        topHitBox.SetVisible(true);
+      }
+      else {
+        topHitBox.SetVisible(false);
+      }
+  }
 }
