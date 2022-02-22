@@ -70,23 +70,23 @@ font_path = "res://ChiKareGo2.ttf"
 size = 50
 font_data = SubResource( 2 )
 
-[sub_resource type="Curve" id=7]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0.238636, 0.836364 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=8]
-curve = SubResource( 7 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 7 )
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0, 0.129412, 0.647059, 0.721569 )
 corner_radius_top_left = 45
 corner_radius_top_right = 45
 corner_radius_bottom_right = 45
 corner_radius_bottom_left = 45
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=8]
 radius = 22.7219
 height = 28.522
 
@@ -160,7 +160,7 @@ visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 279.491, 101.783 )
 scale = Vector2( 0.069726, 0.0968763 )
-texture = SubResource( 8 )
+texture = SubResource( 5 )
 
 [node name="VerticalMarker" type="Sprite" parent="."]
 visible = false
@@ -168,7 +168,7 @@ modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 279.468, 101.953 )
 rotation = 1.5708
 scale = Vector2( 0.0781751, 0.264045 )
-texture = SubResource( 4 )
+texture = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
@@ -330,13 +330,13 @@ margin_left = 6.22431
 margin_top = 41.9675
 margin_right = 573.224
 margin_bottom = 391.967
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PressEnterSprite" type="Sprite" parent="TutorialPopup/Panel"]
-position = Vector2( 275.771, 316.83 )
+position = Vector2( 275.771, 323.956 )
 scale = Vector2( 0.605591, 1.01095 )
 texture = ExtResource( 25 )
 
@@ -384,7 +384,7 @@ texture = ExtResource( 26 )
 
 [node name="BouquetSprite" type="Sprite" parent="TutorialPopup/Panel"]
 visible = false
-position = Vector2( 285.86, 132.704 )
+position = Vector2( 272.509, 146.956 )
 scale = Vector2( 0.826921, 0.871232 )
 texture = ExtResource( 38 )
 
@@ -395,28 +395,28 @@ script = ExtResource( 22 )
 
 [node name="IncisionColl1" type="CollisionShape2D" parent="Incisions/Incision1"]
 position = Vector2( 918.224, 46.1755 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Incision3" type="Area2D" parent="Incisions"]
 
 [node name="IncisionColl3" type="CollisionShape2D" parent="Incisions/Incision3"]
 position = Vector2( 1371.23, 445.949 )
 rotation = -1.55499
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Incision5" type="Area2D" parent="Incisions"]
 
 [node name="IncisionColl5" type="CollisionShape2D" parent="Incisions/Incision5"]
 position = Vector2( 917.185, 858.821 )
 rotation = -1.58067
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Incision7" type="Area2D" parent="Incisions"]
 
 [node name="IncisionColl7" type="CollisionShape2D" parent="Incisions/Incision7"]
 position = Vector2( 471.185, 445.931 )
 rotation = 1.55071
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [connection signal="area_entered" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_entered"]
 [connection signal="area_exited" from="Incisions/Incision1" to="Incisions" method="_on_Incision1_area_exited"]
