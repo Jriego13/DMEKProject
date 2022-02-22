@@ -24,7 +24,7 @@ public class Bouquet : Graft {
       GD.Print("tapping complete.");
     }
 
-    if(topAreaState != 0) {
+    if(topAreaState != 0 && eye.getWaterLevel() <= 75) {
       if((lCannula.tapped && topAreaState != 2 && lCannula.CheckCannulaRotationRelative(Rotation, 1.396f, 1.745f))
        || (rCannula.tapped && topAreaState !=1 && rCannula.CheckCannulaRotationRelative(Rotation, 1.396f, 1.745f))) {
           topTaps += 1;
@@ -37,7 +37,7 @@ public class Bouquet : Graft {
       }
     }
 
-    if(midAreaState != 0) {
+    if(midAreaState != 0 && eye.getWaterLevel() <= 75) {
       if((lCannula.tapped && midAreaState != 2 && lCannula.CheckCannulaRotationRelative(Rotation, 0f, 0.52f))
        || (rCannula.tapped && midAreaState != 1 && rCannula.CheckCannulaRotationRelative(Rotation, 0f, 0.52f))) {
           numTaps += 1;

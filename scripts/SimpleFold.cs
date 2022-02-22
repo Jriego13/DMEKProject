@@ -32,7 +32,7 @@ public class SimpleFold : Graft {
     }
 
     // if at least one cannula is in tap area:
-    if(tapAreaState != 0 && heldDown) {
+    if(tapAreaState != 0 && heldDown && eye.getWaterLevel() <= 75) {
       // if cannula is being tapped and is not the state where only the other cannula is there:
         if((lCannula.tapped && tapAreaState != 2) || (rCannula.tapped && tapAreaState != 1)) {
           numTaps += 1;

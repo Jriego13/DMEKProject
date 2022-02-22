@@ -26,7 +26,7 @@ public class DoubleScroll : Graft {
     }
 
     // if at least one cannula in the area:
-    if(areaState != 0) {
+    if(areaState != 0 && eye.getWaterLevel() <= 75) {
       // if cannula tapped and it isn't the other cannula in the area:
       if((lCannula.tapped && areaState != 2) || (rCannula.tapped && areaState != 1)) {
         numTaps += 1;

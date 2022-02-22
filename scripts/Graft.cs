@@ -36,13 +36,13 @@ public class Graft : Sprite {
   public override void _Ready()
   {
     SetObjectives();
-    LoadTextures();
     lCannula = GetNode("../Cannulas/CannulaLSprite") as Cannula2D;
     rCannula = GetNode("../Cannulas/CannulaRSprite") as Cannula2D;
     misclickText = GetNode("../Overlay/MisclickCounter") as RichTextLabel;
     eye = GetNode("../") as MainGame;
     var levelSwitcher = GetNode<LevelSwitcher>("/root/LevelSwitcher");
     isTutorialMode = levelSwitcher.tutorialMode();
+    LoadTextures();
     SetUpSound();
     waterLevel = eye.getWaterLevel();
   }
@@ -153,7 +153,8 @@ public class Graft : Sprite {
   {
     //Input.SetMouseMode((Godot.Input.MouseMode)0);
     waterLevel = eye.getWaterLevel();
-    if (!gamePaused && waterLevel >= 75.0f && waterLevel <= 150.0f)
+    //  && waterLevel >= 75.0f && waterLevel <= 150.0f
+    if (!gamePaused)
     {
       CheckObjectives(delta);
       if (Math.Abs(rotationalVelocity) > 0) {

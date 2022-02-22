@@ -12,7 +12,7 @@ public class MainGame : Node2D
 	protected RichTextLabel successfulTapPrompt;
 	protected RichTextLabel levelCompletePrompt;
 	protected RichTextLabel waterLevelCounter;
-	protected float waterLevel = 250.0f;
+	protected float waterLevel = 100.0f;
 	protected float prevRotation = 0;
 	protected bool inIncision = false;
 
@@ -35,12 +35,13 @@ public class MainGame : Node2D
 		// Get the levelName from the levelSwitcher:
 		levelName = levelSwitcher.getLevelName();
 		Helper.startLevel = levelName;
-		loadConfirmation(levelName);
+		//loadConfirmation(levelName);
 
 		// _tween = GetNode("UI/Tween") as Tween;
 		bar = GetNode("UI/TextureProgress") as TextureProgress;
 
 		waterLevelCounter = GetNode("UI/NinePatchRect/WaterLevel") as RichTextLabel;
+		loadConfirmation(levelName);
 		// waterLevel = 100.0f;
 		bar.Value = this.waterLevel;
 
