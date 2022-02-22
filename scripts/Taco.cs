@@ -27,7 +27,7 @@ public class Taco : Graft {
     // you want to be injecting perpendicular to the graft
     // so this will have to be checked for
     if(areaState != 0) {
-      if(((lCannula.injecting && lCannula.numAreasIn != 0) || (rCannula.injecting && rCannula.numAreasIn != 0)) && (((timePassed - lastInject) > 0.5f) || numTaps == 0)) {
+      if(((lCannula.injecting && lCannula.numAreasIn != 0) || (rCannula.injecting && rCannula.numAreasIn != 0)) && (((timePassed - lastInject) > 0.5f) || numTaps == 0) && eye.getWaterLevel() >= 125) {
         lastInject = timePassed;
         numTaps += 1;
         if(numTaps < graftTextures.Count && numTaps >= 0)

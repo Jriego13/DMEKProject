@@ -3,8 +3,9 @@
 [ext_resource path="res://sprites/Inverted.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Inverted.cs" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 158.104, 376.213 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 33.7021
+height = 47.3459
 
 [node name="InvertedSprite" type="Sprite"]
 position = Vector2( 896.168, 467.267 )
@@ -15,7 +16,8 @@ script = ExtResource( 2 )
 [node name="InjectArea" type="Area2D" parent="."]
 
 [node name="InjectArea" type="CollisionShape2D" parent="InjectArea"]
-position = Vector2( 361.918, -4.58298 )
+position = Vector2( 676.733, -34.0924 )
+rotation = -1.57079
 shape = SubResource( 1 )
 
 [node name="Center" type="Line2D" parent="."]

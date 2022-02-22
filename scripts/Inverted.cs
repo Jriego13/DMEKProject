@@ -27,7 +27,7 @@ public class Inverted : Graft {
     // you want to be injecting perpendicular to the graft
     // so this will have to be checked for
     if(injectAreaState != 0) {
-      if(((lCannula.injecting && injectAreaState != 2) || (rCannula.injecting && injectAreaState != 1)) && ((timePassed - lastInject) > 1f || numTaps == 0)) {
+      if(((lCannula.injecting && injectAreaState != 2) || (rCannula.injecting && injectAreaState != 1)) && ((timePassed - lastInject) > 1f || numTaps == 0) && eye.getWaterLevel() >= 125) {
         lastInject = timePassed;
         numTaps += 1;
         if(numTaps < graftTextures.Count && numTaps >= 0)
